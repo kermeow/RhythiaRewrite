@@ -91,6 +91,8 @@ func _load_mapsets(reset:bool=false):
 		DirAccess.make_dir_recursive_absolute(Globals.Folders.get("maps"))
 	var loader = MapsetLoader.new(mapsets)
 	loader.load_from_folder(Globals.Folders.get("maps"))
+	for folder in settings.folders.maps:
+		loader.load_from_folder(ProjectSettings.globalize_path(folder))
 func _load_playlists(reset:bool=false):
 	if reset: playlists.clear()
 	var list_reader = PlaylistReader.new()
