@@ -15,6 +15,8 @@ static func read_from_file(path:String,full:bool=false,index:int=0) -> Mapset:
 		1: _sspmv1(file,set,full)
 		2: _sspmv2(file,set,full)
 		3: _sspmv3(file,set,full,index)
+	file.close()
+	set.id = file.get_md5(path)
 	return set
 
 static func _sspmv3(file:FileAccess,set:Mapset,full:bool,index:int=-1):
@@ -34,7 +36,7 @@ static func _sspmv3(file:FileAccess,set:Mapset,full:bool,index:int=-1):
 	var audio_length = file.get_64()
 	if audio_length > 1:
 		var audio_buffer = file.get_buffer(audio_length)
-		_audio(audio_buffer,set)
+		if full: _audio(audio_buffer,set)
 	else:
 		set.broken = true
 
@@ -55,7 +57,6 @@ static func _sspmv3(file:FileAccess,set:Mapset,full:bool,index:int=-1):
 	set.maps = []
 	set.maps.resize(map_count)
 	for i in range(map_count):
-		print("Reading map %s from mapset" % i)
 		var map = Map.new()
 		var dname_length = file.get_16()
 		map.name = file.get_buffer(dname_length).get_string_from_utf16()
@@ -158,9 +159,8 @@ static func _sspmv1(file:FileAccess,set:Mapset,full:bool):
 	var music_format = get_audio_format(music_buffer)
 	if music_format == Globals.AudioFormat.UNKNOWN:
 		set.broken = true
-	else:
-		_audio(music_buffer,set)
 	if not full: return
+	_audio(music_buffer,set)
 	map.notes = []
 	for i in range(note_count):
 		var note = Map.Note.new()
@@ -252,10 +252,10 @@ static func _sspmv2(file:FileAccess,set:Mapset,full:bool):
 		_cover(image,set)
 	else:
 		set.cover = Map.LegacyCovers.get(difficulty)
+	if not full: return
 	# Audio
 	file.seek(audio_offset)
 	_audio(file.get_buffer(audio_length),set)
-	if not full: return
 	# Markers
 	file.seek(marker_def_offset)
 	var markers = {}

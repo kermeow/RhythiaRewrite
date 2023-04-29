@@ -84,48 +84,13 @@ func _exec_initialiser(initialiser:String):
 	assert(err == OK) #,"Thread failed")
 	call_deferred("emit_signal","on_init_start",initialiser)
 	return thread
+
 func _load_mapsets(reset:bool=false):
 	if reset: mapsets.clear()
-	var song_reader = MapsetReader.new()
-	var map_files = []
 	if !DirAccess.dir_exists_absolute(Globals.Folders.get("maps")):
 		DirAccess.make_dir_recursive_absolute(Globals.Folders.get("maps"))
-	var maps_dir = DirAccess.open(Globals.Folders.get("maps"))
-	maps_dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
-	var paths = mapsets.items.map(func(mapset):
-		if mapset.broken: return "null"
-		return mapset.path
-	)
-	var new_paths = []
-	var file_name = maps_dir.get_next()
-	while file_name != "":
-		var path = Globals.Folders.get("maps").path_join(file_name)
-		new_paths.append(path)
-		if not path in paths: map_files.append(path)
-		file_name = maps_dir.get_next()
-	if !reset:
-		call_deferred("emit_signal","on_init_stage","Import content (1/2)",[
-			{text="Remove missing maps",max=1,value=1}
-		])
-		for path in paths:
-			if path == "null" or path in new_paths:
-				continue
-			mapsets.remove_item(mapsets.items[paths.find(path)])
-	var map_count = map_files.size()
-	call_deferred("emit_signal","on_init_stage","Import content (1/2)",[
-		{text="Import maps (0/%s)" % map_count,max=map_count,value=0}
-	])
-	var map_idx = 0
-	for map_file in map_files:
-		map_idx += 1
-		var song = song_reader.read_from_file(map_file)
-		call_deferred("emit_signal","on_init_stage",null,[
-			{text="Import maps (%s/%s)" % [map_idx,map_count],value=map_idx,max=map_count},
-			{text=song.name,max=1,value=1}
-		])
-		mapsets.add_item(song)
-	call_deferred("emit_signal","on_init_stage",null,[{text="Free MapsetReader",max=map_count,value=map_idx}])
-	song_reader.call_deferred("free")
+	var loader = MapsetLoader.new(mapsets)
+	loader.load_from_folder(Globals.Folders.get("maps"))
 func _load_playlists(reset:bool=false):
 	if reset: playlists.clear()
 	var list_reader = PlaylistReader.new()
