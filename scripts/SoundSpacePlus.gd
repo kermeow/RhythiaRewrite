@@ -54,7 +54,7 @@ func save_settings():
 	for key in settings.settings.keys():
 		data[key] = parse_setting(settings.get_setting(key))
 	var file = FileAccess.open(settings_path,FileAccess.WRITE)
-	file.store_string(JSON.stringify(data,"",false))
+	file.store_string(JSON.stringify(data,"	",false))
 	file.close()
 
 # Init

@@ -44,6 +44,9 @@ const SETTINGS_CONFIG = [
 		]],
 		["drift",Setting.Type.BOOLEAN,false],
 		["spin",Setting.Type.BOOLEAN,false]
+	]],
+	["folders",Setting.Type.CATEGORY,[
+		["maps",Setting.Type.ARRAY,[]]
 	]]
 ]
 
