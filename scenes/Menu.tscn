@@ -1248,7 +1248,6 @@ vertical_alignment = 1
 [node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Drift"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "enable me if you a PUSSY"
 
 [node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Drift"]
 layout_mode = 2
