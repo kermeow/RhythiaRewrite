@@ -42,8 +42,8 @@ const SETTINGS_CONFIG = [
 		["sensitivity",Setting.Type.CATEGORY,[
 			["mouse",Setting.Type.FLOAT,1.0]
 		]],
-		["drift",Setting.Type.BOOLEAN,false],
-		["spin",Setting.Type.BOOLEAN,false]
+		["lock",Setting.Type.BOOLEAN,true],
+		["drift",Setting.Type.BOOLEAN,false]
 	]],
 	["folders",Setting.Type.CATEGORY,[
 		["maps",Setting.Type.ARRAY,[]]

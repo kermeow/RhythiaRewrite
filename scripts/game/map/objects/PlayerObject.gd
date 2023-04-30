@@ -73,8 +73,16 @@ func _exit_tree():
 
 func _input(event):
 	if event is InputEventMouseMotion:
+		var mouse_movement = event.relative * game.settings.controls.sensitivity.mouse / 100.0
+		if game.settings.controls.lock:
+			cursor_position -= mouse_movement
+		else:
+			camera.rotation_degrees -= Vector3(mouse_movement.y,mouse_movement.x,0) * 10
+			cursor_position = Vector2(camera.position.x,camera.position.y) + Vector2(
+				tan(camera.rotation.y),
+				tan(camera.rotation.x)
+			) * -camera.position.z
 		var clamp_value = 1.36875
-		cursor_position -= event.relative * game.settings.controls.sensitivity.mouse / 100.0
 		clamped_cursor_position = Vector2(
 			clamp(cursor_position.x,-clamp_value,clamp_value),
 			clamp(cursor_position.y,-clamp_value,clamp_value))

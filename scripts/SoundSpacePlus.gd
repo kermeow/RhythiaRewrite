@@ -30,7 +30,7 @@ func load_setting(setting,data):
 		if typeof(data) != TYPE_DICTIONARY: return
 		for key in data.keys():
 			var child_setting = setting.get_setting(key)
-			load_setting(child_setting,data[key])
+			if child_setting != null: load_setting(child_setting,data[key])
 		return
 	setting.value = data
 func load_settings():

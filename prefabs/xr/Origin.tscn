@@ -13,6 +13,7 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="XROrigin3D" type="XROrigin3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.7, 0)
+visible = false
 current = true
 
 [node name="Camera" type="XRCamera3D" parent="."]

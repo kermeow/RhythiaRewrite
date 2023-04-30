@@ -264,8 +264,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_right = 324.0
+offset_bottom = 417.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -1221,6 +1221,35 @@ alignment = 1
 custom_arrow_step = 0.1
 
 [node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/MouseSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+
+[node name="Lock" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("10_qi5v2")
+target = Array[String](["controls", "lock"])
+signal_emitter_path = NodePath("CheckBox")
+signal_name = "toggled"
+property_name = "button_pressed"
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Lock"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Camera Lock"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Lock"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Lock"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
