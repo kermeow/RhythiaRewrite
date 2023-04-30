@@ -100,7 +100,7 @@ func _load_playlists(reset:bool=false):
 	if !DirAccess.dir_exists_absolute(Globals.Folders.get("playlists")):
 		DirAccess.make_dir_recursive_absolute(Globals.Folders.get("playlists"))
 	var lists_dir = DirAccess.open(Globals.Folders.get("playlists"))
-	lists_dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
+	lists_dir.list_dir_begin()
 	var list_name = lists_dir.get_next()
 	while list_name != "":
 		list_files.append(Globals.Folders.get("playlists").path_join(list_name))
