@@ -59,19 +59,25 @@ func load_from_folder(folder:String):
 		maps.append(mapset)
 
 	# Save cached maps
+	var _cache_start = Time.get_ticks_usec()
 	var new_cache = {}
 	for mapset in maps:
-		new_cache[mapset.path.get_file()] = {
+		var file = mapset.path.get_file()
+		new_cache[file] = {
 			id = mapset.id,
 			name = mapset.name,
 			creator = mapset.creator,
 			online_id = mapset.online_id,
 			format = mapset.format,
-			maps = mapset.maps.map(func(map): return [map.id,map.name])
+			maps = []
 		}
+		for map in mapset.maps:
+			new_cache[file].maps.append([map.id,map.name])
 	var cache_file = FileAccess.open(folder.path_join(".cache"),FileAccess.WRITE)
 	cache_file.store_string(JSON.stringify(new_cache,"",false))
 	cache_file.close()
+	var _cache_end = Time.get_ticks_usec()
+	if Globals.debug: print("Took %sms to save new cache" % [(_cache_end-_cache_start)/1000.0])
 
 	# Load maps into registry
 	for map in maps:
