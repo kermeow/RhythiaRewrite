@@ -13,7 +13,6 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="XROrigin3D" type="XROrigin3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.7, 0)
-visible = false
 current = true
 
 [node name="Camera" type="XRCamera3D" parent="."]
@@ -61,12 +60,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.5, 0)
 tracker = &"left_hand"
 
 [node name="LHand" type="MeshInstance3D" parent="LHand"]
-transform = Transform3D(-0.15, 0, -1.31134e-08, 0, 0.15, 0, 1.31134e-08, 0, -0.15, 0, 0, 0)
+transform = Transform3D(-0.1, 0, -1.50996e-08, 0, 0.1, 0, 1.50996e-08, 0, -0.1, 0, 0, 0)
+layers = 32
 mesh = ExtResource("1_jfutx")
 skeleton = NodePath("")
 
 [node name="Outline" type="MeshInstance3D" parent="LHand/LHand"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+layers = 32
 mesh = ExtResource("1_jfutx")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_bf0r8")
@@ -76,12 +77,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.5, 0)
 tracker = &"right_hand"
 
 [node name="RHand" type="MeshInstance3D" parent="RHand"]
-transform = Transform3D(-0.15, 0, -1.31134e-08, 0, 0.15, 0, 1.31134e-08, 0, -0.15, 0, 0, 0)
+transform = Transform3D(-0.1, 0, -1.50996e-08, 0, 0.1, 0, 1.50996e-08, 0, -0.1, 0, 0, 0)
+layers = 32
 mesh = ExtResource("1_jfutx")
 skeleton = NodePath("")
 
 [node name="Outline" type="MeshInstance3D" parent="RHand/RHand"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+layers = 32
 mesh = ExtResource("1_jfutx")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_bf0r8")

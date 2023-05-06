@@ -119,6 +119,10 @@ playerlist={
 
 buffering/agile_event_flushing=true
 
+[layer_names]
+
+3d_render/layer_6="XR Only"
+
 [logging]
 
 file_logging/max_log_files=4

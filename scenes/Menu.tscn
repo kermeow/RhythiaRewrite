@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cu2rno2ef0dtr"]
+[gd_scene load_steps=39 format=3 uid="uid://cu2rno2ef0dtr"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://uitheme.tres" id="2"]
@@ -104,20 +104,6 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xhego"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4g6xw"]
-
-[sub_resource type="Environment" id="Environment_wnepk"]
-background_mode = 1
-background_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-
-[sub_resource type="GDScript" id="GDScript_aejty"]
-resource_name = "RootViewportPath"
-script/source = "extends Sprite3D
-
-func _ready():
-	texture = get_viewport().get_texture()
-"
 
 [node name="Menu" type="ColorRect"]
 anchors_preset = 15
@@ -263,8 +249,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 324.0
-offset_bottom = 417.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -515,23 +501,6 @@ offset_bottom = -88.0
 grow_horizontal = 0
 grow_vertical = 2
 alignment = 2
-
-[node name="Add" type="Button" parent="Main/TabBar/Select/MapDetails/Details/Playlist"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-flat = true
-
-[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapDetails/Details/Playlist/Add"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("10")
-expand_mode = 1
-
-[node name="List" type="PopupMenu" parent="Main/TabBar/Select/MapDetails/Details/Playlist/Add"]
 
 [node name="Song" type="Label" parent="Main/TabBar/Select/MapDetails/Details"]
 layout_mode = 1
@@ -1226,35 +1195,6 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 0
 theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
 
-[node name="Lock" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-alignment = 1
-script = ExtResource("10_qi5v2")
-target = Array[String](["controls", "lock"])
-signal_emitter_path = NodePath("CheckBox")
-signal_name = "toggled"
-property_name = "button_pressed"
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Lock"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Camera Lock"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Lock"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Lock"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
-
 [node name="Drift" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -1277,6 +1217,7 @@ vertical_alignment = 1
 [node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Drift"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "enable me if you a PUSSY"
 
 [node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Drift"]
 layout_mode = 2
@@ -2091,13 +2032,3 @@ metadata/_edit_lock_ = true
 stream = ExtResource("22_645dr")
 autoplay = true
 bus = &"Menu Music"
-
-[node name="3D" type="Node3D" parent="."]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="3D"]
-environment = SubResource("Environment_wnepk")
-
-[node name="Screen" type="Sprite3D" parent="3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 3)
-pixel_size = 0.005
-script = SubResource("GDScript_aejty")
