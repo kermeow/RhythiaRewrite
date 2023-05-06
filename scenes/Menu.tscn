@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cu2rno2ef0dtr"]
+[gd_scene load_steps=37 format=3 uid="uid://cu2rno2ef0dtr"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://uitheme.tres" id="2"]
@@ -11,8 +11,6 @@
 [ext_resource type="Script" path="res://scripts/menu/maplist/PlaylistEdit.gd" id="5_no7rp"]
 [ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="5_sfmcr"]
 [ext_resource type="Texture2D" uid="uid://bk8ninr63d836" path="res://assets/images/ui/quit_to_desktop.png" id="7"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/AddPlaylist.gd" id="7_h7hq5"]
-[ext_resource type="Texture2D" uid="uid://cdkpjplduhxgs" path="res://assets/images/covers/logic-alt.png" id="7_prc10"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/MapDetails.gd" id="7_xwb6e"]
 [ext_resource type="Texture2D" uid="uid://b21p2flel8ywr" path="res://assets/images/ui/settings.png" id="8"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/Play.gd" id="8_mf8ee"]
@@ -212,6 +210,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="Edit" type="VBoxContainer" parent="Main/TabBar/Select/Playlists/List"]
+visible = false
 layout_mode = 2
 alignment = 1
 script = ExtResource("5_no7rp")
@@ -233,69 +232,6 @@ tooltip_text = "Remove Playlist"
 theme_override_fonts/font = ExtResource("5_sfmcr")
 theme_override_font_sizes/font_size = 18
 text = "-"
-
-[node name="AddWindow" type="PopupPanel" parent="Main/TabBar/Select/Playlists/List/Edit"]
-disable_3d = true
-initial_position = 2
-title = "Create Playlist"
-size = Vector2i(328, 421)
-theme = ExtResource("2")
-script = ExtResource("7_h7hq5")
-
-[node name="Options" type="VBoxContainer" parent="Main/TabBar/Select/Playlists/List/Edit/AddWindow"]
-custom_minimum_size = Vector2(256, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Cover" type="TextureRect" parent="Main/TabBar/Select/Playlists/List/Edit/AddWindow/Options"]
-custom_minimum_size = Vector2(0, 128)
-layout_mode = 2
-tooltip_text = "Default Cover"
-texture = ExtResource("7_prc10")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="CoverSelect" type="Button" parent="Main/TabBar/Select/Playlists/List/Edit/AddWindow/Options"]
-layout_mode = 2
-text = "Change Cover"
-
-[node name="FileDialog" type="FileDialog" parent="Main/TabBar/Select/Playlists/List/Edit/AddWindow/Options/CoverSelect"]
-title = "Select an Image"
-size = Vector2i(768, 512)
-ok_button_text = "Open"
-mode_overrides_title = false
-file_mode = 0
-access = 2
-filters = PackedStringArray("*.png;PNG Files", "*.jpg, *.jpeg;JPEG Files")
-
-[node name="Title" type="LineEdit" parent="Main/TabBar/Select/Playlists/List/Edit/AddWindow/Options"]
-layout_mode = 2
-placeholder_text = "Playlist Name"
-clear_button_enabled = true
-
-[node name="Author" type="LineEdit" parent="Main/TabBar/Select/Playlists/List/Edit/AddWindow/Options"]
-layout_mode = 2
-placeholder_text = "Playlist Author"
-clear_button_enabled = true
-
-[node name="Confirm" type="Button" parent="Main/TabBar/Select/Playlists/List/Edit/AddWindow/Options"]
-layout_mode = 2
-text = "Create Playlist"
-
-[node name="DeleteWindow" type="ConfirmationDialog" parent="Main/TabBar/Select/Playlists/List/Edit"]
-title = "Delete Playlist"
-size = Vector2i(256, 103)
-dialog_text = "Are you sure you want to delete this playlist?"
-dialog_autowrap = true
 
 [node name="MapList" type="Control" parent="Main/TabBar/Select"]
 layout_mode = 1
