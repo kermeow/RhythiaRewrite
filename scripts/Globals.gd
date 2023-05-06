@@ -1,5 +1,7 @@
 extends Node
 
+@onready var debug = OS.has_feature("debug")
+
 enum RootFolder {
 	USER,
 	RES,
