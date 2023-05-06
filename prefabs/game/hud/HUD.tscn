@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=17 format=3 uid="uid://u5w2lt2ybh4v"]
 
 [ext_resource type="Script" path="res://scripts/game/map/objects/GameObject.gd" id="1_siigk"]
 [ext_resource type="Script" path="res://scripts/game/hud/EnergyHUD.gd" id="2_jjhor"]
@@ -136,7 +136,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_78s4d")
 theme_override_font_sizes/font_size = 24
-text = "zee! - HATE"
+text = "xi - Freedom Dive"
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2
