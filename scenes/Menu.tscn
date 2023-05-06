@@ -1160,6 +1160,64 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 0
 theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
 
+[node name="Spin" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("10_qi5v2")
+target = Array[String](["controls", "spin"])
+signal_emitter_path = NodePath("CheckBox")
+signal_name = "toggled"
+property_name = "button_pressed"
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Spin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Spin"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Spin"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Spin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+
+[node name="Absolute" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("10_qi5v2")
+target = Array[String](["controls", "absolute"])
+signal_emitter_path = NodePath("CheckBox")
+signal_name = "toggled"
+property_name = "button_pressed"
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Absolute"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Absolute"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Absolute"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Absolute"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+
 [node name="Approach" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
