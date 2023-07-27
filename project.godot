@@ -72,7 +72,7 @@ window/subwindows/embed_subwindows.mobile=true
 
 [editor]
 
-run/main_run_args="-v -m"
+run/main_run_args="-m"
 script/templates_search_path="res://scripts/templates"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true

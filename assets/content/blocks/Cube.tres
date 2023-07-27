@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MeshPlus" load_steps=5 format=3 uid="uid://bnp2h00oob6qu"]
 
 [ext_resource type="Material" uid="uid://mo14d60r0wa8" path="res://assets/content/blocks/meshes/default.tres" id="1_vcinw"]
-[ext_resource type="Material" uid="uid://dylshod0cttj3" path="res://assets/content/blocks/meshes/cube_center.tres" id="2_80ce0"]
+[ext_resource type="Material" uid="uid://dylshod0cttj3" path="res://assets/content/blocks/meshes/transparent.tres" id="2_80ce0"]
 [ext_resource type="Script" path="res://scripts/content/resources/MeshPlus.gd" id="4_rhhwv"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_olvlb"]

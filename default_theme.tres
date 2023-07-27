@@ -1,11 +1,11 @@
 [gd_resource type="Theme" load_steps=39 format=3 uid="uid://diarojdcbhxg8"]
 
-[ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="1"]
-[ext_resource type="FontFile" uid="uid://bf8h1hxdvj8x8" path="res://assets/fonts/Noto_Sans_JP/NotoSansJP-Medium.otf" id="2"]
-[ext_resource type="FontFile" uid="uid://b3w5apfxq72o0" path="res://assets/fonts/NotoColorEmoji.ttf" id="3"]
+[ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="1_ye54q"]
+[ext_resource type="FontFile" uid="uid://b3w5apfxq72o0" path="res://assets/fonts/NotoColorEmoji.ttf" id="2_hmje2"]
+[ext_resource type="FontFile" uid="uid://bf8h1hxdvj8x8" path="res://assets/fonts/Noto_Sans_JP/NotoSansJP-Medium.otf" id="3_uimhw"]
 
 [sub_resource type="FontFile" id="17"]
-fallbacks = Array[Font]([ExtResource("1"), ExtResource("3"), ExtResource("2")])
+fallbacks = Array[Font]([ExtResource("1_ye54q"), ExtResource("2_hmje2"), ExtResource("3_uimhw")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -1216,6 +1216,16 @@ border_color = Color(0.784314, 0.313726, 0.313726, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hv7es"]
+content_margin_left = 16.0
+content_margin_top = 4.0
+content_margin_right = 16.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0470588, 0.0470588, 0.0470588, 1)
+border_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x370q"]
 content_margin_left = 16.0
 content_margin_top = 4.0
@@ -1223,16 +1233,6 @@ content_margin_right = 16.0
 content_margin_bottom = 4.0
 bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 border_width_top = 2
-border_color = Color(1, 1, 1, 0.75)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hv7es"]
-content_margin_left = 16.0
-content_margin_top = 4.0
-content_margin_right = 16.0
-content_margin_bottom = 4.0
-bg_color = Color(0.0470588, 0.0470588, 0.0470588, 1)
 border_color = Color(1, 1, 1, 0.75)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -1288,7 +1288,7 @@ expand_margin_right = 8.0
 expand_margin_bottom = 4.0
 
 [resource]
-default_font = ExtResource("1")
+default_font = ExtResource("1_ye54q")
 default_font_size = 18
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 0.8)
@@ -1344,8 +1344,6 @@ ColorPickerButton/styles/focus = null
 ColorPickerButton/styles/hover = null
 ColorPickerButton/styles/normal = null
 ColorPickerButton/styles/pressed = null
-Dialogs/constants/button_margin = 32
-Dialogs/constants/margin = 8
 FileDialog/colors/file_icon_modulate = Color(1, 1, 1, 1)
 FileDialog/colors/files_disabled = Color(0.752941, 0.752941, 0.752941, 1)
 FileDialog/colors/folder_icon_modulate = Color(1, 1, 1, 1)
@@ -1354,39 +1352,6 @@ FileDialog/icons/folder = null
 FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
-Fonts/fonts/large = SubResource("17")
-Fonts/fonts/normal = SubResource("17")
-GraphEdit/constants/bezier_len_neg = 160
-GraphEdit/constants/bezier_len_pos = 80
-GraphEdit/constants/port_grab_distance_horizontal = 48
-GraphEdit/constants/port_grab_distance_vertical = 6
-GraphEdit/icons/minimap = null
-GraphEdit/icons/minus = null
-GraphEdit/icons/more = null
-GraphEdit/icons/reset = null
-GraphEdit/icons/snap = null
-GraphEdit/styles/bg = null
-GraphEditMinimap/colors/resizer_color = Color(0, 0, 0, 1)
-GraphEditMinimap/icons/resizer = null
-GraphEditMinimap/styles/bg = null
-GraphEditMinimap/styles/camera = null
-GraphEditMinimap/styles/node = null
-GraphNode/constants/close_offset = 18
-GraphNode/constants/port_offset = 3
-GraphNode/constants/separation = 1
-GraphNode/constants/title_offset = 20
-GraphNode/fonts/title_font = SubResource("17")
-GraphNode/icons/close = null
-GraphNode/icons/port = null
-GraphNode/icons/resizer = null
-GraphNode/styles/breakpoint = null
-GraphNode/styles/comment = null
-GraphNode/styles/commentfocus = null
-GraphNode/styles/defaultfocus = null
-GraphNode/styles/defaultframe = null
-GraphNode/styles/frame = null
-GraphNode/styles/position = null
-GraphNode/styles/selectedframe = null
 GridContainer/constants/hseparation = 4
 GridContainer/constants/vseparation = 4
 HBoxContainer/constants/separation = 4
@@ -1404,7 +1369,6 @@ HSplitContainer/constants/autohide = 1
 HSplitContainer/constants/separation = 12
 HSplitContainer/icons/grabber = null
 HSplitContainer/styles/bg = null
-Icons/icons/close = null
 ItemList/colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
 ItemList/colors/font_color_selected = Color(1, 1, 1, 1)
 ItemList/colors/guide_color = Color(0.603922, 0.603922, 0.603922, 1)
@@ -1542,6 +1506,7 @@ TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
 TabContainer/styles/panel = SubResource("StyleBoxFlat_0p3k1")
 TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_xy5qe")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_hv7es")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_x370q")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_hv7es")
 TextEdit/colors/background_color = Color(0, 0, 0, 1)
