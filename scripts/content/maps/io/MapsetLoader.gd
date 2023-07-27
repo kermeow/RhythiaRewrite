@@ -26,17 +26,10 @@ func load_from_folder(folder:String):
 		if file.get_extension() != "sspm": continue
 		var _start = Time.get_ticks_usec()
 		var full_path = folder.path_join(file)
-#		var _md5_start = Time.get_ticks_usec()
-#		var md5 = FileAccess.get_md5(full_path)
-#		var _md5_end = Time.get_ticks_usec()
-#		print("Took %sms to get MD5" % [(_md5_end-_md5_start)/1000.0])
 		var mapset:Mapset
-#		if md5 in cache.keys():
 		if file in cache.keys():
-#			var cached_mapset = cache[md5]
 			var cached_mapset = cache[file]
 			mapset = Mapset.new()
-#			mapset.id = md5
 			mapset.id = cached_mapset.id
 			mapset.name = cached_mapset.name
 			mapset.creator = cached_mapset.creator

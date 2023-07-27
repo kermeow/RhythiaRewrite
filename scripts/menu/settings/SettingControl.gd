@@ -11,6 +11,9 @@ signal value_changed
 @export var signal_name:String
 @export var property_name:String
 
+@export_subgroup("Modifiers")
+@export var multiplier:float = 1.0
+
 var setting:Setting
 
 func _ready():
@@ -23,18 +26,22 @@ func _ready():
 	reset()
 	signal_emitter.connect(signal_name,signal_received)
 
-	value_changed.emit(setting.value)
+	value_changed.emit(get_setting())
 	setting.changed.connect(save_setting)
 
 func reset(value=get_setting()):
-	signal_emitter.set(property_name,setting.value)
+	signal_emitter.set(property_name,value)
 
 func signal_received(_value):
 	set_setting(_value)
 
 func get_setting():
+	if setting.value is float:
+		return setting.value * multiplier
 	return setting.value
 func set_setting(value):
+	if setting.value is float:
+		value /= multiplier
 	setting.value = value
 	value_changed.emit(get_setting())
 

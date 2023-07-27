@@ -1,8 +1,7 @@
 extends SyncManager
 class_name AudioSyncManager
 
-@export_node_path("AudioStreamPlayer") var audio_player_path
-@onready var audio_player:AudioStreamPlayer = get_node(audio_player_path)
+@export var audio_player:AudioStreamPlayer
 
 var audio_stream:AudioStream:
 	get:

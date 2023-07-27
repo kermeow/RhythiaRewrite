@@ -1,8 +1,7 @@
 extends BaseManager
 class_name HUDManager
 
-@export_node_path("Node3D") var hud_path
-@onready var hud:Node3D = get_node(hud_path)
+@export var hud:Node3D
 
 @onready var right:RightHUD = hud.get_node("RightViewport/Control")
 @onready var left:LeftHUD = hud.get_node("LeftViewport/Control")

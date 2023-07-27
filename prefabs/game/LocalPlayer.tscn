@@ -11,12 +11,12 @@ albedo_texture = ExtResource("2_xfjp0")
 flip_faces = true
 size = Vector2(0.525, 0.525)
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("camera", "cursor")]
 process_priority = 5
 script = ExtResource("1_fwd1t")
 local_player = true
-camera_path = NodePath("Camera")
-cursor_path = NodePath("Cursor")
+camera = NodePath("Camera")
+cursor = NodePath("Cursor")
 id = "Player"
 permanent = true
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://cu2rno2ef0dtr"]
+[gd_scene load_steps=36 format=3 uid="uid://cu2rno2ef0dtr"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
-[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://uitheme.tres" id="2"]
+[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
 [ext_resource type="Texture2D" uid="uid://c54ide18equ4n" path="res://assets/images/branding/icon.png" id="3_8w5xr"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/PlaylistList.gd" id="3_ajis4"]
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
@@ -19,8 +19,7 @@
 [ext_resource type="Script" path="res://scripts/menu/settings/RegistryControl.gd" id="10_a5lmy"]
 [ext_resource type="Script" path="res://scripts/menu/settings/SettingControl.gd" id="10_qi5v2"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/SpeedMods.gd" id="11_cs64u"]
-[ext_resource type="Script" path="res://scripts/menu/settings/VolumeLabel.gd" id="12_vqp4p"]
-[ext_resource type="Script" path="res://scripts/menu/settings/SliderControl.gd" id="13_5sex8"]
+[ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
 [ext_resource type="Script" path="res://scripts/menu/lobby/Lobby.gd" id="16_to4ol"]
 [ext_resource type="Script" path="res://scripts/menu/main/Sidebar.gd" id="18"]
 [ext_resource type="Script" path="res://scripts/menu/main/Warning.gd" id="19"]
@@ -52,7 +51,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lykwc"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hcgho"]
 
 [sub_resource type="GDScript" id="GDScript_b8xuh"]
 resource_name = "ApproachModeHandler"
@@ -109,7 +108,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2")
+theme = ExtResource("1_kkcab")
 color = Color(0.12549, 0.12549, 0.12549, 1)
 
 [node name="Warning" type="ColorRect" parent="."]
@@ -165,6 +164,7 @@ tabs_visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
+visible = false
 custom_minimum_size = Vector2(0, 112)
 layout_mode = 1
 anchors_preset = 10
@@ -238,7 +238,7 @@ layout_mode = 1
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 16.0
-offset_top = 128.0
+offset_top = 8.0
 offset_right = -8.0
 offset_bottom = -8.0
 grow_horizontal = 2
@@ -253,6 +253,18 @@ anchor_right = 1.0
 offset_bottom = 48.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tvhpi")
+
+[node name="Search" type="LineEdit" parent="Main/TabBar/Select/MapList/Filters"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 40.0
+grow_horizontal = 2
+placeholder_text = "Search for maps"
+clear_button_enabled = true
 
 [node name="Maps" type="Panel" parent="Main/TabBar/Select/MapList"]
 layout_mode = 1
@@ -394,7 +406,7 @@ anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
-offset_top = 128.0
+offset_top = 8.0
 offset_right = -16.0
 offset_bottom = -8.0
 grow_horizontal = 2
@@ -1055,6 +1067,34 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/TabBar/Credits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="List" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="Main/TabBar/Credits/ScrollContainer/List"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_hcgho")
+
+[node name="Logo" type="TextureRect" parent="Main/TabBar/Credits/ScrollContainer/List"]
+custom_minimum_size = Vector2(0, 184)
+layout_mode = 2
+texture = ExtResource("14_ack2s")
+expand_mode = 3
+stretch_mode = 6
+
 [node name="Settings" type="Control" parent="Main/TabBar"]
 visible = false
 layout_mode = 2
@@ -1072,10 +1112,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 22
 
-[node name="Game" type="Control" parent="Main/TabBar/Settings/TabContainer"]
+[node name="Gameplay" type="Control" parent="Main/TabBar/Settings/TabContainer"]
 layout_mode = 2
 
-[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Game"]
+[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -1087,171 +1127,173 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Controls" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns"]
+[node name="Controls" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Controls"
 vertical_alignment = 2
 
-[node name="MouseSensitivity" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls"]
+[node name="MouseSensitivity" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_qi5v2")
 target = Array[String](["controls", "sensitivity", "mouse"])
-signal_emitter_path = NodePath("SpinBox")
+signal_emitter_path = NodePath("Container/SpinBox")
 signal_name = "value_changed"
 property_name = "value"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/MouseSensitivity"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/MouseSensitivity"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
 text = "Mouse Sensitivity"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/MouseSensitivity"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/MouseSensitivity"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/MouseSensitivity/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
 max_value = 2.0
 step = 0.001
 alignment = 1
 custom_arrow_step = 0.1
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/MouseSensitivity"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
-
-[node name="Lock" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls"]
+[node name="Lock" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_qi5v2")
 target = Array[String](["controls", "lock"])
-signal_emitter_path = NodePath("CheckBox")
+signal_emitter_path = NodePath("Container/CheckBox")
 signal_name = "toggled"
 property_name = "button_pressed"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Lock"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Lock"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
 text = "Camera Lock"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Lock"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Lock"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Lock"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Lock/Container"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
 
-[node name="Drift" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls"]
+[node name="Drift" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_qi5v2")
 target = Array[String](["controls", "drift"])
-signal_emitter_path = NodePath("CheckBox")
+signal_emitter_path = NodePath("Container/CheckBox")
 signal_name = "toggled"
 property_name = "button_pressed"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Drift"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Drift"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
 text = "Cursor Drift"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Drift"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Drift"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Drift"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Drift/Container"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
 
-[node name="Absolute" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls"]
+[node name="Absolute" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_qi5v2")
 target = Array[String](["controls", "absolute"])
-signal_emitter_path = NodePath("CheckBox")
+signal_emitter_path = NodePath("Container/CheckBox")
 signal_name = "toggled"
 property_name = "button_pressed"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Absolute"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Absolute"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Absolute"
+size_flags_stretch_ratio = 0.5
+text = "Absolute Positioning"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Absolute"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Absolute"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Controls/Absolute"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Absolute/Container"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
 
-[node name="Approach" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns"]
+[node name="Approach" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 script = SubResource("GDScript_b8xuh")
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Approach"
 vertical_alignment = 2
 
-[node name="Mode" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach"]
+[node name="Mode" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_qi5v2")
 target = Array[String](["approach", "mode"])
-signal_emitter_path = NodePath("OptionButton")
+signal_emitter_path = NodePath("Container/OptionButton")
 signal_name = "item_selected"
 property_name = "selected"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Mode"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Mode"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
 text = "Approach Mode"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Mode"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Mode"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Mode/Container"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 0
+offset_right = 153.0
+offset_bottom = 32.0
 alignment = 1
 item_count = 3
 selected = 0
@@ -1262,184 +1304,330 @@ popup/item_1/id = 1
 popup/item_2/text = "Rate / Time"
 popup/item_2/id = 2
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Mode"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
-
-[node name="Distance" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach"]
+[node name="Distance" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_qi5v2")
 target = Array[String](["approach", "distance"])
-signal_emitter_path = NodePath("SpinBox")
+signal_emitter_path = NodePath("Container/SpinBox")
 signal_name = "value_changed"
 property_name = "value"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Distance"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Distance"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
 text = "Approach Distance"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Distance"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Distance"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Distance/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
 step = 0.01
 allow_greater = true
 alignment = 1
 custom_arrow_step = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Distance"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
-
-[node name="Rate" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach"]
+[node name="Rate" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_qi5v2")
 target = Array[String](["approach", "rate"])
-signal_emitter_path = NodePath("SpinBox")
+signal_emitter_path = NodePath("Container/SpinBox")
 signal_name = "value_changed"
 property_name = "value"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Rate"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Rate"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
 text = "Approach Rate
 "
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Rate"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Rate"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Rate/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
 step = 0.01
 allow_greater = true
 alignment = 1
 custom_arrow_step = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Rate"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
-
-[node name="Time" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach"]
+[node name="Time" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_qi5v2")
 target = Array[String](["approach", "time"])
-signal_emitter_path = NodePath("SpinBox")
+signal_emitter_path = NodePath("Container/SpinBox")
 signal_name = "value_changed"
 property_name = "value"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Time"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Time"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
 text = "Approach Time"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Time"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Time"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Time/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
 step = 0.01
 allow_greater = true
 alignment = 1
 custom_arrow_step = 0.1
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Approach/Time"]
+[node name="Skin" type="Control" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
 
-[node name="Skin" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns"]
+[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Skin"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = -24.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Notes" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Skin"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Skin"
+text = "Notes"
 vertical_alignment = 2
 
-[node name="Block" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Skin"]
+[node name="Mesh" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_a5lmy")
 registry_name = "blocks"
-target = Array[String](["skin", "assets", "block"])
-signal_emitter_path = NodePath("OptionButton")
+target = Array[String](["skin", "block", "mesh"])
+signal_emitter_path = NodePath("Container/OptionButton")
 signal_name = "item_selected"
 property_name = "selected"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Skin/Block"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Mesh"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Block Mesh"
+size_flags_stretch_ratio = 0.5
+text = "Mesh"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Skin/Block"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Mesh"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Mesh/Container"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 32.0
 fit_to_longest_item = false
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Skin/Block"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
-
-[node name="World" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Skin"]
+[node name="FadeInT" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
-script = ExtResource("10_a5lmy")
-registry_name = "worlds"
-target = Array[String](["skin", "assets", "world"])
-signal_emitter_path = NodePath("OptionButton")
-signal_name = "item_selected"
-property_name = "selected"
+script = ExtResource("10_qi5v2")
+target = Array[String](["skin", "block", "fade_in_time"])
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
+property_name = "value"
+multiplier = 100.0
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Skin/World"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInT"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Background World"
+size_flags_stretch_ratio = 0.5
+text = "Fade In Length"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Skin/World"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInT"]
 layout_mode = 2
 size_flags_horizontal = 3
-fit_to_longest_item = false
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Game/Columns/Skin/World"]
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInT/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
+
+[node name="FadeInA" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 16
+script = ExtResource("10_qi5v2")
+target = Array[String](["skin", "block", "fade_in_amount"])
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
+property_name = "value"
+multiplier = 100.0
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInA"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
+text = "Fade In Multiplier"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInA"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInA/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
+
+[node name="FadeOutT" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 16
+script = ExtResource("10_qi5v2")
+target = Array[String](["skin", "block", "fade_out_time"])
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
+property_name = "value"
+multiplier = 100.0
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutT"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
+text = "Fade Out Length"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutT"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutT/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
+
+[node name="FadeOutA" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 16
+script = ExtResource("10_qi5v2")
+target = Array[String](["skin", "block", "fade_out_amount"])
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
+property_name = "value"
+multiplier = 100.0
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutA"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
+text = "Fade Out Multiplier"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutA"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutA/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
+
+[node name="Background" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Background"
+vertical_alignment = 2
+
+[node name="World" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 16
+script = ExtResource("10_a5lmy")
+registry_name = "worlds"
+target = Array[String](["skin", "background", "world"])
+signal_emitter_path = NodePath("Container/OptionButton")
+signal_name = "item_selected"
+property_name = "selected"
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background/World"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
+text = "World"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background/World"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background/World/Container"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 32.0
+fit_to_longest_item = false
 
 [node name="Video" type="Control" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
@@ -1472,10 +1660,9 @@ vertical_alignment = 2
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_qi5v2")
 target = Array[String](["fullscreen"])
-signal_emitter_path = NodePath("CheckBox")
+signal_emitter_path = NodePath("Container/CheckBox")
 signal_name = "toggled"
 property_name = "button_pressed"
 
@@ -1483,28 +1670,27 @@ property_name = "button_pressed"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
 text = "Fullscreen"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/Fullscreen"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/Fullscreen"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/Fullscreen"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/Fullscreen/Container"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
 
 [node name="FPS" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-alignment = 1
 script = ExtResource("10_qi5v2")
 target = Array[String](["fps_limit"])
-signal_emitter_path = NodePath("SpinBox")
+signal_emitter_path = NodePath("Container/SpinBox")
 signal_name = "value_changed"
 property_name = "value"
 
@@ -1512,21 +1698,21 @@ property_name = "value"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
 text = "FPS Limit (gameplay)"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/FPS"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/FPS"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/FPS/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
 allow_greater = true
 alignment = 1
-
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/FPS"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
 
 [node name="Audio" type="Control" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
@@ -1549,7 +1735,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
-theme_override_constants/separation = 16
+theme_override_constants/separation = 4
 
 [node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
 layout_mode = 2
@@ -1561,247 +1747,232 @@ vertical_alignment = 2
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-script = ExtResource("13_5sex8")
+script = ExtResource("10_qi5v2")
 target = Array[String](["volume", "master"])
-signal_emitter_path = NodePath("HSlider")
-signal_name = "drag_ended"
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
 property_name = "value"
+multiplier = 100.0
 
 [node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Master"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Master (100%)"
+size_flags_stretch_ratio = 0.5
+text = "Master"
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("12_vqp4p")
-label = "Master"
 
-[node name="HSlider" type="HSlider" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Master"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Master"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.5
-theme_override_constants/grabber_offset = 0
-max_value = 2.0
-step = 0.01
-value = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Master"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Master/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+max_value = 200.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
 
-[node name="Menu" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
+[node name="MenuMaster" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-script = ExtResource("13_5sex8")
+script = ExtResource("10_qi5v2")
 target = Array[String](["volume", "master_menu"])
-signal_emitter_path = NodePath("HSlider")
-signal_name = "drag_ended"
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
 property_name = "value"
+multiplier = 100.0
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Menu"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuMaster"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Master (100%)"
+size_flags_stretch_ratio = 0.5
+text = "Menu Master"
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("12_vqp4p")
-label = "Menu Master"
 
-[node name="HSlider" type="HSlider" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Menu"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuMaster"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.5
-max_value = 2.0
-step = 0.01
-value = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Menu"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuMaster/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+max_value = 200.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
 
 [node name="MenuMusic" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-script = ExtResource("13_5sex8")
+script = ExtResource("10_qi5v2")
 target = Array[String](["volume", "menu_music"])
-signal_emitter_path = NodePath("HSlider")
-signal_name = "drag_ended"
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
 property_name = "value"
+multiplier = 100.0
 
 [node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuMusic"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Master (100%)"
+size_flags_stretch_ratio = 0.5
+text = "Menu Music"
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("12_vqp4p")
-label = "Menu Music"
 
-[node name="HSlider" type="HSlider" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuMusic"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuMusic"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.5
-max_value = 2.0
-step = 0.01
-value = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuMusic"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuMusic/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+max_value = 200.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
 
 [node name="MenuSFX" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-script = ExtResource("13_5sex8")
+script = ExtResource("10_qi5v2")
 target = Array[String](["volume", "menu_sfx"])
-signal_emitter_path = NodePath("HSlider")
-signal_name = "drag_ended"
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
 property_name = "value"
+multiplier = 100.0
 
 [node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuSFX"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Master (100%)"
+size_flags_stretch_ratio = 0.5
+text = "Menu SFX"
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("12_vqp4p")
-label = "Menu SFX"
 
-[node name="HSlider" type="HSlider" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuSFX"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuSFX"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.5
-max_value = 2.0
-step = 0.01
-value = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuSFX"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/MenuSFX/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+max_value = 200.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
 
-[node name="Game" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
+[node name="GameMaster" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-script = ExtResource("13_5sex8")
+script = ExtResource("10_qi5v2")
 target = Array[String](["volume", "master_game"])
-signal_emitter_path = NodePath("HSlider")
-signal_name = "drag_ended"
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
 property_name = "value"
+multiplier = 100.0
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Game"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameMaster"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Master (100%)"
+size_flags_stretch_ratio = 0.5
+text = "Game Master"
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("12_vqp4p")
-label = "Game Master"
 
-[node name="HSlider" type="HSlider" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Game"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameMaster"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.5
-max_value = 2.0
-step = 0.01
-value = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Game"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameMaster/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+max_value = 200.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
 
 [node name="GameMusic" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-script = ExtResource("13_5sex8")
+script = ExtResource("10_qi5v2")
 target = Array[String](["volume", "game_music"])
-signal_emitter_path = NodePath("HSlider")
-signal_name = "drag_ended"
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
 property_name = "value"
+multiplier = 100.0
 
 [node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameMusic"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Master (100%)"
+size_flags_stretch_ratio = 0.5
+text = "Game Music"
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("12_vqp4p")
-label = "Game Music"
 
-[node name="HSlider" type="HSlider" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameMusic"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameMusic"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.5
-max_value = 2.0
-step = 0.01
-value = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameMusic"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameMusic/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+max_value = 200.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
 
 [node name="GameSFX" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 16
-script = ExtResource("13_5sex8")
+script = ExtResource("10_qi5v2")
 target = Array[String](["volume", "game_sfx"])
-signal_emitter_path = NodePath("HSlider")
-signal_name = "drag_ended"
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
 property_name = "value"
+multiplier = 100.0
 
 [node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameSFX"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Game SFX (100%)"
+size_flags_stretch_ratio = 0.5
+text = "Game SFX"
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("12_vqp4p")
-label = "Game SFX"
 
-[node name="HSlider" type="HSlider" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameSFX"]
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameSFX"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.5
-max_value = 2.0
-step = 0.01
-value = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameSFX"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lykwc")
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/GameSFX/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+max_value = 200.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
 
 [node name="VersionNumberR" parent="Main" instance=ExtResource("1")]
 layout_mode = 1
@@ -1877,6 +2048,7 @@ text = "Map Select"
 vertical_alignment = 1
 
 [node name="Multi" type="Button" parent="Sidebar/Buttons"]
+visible = false
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1903,6 +2075,7 @@ text = "Multiplayer"
 vertical_alignment = 1
 
 [node name="Content" type="Button" parent="Sidebar/Buttons"]
+visible = false
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 mouse_default_cursor_shape = 2

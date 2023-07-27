@@ -8,12 +8,12 @@
 [ext_resource type="Script" path="res://scripts/game/renderers/NoteRenderer.gd" id="4_tvxv6"]
 [ext_resource type="Script" path="res://scripts/game/solo/HUDManager.gd" id="6_g35bn"]
 [ext_resource type="PackedScene" uid="uid://cbxyhhh3udi40" path="res://prefabs/game/LocalPlayer.tscn" id="7_qpehi"]
-[ext_resource type="PackedScene" path="res://prefabs/game/hud/HUD.tscn" id="10_i0uko"]
-[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://uitheme.tres" id="11_e8h1i"]
+[ext_resource type="PackedScene" uid="uid://u5w2lt2ybh4v" path="res://prefabs/game/hud/HUD.tscn" id="10_i0uko"]
+[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="11_e8h1i"]
 [ext_resource type="Script" path="res://scripts/game/solo/PauseHandler.gd" id="12_7ktyo"]
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="12_oxpux"]
+[ext_resource type="Texture2D" uid="uid://d17i486v0j8hv" path="res://assets/images/ui/old_menu.png" id="13_1ytay"]
 [ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="13_jftr7"]
-[ext_resource type="Texture2D" uid="uid://bdhb58b2ygaxc" path="res://assets/images/ui/placeholder.jpg" id="14_owers"]
 
 [sub_resource type="MultiMesh" id="MultiMesh_t5tpd"]
 transform_format = 1
@@ -24,12 +24,7 @@ mesh = ExtResource("4_6o7l0")
 [sub_resource type="ViewportTexture" id="ViewportTexture_gac3e"]
 viewport_path = NodePath("BackgroundVideo/VideoContainer")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1g1i"]
-bg_color = Color(0.188235, 0.188235, 0.188235, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjrtq"]
 
 [node name="Solo" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
@@ -43,10 +38,10 @@ origin_path = NodePath("Origin")
 player_path = NodePath("Origin/Player")
 metadata/is_game = true
 
-[node name="AudioSyncManager" type="Node" parent="."]
+[node name="AudioSyncManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 process_priority = 2
 script = ExtResource("2_o63a0")
-audio_player_path = NodePath("../Music")
+audio_player = NodePath("../Music")
 
 [node name="ObjectManager" type="Node" parent="."]
 process_mode = 3
@@ -54,13 +49,15 @@ process_priority = 1
 script = ExtResource("3_ylywr")
 
 [node name="NoteRenderer" type="MultiMeshInstance3D" parent="ObjectManager"]
+cast_shadow = 0
+gi_mode = 0
 multimesh = SubResource("MultiMesh_t5tpd")
 script = ExtResource("4_tvxv6")
 
-[node name="HUDManager" type="Node" parent="."]
+[node name="HUDManager" type="Node" parent="." node_paths=PackedStringArray("hud")]
 process_priority = 1
 script = ExtResource("6_g35bn")
-hud_path = NodePath("../Origin/HUD")
+hud = NodePath("../Origin/HUD")
 
 [node name="Origin" type="Node3D" parent="."]
 process_mode = 1
@@ -124,12 +121,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -160.0
-offset_top = -144.0
+offset_top = -102.0
 offset_right = 160.0
-offset_bottom = 144.0
+offset_bottom = 102.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_h1g1i")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yjrtq")
 
 [node name="Title" type="Label" parent="PauseMenu/Panel"]
 layout_mode = 1
@@ -197,7 +194,7 @@ anchor_bottom = 1.0
 offset_left = 16.0
 offset_right = 64.0
 grow_vertical = 2
-texture = ExtResource("13_jftr7")
+texture = ExtResource("13_1ytay")
 expand_mode = 1
 stretch_mode = 5
 
@@ -225,7 +222,7 @@ anchor_bottom = 1.0
 offset_left = 16.0
 offset_right = 64.0
 grow_vertical = 2
-texture = ExtResource("14_owers")
+texture = ExtResource("13_jftr7")
 expand_mode = 1
 stretch_mode = 5
 

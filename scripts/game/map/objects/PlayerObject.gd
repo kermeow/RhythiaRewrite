@@ -10,11 +10,9 @@ signal failed
 @export var local_player:bool = false
 @export var camera_origin:Vector3 = Vector3(0,0,-3.5)
 
-@export_category("Node Paths")
-@export_node_path("Camera3D") var camera_path
-@onready var camera:Camera3D = get_node(camera_path)
-@export_node_path("Node3D") var cursor_path
-@onready var cursor:Node3D = get_node(cursor_path)
+@export_category("Nodes")
+@export var camera:Camera3D
+@export var cursor:Node3D
 @onready var ghost:MeshInstance3D = cursor.get_node("Ghost")
 
 @onready var score:Score = Score.new()

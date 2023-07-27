@@ -1,7 +1,5 @@
 extends Node
 
-@onready var selected_mods:Mods = Mods.new()
-
 @onready var playlists:Registry = preload("res://assets/content/Playlists.tres")
 @onready var mapsets:Registry = preload("res://assets/content/Mapsets.tres")
 @onready var blocks:Registry = preload("res://assets/content/Blocks.tres")
@@ -138,13 +136,14 @@ enum GameType {
 	SOLO,
 	MULTI
 }
+var selected_mapset:String = "ee88622e974fc53f90ff4f8ad4d46160"
+var selected_mods:Mods = Mods.new()
 var game_scene:Node
 func load_game_scene(game_type:int,mapset:Mapset,map_index:int=0):
-	var reader = MapsetReader.new()
-	var full_mapset = reader.read_from_file(mapset.path,true,map_index)
-	reader.call_deferred("free")
+	var full_mapset = MapsetReader.read_from_file(mapset.path,true,map_index)
 	assert(full_mapset.id == mapset.id)
-	var scene
+	selected_mapset = mapset.id
+	var scene:Node
 	match game_type:
 		GameType.SOLO:
 			var packed_scene:PackedScene = preload("res://scenes/Solo.tscn")

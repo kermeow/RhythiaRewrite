@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://eobt2fotkbfh"]
 
 [ext_resource type="Script" path="res://scripts/menu/loading/Init.gd" id="1"]
-[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://uitheme.tres" id="1_ixw77"]
+[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3bv2c"]
 [ext_resource type="AudioStream" uid="uid://gg651sab0hgj" path="res://assets/sounds/music/startup/drums.ogg" id="4"]
 [ext_resource type="Texture2D" uid="uid://c54ide18equ4n" path="res://assets/images/branding/icon.png" id="4_2wpeo"]
 [ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="4_awb3p"]
@@ -15,7 +15,7 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource("1_ixw77")
+theme = ExtResource("1_3bv2c")
 color = Color(0, 0, 0, 1)
 script = ExtResource("1")
 
