@@ -6,9 +6,6 @@
 
 [sub_resource type="FontFile" id="17"]
 fallbacks = Array[Font]([ExtResource("1"), ExtResource("3"), ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
