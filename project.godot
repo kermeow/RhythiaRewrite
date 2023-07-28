@@ -74,8 +74,6 @@ window/subwindows/embed_subwindows.mobile=true
 
 run/main_run_args="-m"
 script/templates_search_path="res://scripts/templates"
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
 scene_naming=1
 script_templates_search_path="res://templates"
 
