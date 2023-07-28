@@ -27,8 +27,8 @@ const SETTINGS_CONFIG = [
 			["mesh",Setting.Type.STRING,"cube"],
 			["fade_in_time",Setting.Type.FLOAT,0.25],
 			["fade_in_amount",Setting.Type.FLOAT,1.0],
-			["fade_out_time",Setting.Type.FLOAT,0.1],
-			["fade_out_amount",Setting.Type.FLOAT,1.0]
+			["fade_out_time",Setting.Type.FLOAT,0.0],
+			["fade_out_amount",Setting.Type.FLOAT,0.0]
 		]],
 		["background",Setting.Type.CATEGORY,[
 			["world",Setting.Type.STRING,"tunnel"]
