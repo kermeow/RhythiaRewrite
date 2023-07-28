@@ -10,7 +10,7 @@ var multiplier:int = 1:
 var sub_multiplier:int = 0:
 	get: return sub_multiplier
 	set(value):
-		sub_multiplier = clampi(value,0,8)
+		sub_multiplier = clampi(value,0,10)
 
 var hits:int = 0
 var misses:int = 0
@@ -34,7 +34,6 @@ var rank:String:
 				if hits >= total * letter[0]:
 					return letter[1]
 		return "SS"
-
 
 var combo:int = 0:
 	get: return combo
