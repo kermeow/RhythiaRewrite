@@ -9,16 +9,12 @@ var map_index:int
 var map:Map
 
 @export_category("Game Managers")
-@export var sync_manager_path:NodePath
-@onready var sync_manager:SyncManager = get_node(sync_manager_path)
-@export var object_manager_path:NodePath
-@onready var object_manager:ObjectManager = get_node(object_manager_path)
+@export var sync_manager:SyncManager
+@export var object_manager:ObjectManager
 
 @export_category("Other Nodes")
-@export_node_path("Node3D") var origin_path
-@onready var origin:Node3D = get_node(origin_path)
-@export var player_path:NodePath
-@onready var player:PlayerObject = get_node(player_path)
+@export var origin:Node3D
+@export var player:PlayerObject
 @onready var local_player:bool = player.local_player
 
 func setup_managers():

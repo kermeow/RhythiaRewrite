@@ -1,8 +1,7 @@
 extends GameScene
 class_name MultiGameScene
 
-@export_node_path("Node3D") var root_path
-@onready var multi_scene:MultiScene = get_node(root_path)
+@export var multi_scene:MultiScene
 var network_player:Player
 
 func setup_managers():

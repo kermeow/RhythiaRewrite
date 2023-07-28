@@ -1,10 +1,8 @@
 extends GameScene
 
-@export var hud_manager_path:NodePath
-@onready var hud_manager:HUDManager = get_node(hud_manager_path)
+@export var hud_manager:HUDManager
 
-@export_node_path("Node3D") var world_path
-@onready var world_parent:Node3D = get_node(world_path)
+@export var world_parent:Node3D
 
 func setup_managers():
 	super.setup_managers()

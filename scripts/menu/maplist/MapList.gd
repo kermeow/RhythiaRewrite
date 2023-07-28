@@ -4,8 +4,7 @@ class_name MapList
 signal on_mapset_selected
 var selected_mapset:Mapset
 
-@export_node_path("Control") var playlists_path
-@onready var playlists:PlaylistList = get_node(playlists_path)
+@export var playlists:PlaylistList
 
 @onready var list:ScrollContainer = $Maps/List
 @onready var list_contents:VBoxContainer = $Maps/List/Contents
