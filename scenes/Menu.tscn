@@ -161,7 +161,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -292,7 +291,7 @@ vertical_scroll_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 4
+theme_override_constants/separation = 8
 
 [node name="TopSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Maps/List/Contents"]
 layout_mode = 2
@@ -1097,6 +1096,7 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
