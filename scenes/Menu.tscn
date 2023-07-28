@@ -161,6 +161,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -1096,7 +1097,6 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
@@ -1113,6 +1113,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 22
 
 [node name="Gameplay" type="Control" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay"]
@@ -1403,7 +1404,6 @@ alignment = 1
 custom_arrow_step = 0.1
 
 [node name="Skin" type="Control" parent="Main/TabBar/Settings/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Skin"]
@@ -1427,6 +1427,12 @@ theme_override_constants/separation = 4
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Notes"
+vertical_alignment = 2
+
+[node name="Appearance" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Appearance"
 vertical_alignment = 2
 
 [node name="Mesh" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
@@ -1459,6 +1465,44 @@ layout_mode = 0
 offset_right = 256.0
 offset_bottom = 32.0
 fit_to_longest_item = false
+
+[node name="Opacity" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 16
+script = ExtResource("10_qi5v2")
+target = Array[String](["skin", "block", "opacity"])
+signal_emitter_path = NodePath("Container/SpinBox")
+signal_name = "value_changed"
+property_name = "value"
+multiplier = 100.0
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Opacity"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
+text = "Opacity"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Opacity"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Opacity/Container"]
+layout_mode = 0
+offset_right = 98.25
+offset_bottom = 32.0
+alignment = 1
+suffix = "%"
+custom_arrow_step = 10.0
+
+[node name="Fade" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Fade"
+vertical_alignment = 2
 
 [node name="FadeInT" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
 custom_minimum_size = Vector2(0, 32)

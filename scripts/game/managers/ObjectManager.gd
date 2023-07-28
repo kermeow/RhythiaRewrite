@@ -67,7 +67,7 @@ func build_note(note:Map.Note):
 	var id = note.data.get("id","note-%s" % note.index)
 	var object = NoteObject.new(id,note)
 	object.name = id
-	var colorset = game.settings.colorset
+	var colorset = game.settings.skin.block.colorset
 	var colour_index = wrapi(note.index,0,colorset.size())
 	var colour = colorset[colour_index]
 	object.colour = Color.from_string(colour,Color.RED)

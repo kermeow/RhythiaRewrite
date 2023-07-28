@@ -25,7 +25,8 @@ func update(current_time:float):
 	var fade_out = min(fade_out_time/game.settings.skin.block.fade_out_amount,1.0)
 	if game.settings.skin.block.fade_in_time == 0: fade_in = 1
 	if game.settings.skin.block.fade_out_time == 0: fade_out = 1
-	mixed_colour = Color(colour,fade_in*fade_out)
+	var opacity = game.settings.skin.block.opacity
+	mixed_colour = Color(colour,opacity*fade_in*fade_out)
 
 func get_visibility(current_time:float):
 	return hit_state == HitState.NONE

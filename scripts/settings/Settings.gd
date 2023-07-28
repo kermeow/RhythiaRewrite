@@ -25,6 +25,8 @@ const SETTINGS_CONFIG = [
 	["skin",Setting.Type.CATEGORY,[
 		["block",Setting.Type.CATEGORY,[
 			["mesh",Setting.Type.STRING,"cube"],
+			["colorset",Setting.Type.ARRAY,["#ff0000","#00ffff"]],
+			["opacity",Setting.Type.FLOAT,1.0],
 			["fade_in_time",Setting.Type.FLOAT,0.25],
 			["fade_in_amount",Setting.Type.FLOAT,1.0],
 			["fade_out_time",Setting.Type.FLOAT,0.0],
@@ -34,7 +36,6 @@ const SETTINGS_CONFIG = [
 			["world",Setting.Type.STRING,"tunnel"]
 		]]
 	]],
-	["colorset",Setting.Type.ARRAY,["#ff0000","#00ffff"]],
 	["volume",Setting.Type.CATEGORY,[
 		["master",Setting.Type.FLOAT,0.5],
 		["master_menu",Setting.Type.FLOAT,1.0],
