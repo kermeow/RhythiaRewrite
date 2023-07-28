@@ -34,7 +34,7 @@ func select_mapset_id(id:String):
 	print(index)
 	selected_mapset = mapset
 	on_mapset_selected.emit(mapset)
-	list.call_deferred("set","scroll_vertical",max((index * 80) - list.size.y/4,0))
+	list.call_deferred("set","scroll_vertical",max(index * 80 - 8,0))
 
 func playlist_selected(playlist:Playlist=null,all:bool=false):
 	if all or !playlist:
