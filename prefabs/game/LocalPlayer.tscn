@@ -1,15 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbxyhhh3udi40"]
+[gd_scene load_steps=6 format=3 uid="uid://cbxyhhh3udi40"]
 
 [ext_resource type="Script" path="res://scripts/game/map/objects/PlayerObject.gd" id="1_fwd1t"]
 [ext_resource type="Texture2D" uid="uid://ctmjd7r2b7750" path="res://assets/images/default_cursor.png" id="2_xfjp0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2xxy"]
 transparency = 1
+shading_mode = 0
 albedo_texture = ExtResource("2_xfjp0")
 
 [sub_resource type="QuadMesh" id="QuadMesh_rq05a"]
+material = SubResource("StandardMaterial3D_y2xxy")
 flip_faces = true
 size = Vector2(0.525, 0.525)
+
+[sub_resource type="MultiMesh" id="MultiMesh_it0w6"]
+transform_format = 1
+use_colors = true
+mesh = SubResource("QuadMesh_rq05a")
 
 [node name="Player" type="Node3D" node_paths=PackedStringArray("camera", "cursor")]
 process_priority = 5
@@ -30,12 +37,16 @@ fov = 70.0
 [node name="Real" type="MeshInstance3D" parent="Cursor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 layers = 2
-material_override = SubResource("StandardMaterial3D_y2xxy")
 mesh = SubResource("QuadMesh_rq05a")
 
 [node name="Ghost" type="MeshInstance3D" parent="Cursor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 layers = 2
-material_override = SubResource("StandardMaterial3D_y2xxy")
 transparency = 1.0
 mesh = SubResource("QuadMesh_rq05a")
+
+[node name="CursorTrail" type="MultiMeshInstance3D" parent="."]
+layers = 2
+sorting_offset = -1.0
+material_override = SubResource("StandardMaterial3D_y2xxy")
+multimesh = SubResource("MultiMesh_it0w6")

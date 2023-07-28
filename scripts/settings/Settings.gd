@@ -32,6 +32,11 @@ const SETTINGS_CONFIG = [
 			["fade_out_time",Setting.Type.FLOAT,0.0],
 			["fade_out_amount",Setting.Type.FLOAT,0.0]
 		]],
+		["cursor",Setting.Type.CATEGORY,[
+			["trail_enabled",Setting.Type.BOOLEAN,false],
+			["trail_detail",Setting.Type.INT,100],
+			["trail_length",Setting.Type.FLOAT,0.1],
+		]],
 		["background",Setting.Type.CATEGORY,[
 			["world",Setting.Type.STRING,"tunnel"]
 		]]

@@ -96,12 +96,6 @@ buffering_msec = 1000
 [node name="Music" type="AudioStreamPlayer" parent="."]
 bus = &"Game Music"
 
-[node name="Light" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-layers = 2
-omni_range = 4096.0
-omni_attenuation = 1.42369e-05
-
 [node name="PauseMenu" type="ColorRect" parent="."]
 process_mode = 3
 anchors_preset = 15

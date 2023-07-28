@@ -95,7 +95,7 @@ func _process(_delta):
 	var difference = cursor_position - clamped_cursor_position
 	cursor.position = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
 	ghost.position = Vector3(difference.x,difference.y,0.01)
-	ghost.transparency = max(0.25,1-(difference.length_squared()*2))
+	ghost.transparency = max(0.5,1-(difference.length_squared()*2))
 
 	var parallax = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
 	parallax *= game.settings.parallax.camera
