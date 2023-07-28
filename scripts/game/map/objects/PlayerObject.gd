@@ -14,6 +14,10 @@ signal failed
 @export var camera:Camera3D
 @export var cursor:Node3D
 @onready var ghost:MeshInstance3D = cursor.get_node("Ghost")
+@export var trail:MultiMesh
+
+var trails:Array = []
+var trail_position:Vector3 = Vector3.ZERO
 
 @onready var score:Score = Score.new()
 var health:float = 5
@@ -100,6 +104,33 @@ func _process(_delta):
 	var parallax = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
 	parallax *= game.settings.parallax.camera
 	camera.position = camera_origin + (parallax + camera.basis.z) / 4
+
+	if game.settings.skin.cursor.trail_enabled:
+		var now = Time.get_ticks_msec()
+		var start_position = trail_position
+		var end_position = cursor.position
+		var gap = end_position - start_position
+		var gap_length = gap.length()
+		if gap_length > 0:
+			var new_trails = floor(game.settings.skin.cursor.trail_detail*gap_length)
+			if new_trails > 0:
+				trail_position = end_position
+				for i in new_trails:
+					var progress = i/new_trails
+					trails.push_front(now - _delta * progress)
+					var position = end_position - gap * progress
+					trails.push_front(Transform3D(Basis.from_scale(Vector3.ONE/2.0), position))
+
+		var total_trails = trails.size() / 2
+		var remove_trails = 0
+		trail.instance_count = total_trails
+		for trail_no in total_trails:
+			var time = (now - trails[trail_no*2+1])/1000
+			var alpha = 1 - (time / game.settings.skin.cursor.trail_length)
+			trail.set_instance_color(trail_no, Color(1,1,1,alpha))
+			trail.set_instance_transform(trail_no, trails[trail_no*2])
+			if alpha < 0: remove_trails += 1
+		trails.resize((total_trails - remove_trails)*2)
 
 func _physics_process(_delta):
 	var cursor_hitbox = 0.2625

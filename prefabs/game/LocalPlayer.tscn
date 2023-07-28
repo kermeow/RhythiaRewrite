@@ -6,6 +6,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2xxy"]
 transparency = 1
 shading_mode = 0
+vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("2_xfjp0")
 
 [sub_resource type="QuadMesh" id="QuadMesh_rq05a"]
@@ -24,6 +25,7 @@ script = ExtResource("1_fwd1t")
 local_player = true
 camera = NodePath("Camera")
 cursor = NodePath("Cursor")
+trail = SubResource("MultiMesh_it0w6")
 id = "Player"
 permanent = true
 
@@ -46,6 +48,7 @@ transparency = 1.0
 mesh = SubResource("QuadMesh_rq05a")
 
 [node name="CursorTrail" type="MultiMeshInstance3D" parent="."]
+top_level = true
 layers = 2
 sorting_offset = -1.0
 material_override = SubResource("StandardMaterial3D_y2xxy")

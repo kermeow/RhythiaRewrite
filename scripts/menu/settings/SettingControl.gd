@@ -38,10 +38,14 @@ func signal_received(_value):
 func get_setting():
 	if setting.value is float:
 		return setting.value * multiplier
+	if setting.value is int:
+		return int(setting.value * multiplier)
 	return setting.value
 func set_setting(value):
 	if setting.value is float:
 		value /= multiplier
+	if setting.value is int:
+		value = int(value/multiplier)
 	setting.value = value
 	value_changed.emit(get_setting())
 

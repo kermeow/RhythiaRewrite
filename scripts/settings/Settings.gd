@@ -30,7 +30,7 @@ const SETTINGS_CONFIG = [
 			["fade_in_time",Setting.Type.FLOAT,0.25],
 			["fade_in_amount",Setting.Type.FLOAT,1.0],
 			["fade_out_time",Setting.Type.FLOAT,0.0],
-			["fade_out_amount",Setting.Type.FLOAT,0.0]
+			["fade_out_amount",Setting.Type.FLOAT,1.0]
 		]],
 		["cursor",Setting.Type.CATEGORY,[
 			["trail_enabled",Setting.Type.BOOLEAN,false],
