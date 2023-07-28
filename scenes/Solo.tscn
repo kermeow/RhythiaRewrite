@@ -26,16 +26,16 @@ viewport_path = NodePath("BackgroundVideo/VideoContainer")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjrtq"]
 
-[node name="Solo" type="Node3D"]
+[node name="Solo" type="Node3D" node_paths=PackedStringArray("hud_manager", "world_parent", "sync_manager", "object_manager", "origin", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 top_level = true
 script = ExtResource("1_ulth4")
-hud_manager_path = NodePath("HUDManager")
-world_path = NodePath("Origin/World")
-sync_manager_path = NodePath("AudioSyncManager")
-object_manager_path = NodePath("ObjectManager")
-origin_path = NodePath("Origin")
-player_path = NodePath("Origin/Player")
+hud_manager = NodePath("HUDManager")
+world_parent = NodePath("Origin/World")
+sync_manager = NodePath("AudioSyncManager")
+object_manager = NodePath("ObjectManager")
+origin = NodePath("Origin")
+player = NodePath("Origin/Player")
 metadata/is_game = true
 
 [node name="AudioSyncManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]

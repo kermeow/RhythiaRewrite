@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scripts/game/map/objects/PlayerObject.gd" id="8_efis3"]
 [ext_resource type="Texture2D" uid="uid://ctmjd7r2b7750" path="res://assets/images/default_cursor.png" id="9_7tht2"]
 [ext_resource type="Script" path="res://scripts/game/map/objects/GameObject.gd" id="11_2i1oo"]
-[ext_resource type="PackedScene" path="res://prefabs/game/hud/HUD.tscn" id="11_ihmcu"]
+[ext_resource type="PackedScene" uid="uid://u5w2lt2ybh4v" path="res://prefabs/game/hud/HUD.tscn" id="11_ihmcu"]
 
 [sub_resource type="Environment" id="Environment_3hc50"]
 background_mode = 1
@@ -22,12 +22,15 @@ ambient_light_color = Color(0.588235, 0.588235, 0.588235, 1)
 properties/0/path = NodePath("SyncManager:real_time")
 properties/0/spawn = false
 properties/0/sync = true
+properties/0/watch = false
 properties/1/path = NodePath("Origin/Player/Cursor:position")
 properties/1/spawn = false
 properties/1/sync = true
+properties/1/watch = false
 properties/2/path = NodePath("SyncManager:playing")
 properties/2/spawn = false
 properties/2/sync = true
+properties/2/watch = false
 
 [sub_resource type="MultiMesh" id="MultiMesh_0hitx"]
 transform_format = 1
@@ -53,13 +56,13 @@ environment = SubResource("Environment_3hc50")
 [node name="Players" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 
-[node name="LocalPlayer" type="Node3D" parent="Players"]
+[node name="LocalPlayer" type="Node3D" parent="Players" node_paths=PackedStringArray("multi_scene", "sync_manager", "object_manager", "origin", "player")]
 script = ExtResource("2_lmscg")
-root_path = NodePath("../..")
-sync_manager_path = NodePath("SyncManager")
-object_manager_path = NodePath("ObjectManager")
-origin_path = NodePath("Origin")
-player_path = NodePath("Origin/Player")
+multi_scene = NodePath("../..")
+sync_manager = NodePath("SyncManager")
+object_manager = NodePath("ObjectManager")
+origin = NodePath("Origin")
+player = NodePath("Origin/Player")
 
 [node name="Sync" type="MultiplayerSynchronizer" parent="Players/LocalPlayer"]
 replication_config = SubResource("SceneReplicationConfig_4q80v")
@@ -67,7 +70,6 @@ replication_config = SubResource("SceneReplicationConfig_4q80v")
 [node name="SyncManager" type="Node" parent="Players/LocalPlayer"]
 process_priority = 2
 script = ExtResource("3_f1x2j")
-audio_player_path = NodePath("../Music")
 
 [node name="ObjectManager" type="Node" parent="Players/LocalPlayer"]
 process_mode = 3
@@ -81,7 +83,6 @@ script = ExtResource("6_hpfkw")
 [node name="HUDManager" type="Node" parent="Players/LocalPlayer"]
 process_priority = 1
 script = ExtResource("7_vdacm")
-hud_path = NodePath("../Origin/HUD")
 
 [node name="Origin" type="Node3D" parent="Players/LocalPlayer"]
 process_mode = 1
@@ -90,8 +91,6 @@ process_mode = 1
 process_priority = 5
 script = ExtResource("8_efis3")
 local_player = true
-camera_path = NodePath("Camera")
-cursor_path = NodePath("Cursor")
 id = "Player"
 permanent = true
 
