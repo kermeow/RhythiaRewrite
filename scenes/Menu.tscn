@@ -161,6 +161,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -1096,7 +1097,6 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
@@ -1193,10 +1193,12 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Lock/Container"]
+[node name="CheckBox" type="CheckButton" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Lock/Container"]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
+button_pressed = true
+flat = true
 
 [node name="Drift" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
 custom_minimum_size = Vector2(0, 32)
@@ -1221,10 +1223,11 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Drift/Container"]
+[node name="CheckBox" type="CheckButton" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Drift/Container"]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
+flat = true
 
 [node name="Absolute" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
 custom_minimum_size = Vector2(0, 32)
@@ -1249,10 +1252,11 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Absolute/Container"]
+[node name="CheckBox" type="CheckButton" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Absolute/Container"]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
+flat = true
 
 [node name="Approach" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
 layout_mode = 2
@@ -1679,10 +1683,11 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/Fullscreen/Container"]
+[node name="CheckBox" type="CheckButton" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/Fullscreen/Container"]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
+flat = true
 
 [node name="FPS" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window"]
 custom_minimum_size = Vector2(0, 32)
