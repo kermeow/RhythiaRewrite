@@ -32,7 +32,7 @@ func hit_object_state_changed(state:int,object:HitObject):
 			score.hits += 1
 			score.combo += 1
 			score.sub_multiplier += 1
-			if score.sub_multiplier == 8 and score.multiplier < 8:
+			if score.sub_multiplier == 10 and score.multiplier < 8:
 				score.sub_multiplier = 1
 				score.multiplier += 1
 			score.score += 25 * score.multiplier
