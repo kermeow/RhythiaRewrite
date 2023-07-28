@@ -1198,7 +1198,6 @@ layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 button_pressed = true
-flat = true
 
 [node name="Drift" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
 custom_minimum_size = Vector2(0, 32)
@@ -1227,7 +1226,6 @@ size_flags_horizontal = 3
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
-flat = true
 
 [node name="Absolute" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
 custom_minimum_size = Vector2(0, 32)
@@ -1256,7 +1254,6 @@ size_flags_horizontal = 3
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
-flat = true
 
 [node name="Approach" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
 layout_mode = 2
@@ -1687,7 +1684,6 @@ size_flags_horizontal = 3
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
-flat = true
 
 [node name="FPS" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window"]
 custom_minimum_size = Vector2(0, 32)
