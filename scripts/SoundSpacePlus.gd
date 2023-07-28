@@ -136,7 +136,7 @@ enum GameType {
 	SOLO,
 	MULTI
 }
-var selected_mapset:String = "ee88622e974fc53f90ff4f8ad4d46160"
+var selected_mapset:String
 var selected_mods:Mods = Mods.new()
 var game_scene:Node
 func load_game_scene(game_type:int,mapset:Mapset,map_index:int=0):
