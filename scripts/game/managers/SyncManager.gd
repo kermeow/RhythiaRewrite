@@ -17,7 +17,7 @@ func start(from:float=0):
 	playing = true
 func seek(from:float=0):
 	last_time = Time.get_ticks_usec()
-	real_time += from - current_time
+	real_time = from
 func finish():
 	playing = false
 	finished.emit()
@@ -38,13 +38,13 @@ func just_unpaused():
 func _process(delta):
 	if !playing: return
 	if !is_multiplayer_authority():
-		current_time = real_time
+		current_time = real_time + game.settings.offset.music
 		return
 	var now = Time.get_ticks_usec()
 	var time = playback_speed * (now - last_time) / 1000000.0
 	last_time = now
 	real_time += time
-	current_time = real_time
+	current_time = real_time + game.settings.offset.music
 	try_finish()
 
 func try_finish():

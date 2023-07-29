@@ -94,7 +94,7 @@ expand = true
 buffering_msec = 1000
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-bus = &"Game Music"
+bus = &"Music"
 
 [node name="PauseMenu" type="ColorRect" parent="."]
 process_mode = 3

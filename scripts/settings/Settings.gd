@@ -42,13 +42,13 @@ const SETTINGS_CONFIG = [
 		]]
 	]],
 	["volume",Setting.Type.CATEGORY,[
-		["master",Setting.Type.FLOAT,0.5],
-		["master_menu",Setting.Type.FLOAT,1.0],
-		["menu_music",Setting.Type.FLOAT,1.0],
-		["menu_sfx",Setting.Type.FLOAT,1.0],
-		["master_game",Setting.Type.FLOAT,1.0],
-		["game_music",Setting.Type.FLOAT,1.0],
-		["game_sfx",Setting.Type.FLOAT,1.0]
+		["master",Setting.Type.FLOAT,1.0],
+		["music",Setting.Type.FLOAT,1.0],
+		["sfx",Setting.Type.FLOAT,1.0]
+	]],
+	["offset",Setting.Type.CATEGORY,[
+		["music",Setting.Type.INT,0],
+		["sfx",Setting.Type.INT,0]
 	]],
 	["controls",Setting.Type.CATEGORY,[
 		["sensitivity",Setting.Type.CATEGORY,[

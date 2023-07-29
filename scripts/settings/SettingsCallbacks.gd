@@ -15,12 +15,8 @@ func bind_to(_settings:GameSettings):
 
 	# Volume
 	settings.volume.get_setting("master").changed.connect(volume.bind("Master"))
-	settings.volume.get_setting("master_menu").changed.connect(volume.bind("Menu"))
-	settings.volume.get_setting("menu_music").changed.connect(volume.bind("Menu Music"))
-	settings.volume.get_setting("menu_sfx").changed.connect(volume.bind("Menu SFX"))
-	settings.volume.get_setting("master_game").changed.connect(volume.bind("Game"))
-	settings.volume.get_setting("game_music").changed.connect(volume.bind("Game Music"))
-	settings.volume.get_setting("game_sfx").changed.connect(volume.bind("Game SFX"))
+	settings.volume.get_setting("music").changed.connect(volume.bind("Music"))
+	settings.volume.get_setting("sfx").changed.connect(volume.bind("SFX"))
 
 	# FPS
 	settings.get_setting("fps_limit").changed.connect(set_fps)
