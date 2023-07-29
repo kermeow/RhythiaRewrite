@@ -19,9 +19,9 @@ func ready():
 		world_node.set_meta("game",self)
 		world_parent.add_child(world_node)
 
-	sync_manager.call_deferred("start",-2 * sync_manager.playback_speed)
-
 	player.connect("failed",Callable(self,"finish").bind(true))
+
+	sync_manager.call_deferred("start",-settings.approach.time * sync_manager.playback_speed)
 
 var ended:bool = false
 func finish(failed:bool=false):
