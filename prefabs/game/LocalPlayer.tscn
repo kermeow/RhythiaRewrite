@@ -39,12 +39,16 @@ fov = 70.0
 [node name="Real" type="MeshInstance3D" parent="Cursor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 layers = 2
+cast_shadow = 0
+gi_mode = 0
 mesh = SubResource("QuadMesh_rq05a")
 
 [node name="Ghost" type="MeshInstance3D" parent="Cursor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 layers = 2
 transparency = 1.0
+cast_shadow = 0
+gi_mode = 0
 mesh = SubResource("QuadMesh_rq05a")
 
 [node name="CursorTrail" type="MultiMeshInstance3D" parent="."]
@@ -52,4 +56,6 @@ top_level = true
 layers = 2
 sorting_offset = -1.0
 material_override = SubResource("StandardMaterial3D_y2xxy")
+cast_shadow = 0
+gi_mode = 0
 multimesh = SubResource("MultiMesh_it0w6")
