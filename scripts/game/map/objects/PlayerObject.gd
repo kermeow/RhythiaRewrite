@@ -64,6 +64,7 @@ func fail():
 func _ready():
 	set_process_input(local_player)
 	set_physics_process(local_player)
+	trail.instance_count = 0
 	if local_player: # and !get_tree().vr_enabled:
 		camera.make_current()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -120,7 +121,6 @@ func _process(_delta):
 					trails.push_front(now - _delta * progress)
 					var position = end_position - gap * progress
 					trails.push_front(Transform3D(Basis.from_scale(Vector3.ONE/2.0), position))
-
 		var total_trails = trails.size() / 2
 		var remove_trails = 0
 		trail.instance_count = total_trails
