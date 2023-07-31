@@ -21,7 +21,7 @@ func ready():
 
 	player.connect("failed",Callable(self,"finish").bind(true))
 
-	sync_manager.call_deferred("start",-settings.approach.time * sync_manager.playback_speed)
+	sync_manager.call_deferred("start",-(settings.approach.time+1.5) * sync_manager.playback_speed)
 
 var ended:bool = false
 func finish(failed:bool=false):

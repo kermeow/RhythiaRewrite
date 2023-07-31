@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MeshPlus" load_steps=5 format=3 uid="uid://y27wb5gfmv6g"]
 
-[ext_resource type="Material" uid="uid://mo14d60r0wa8" path="res://assets/content/blocks/meshes/default.tres" id="1_airwm"]
+[ext_resource type="Material" uid="uid://mo14d60r0wa8" path="res://assets/materials/blocks/Default.tres" id="1_airwm"]
 [ext_resource type="Script" path="res://scripts/content/resources/MeshPlus.gd" id="3_sktim"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5gue"]
