@@ -23,6 +23,6 @@ func render_objects(objects:Array):
 	multimesh.visible_instance_count = count
 
 	for i in count:
-		var note = notes[i]
+		var note = notes[count-(i+1)]
 		multimesh.set_instance_color(i,note.mixed_colour)
 		multimesh.set_instance_transform(i,note.global_transform.translated(mesh.offset))

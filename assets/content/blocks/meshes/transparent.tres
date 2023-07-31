@@ -2,7 +2,7 @@
 
 [sub_resource type="Shader" id="39"]
 code = "shader_type spatial;
-render_mode blend_mix, unshaded, depth_draw_always;
+render_mode blend_mix, unshaded, depth_draw_opaque, cull_disabled;
 
 uniform float alpha_multi = 0.5;
 
