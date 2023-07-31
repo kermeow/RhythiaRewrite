@@ -67,6 +67,7 @@ func _ready():
 	trail.instance_count = 0
 	if local_player: # and !get_tree().vr_enabled:
 		camera.make_current()
+		camera.fov = game.settings.fov
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		Input.use_accumulated_input = false
 func _exit_tree():

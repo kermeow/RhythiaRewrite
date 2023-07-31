@@ -22,6 +22,7 @@ const SETTINGS_CONFIG = [
 		["camera",Setting.Type.FLOAT,1.0],
 		["hud",Setting.Type.FLOAT,0.0]
 	]],
+	["fov",Setting.Type.INT,70],
 	["skin",Setting.Type.CATEGORY,[
 		["block",Setting.Type.CATEGORY,[
 			["mesh",Setting.Type.STRING,"cube"],
