@@ -14,6 +14,8 @@ var current_time:float:
 
 @onready var game_offset:float
 
+@export var parent_sync_manager:SyncManager
+
 func prepare(_game:GameScene):
 	game_offset = float(_game.settings.offset.music) / 1000.0
 	super.prepare(_game)
@@ -43,6 +45,11 @@ func just_unpaused():
 	last_time = Time.get_ticks_usec()
 
 func _process(delta):
+	if parent_sync_manager != null:
+		playing = parent_sync_manager.playing
+		playback_speed = parent_sync_manager.playback_speed
+		real_time = parent_sync_manager.real_time
+		return
 	if !playing: return
 	if !is_multiplayer_authority():
 		current_time = real_time + game_offset
