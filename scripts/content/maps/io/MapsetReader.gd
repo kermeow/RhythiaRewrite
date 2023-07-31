@@ -16,8 +16,35 @@ static func read_from_file(path:String,full:bool=false,index:int=0) -> Mapset:
 		2: _sspmv2(file,set,full)
 		3: _sspmv3(file,set,full,index)
 	file.close()
-	set.id = file.get_md5(path)
 	return set
+
+static func cover_from_file(file:FileAccess,set:Mapset): # only works with v3
+	assert(set.format == 3)
+	file.seek(set.file_offsets.cover)
+	var cover_width = file.get_16()
+	var cover_height = file.get_16()
+	var cover_length = file.get_64()
+	var cover_buffer = file.get_buffer(cover_length)
+	var image = Image.create_from_data(cover_width,cover_height,false,Image.FORMAT_RGBA8,cover_buffer)
+	return image
+static func audio_from_file(file:FileAccess,set:Mapset): # only works with v3
+	assert(set.format == 3)
+	file.seek(set.file_offsets.audio)
+	var audio_length = file.get_64()
+	var audio_buffer = file.get_buffer(audio_length)
+	var format = get_audio_format(audio_buffer)
+	var stream:AudioStream
+	match format:
+		Globals.AudioFormat.WAV:
+			stream = AudioStreamWAV.new()
+			stream.data = audio_buffer
+		Globals.AudioFormat.OGG:
+			stream = AudioStreamOggVorbis.new()
+			stream.packet_sequence = Globals.get_ogg_packet_sequence(audio_buffer)
+		Globals.AudioFormat.MP3:
+			stream = AudioStreamMP3.new()
+			stream.data = audio_buffer
+	return stream
 
 static func _sspmv3(file:FileAccess,set:Mapset,full:bool,index:int=-1):
 	file.seek(file.get_position()+2)
@@ -33,20 +60,17 @@ static func _sspmv3(file:FileAccess,set:Mapset,full:bool,index:int=-1):
 	set.creator = file.get_buffer(creator_length).get_string_from_utf16()
 
 	# Audio
+	set.file_offsets.audio = file.get_position()
 	var audio_length = file.get_64()
-	if audio_length > 1:
-		var audio_buffer = file.get_buffer(audio_length)
-		if full: _audio(audio_buffer,set)
-	else:
+	file.seek(file.get_position()+audio_length)
+	if audio_length < 1:
 		set.broken = true
 
 	# Cover
+	set.file_offsets.cover = file.get_position()
 	var cover_width = file.get_16()
-	if cover_width > 1:
-		var cover_height = file.get_16()
-		var cover_length = file.get_64()
-		var cover_buffer = file.get_buffer(cover_length)
-		var image = Image.create_from_data(cover_width,cover_height,false,Image.FORMAT_RGBA8,cover_buffer)
+	if cover_width > 0:
+		var image = cover_from_file(file,set)
 		_cover(image,set)
 	else:
 		set.broken = true
@@ -62,10 +86,10 @@ static func _sspmv3(file:FileAccess,set:Mapset,full:bool,index:int=-1):
 		map.name = file.get_buffer(dname_length).get_string_from_utf16()
 		var data_length = file.get_64()
 		var data = file.get_buffer(data_length).get_string_from_utf8()
+		var hash_ctx = HashingContext.new()
+		hash_ctx.start(HashingContext.HASH_MD5)
+		map.id = hash_ctx.finish().hex_encode()
 		if full and (!indexed or index == i):
-			var hash_ctx = HashingContext.new()
-			hash_ctx.start(HashingContext.HASH_MD5)
-			map.id = hash_ctx.finish().hex_encode()
 			deserialise_v3_data(data,map)
 		set.maps[i] = map
 static func deserialise_v3_data(data:String,map:Map):
@@ -102,22 +126,21 @@ static func _cover(image:Image,set:Mapset):
 	set.cover = texture
 static func _audio(buffer:PackedByteArray,set:Mapset):
 	var format = get_audio_format(buffer)
+	var stream:AudioStream
 	match format:
 		Globals.AudioFormat.WAV:
-			var stream = AudioStreamWAV.new()
+			stream = AudioStreamWAV.new()
 			stream.data = buffer
-			set.audio = stream
 		Globals.AudioFormat.OGG:
-			var stream = AudioStreamOggVorbis.new()
+			stream = AudioStreamOggVorbis.new()
 			stream.packet_sequence = Globals.get_ogg_packet_sequence(buffer)
-			set.audio = stream
 		Globals.AudioFormat.MP3:
-			var stream = AudioStreamMP3.new()
+			stream = AudioStreamMP3.new()
 			stream.data = buffer
-			set.audio = stream
 		_:
 			print("I don't recognise this format! %s" % buffer.slice(0,3))
 			set.broken = true
+	set.audio = stream
 
 static func _sspmv1(file:FileAccess,set:Mapset,full:bool):
 	file.seek(file.get_position()+2) # Header reserved space or something
@@ -159,8 +182,8 @@ static func _sspmv1(file:FileAccess,set:Mapset,full:bool):
 	var music_format = get_audio_format(music_buffer)
 	if music_format == Globals.AudioFormat.UNKNOWN:
 		set.broken = true
-	if not full: return
 	_audio(music_buffer,set)
+	if not full: return
 	map.notes = []
 	for i in range(note_count):
 		var note = Map.Note.new()
@@ -252,11 +275,11 @@ static func _sspmv2(file:FileAccess,set:Mapset,full:bool):
 		_cover(image,set)
 	else:
 		set.cover = Map.LegacyCovers.get(difficulty)
-	if not full: return
 	# Audio
 	file.seek(audio_offset)
 	_audio(file.get_buffer(audio_length),set)
 	# Markers
+	if not full: return
 	file.seek(marker_def_offset)
 	var markers = {}
 	var types = []

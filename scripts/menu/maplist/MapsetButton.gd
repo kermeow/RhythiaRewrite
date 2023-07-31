@@ -9,10 +9,12 @@ func update(is_pressed:bool=false):
 	$Song.text = mapset.name
 	$Creator.text = mapset.creator
 	var song_length:String
-	if mapset.broken or mapset.audio == null:
+	if mapset.broken:
+		song_length = "BROKEN"
+	elif mapset.length == 0:
 		song_length = "N/A"
 	else:
-		var length = ceili(mapset.audio.get_length())
+		var length = ceili(mapset.length)
 		var minutes = floori(length / 60.0)
 		var minutes_t = str(minutes)
 		var seconds = floori(length % 60)
@@ -26,7 +28,9 @@ func update(is_pressed:bool=false):
 	else:
 		$Cover.visible = true
 		$Cover/Image.texture = mapset.cover
-	if mapset.broken: disabled = true
+	if mapset.broken:
+		$Song.text = mapset.path.get_file()
+		disabled = true
 
 var pressed_colour:Color = Color8(255,255,255,255)
 var unpressed_colour:Color = Color8(200,200,200,200)
