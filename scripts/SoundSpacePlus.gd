@@ -12,6 +12,7 @@ var first_time:bool = false
 func _ready():
 	on_init_complete.connect(_on_init_complete)
 
+	# Load settings
 	var exec_settings = OS.get_executable_path().get_base_dir().path_join("preferences.json")
 	if FileAccess.file_exists(exec_settings): settings_path = exec_settings
 	call_deferred("load_settings")

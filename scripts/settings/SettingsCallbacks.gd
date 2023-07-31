@@ -2,7 +2,7 @@ class_name GameSettingsCallbacks
 
 var settings:GameSettings
 
-var tree:SceneTreePlus
+var tree:SceneTree
 var window:Window
 
 func bind_to(_settings:GameSettings):

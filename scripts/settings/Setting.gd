@@ -12,6 +12,16 @@ enum Type {
 	ARRAY,
 	CATEGORY
 }
+static func convert_type(_value:Variant,type:int):
+	match type:
+		Type.BOOLEAN: return bool(_value)
+		Type.INT: return int(_value)
+		Type.ENUM: return int(_value)
+		Type.FLOAT: return float(_value)
+		Type.STRING: return String(_value)
+		Type.ARRAY: return Array(_value)
+		Type.CATEGORY: return Dictionary(_value)
+	return _value
 static func validate_type(_value:Variant,type:int):
 	match type:
 		Type.BOOLEAN: return _value is bool
@@ -32,11 +42,10 @@ var category_config:Array
 var default:Variant
 var value:Variant = {}:
 	set(_value):
-		if !validate_type(_value,type): return false
-#		if type == Type.ENUM and !validate_enum(_value,enum_type): return false
+		if !validate_type(_value,type): _value = convert_type(_value,type)
 		if type == Type.CATEGORY: return false
 		value = _value
-		changed.emit(value)
+		call_deferred("emit_signal","changed",value)
 		return true
 
 func _init(config:Array):
