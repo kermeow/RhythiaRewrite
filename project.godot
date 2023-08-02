@@ -19,17 +19,13 @@ config/auto_accept_quit=false
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.1")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://assets/images/branding/splash.png"
-boot_splash/fullsize=false
+boot_splash/show_image=false
 config/icon="res://assets/images/branding/icon.png"
 config/version="rewrite"
 networking/enabled=true
 config/menu_scene="res://scenes/Menu.tscn"
 startup/disable_intro=true
 startup/disable_health_warning=true
-rich_presence/disabled=true
-rich_presence/disabled.Windows=false
-rich_presence/disabled.editor=true
 config/version.debug="debug"
 outro/disabled=true
 outro/play_sound=true
@@ -64,11 +60,14 @@ gdscript/warnings/unused_argument=false
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/extend_to_title=true
+window/stretch/aspect="keep_height"
 window/per_pixel_transparency/allowed=true
 window/handheld/orientation="sensor_landscape"
 window/vsync/vsync_mode=3
 window/vsync/use_vsync=false
 window/subwindows/embed_subwindows.mobile=true
+window/stretch/mode.mobile="canvas_items"
 
 [editor]
 
