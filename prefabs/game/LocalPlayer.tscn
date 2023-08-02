@@ -34,6 +34,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 cull_mask = 1048543
 fov = 70.0
 
+[node name="AbsCamera" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.5)
+cull_mask = 1048543
+fov = 70.0
+
 [node name="Cursor" type="Node3D" parent="."]
 
 [node name="Real" type="MeshInstance3D" parent="Cursor"]

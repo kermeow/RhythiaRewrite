@@ -22,7 +22,6 @@ const SETTINGS_CONFIG = [
 		["camera",Setting.Type.FLOAT,1.0],
 		["hud",Setting.Type.FLOAT,0.0]
 	]],
-	["fov",Setting.Type.INT,70],
 	["skin",Setting.Type.CATEGORY,[
 		["block",Setting.Type.CATEGORY,[
 			["mesh",Setting.Type.STRING,"cube"],
@@ -58,6 +57,7 @@ const SETTINGS_CONFIG = [
 		]],
 		["lock",Setting.Type.BOOLEAN,true],
 		["drift",Setting.Type.BOOLEAN,false],
+		["fov",Setting.Type.INT,70],
 		["absolute",Setting.Type.BOOLEAN,false]
 	]],
 	["folders",Setting.Type.CATEGORY,[

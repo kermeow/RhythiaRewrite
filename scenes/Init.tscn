@@ -1,13 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://eobt2fotkbfh"]
+[gd_scene load_steps=7 format=3 uid="uid://eobt2fotkbfh"]
 
 [ext_resource type="Script" path="res://scripts/menu/loading/Init.gd" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3bv2c"]
-[ext_resource type="AudioStream" uid="uid://gg651sab0hgj" path="res://assets/sounds/music/startup/drums.ogg" id="4"]
 [ext_resource type="Texture2D" uid="uid://c54ide18equ4n" path="res://assets/images/branding/icon.png" id="4_2wpeo"]
 [ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="4_awb3p"]
-[ext_resource type="AudioStream" uid="uid://djuomv3q6djrc" path="res://assets/sounds/music/startup/strings.ogg" id="5"]
-[ext_resource type="AudioStream" uid="uid://dlr6rhfrvtqe2" path="res://assets/sounds/music/startup/phaser.ogg" id="6"]
-[ext_resource type="AudioStream" uid="uid://c82uiavmaobmd" path="res://assets/sounds/music/startup/piano.ogg" id="7"]
 [ext_resource type="PackedScene" uid="uid://lsgq5t65pdtf" path="res://prefabs/menu/VersionNumberL.tscn" id="8"]
 [ext_resource type="Script" path="res://scripts/menu/loading/Loading.gd" id="11"]
 
@@ -154,27 +150,3 @@ step = 1.0
 [node name="VersionNumberL" parent="." instance=ExtResource("8")]
 layout_mode = 1
 grow_vertical = 0
-
-[node name="Piano" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7")
-volume_db = -80.0
-autoplay = true
-bus = &"Menu Music"
-
-[node name="Phaser" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6")
-volume_db = -80.0
-autoplay = true
-bus = &"Menu Music"
-
-[node name="Drums" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4")
-volume_db = -80.0
-autoplay = true
-bus = &"Menu Music"
-
-[node name="Strings" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5")
-volume_db = -80.0
-autoplay = true
-bus = &"Menu Music"

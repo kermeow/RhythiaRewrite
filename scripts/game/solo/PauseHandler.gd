@@ -1,6 +1,8 @@
 extends Control
 
 var cooldown = 0
+var mouse_position
+var mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _ready():
 	modulate.a = 0
@@ -13,7 +15,7 @@ func _ready():
 func _input(event):
 	var paused = get_tree().paused
 	if event.is_action_pressed("pause"):
-		if !paused:attempt_pause()
+		if !paused: attempt_pause()
 		else: attempt_resume()
 	if event.is_action_pressed("restart"):
 		get_tree().paused = true
@@ -26,6 +28,8 @@ func attempt_pause():
 	var now = Time.get_ticks_msec()
 	if (now - cooldown) < 150: return
 	get_tree().paused = true
+	mouse_mode = Input.mouse_mode
+	mouse_position = get_global_mouse_position()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	Input.warp_mouse(get_viewport_rect().size*0.5)
@@ -38,7 +42,8 @@ func attempt_resume():
 	print("Resuming")
 	var now = Time.get_ticks_msec()
 	cooldown = now
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = mouse_mode
+	Input.warp_mouse(mouse_position)
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	if tween != null: tween.kill()
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)

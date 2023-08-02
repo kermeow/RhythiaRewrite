@@ -4,8 +4,8 @@ class_name GameObject
 signal spawned
 signal despawned
 
-var game:GameScene
-var manager:ObjectManager
+@export var game:GameScene
+@export var manager:ObjectManager
 
 @export var id:String
 @export var permanent:bool = false

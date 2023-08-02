@@ -29,6 +29,7 @@ func prepare(_game:GameScene):
 
 func append_object(object:GameObject,parent:bool=true,include_children:bool=false):
 	if objects_ids.keys().has(object.id): return false
+
 	object.game = game
 	object.manager = self
 

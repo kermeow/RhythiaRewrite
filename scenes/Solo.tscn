@@ -105,7 +105,10 @@ hud = NodePath("../Origin/HUD")
 [node name="Origin" type="Node3D" parent="."]
 process_mode = 1
 
-[node name="Player" parent="Origin" instance=ExtResource("7_qpehi")]
+[node name="Player" parent="Origin" node_paths=PackedStringArray("absolute_camera", "game", "manager") instance=ExtResource("7_qpehi")]
+absolute_camera = NodePath("AbsCamera")
+game = NodePath("../..")
+manager = NodePath("../../ObjectManager")
 
 [node name="World" type="Node3D" parent="Origin"]
 script = ExtResource("3_pci65")
@@ -280,3 +283,5 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 24
 text = "RETURN TO MENU"
 vertical_alignment = 1
+
+[editable path="Origin/Player"]
