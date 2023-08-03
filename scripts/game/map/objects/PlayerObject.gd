@@ -49,6 +49,9 @@ func _exit_tree():
 
 func _input(event):
 	if event is InputEventMouseMotion:
+		var parallax = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
+		parallax *= game.settings.parallax.camera
+		camera.position = camera_origin + (parallax + camera.basis.z) / 4
 		if game.settings.controls.absolute: _absolute_movement(event)
 		else: _relative_movement(event)
 		var clamp_value = 1.36875
@@ -86,10 +89,6 @@ func _process(_delta):
 	cursor.position = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
 	ghost.position = Vector3(difference.x,difference.y,0.01)
 	ghost.transparency = max(0.5,1-(difference.length_squared()*2))
-
-	var parallax = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
-	parallax *= game.settings.parallax.camera
-	camera.position = camera_origin + (parallax + camera.basis.z) / 4
 
 	if game.settings.skin.cursor.trail_enabled:
 		var now = Time.get_ticks_msec()
