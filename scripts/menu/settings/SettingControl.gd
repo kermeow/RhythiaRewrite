@@ -10,6 +10,7 @@ var property_name:String
 @export var label:String = ""
 @export var target:Array[String] = []
 var target_setting:Setting
+@export var disable_revert:bool = false
 
 @export_subgroup("Requirements")
 @export var has_requirement:bool = false
@@ -39,6 +40,8 @@ func _ready():
 	signal_emitter.connect(signal_name,signal_received)
 	value_changed.emit(get_setting())
 	target_setting.changed.connect(save_setting)
+	$Container/Revert.pressed.connect(revert)
+	$Container/Revert.visible = target_setting.value != target_setting.default
 	
 	# Required setting
 	if has_requirement:
@@ -56,11 +59,14 @@ func requirement_changed(value):
 	if hide_if_unfulfilled: visible = fulfilled
 	else: signal_emitter.disabled = !fulfilled
 
+func revert():
+	target_setting.value = target_setting.default
+	$Container/Revert.visible = false
 func reset(value=get_setting()):
 	signal_emitter.set(property_name,value)
-
-func signal_received(_value):
-	set_setting(_value)
+func signal_received(value):
+	set_setting(value)
+	$Container/Revert.visible = target_setting.value != target_setting.default
 
 func get_setting():
 	if target_setting.value is float:
@@ -76,5 +82,6 @@ func set_setting(value):
 	target_setting.value = value
 	value_changed.emit(get_setting())
 
-func save_setting(_value):
+func save_setting(value):
+	reset()
 	SoundSpacePlus.call_deferred("save_settings")

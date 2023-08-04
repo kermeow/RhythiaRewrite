@@ -134,6 +134,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -1078,7 +1079,6 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
