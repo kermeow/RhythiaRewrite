@@ -30,5 +30,5 @@ func update(current_time:float):
 
 func get_visibility(current_time:float):
 	if game.settings.skin.block.fade_out_mode == 2:
-		return current_time > 0
+		return (note.time-current_time) > 0
 	return hit_state == HitState.NONE
