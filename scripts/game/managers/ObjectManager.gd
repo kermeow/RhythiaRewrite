@@ -25,7 +25,6 @@ func prepare(_game:GameScene):
 	origin.set_physics_process(game.local_player)
 
 	append_object(player,false)
-	build_map(game.map)
 
 func append_object(object:GameObject,parent:bool=true,include_children:bool=false):
 	if objects_ids.keys().has(object.id): return false
@@ -58,26 +57,6 @@ func append_object(object:GameObject,parent:bool=true,include_children:bool=fals
 	objects.append(object)
 	objects_ids[object.id] = object
 	if !object.permanent: objects_to_process.append(object)
-
-func build_map(map:Map):
-	for note in map.notes:
-		var object = build_note(note)
-		append_object(object)
-	objects_to_process.sort_custom(func(a,b): return a.spawn_time < b.spawn_time)
-func build_note(note:Map.Note):
-	var id = note.data.get("id","note-%s" % note.index)
-	var object = NoteObject.new(id,note)
-	object.name = id
-	var colorset = game.settings.skin.block.colorset
-	var colour_index = wrapi(note.index,0,colorset.size())
-	var colour = colorset[colour_index]
-	object.colour = Color.from_string(colour,Color.RED)
-	object.spawn_distance = game.settings.approach.distance
-	object.hittable = true
-	object.spawn_time = note.time - (game.settings.approach.time * game.mods.speed)
-	object.despawn_time = note.time + 1
-	object.visible = false
-	return object
 
 func _process(_delta):
 	for object in objects_to_process.duplicate():
