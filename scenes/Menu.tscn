@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cu2rno2ef0dtr"]
+[gd_scene load_steps=39 format=3 uid="uid://cu2rno2ef0dtr"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scripts/menu/select/Play.gd" id="12_r8mhb"]
 [ext_resource type="Script" path="res://scripts/menu/select/SpeedMods.gd" id="13_66cgf"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
+[ext_resource type="Script" path="res://scripts/menu/select/StartFrom.gd" id="14_sad65"]
 [ext_resource type="Script" path="res://scripts/menu/lobby/Lobby.gd" id="16_to4ol"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
@@ -207,6 +208,7 @@ theme_override_font_sizes/font_size = 18
 text = "-"
 
 [node name="MapList" type="Control" parent="Main/TabBar/Select" node_paths=PackedStringArray("playlists")]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -732,11 +734,33 @@ offset_bottom = 83.0
 text = "No Fail"
 
 [node name="StartFrom" type="Control" parent="Main/TabBar/Select/MapDetails/Play/Local/Play"]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_left = 16.0
 offset_top = 94.0
-offset_right = 208.0
+offset_right = -16.0
 offset_bottom = 142.0
+grow_horizontal = 2
+script = ExtResource("14_sad65")
+
+[node name="Slider" type="HSlider" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/StartFrom"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/StartFrom"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+text = "Start from 0m 0s"
+vertical_alignment = 2
 
 [node name="Play" type="Button" parent="Main/TabBar/Select/MapDetails/Play/Local/Play"]
 layout_mode = 1
@@ -1102,16 +1126,16 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 22
 theme_override_styles/panel = SubResource("StyleBoxFlat_0vm47")
 
-[node name="Gameplay" type="Control" parent="Main/TabBar/Settings/TabContainer"]
+[node name="Gameplay" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
 layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
 
 [node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Controls" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
 layout_mode = 2
@@ -1218,8 +1242,8 @@ requirement_reversed = true
 hide_if_unfulfilled = true
 
 [node name="Skin" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
-visible = false
 layout_mode = 2
+follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Skin"]
@@ -1402,52 +1426,16 @@ registry_name = "worlds"
 label = "World"
 target = Array[String](["skin", "background", "world"])
 
-[node name="Video" type="Control" parent="Main/TabBar/Settings/TabContainer"]
+[node name="Audio" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
 layout_mode = 2
-
-[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Video"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Window" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Video/Columns"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 4
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Window"
-vertical_alignment = 2
-
-[node name="Fullscreen" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("19_8t4jv")]
-layout_mode = 2
-label = "Fullscreen"
-target = Array[String](["fullscreen"])
-
-[node name="FPS" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("17_shbod")]
-layout_mode = 2
-step = 1.0
-allow_greater = true
-label = "FPS Limit"
-target = Array[String](["fps_limit"])
-
-[node name="Audio" type="Control" parent="Main/TabBar/Settings/TabContainer"]
-visible = false
-layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
 
 [node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Audio"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Volume" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns"]
 layout_mode = 2
@@ -1505,6 +1493,40 @@ allow_greater = true
 allow_lesser = true
 label = "Music Offset"
 target = Array[String](["offset", "music"])
+
+[node name="Video" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Video"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Window" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Video/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Window"
+vertical_alignment = 2
+
+[node name="Fullscreen" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Fullscreen"
+target = Array[String](["fullscreen"])
+
+[node name="FPS" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("17_shbod")]
+layout_mode = 2
+step = 1.0
+allow_greater = true
+label = "FPS Limit"
+target = Array[String](["fps_limit"])
 
 [node name="VersionNumberR" parent="Main" instance=ExtResource("1")]
 layout_mode = 1

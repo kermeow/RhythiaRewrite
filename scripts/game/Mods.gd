@@ -23,8 +23,10 @@ var speed:float:
 			return SpeedPresets[speed_preset]
 		else:
 			return speed_custom
-
+			
 var no_fail:bool = false
+
+var start_from:int = 0
 
 var data:Dictionary:
 	get:
@@ -32,10 +34,12 @@ var data:Dictionary:
 			speed_mod = speed_mod,
 			speed_preset = speed_preset,
 			speed_custom = speed_custom,
-			no_fail = no_fail
+			no_fail = no_fail,
+			start_from = start_from
 		}
 	set(value):
 		speed_mod = value.get("speed_mod",speed_mod)
 		speed_preset = value.get("speed_preset",speed_preset)
 		speed_custom = value.get("speed_custom",speed_custom)
 		no_fail = value.get("no_fail",no_fail)
+		start_from = value.get("start_from",start_from)

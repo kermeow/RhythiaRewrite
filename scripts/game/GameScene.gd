@@ -37,6 +37,7 @@ func _ready():
 func build_map():
 	var objects = []
 	for note in map.notes:
+		if note.time < mods.start_from: continue
 		var object = build_note(note)
 		objects.append(object)
 	objects.sort_custom(func(a,b): return a.spawn_time < b.spawn_time)
