@@ -14,6 +14,7 @@ signal failed
 @export var camera:Camera3D
 @export var absolute_camera:Camera3D
 @export var cursor:Node3D
+@onready var real:MeshInstance3D = cursor.get_node("Real")
 @onready var ghost:MeshInstance3D = cursor.get_node("Ghost")
 @export var trail:MultiMesh
 
@@ -36,6 +37,8 @@ func _ready():
 		camera.make_current()
 		camera.fov = game.settings.controls.fov
 		absolute_camera.fov = game.settings.controls.fov
+		real.scale = Vector3.ONE * game.settings.skin.cursor.scale / 2.0
+		ghost.scale = real.scale
 		if game.settings.controls.absolute:
 			Input.warp_mouse(get_viewport().size*0.5)
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
@@ -104,7 +107,7 @@ func _process(_delta):
 					var progress = i/new_trails
 					trails.push_front(now - _delta * progress)
 					var position = end_position - gap * progress
-					trails.push_front(Transform3D(Basis.from_scale(Vector3.ONE/2.0), position))
+					trails.push_front(Transform3D(real.basis, position))
 		var total_trails = trails.size() / 2
 		var remove_trails = 0
 		trail.instance_count = total_trails

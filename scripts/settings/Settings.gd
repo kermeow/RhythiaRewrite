@@ -8,6 +8,15 @@ enum ApproachMode {
 	DISTANCE_RATE,
 	RATE_TIME
 }
+enum FadeInMode {
+	FADE,
+	APPEAR
+}
+enum FadeOutMode {
+	FADE,
+	DISAPPEAR,
+	DISAPPEAR_NO_WINDOW
+}
 const SETTINGS_CONFIG = [
 	["first_time",Setting.Type.BOOLEAN,true],
 	["fps_limit",Setting.Type.INT,0],
@@ -27,15 +36,18 @@ const SETTINGS_CONFIG = [
 			["mesh",Setting.Type.STRING,"cube"],
 			["colorset",Setting.Type.ARRAY,["#ff0000","#00ffff"]],
 			["opacity",Setting.Type.FLOAT,1.0],
+			["fade_in_mode",Setting.Type.ENUM,FadeInMode,FadeInMode.FADE],
 			["fade_in_time",Setting.Type.FLOAT,0.25],
 			["fade_in_amount",Setting.Type.FLOAT,1.0],
-			["fade_out_time",Setting.Type.FLOAT,0.0],
+			["fade_out_mode",Setting.Type.ENUM,FadeOutMode,FadeOutMode.DISAPPEAR],
+			["fade_out_time",Setting.Type.FLOAT,0.1],
 			["fade_out_amount",Setting.Type.FLOAT,1.0]
 		]],
 		["cursor",Setting.Type.CATEGORY,[
+			["scale",Setting.Type.FLOAT,1.0],
 			["trail_enabled",Setting.Type.BOOLEAN,false],
 			["trail_detail",Setting.Type.INT,100],
-			["trail_length",Setting.Type.FLOAT,0.1],
+			["trail_length",Setting.Type.FLOAT,0.1]
 		]],
 		["background",Setting.Type.CATEGORY,[
 			["world",Setting.Type.STRING,"tunnel"]

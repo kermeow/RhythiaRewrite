@@ -16,15 +16,16 @@
 [ext_resource type="Script" path="res://scripts/menu/maplist/Play.gd" id="8_mf8ee"]
 [ext_resource type="Texture2D" uid="uid://b7v0bqlxe7ew4" path="res://assets/images/ui/favorite.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
-[ext_resource type="Script" path="res://scripts/menu/settings/RegistryControl.gd" id="10_a5lmy"]
-[ext_resource type="Script" path="res://scripts/menu/settings/SettingControl.gd" id="10_qi5v2"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/SpeedMods.gd" id="11_cs64u"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/Music.gd" id="11_fbyjp"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
 [ext_resource type="Script" path="res://scripts/menu/lobby/Lobby.gd" id="16_to4ol"]
+[ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
 [ext_resource type="Script" path="res://scripts/menu/main/Sidebar.gd" id="18"]
+[ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
 [ext_resource type="Script" path="res://scripts/menu/main/Warning.gd" id="19"]
-[ext_resource type="AudioStream" uid="uid://chricmmpsvuxi" path="res://assets/sounds/music/menu_loop.ogg" id="22_645dr"]
+[ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
+[ext_resource type="PackedScene" uid="uid://k4boo5xdg2m3" path="res://prefabs/menu/settings/EnumControl.tscn" id="19_bkaum"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnsra"]
 
@@ -63,48 +64,6 @@ bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-
-[sub_resource type="GDScript" id="GDScript_b8xuh"]
-resource_name = "ApproachModeHandler"
-script/source = "extends VBoxContainer
-
-@onready var mode = $Mode
-@onready var distance = $Distance
-@onready var rate = $Rate
-@onready var time = $Time
-
-func _ready():
-	update_mode(SoundSpacePlus.settings.approach.mode)
-	mode.connect(\"value_changed\", update_mode)
-	distance.connect(\"value_changed\", update_value)
-
-func update_value():
-	update_mode(SoundSpacePlus.settings.approach.mode)
-
-func update_mode(value:int):
-	match value:
-		GameSettings.ApproachMode.DISTANCE_RATE:
-			distance.signal_emitter.editable = true
-#			distance.reset()
-			rate.signal_emitter.editable = true
-#			rate.reset()
-			time.signal_emitter.editable = false
-#			time.reset()
-		GameSettings.ApproachMode.DISTANCE_TIME:
-			distance.signal_emitter.editable = true
-#			distance.reset()
-			rate.signal_emitter.editable = false
-#			rate.reset()
-			time.signal_emitter.editable = true
-#			time.reset()
-		GameSettings.ApproachMode.RATE_TIME:
-			distance.signal_emitter.editable = false
-#			distance.reset()
-			rate.signal_emitter.editable = true
-#			rate.reset()
-			time.signal_emitter.editable = true
-#			time.reset()
-"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_floo6"]
 bg_color = Color(1, 1, 1, 1)
@@ -165,9 +124,12 @@ offset_left = 64.0
 offset_bottom = -24.0
 
 [node name="TabBar" type="TabContainer" parent="Main"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
@@ -415,8 +377,6 @@ theme_override_constants/separation = 0
 theme_override_styles/separator = SubResource("StyleBoxEmpty_swdcm")
 
 [node name="Music" type="AudioStreamPlayer" parent="Main/TabBar/Select/MapList"]
-stream = ExtResource("22_645dr")
-autoplay = true
 bus = &"Music"
 script = ExtResource("11_fbyjp")
 
@@ -1157,161 +1117,44 @@ theme_override_font_sizes/font_size = 32
 text = "Controls"
 vertical_alignment = 2
 
-[node name="MouseSensitivity" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
-custom_minimum_size = Vector2(0, 32)
+[node name="Sensitivity" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
 layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+arrow_step = 0.1
+allow_greater = true
+allow_lesser = true
+label = "Mouse Sensitivity"
 target = Array[String](["controls", "sensitivity", "mouse"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/MouseSensitivity"]
+[node name="FOV" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Mouse Sensitivity"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/MouseSensitivity"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/MouseSensitivity/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-max_value = 2.0
-step = 0.001
-alignment = 1
-custom_arrow_step = 0.1
-
-[node name="FOV" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+arrow_step = 5.0
+step = 1.0
+min_value = 20.0
+max_value = 120.0
+allow_greater = true
+allow_lesser = true
+label = "FOV"
 target = Array[String](["controls", "fov"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/FOV"]
+[node name="Lock" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "FOV"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/FOV"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/FOV/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-min_value = 1.0
-max_value = 180.0
-value = 1.0
-alignment = 1
-custom_arrow_step = 0.1
-
-[node name="Lock" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+label = "Camera Lock"
 target = Array[String](["controls", "lock"])
-signal_emitter_path = NodePath("Container/CheckBox")
-signal_name = "toggled"
-property_name = "button_pressed"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Lock"]
+[node name="Drift" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Camera Lock"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Lock"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CheckBox" type="CheckButton" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Lock/Container"]
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 32.0
-button_pressed = true
-
-[node name="Drift" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+label = "Cursor Drift"
 target = Array[String](["controls", "drift"])
-signal_emitter_path = NodePath("Container/CheckBox")
-signal_name = "toggled"
-property_name = "button_pressed"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Drift"]
+[node name="Absolute" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Cursor Drift"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Drift"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CheckBox" type="CheckButton" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Drift/Container"]
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 32.0
-
-[node name="Absolute" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+label = "Absolute Positioning"
 target = Array[String](["controls", "absolute"])
-signal_emitter_path = NodePath("Container/CheckBox")
-signal_name = "toggled"
-property_name = "button_pressed"
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Absolute"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Absolute Positioning"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Absolute"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CheckBox" type="CheckButton" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls/Absolute/Container"]
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 32.0
 
 [node name="Approach" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
-script = SubResource("GDScript_b8xuh")
 
 [node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
 layout_mode = 2
@@ -1319,140 +1162,53 @@ theme_override_font_sizes/font_size = 32
 text = "Approach"
 vertical_alignment = 2
 
-[node name="Mode" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
-custom_minimum_size = Vector2(0, 32)
+[node name="Mode" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach" instance=ExtResource("19_bkaum")]
 layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+enum_names = Array[String](["Distance / Time", "Distance / Rate", "Rate / Time"])
+label = "Approach Mode"
 target = Array[String](["approach", "mode"])
-signal_emitter_path = NodePath("Container/OptionButton")
-signal_name = "item_selected"
-property_name = "selected"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Mode"]
+[node name="Distance" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Approach Mode"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Mode"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="OptionButton" type="OptionButton" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Mode/Container"]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 0
-offset_right = 153.0
-offset_bottom = 32.0
-alignment = 1
-item_count = 3
-selected = 0
-popup/item_0/text = "Distance / Time"
-popup/item_0/id = 0
-popup/item_1/text = "Distance / Rate"
-popup/item_1/id = 1
-popup/item_2/text = "Rate / Time"
-popup/item_2/id = 2
-
-[node name="Distance" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+suffix = "m"
+arrow_step = 10.0
+allow_greater = true
+allow_lesser = true
+label = "Approach Distance"
 target = Array[String](["approach", "distance"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
+has_requirement = true
+requirement_target = Array[String](["approach", "mode"])
+required_value = "2"
+requirement_reversed = true
+hide_if_unfulfilled = true
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Distance"]
+[node name="Rate" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Approach Distance"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Distance"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Distance/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-step = 0.01
+suffix = "m/s"
+arrow_step = 10.0
 allow_greater = true
-alignment = 1
-custom_arrow_step = 1.0
-
-[node name="Rate" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+allow_lesser = true
+label = "Approach Rate"
 target = Array[String](["approach", "rate"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
+has_requirement = true
+requirement_target = Array[String](["approach", "mode"])
+required_value = "0"
+requirement_reversed = true
+hide_if_unfulfilled = true
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Rate"]
+[node name="Time" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Approach Rate
-"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Rate"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Rate/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-step = 0.01
+suffix = "s"
+arrow_step = 0.1
 allow_greater = true
-alignment = 1
-custom_arrow_step = 1.0
-
-[node name="Time" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+allow_lesser = true
+label = "Approach Time"
 target = Array[String](["approach", "time"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Time"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Approach Time"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Time"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach/Time/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-step = 0.01
-allow_greater = true
-alignment = 1
-custom_arrow_step = 0.1
+has_requirement = true
+requirement_target = Array[String](["approach", "mode"])
+required_value = "1"
+requirement_reversed = true
+hide_if_unfulfilled = true
 
 [node name="Skin" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
@@ -1481,68 +1237,19 @@ theme_override_font_sizes/font_size = 20
 text = " Appearance"
 vertical_alignment = 2
 
-[node name="Mesh" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
-custom_minimum_size = Vector2(0, 32)
+[node name="Mesh" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("18_ysblq")]
 layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_a5lmy")
 registry_name = "blocks"
+label = "Mesh"
 target = Array[String](["skin", "block", "mesh"])
-signal_emitter_path = NodePath("Container/OptionButton")
-signal_name = "item_selected"
-property_name = "selected"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Mesh"]
+[node name="Opacity" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Mesh"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Mesh"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="OptionButton" type="OptionButton" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Mesh/Container"]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 32.0
-fit_to_longest_item = false
-
-[node name="Opacity" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
-target = Array[String](["skin", "block", "opacity"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
-multiplier = 100.0
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Opacity"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Opacity"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Opacity"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/Opacity/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-alignment = 1
 suffix = "%"
-custom_arrow_step = 10.0
+arrow_step = 5.0
+label = "Opacity"
+target = Array[String](["skin", "block", "opacity"])
+multiplier = 100.0
 
 [node name="Fade" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
 layout_mode = 2
@@ -1550,137 +1257,73 @@ theme_override_font_sizes/font_size = 20
 text = " Fade"
 vertical_alignment = 2
 
-[node name="FadeInT" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
-custom_minimum_size = Vector2(0, 32)
+[node name="FadeInM" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("19_bkaum")]
 layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+enum_names = Array[String](["Fade", "Appear"])
+label = "Fade In Mode"
+target = Array[String](["skin", "block", "fade_in_mode"])
+
+[node name="FadeInT" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "%"
+arrow_step = 5.0
+step = 1.0
+min_value = 1.0
+label = "Fade In Length"
 target = Array[String](["skin", "block", "fade_in_time"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
+has_requirement = true
+requirement_target = Array[String](["skin", "block", "fade_in_mode"])
+required_value = "0"
+hide_if_unfulfilled = true
 multiplier = 100.0
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInT"]
+[node name="FadeInA" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Fade In Length"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInT"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInT/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-step = 0.0
-alignment = 1
 suffix = "%"
-custom_arrow_step = 10.0
-
-[node name="FadeInA" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+arrow_step = 5.0
+step = 1.0
+min_value = 1.0
+label = "Fade In Amount"
 target = Array[String](["skin", "block", "fade_in_amount"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
+has_requirement = true
+requirement_target = Array[String](["skin", "block", "fade_in_mode"])
+required_value = "0"
+hide_if_unfulfilled = true
 multiplier = 100.0
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInA"]
+[node name="FadeOutM" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("19_bkaum")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Fade In Multiplier"
-horizontal_alignment = 2
-vertical_alignment = 1
+enum_names = Array[String](["Fade", "Disappear", "Disappear (no hitwindow)"])
+label = "Fade Out Mode"
+target = Array[String](["skin", "block", "fade_out_mode"])
 
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInA"]
+[node name="FadeOutT" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeInA/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-step = 0.0
-alignment = 1
 suffix = "%"
-custom_arrow_step = 10.0
-
-[node name="FadeOutT" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+arrow_step = 5.0
+step = 1.0
+min_value = 1.0
+label = "Fade Out Length"
 target = Array[String](["skin", "block", "fade_out_time"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
+has_requirement = true
+requirement_target = Array[String](["skin", "block", "fade_out_mode"])
+required_value = "0"
+hide_if_unfulfilled = true
 multiplier = 100.0
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutT"]
+[node name="FadeOutA" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Fade Out Length"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutT"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutT/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-step = 0.0
-alignment = 1
 suffix = "%"
-custom_arrow_step = 10.0
-
-[node name="FadeOutA" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+arrow_step = 5.0
+step = 1.0
+min_value = 1.0
+label = "Fade Out Amount"
 target = Array[String](["skin", "block", "fade_out_amount"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
+has_requirement = true
+requirement_target = Array[String](["skin", "block", "fade_out_mode"])
+required_value = "0"
+hide_if_unfulfilled = true
 multiplier = 100.0
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutA"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Fade Out Multiplier"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutA"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes/FadeOutA/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-step = 0.0
-alignment = 1
-suffix = "%"
-custom_arrow_step = 10.0
 
 [node name="Cursor" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns"]
 layout_mode = 2
@@ -1693,106 +1336,47 @@ theme_override_font_sizes/font_size = 32
 text = "Cursor"
 vertical_alignment = 2
 
+[node name="Appearance" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Appearance"
+vertical_alignment = 2
+
+[node name="Scale" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "x"
+arrow_step = 0.1
+allow_greater = true
+label = "Scale"
+target = Array[String](["skin", "cursor", "scale"])
+
 [node name="Trail" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = " Trail"
 vertical_alignment = 2
 
-[node name="TrailEnabled" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor"]
-custom_minimum_size = Vector2(0, 32)
+[node name="TrailEnabled" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor" instance=ExtResource("19_8t4jv")]
 layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+label = "Trail Enabled"
 target = Array[String](["skin", "cursor", "trail_enabled"])
-signal_emitter_path = NodePath("Container/CheckBox")
-signal_name = "toggled"
-property_name = "button_pressed"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor/TrailEnabled"]
+[node name="TrailDetail" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Trail Enabled"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor/TrailEnabled"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CheckBox" type="CheckButton" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor/TrailEnabled/Container"]
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 32.0
-button_pressed = true
-
-[node name="TrailDetail" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
-target = Array[String](["skin", "cursor", "trail_detail"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor/TrailDetail"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Trail Detail"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor/TrailDetail"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor/TrailDetail/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
+arrow_step = 5.0
+step = 1.0
 min_value = 1.0
-value = 1.0
 allow_greater = true
-alignment = 1
-custom_arrow_step = 5.0
+label = "Trail Detail"
+target = Array[String](["skin", "cursor", "trail_detail"])
 
-[node name="TrailLength" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor"]
-custom_minimum_size = Vector2(0, 32)
+[node name="TrailLength" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor" instance=ExtResource("17_shbod")]
 layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
-target = Array[String](["skin", "cursor", "trail_length"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor/TrailLength"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Trail Length"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor/TrailLength"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor/TrailLength/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-max_value = 2.0
-step = 0.0
-alignment = 1
 suffix = "s"
-custom_arrow_step = 0.01
+arrow_step = 0.05
+allow_greater = true
+label = "Trail Length"
+target = Array[String](["skin", "cursor", "trail_length"])
 
 [node name="Background" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns"]
 layout_mode = 2
@@ -1805,36 +1389,11 @@ theme_override_font_sizes/font_size = 32
 text = "Background"
 vertical_alignment = 2
 
-[node name="World" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background"]
-custom_minimum_size = Vector2(0, 32)
+[node name="World" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background" instance=ExtResource("18_ysblq")]
 layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_a5lmy")
 registry_name = "worlds"
+label = "World"
 target = Array[String](["skin", "background", "world"])
-signal_emitter_path = NodePath("Container/OptionButton")
-signal_name = "item_selected"
-property_name = "selected"
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background/World"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "World"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background/World"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="OptionButton" type="OptionButton" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background/World/Container"]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 32.0
-fit_to_longest_item = false
 
 [node name="Video" type="Control" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
@@ -1859,63 +1418,17 @@ theme_override_font_sizes/font_size = 32
 text = "Window"
 vertical_alignment = 2
 
-[node name="Fullscreen" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window"]
-custom_minimum_size = Vector2(0, 32)
+[node name="Fullscreen" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("19_8t4jv")]
 layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+label = "Fullscreen"
 target = Array[String](["fullscreen"])
-signal_emitter_path = NodePath("Container/CheckBox")
-signal_name = "toggled"
-property_name = "button_pressed"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/Fullscreen"]
+[node name="FPS" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Fullscreen"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/Fullscreen"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CheckBox" type="CheckButton" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/Fullscreen/Container"]
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 32.0
-
-[node name="FPS" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
-target = Array[String](["fps_limit"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/FPS"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "FPS Limit (gameplay)"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/FPS"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window/FPS/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
+step = 1.0
 allow_greater = true
-alignment = 1
+label = "FPS Limit"
+target = Array[String](["fps_limit"])
 
 [node name="Audio" type="Control" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
@@ -1941,104 +1454,29 @@ theme_override_font_sizes/font_size = 32
 text = "Volume"
 vertical_alignment = 2
 
-[node name="Master" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
-custom_minimum_size = Vector2(0, 32)
+[node name="Master" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume" instance=ExtResource("17_shbod")]
 layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+suffix = "%"
+max_value = 200.0
+label = "Master"
 target = Array[String](["volume", "master"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
 multiplier = 100.0
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Master"]
+[node name="Music" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Master"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Master"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Master/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-max_value = 200.0
-alignment = 1
 suffix = "%"
-custom_arrow_step = 10.0
-
-[node name="Music" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+max_value = 200.0
+label = "Music"
 target = Array[String](["volume", "music"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
 multiplier = 100.0
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Music"]
+[node name="SFX" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume" instance=ExtResource("17_shbod")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Music"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Music"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/Music/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-max_value = 200.0
-alignment = 1
 suffix = "%"
-custom_arrow_step = 10.0
-
-[node name="SFX" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
+max_value = 200.0
+label = "SFX"
 target = Array[String](["volume", "sfx"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
 multiplier = 100.0
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/SFX"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "SFX"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/SFX"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume/SFX/Container"]
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
-max_value = 200.0
-alignment = 1
-suffix = "%"
-custom_arrow_step = 10.0
 
 [node name="Offset" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns"]
 layout_mode = 2
@@ -2052,39 +1490,14 @@ theme_override_font_sizes/font_size = 32
 text = "Offset"
 vertical_alignment = 2
 
-[node name="Music" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Offset"]
-custom_minimum_size = Vector2(0, 32)
+[node name="Music" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Offset" instance=ExtResource("17_shbod")]
 layout_mode = 2
-theme_override_constants/separation = 16
-script = ExtResource("10_qi5v2")
-target = Array[String](["offset", "music"])
-signal_emitter_path = NodePath("Container/SpinBox")
-signal_name = "value_changed"
-property_name = "value"
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Offset/Music"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.5
-text = "Music Offset"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Container" type="Control" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Offset/Music"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpinBox" type="SpinBox" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Offset/Music/Container"]
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 0
-offset_right = 98.25
-offset_bottom = 32.0
+suffix = "ms"
+step = 1.0
 allow_greater = true
 allow_lesser = true
-alignment = 1
-suffix = "ms"
-custom_arrow_step = 1.0
+label = "Music Offset"
+target = Array[String](["offset", "music"])
 
 [node name="VersionNumberR" parent="Main" instance=ExtResource("1")]
 layout_mode = 1
