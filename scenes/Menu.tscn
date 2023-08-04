@@ -41,8 +41,8 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="Gradient" id="Gradient_204lt"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.5, 0.95, 1)
-colors = PackedColorArray(0.0941176, 0.0941176, 0.0941176, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0.0941176, 0.0941176, 0.0941176, 1)
+offsets = PackedFloat32Array(0, 0.25)
+colors = PackedColorArray(0.0941176, 0.0941176, 0.0941176, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6pvy0"]
 gradient = SubResource("Gradient_204lt")
@@ -274,6 +274,7 @@ theme_override_constants/separation = 0
 theme_override_styles/separator = SubResource("StyleBoxEmpty_swdcm")
 
 [node name="Mapset" type="Button" parent="Main/TabBar/Select/MapList/Maps/List/Contents"]
+clip_children = 2
 clip_contents = true
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
@@ -289,9 +290,6 @@ anchor_left = 0.4
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -0.199997
-offset_top = 2.0
-offset_right = -8.0
-offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -759,6 +757,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 32.0
+grow_horizontal = 2
 text = "Start from 0m 0s"
 vertical_alignment = 2
 
@@ -1127,7 +1126,6 @@ theme_override_font_sizes/font_size = 22
 theme_override_styles/panel = SubResource("StyleBoxFlat_0vm47")
 
 [node name="Gameplay" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
-visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -1242,6 +1240,7 @@ requirement_reversed = true
 hide_if_unfulfilled = true
 
 [node name="Skin" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
