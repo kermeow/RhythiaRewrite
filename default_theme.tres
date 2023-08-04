@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=39 format=3 uid="uid://diarojdcbhxg8"]
+[gd_resource type="Theme" load_steps=43 format=3 uid="uid://diarojdcbhxg8"]
 
 [ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="1_ye54q"]
 [ext_resource type="FontFile" uid="uid://b3w5apfxq72o0" path="res://assets/fonts/NotoColorEmoji.ttf" id="2_hmje2"]
@@ -958,6 +958,33 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itrmp"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2, 0.2, 0.2, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkojc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0nj0"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oya31"]
 bg_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
 corner_radius_top_left = 64
@@ -1110,6 +1137,13 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t28it"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgr4w"]
 bg_color = Color(0.12549, 0.12549, 0.12549, 1)
 
@@ -1166,6 +1200,7 @@ content_margin_top = 2.0
 content_margin_right = 3.0
 content_margin_bottom = 2.0
 bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+expand_margin_bottom = 4.0
 shadow_color = Color(0, 0, 0, 0.145098)
 shadow_size = 6
 
@@ -1319,25 +1354,13 @@ CheckButton/styles/hover = SubResource("StyleBoxFlat_jrsj5")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_jrsj5")
 CheckButton/styles/normal = null
 CheckButton/styles/pressed = SubResource("StyleBoxFlat_jrsj5")
-ColorPicker/constants/h_width = 30
-ColorPicker/constants/label_width = 10
-ColorPicker/constants/margin = 4
-ColorPicker/constants/sv_height = 256
-ColorPicker/constants/sv_width = 256
-ColorPicker/icons/add_preset = null
-ColorPicker/icons/color_hue = null
-ColorPicker/icons/color_sample = null
 ColorPicker/icons/overbright_indicator = null
-ColorPicker/icons/preset_bg = null
-ColorPicker/icons/screen_picker = null
-ColorPickerButton/constants/hseparation = 2
 ColorPickerButton/fonts/font = SubResource("17")
-ColorPickerButton/icons/bg = null
-ColorPickerButton/styles/disabled = null
-ColorPickerButton/styles/focus = null
-ColorPickerButton/styles/hover = null
-ColorPickerButton/styles/normal = null
-ColorPickerButton/styles/pressed = null
+ColorPickerButton/styles/disabled = SubResource("StyleBoxFlat_itrmp")
+ColorPickerButton/styles/focus = SubResource("StyleBoxEmpty_tkojc")
+ColorPickerButton/styles/hover = SubResource("StyleBoxFlat_e0nj0")
+ColorPickerButton/styles/normal = SubResource("StyleBoxFlat_e0nj0")
+ColorPickerButton/styles/pressed = SubResource("StyleBoxFlat_e0nj0")
 FileDialog/colors/file_icon_modulate = Color(1, 1, 1, 1)
 FileDialog/colors/files_disabled = Color(0.752941, 0.752941, 0.752941, 1)
 FileDialog/colors/folder_icon_modulate = Color(1, 1, 1, 1)
@@ -1415,15 +1438,11 @@ MenuButton/styles/focus = SubResource("2")
 MenuButton/styles/hover = SubResource("9")
 MenuButton/styles/normal = SubResource("10")
 MenuButton/styles/pressed = SubResource("11")
-OptionButton/constants/arrow_margin = 2
+OptionButton/constants/arrow_margin = 8
 OptionButton/constants/hseparation = 2
 OptionButton/fonts/font = SubResource("17")
 OptionButton/icons/arrow = null
-OptionButton/styles/disabled = null
-OptionButton/styles/focus = null
-OptionButton/styles/hover = null
-OptionButton/styles/normal = null
-OptionButton/styles/pressed = null
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_t28it")
 Panel/styles/panel = SubResource("StyleBoxFlat_kgr4w")
 PanelContainer/styles/panel = null
 PlaylistButton/base_type = &"Button"
@@ -1436,8 +1455,6 @@ PopupMenu/colors/font_color_accel = Color(0.768627, 0.768627, 0.768627, 1)
 PopupMenu/colors/font_color_disabled = Color(0.462745, 0.462745, 0.462745, 1)
 PopupMenu/colors/font_color_hover = Color(1, 1, 1, 1)
 PopupMenu/colors/font_color_separator = Color(0.729412, 0.717647, 0.717647, 1)
-PopupMenu/constants/hseparation = 4
-PopupMenu/constants/vseparation = 4
 PopupMenu/fonts/font = SubResource("17")
 PopupMenu/icons/checked = null
 PopupMenu/icons/radio_checked = null
