@@ -2,30 +2,30 @@
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
+[ext_resource type="Script" path="res://scripts/menu/Warning.gd" id="2_0nvp3"]
 [ext_resource type="Texture2D" uid="uid://c54ide18equ4n" path="res://assets/images/branding/icon.png" id="3_8w5xr"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/PlaylistList.gd" id="3_ajis4"]
+[ext_resource type="Script" path="res://scripts/menu/select/PlaylistList.gd" id="3_l1ade"]
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/MapList.gd" id="4_hproy"]
 [ext_resource type="Texture2D" uid="uid://ciuxvgefpjrm1" path="res://assets/images/ui/command_line_error.png" id="4_oas34"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/MapsetButton.gd" id="5_h0d55"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/PlaylistEdit.gd" id="5_no7rp"]
+[ext_resource type="Script" path="res://scripts/menu/select/PlaylistEdit.gd" id="5_oqp4e"]
 [ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="5_sfmcr"]
 [ext_resource type="Texture2D" uid="uid://bk8ninr63d836" path="res://assets/images/ui/quit_to_desktop.png" id="7"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/MapDetails.gd" id="7_xwb6e"]
+[ext_resource type="Script" path="res://scripts/menu/select/MapList.gd" id="7_3ykqk"]
 [ext_resource type="Texture2D" uid="uid://b21p2flel8ywr" path="res://assets/images/ui/settings.png" id="8"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/Play.gd" id="8_mf8ee"]
+[ext_resource type="Script" path="res://scripts/menu/select/MapsetButton.gd" id="8_iudav"]
 [ext_resource type="Texture2D" uid="uid://b7v0bqlxe7ew4" path="res://assets/images/ui/favorite.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/SpeedMods.gd" id="11_cs64u"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/Music.gd" id="11_fbyjp"]
+[ext_resource type="Script" path="res://scripts/menu/select/Music.gd" id="10_p0mnn"]
+[ext_resource type="Script" path="res://scripts/menu/select/MapDetails.gd" id="11_d7k75"]
+[ext_resource type="Script" path="res://scripts/menu/select/Play.gd" id="12_r8mhb"]
+[ext_resource type="Script" path="res://scripts/menu/select/SpeedMods.gd" id="13_66cgf"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
 [ext_resource type="Script" path="res://scripts/menu/lobby/Lobby.gd" id="16_to4ol"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
-[ext_resource type="Script" path="res://scripts/menu/main/Sidebar.gd" id="18"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
-[ext_resource type="Script" path="res://scripts/menu/main/Warning.gd" id="19"]
 [ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
 [ext_resource type="PackedScene" uid="uid://k4boo5xdg2m3" path="res://prefabs/menu/settings/EnumControl.tscn" id="19_bkaum"]
+[ext_resource type="Script" path="res://scripts/menu/Sidebar.gd" id="21_e3lc5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnsra"]
 
@@ -88,7 +88,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -24.0
 color = Color(0.141176, 0.513726, 0.701961, 1)
-script = ExtResource("19")
+script = ExtResource("2_0nvp3")
 
 [node name="Slider" type="HBoxContainer" parent="Warning"]
 layout_mode = 1
@@ -134,7 +134,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -151,7 +150,7 @@ grow_horizontal = 2
 follow_focus = true
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
-script = ExtResource("3_ajis4")
+script = ExtResource("3_l1ade")
 
 [node name="List" type="HBoxContainer" parent="Main/TabBar/Select/Playlists"]
 layout_mode = 2
@@ -187,7 +186,7 @@ stretch_mode = 6
 visible = false
 layout_mode = 2
 alignment = 1
-script = ExtResource("5_no7rp")
+script = ExtResource("5_oqp4e")
 
 [node name="Add" type="Button" parent="Main/TabBar/Select/Playlists/List/Edit"]
 custom_minimum_size = Vector2(32, 0)
@@ -217,7 +216,7 @@ offset_right = -8.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("4_hproy")
+script = ExtResource("7_3ykqk")
 playlists = NodePath("../Playlists")
 
 [node name="Filters" type="Panel" parent="Main/TabBar/Select/MapList"]
@@ -278,7 +277,7 @@ custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_type_variation = &"MapsetButton"
 toggle_mode = true
-script = ExtResource("5_h0d55")
+script = ExtResource("8_iudav")
 
 [node name="Cover" type="Control" parent="Main/TabBar/Select/MapList/Maps/List/Contents/Mapset"]
 self_modulate = Color(0.8, 0.8, 0.8, 0.784314)
@@ -379,7 +378,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_swdcm")
 
 [node name="Music" type="AudioStreamPlayer" parent="Main/TabBar/Select/MapList"]
 bus = &"Music"
-script = ExtResource("11_fbyjp")
+script = ExtResource("10_p0mnn")
 
 [node name="MapDetails" type="VBoxContainer" parent="Main/TabBar/Select"]
 layout_mode = 1
@@ -398,7 +397,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tvhpi")
-script = ExtResource("7_xwb6e")
+script = ExtResource("11_d7k75")
 maplist_path = NodePath("../../MapList")
 
 [node name="CoverContainer" type="AspectRatioContainer" parent="Main/TabBar/Select/MapDetails/Details"]
@@ -571,7 +570,7 @@ offset_bottom = -8.0
 
 [node name="Play" type="Control" parent="Main/TabBar/Select/MapDetails/Play/Local"]
 layout_mode = 2
-script = ExtResource("8_mf8ee")
+script = ExtResource("12_r8mhb")
 
 [node name="Speed" type="HBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play"]
 layout_mode = 1
@@ -583,7 +582,7 @@ offset_right = -8.0
 offset_bottom = 56.0
 grow_horizontal = 2
 alignment = 1
-script = ExtResource("11_cs64u")
+script = ExtResource("13_66cgf")
 
 [node name="MMM" type="VBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed"]
 custom_minimum_size = Vector2(32, 0)
@@ -731,6 +730,13 @@ offset_top = 56.0
 offset_right = 144.0
 offset_bottom = 83.0
 text = "No Fail"
+
+[node name="StartFrom" type="Control" parent="Main/TabBar/Select/MapDetails/Play/Local/Play"]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 94.0
+offset_right = 208.0
+offset_bottom = 142.0
 
 [node name="Play" type="Button" parent="Main/TabBar/Select/MapDetails/Play/Local/Play"]
 layout_mode = 1
@@ -1079,6 +1085,7 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
@@ -1524,7 +1531,7 @@ layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 64.0
 color = Color(0.0313726, 0.0313726, 0.0313726, 1)
-script = ExtResource("18")
+script = ExtResource("21_e3lc5")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
