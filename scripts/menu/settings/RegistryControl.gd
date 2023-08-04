@@ -5,15 +5,19 @@ extends SettingControl
 @onready var registry:Registry = SoundSpacePlus.get(registry_name)
 @onready var ids:Array = registry.get_ids()
 
+func configure():
+	signal_emitter = $Container/OptionButton
+	signal_name = "item_selected"
+	property_name = "selected"
+
 func reset(value=get_setting()):
-	var emitter = signal_emitter as OptionButton
-	emitter.clear()
+	signal_emitter.clear()
 	for idx in range(ids.size()):
 		var item = registry.items[idx]
-		emitter.add_item(item.name,idx)
-		emitter.set_item_tooltip(idx,"By %s" % item.creator)
-		emitter.set_item_disabled(idx,item.broken)
-	emitter.selected = ids.find(value)
+		signal_emitter.add_item(item.name,idx)
+		signal_emitter.set_item_tooltip(idx,"By %s" % item.creator)
+		signal_emitter.set_item_disabled(idx,item.broken)
+	signal_emitter.selected = ids.find(value)
 
 func signal_received(value):
 	set_setting(ids[value])

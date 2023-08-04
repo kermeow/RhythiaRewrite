@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxqjak2gfp3nf"]
+
+[ext_resource type="Script" path="res://scripts/menu/settings/ToggleControl.gd" id="1_ehih2"]
+[ext_resource type="Script" path="res://scripts/menu/settings/SettingLabel.gd" id="2_6a7au"]
+
+[node name="ToggleControl" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+theme_override_constants/separation = 16
+script = ExtResource("1_ehih2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
+text = "Toggle"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("2_6a7au")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckBox" type="CheckButton" parent="Container"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+button_pressed = true
