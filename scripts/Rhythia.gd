@@ -91,7 +91,8 @@ func _load_mapsets(reset:bool=false):
 	var loader = MapsetLoader.new(mapsets)
 	loader.load_from_folder(Globals.Folders.get("maps"))
 	for folder in settings.folders.maps:
-		loader.load_from_folder(ProjectSettings.globalize_path(folder))
+		if DirAccess.dir_exists_absolute(folder):
+			loader.load_from_folder(ProjectSettings.globalize_path(folder))
 func _load_playlists(reset:bool=false):
 	if reset: playlists.clear()
 	var list_reader = PlaylistReader.new()

@@ -73,7 +73,7 @@ const SETTINGS_CONFIG = [
 		["absolute",Setting.Type.BOOLEAN,false]
 	]],
 	["folders",Setting.Type.CATEGORY,[
-		["maps",Setting.Type.ARRAY,[]]
+		["maps",Setting.Type.ARRAY,["user://../SoundSpacePlus/maps"]]
 	]]
 ]
 
