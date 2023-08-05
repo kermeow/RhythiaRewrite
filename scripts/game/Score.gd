@@ -1,6 +1,8 @@
 extends Resource
 class_name Score
 
+var failed:bool = false
+
 var score:int = 0
 
 var multiplier:int = 1:
@@ -29,6 +31,8 @@ const RankLetters = [
 ]
 var rank:String:
 	get:
+		if failed:
+			return "F"
 		if total > 0:
 			for letter in RankLetters:
 				if hits >= total * letter[0]:

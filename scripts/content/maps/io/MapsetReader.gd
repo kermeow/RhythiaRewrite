@@ -1,20 +1,26 @@
 extends Object
 class_name MapsetReader
 
-const SIGNATURE:PackedByteArray = [0x53,0x53,0x2b,0x6d]
+const OLD_SIGNATURE:PackedByteArray = [0x53, 0x53, 0x2b, 0x6d]
+const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x4d]
 
 static func read_from_file(path:String,full:bool=false,index:int=0) -> Mapset:
 	var file = FileAccess.open(path,FileAccess.READ)
 	assert(file != null)
-	assert(file.get_buffer(4) == SIGNATURE)
 	var set = Mapset.new()
-	var file_version = file.get_16()
 	set.path = path
-	set.format = file_version
-	match file_version:
-		1: _sspmv1(file,set,full)
-		2: _sspmv2(file,set,full)
-		3: _sspmv3(file,set,full,index)
+	if file.get_buffer(4) == OLD_SIGNATURE:
+		var file_version = file.get_16()
+		match file_version:
+			1: _sspmv1(file,set,full)
+			2: _sspmv2(file,set,full)
+		set.format = file_version
+		file.close()
+		return set
+	file.seek(0)
+	assert(file.get_buffer(5) == SIGNATURE)
+	set.format = 3
+	_rhyt(file,set,full,index)
 	file.close()
 	return set
 
@@ -46,9 +52,7 @@ static func audio_from_file(file:FileAccess,set:Mapset): # only works with v3
 			stream.data = audio_buffer
 	return stream
 
-static func _sspmv3(file:FileAccess,set:Mapset,full:bool,index:int=-1):
-	file.seek(file.get_position()+2)
-
+static func _rhyt(file:FileAccess,set:Mapset,full:bool,index:int=-1):
 	# Metadata
 	var id = FileAccess.get_md5(file.get_path())
 	set.id = id

@@ -12,6 +12,12 @@ var settings:GameSettings
 func _ready():
 	$Background.texture = screenshot
 	
+	%Container/Score/Rank.text = score.rank
+	%Container/Score/PP.text = ""
+	%Container/Score/PP/Unranked.visible = true
+	%Container/Score/Score.text = HUDManager.comma_sep(score.score)
+	%Container/Score/Accuracy.text = "%.2f%%" % (float(score.hits*100)/float(score.total))
+	
 	%Container/Restart.pressed.connect(restart)
 	%Container/Return.pressed.connect(return_to_menu)
 	
@@ -33,13 +39,13 @@ func fade_in():
 		.set_ease(Tween.EASE_IN_OUT)
 		.set_trans(Tween.TRANS_CUBIC))
 	(tween
-		.tween_property($Background/Darken,"color:a",0.4,0.4)
+		.tween_property($Background/Darken,"color:a",0.4,0.3)
 		.set_ease(Tween.EASE_IN_OUT)
 		.set_trans(Tween.TRANS_CUBIC)
-		.set_delay(0.1))
+		.set_delay(0.2))
 	(tween
 		.tween_property(%Container,"modulate:a",1,0.4)
 		.set_ease(Tween.EASE_IN_OUT)
 		.set_trans(Tween.TRANS_CUBIC)
-		.set_delay(0.3))
+		.set_delay(0.2))
 	tween.play()

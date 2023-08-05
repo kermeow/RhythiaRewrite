@@ -127,6 +127,8 @@ file_logging/max_log_files=4
 
 3d/run_on_separate_thread=true
 common/physics_ticks_per_second=128
+common/max_physics_steps_per_frame=1
+common/physics_jitter_fix=0.0
 
 [rendering]
 
@@ -141,6 +143,7 @@ environment/defaults/default_environment="res://default_env.tres"
 
 [xr]
 
+openxr/startup_alert=false
 shaders/enabled=true
 openxr/enabled.force-xr=true
 openxr/enabled.editor=false

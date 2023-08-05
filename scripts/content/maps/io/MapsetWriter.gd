@@ -1,13 +1,11 @@
 extends Object
 class_name MapsetWriter
 
-const SIGNATURE:PackedByteArray = [0x53,0x53,0x2b,0x6d]
+const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x4d]
 
 static func write_to_file(set:Mapset,path:String):
 	var file = FileAccess.open(path,FileAccess.WRITE)
 	file.store_buffer(SIGNATURE)
-	file.store_16(3) # File version
-	file.store_16(0) # Empty bytes
 
 	# Metadata
 	if set.online_id != null:

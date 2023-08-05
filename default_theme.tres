@@ -1229,7 +1229,7 @@ expand_margin_left = 10.0
 expand_margin_right = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdpsv"]
-bg_color = Color(0.188235, 0.188235, 0.188235, 0.862745)
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12

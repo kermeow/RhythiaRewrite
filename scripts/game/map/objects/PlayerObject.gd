@@ -169,6 +169,7 @@ func hit_object_state_changed(state:int,object:HitObject):
 func fail():
 	if !local_player: return
 	did_fail = true
+	score.failed = true
 	if !game.mods.no_fail:
 		lock_score = true
 		failed.emit()
