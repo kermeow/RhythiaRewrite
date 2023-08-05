@@ -43,7 +43,7 @@ channel_disable_time=15.0
 [autoload]
 
 Globals="*res://scripts/Globals.gd"
-SoundSpacePlus="*res://scripts/SoundSpacePlus.gd"
+Rhythia="*res://scripts/Rhythia.gd"
 Multiplayer="*res://scripts/Multiplayer.gd"
 XRViewport="*res://scripts/xr/XRViewport.gd"
 

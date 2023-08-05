@@ -2,7 +2,7 @@ extends SettingControl
 
 @export_subgroup("Registry")
 @export var registry_name:String
-@onready var registry:Registry = SoundSpacePlus.get(registry_name)
+@onready var registry:Registry = Rhythia.get(registry_name)
 @onready var ids:Array = registry.get_ids()
 
 func configure():

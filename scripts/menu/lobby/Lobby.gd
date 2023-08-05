@@ -59,7 +59,7 @@ func _process(delta):
 			$Details/Difficulty.text = Multiplayer.lobby.map_id
 			$Details/Length.text = "N/A"
 		else:
-			var mapset = SoundSpacePlus.mapsets.get_by_id(Multiplayer.lobby.map_id)
+			var mapset = Rhythia.mapsets.get_by_id(Multiplayer.lobby.map_id)
 			$Details/CoverContainer/Cover.texture = mapset.cover
 			$Details/Song.text = mapset.name
 			$Details/Creator.text = mapset.creator

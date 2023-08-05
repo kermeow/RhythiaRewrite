@@ -9,13 +9,13 @@ func _ready():
 func on_mapset_selected(mapset:Mapset):
 	$Slider.max_value = mapset.length
 	$Slider.value = 0
-	if first_map_selected and mapset.id == SoundSpacePlus.selected_mapset:
-		$Slider.value = SoundSpacePlus.selected_mods.start_from
+	if first_map_selected and mapset.id == Rhythia.selected_mapset:
+		$Slider.value = Rhythia.selected_mods.start_from
 	first_map_selected = false
 	call_deferred("update_label")
 
 func value_changed(value):
-	SoundSpacePlus.selected_mods.start_from = value
+	Rhythia.selected_mods.start_from = value
 	call_deferred("update_label")
 
 func update_label():

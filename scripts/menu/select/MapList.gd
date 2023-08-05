@@ -12,7 +12,7 @@ var selected_mapset:Mapset
 @onready var btm_separator:HSeparator = $Maps/List/Contents/BottomSeparator
 @onready var origin_button:Button = $Maps/List/Contents/Mapset
 
-@onready var origin_list:Array = SoundSpacePlus.mapsets.items
+@onready var origin_list:Array = Rhythia.mapsets.items
 var listed_items:Array
 
 var buttons = {}
@@ -22,13 +22,13 @@ func _ready():
 	call_deferred("update_full")
 	playlists.on_playlist_selected.connect(playlist_selected)
 	$Filters/Search.text_changed.connect(search_updated)
-	if SoundSpacePlus.selected_mapset:
-		if Globals.debug: print("map already selected: ",SoundSpacePlus.selected_mapset)
-		call_deferred("select_mapset_id",SoundSpacePlus.selected_mapset)
+	if Rhythia.selected_mapset:
+		if Globals.debug: print("map already selected: ",Rhythia.selected_mapset)
+		call_deferred("select_mapset_id",Rhythia.selected_mapset)
 
 func select_mapset_id(id:String):
 	update_items()
-	var mapset = SoundSpacePlus.mapsets.get_by_id(id)
+	var mapset = Rhythia.mapsets.get_by_id(id)
 	assert(mapset)
 	var index = listed_items.find(mapset)
 	print(index)
@@ -38,7 +38,7 @@ func select_mapset_id(id:String):
 
 func playlist_selected(playlist:Playlist=null,all:bool=false):
 	if all or !playlist:
-		origin_list = SoundSpacePlus.mapsets.items
+		origin_list = Rhythia.mapsets.items
 	else:
 		playlist.load_mapsets()
 		origin_list = playlist.mapsets

@@ -32,7 +32,7 @@ func _ready():
 	
 	# Target setting
 	assert(target.size() > 0)
-	var find_setting = SoundSpacePlus.settings
+	var find_setting = Rhythia.settings
 	for child in target:
 		find_setting = find_setting.get_setting(child)
 	target_setting = find_setting
@@ -46,7 +46,7 @@ func _ready():
 	# Required setting
 	if has_requirement:
 		assert(requirement_target.size() > 0)
-		find_setting = SoundSpacePlus.settings
+		find_setting = Rhythia.settings
 		for child in requirement_target:
 			find_setting = find_setting.get_setting(child)
 		requirement_setting = find_setting
@@ -84,4 +84,4 @@ func set_setting(value):
 
 func save_setting(value):
 	reset()
-	SoundSpacePlus.call_deferred("save_settings")
+	Rhythia.call_deferred("save_settings")

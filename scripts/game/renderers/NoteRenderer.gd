@@ -6,7 +6,7 @@ var mesh:MeshPlus
 func prepare():
 	multimesh.instance_count = 0
 	multimesh.use_colors = true
-	mesh = SoundSpacePlus.blocks.get_by_id(game.settings.skin.block.mesh)
+	mesh = Rhythia.blocks.get_by_id(game.settings.skin.block.mesh)
 	multimesh.mesh = mesh.mesh
 	multimesh.instance_count = 64
 

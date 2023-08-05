@@ -14,7 +14,7 @@ var players:Array
 func find_transform(index:int,total:int):
 	match total:
 		1:
-			return Transform3D.IDENTITY.rotated(Vector3.UP,deg_to_rad(180)).translated(Vector3(3.5,0,SoundSpacePlus.settings.approach.distance/2))
+			return Transform3D.IDENTITY.rotated(Vector3.UP,deg_to_rad(180)).translated(Vector3(3.5,0,Rhythia.settings.approach.distance/2))
 
 func _ready():
 	local_player.network_player = Multiplayer.local_player

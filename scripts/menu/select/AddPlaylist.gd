@@ -31,6 +31,6 @@ func confirm():
 	var writer = PlaylistWriter.new()
 	writer.write_to_file(playlist,playlist.path)
 	writer.free()
-	SoundSpacePlus.playlists.add_item(playlist)
+	Rhythia.playlists.add_item(playlist)
 	print("Created new playlist")
 	hide()

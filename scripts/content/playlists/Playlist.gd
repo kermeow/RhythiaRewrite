@@ -16,7 +16,7 @@ func load_mapsets():
 	for pointer in _mapsets:
 		match pointer.type:
 			PointerType.LOCAL_FILE:
-				var found = SoundSpacePlus.mapsets.items.filter(
+				var found = Rhythia.mapsets.items.filter(
 					func(mapset): 
 						return mapset.path.get_file() == pointer.pointer
 				)
@@ -30,12 +30,12 @@ func load_mapsets():
 					missing.broken = true
 					mapsets.append(missing)
 			PointerType.ONLINE:
-				var found = SoundSpacePlus.mapsets.get_by_online_id(pointer.pointer)
+				var found = Rhythia.mapsets.get_by_online_id(pointer.pointer)
 				mapsets.append_array(found)
 				if found.size() == 0:
 					var missing = Mapset.new()
 					missing.id = pointer.pointer
 					missing.online_id = pointer.pointer
 					missing.local = false
-					SoundSpacePlus.mapsets.add_item(missing)
+					Rhythia.mapsets.add_item(missing)
 					mapsets.append(missing)

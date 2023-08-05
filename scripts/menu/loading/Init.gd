@@ -5,22 +5,22 @@ extends Node
 @onready var tween:Tween = self.create_tween()
 
 func _ready():
-	SoundSpacePlus.warning_seen = ProjectSettings.get_setting_with_override("application/startup/disable_health_warning")
+	Rhythia.warning_seen = ProjectSettings.get_setting_with_override("application/startup/disable_health_warning")
 	$Pre.modulate.a = 0
 	$Post.modulate.a = 0
 	await get_tree().create_timer(1).timeout
-	if !SoundSpacePlus.is_init:
+	if !Rhythia.is_init:
 		finish()
 		return
-	if !SoundSpacePlus.warning_seen:
-		SoundSpacePlus.warning_seen = true
+	if !Rhythia.warning_seen:
+		Rhythia.warning_seen = true
 		pre()
 		return
-	if SoundSpacePlus.loading:
+	if Rhythia.loading:
 		post()
 		return
 	post()
-	SoundSpacePlus.init()
+	Rhythia.init()
 
 func pre():
 	$Post.visible = false
@@ -42,7 +42,7 @@ func precontinue():
 	tween.parallel().tween_property($Pre,"modulate:a",0,1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	tween.play()
 	await tween.finished
-	SoundSpacePlus.init()
+	Rhythia.init()
 	if skip_intro:
 		post()
 		return

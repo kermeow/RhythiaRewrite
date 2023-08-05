@@ -8,7 +8,7 @@ var attempting:bool = false
 
 func _ready():
 	play_button.connect("pressed",Callable(self,"attempt_play"))
-	$NoFail.button_pressed = SoundSpacePlus.selected_mods.no_fail
+	$NoFail.button_pressed = Rhythia.selected_mods.no_fail
 
 func attempt_play():
 	if attempting: return
@@ -17,16 +17,16 @@ func attempt_play():
 	var is_host = connected and Multiplayer.check_host()
 	if connected and !is_host: return
 	elif is_host:
-		Multiplayer.lobby.rpc("set_mods",SoundSpacePlus.selected_mods.data)
+		Multiplayer.lobby.rpc("set_mods",Rhythia.selected_mods.data)
 		Multiplayer.lobby.rpc("start")
 		return
 	var mapset = map_details.mapset
 	var map_index = map_details.map_index
-	var scene = SoundSpacePlus.load_game_scene(SoundSpacePlus.GameType.SOLO,mapset,map_index)
+	var scene = Rhythia.load_game_scene(Rhythia.GameType.SOLO,mapset,map_index)
 	get_tree().change_scene_to_node(scene)
 
 func _process(_delta):
-	SoundSpacePlus.selected_mods.no_fail = $NoFail.button_pressed
+	Rhythia.selected_mods.no_fail = $NoFail.button_pressed
 	var connected = Multiplayer.check_connected()
 	var is_host = connected and Multiplayer.check_host()
 	if !is_host:

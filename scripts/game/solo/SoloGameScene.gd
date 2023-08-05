@@ -10,11 +10,11 @@ func setup_managers():
 	hud_manager.prepare(self)
 
 func ready():
-	var world = SoundSpacePlus.worlds.items.front()
+	var world = Rhythia.worlds.items.front()
 	var selected_world = settings.skin.background.world
-	var ids = SoundSpacePlus.worlds.get_ids()
+	var ids = Rhythia.worlds.get_ids()
 	if ids.has(selected_world):
-		world = SoundSpacePlus.worlds.get_by_id(selected_world)
+		world = Rhythia.worlds.get_by_id(selected_world)
 	if world != null:
 		var world_node = world.load_world()
 		world_node.set_meta("game",self)

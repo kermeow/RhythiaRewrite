@@ -6,7 +6,7 @@ class_name Lobby
 @export var map_id:String:
 	get: return map_id
 	set(value):
-		Multiplayer.local_player.has_map = value in SoundSpacePlus.mapsets.get_ids()
+		Multiplayer.local_player.has_map = value in Rhythia.mapsets.get_ids()
 		map_id = value
 
 @export var host:int = 1
@@ -22,8 +22,8 @@ var players:Dictionary:
 
 @rpc("authority","call_local","reliable")
 func start(map_index:int=0):
-	var mapset = SoundSpacePlus.mapsets.get_by_id(map_id)
-	var scene = SoundSpacePlus.load_game_scene(SoundSpacePlus.GameType.MULTI,mapset,map_index)
+	var mapset = Rhythia.mapsets.get_by_id(map_id)
+	var scene = Rhythia.load_game_scene(Rhythia.GameType.MULTI,mapset,map_index)
 	get_tree().change_scene_to_node(scene)
 
 @rpc("authority","call_local","reliable")

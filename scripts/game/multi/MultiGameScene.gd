@@ -12,6 +12,6 @@ func _ready():
 	mods = multi_scene.mods
 	mapset = multi_scene.mapset
 	map_index = multi_scene.map_index
-	settings = SoundSpacePlus.settings
+	settings = Rhythia.settings
 	super._ready()
 	if local_player: multi_scene.call_deferred("rpc","done")

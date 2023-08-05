@@ -10,10 +10,10 @@ var selected_playlist:Playlist
 var playlists:Dictionary = {}
 
 func _ready():
-	for playlist in SoundSpacePlus.playlists.items:
+	for playlist in Rhythia.playlists.items:
 		playlist_added(playlist)
-	SoundSpacePlus.playlists.connect("on_item_added",Callable(self,"playlist_added"))
-	SoundSpacePlus.playlists.connect("on_item_removed",Callable(self,"playlist_removed"))
+	Rhythia.playlists.connect("on_item_added",Callable(self,"playlist_added"))
+	Rhythia.playlists.connect("on_item_removed",Callable(self,"playlist_removed"))
 	origin_button.connect("pressed",Callable(self,"all_selected"))
 
 func playlist_added(playlist:Playlist):

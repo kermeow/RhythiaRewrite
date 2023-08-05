@@ -135,6 +135,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -1076,7 +1077,6 @@ visible = false
 layout_mode = 2
 
 [node name="Credits" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Main/TabBar/Credits"]
@@ -1529,8 +1529,6 @@ target = Array[String](["fps_limit"])
 
 [node name="VersionNumberR" parent="Main" instance=ExtResource("1")]
 layout_mode = 1
-grow_horizontal = 0
-grow_vertical = 0
 
 [node name="SidebarClose" type="Button" parent="."]
 visible = false
