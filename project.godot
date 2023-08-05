@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Sound Space Plus"
+config/name="Rhythia"
 run/main_scene="res://scenes/Init.tscn"
 config/use_custom_user_dir=true
-config/custom_user_dir_name="SoundSpacePlus"
+config/custom_user_dir_name="Rhythia"
 run/main_loop_type="SceneTreePlus"
 config/auto_accept_quit=false
 config/quit_on_go_back=false
@@ -32,8 +32,8 @@ outro/play_sound=true
 outro/disabled.editor=true
 startup/disable_intro.debug=true
 startup/disable_health_warning.editor=true
-networking/server="https://soundspaceplus.dev/"
-networking/archive_index="https://cdn.soundspaceplus.dev/index.json"
+networking/server="https://rhythia.net/"
+networking/archive_index="https://cdn.rhythia.net/index.json"
 
 [audio]
 

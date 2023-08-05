@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnna3u1wwqnfr"]
+
+[ext_resource type="Script" path="res://scripts/results/ResultsScreen.gd" id="1_3bkcb"]
+[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_gcb34"]
+[ext_resource type="Texture2D" uid="uid://baudi0q5biiuy" path="res://assets/images/covers/easy.png" id="2_edm8f"]
+[ext_resource type="Material" uid="uid://4b20ukp1h0uf" path="res://assets/materials/ui/BlurOverlay.tres" id="3_u78g1"]
+
+[sub_resource type="Animation" id="Animation_l6hqy"]
+resource_name = "DisplayResults"
+length = 0.583338
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Blur:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.3, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Darken:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667, 0.583333),
+"transitions": PackedFloat32Array(0.4, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bbl6x"]
+_data = {
+"Display Results": SubResource("Animation_l6hqy")
+}
+
+[node name="Results" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gcb34")
+script = ExtResource("1_3bkcb")
+
+[node name="FadeAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bbl6x")
+}
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_edm8f")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Blur" type="ColorRect" parent="Background"]
+material = ExtResource("3_u78g1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Darken" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="AspectRatio" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -288.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.25
+
+[node name="Container" type="Control" parent="AspectRatio"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="AspectRatio/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 120.0
+offset_right = 128.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AspectRatio/Container/Restart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TRY AGAIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="Button" parent="AspectRatio/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 160.0
+offset_right = 128.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AspectRatio/Container/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RETURN TO MENU"
+horizontal_alignment = 1
+vertical_alignment = 1

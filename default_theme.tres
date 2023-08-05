@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=43 format=3 uid="uid://diarojdcbhxg8"]
+[gd_resource type="Theme" load_steps=44 format=3 uid="uid://diarojdcbhxg8"]
 
 [ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="1_ye54q"]
 [ext_resource type="FontFile" uid="uid://b3w5apfxq72o0" path="res://assets/fonts/NotoColorEmoji.ttf" id="2_hmje2"]
@@ -1234,6 +1234,13 @@ corner_radius_bottom_left = 64
 expand_margin_left = 10.0
 expand_margin_right = 10.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdpsv"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 0.862745)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p3k1"]
 bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 corner_radius_top_right = 8
@@ -1470,6 +1477,8 @@ PopupMenu/styles/separator = SubResource("16")
 PopupPanel/styles/panel = null
 ProgressBar/styles/background = SubResource("StyleBoxFlat_yospl")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_5b5bq")
+ResultsPanel/base_type = &"Panel"
+ResultsPanel/styles/panel = SubResource("StyleBoxFlat_kdpsv")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 0.501961)
 RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.8)

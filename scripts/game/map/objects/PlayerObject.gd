@@ -22,6 +22,7 @@ var trails:Array = []
 var trail_position:Vector3 = Vector3.ZERO
 
 @onready var score:Score = Score.new()
+
 var health:float = 5
 var did_fail:bool = false
 var lock_score:bool = false

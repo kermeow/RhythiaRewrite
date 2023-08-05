@@ -1,6 +1,7 @@
 extends GameScene
 
 @export var hud_manager:HUDManager
+@export var reporter:StatisticsReporter
 
 @export var world_parent:Node3D
 
@@ -19,19 +20,36 @@ func ready():
 		world_node.set_meta("game",self)
 		world_parent.add_child(world_node)
 
-	player.connect("failed",Callable(self,"finish").bind(true))
+	player.connect("failed",finish.bind(true))
 
 	sync_manager.call_deferred("start",mods.start_from - (settings.approach.time+1.5) * sync_manager.playback_speed)
+#	reporter.start()
 
 var ended:bool = false
 func finish(failed:bool=false):
 	if ended: return
 	ended = true
-	print("failed: %s" % failed)
+#	reporter.stop()
+	$PauseMenu.process_mode = Node.PROCESS_MODE_DISABLED
+	$PauseMenu.visible = false
+	if Globals.debug: print("failed: %s" % failed)
 	if failed:
-		print("fail animation")
+		if Globals.debug: print("fail animation")
 		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 		tween.tween_property(sync_manager,"playback_speed",0,2)
 		tween.play()
 		await tween.finished
-	get_tree().change_scene_to_file("res://scenes/Menu.tscn")
+	else:
+		if Globals.debug: print("pass")
+		await get_tree().create_timer(0.5).timeout
+	var packed_results:PackedScene = preload("res://scenes/Results.tscn")
+	var results:ResultsScreen = packed_results.instantiate()
+	var image = get_viewport().get_texture().get_image() # hacky screenshot
+	results.screenshot = ImageTexture.create_from_image(image)
+	results.mapset = mapset
+	results.map_index = map_index
+	results.score = player.score
+	results.mods = mods
+#	results.statistics = reporter.statistics
+	results.settings = settings
+	get_tree().change_scene_to_node(results)

@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://4b20ukp1h0uf"]
+
+[sub_resource type="Shader" id="Shader_ysy0e"]
+code = "shader_type canvas_item;
+
+uniform float blur_intensity = 0.1;
+uniform sampler2D screen_texture : hint_screen_texture, filter_linear_mipmap, repeat_disable;
+
+void fragment() {
+	vec3 rgb = textureLod(screen_texture, SCREEN_UV, blur_intensity).xyz;
+	COLOR = vec4(rgb, COLOR.a);
+}
+"
+
+[resource]
+shader = SubResource("Shader_ysy0e")
+shader_parameter/blur_intensity = 2.0

@@ -1,4 +1,4 @@
 extends Control
 
 func _ready():
-	$Label.text = "Sound Space Plus [%s]" % ProjectSettings.get_setting_with_override("application/config/version")
+	$Label.text = "%s [%s]" % [ProjectSettings.get_setting_with_override("application/config/name"),ProjectSettings.get_setting_with_override("application/config/version")]
