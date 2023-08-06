@@ -149,4 +149,3 @@ step = 1.0
 
 [node name="VersionNumberL" parent="." instance=ExtResource("8")]
 layout_mode = 1
-grow_vertical = 0

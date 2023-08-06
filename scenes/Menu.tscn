@@ -169,7 +169,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -1140,6 +1139,7 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
@@ -1157,7 +1157,6 @@ theme_override_font_sizes/font_size = 22
 theme_override_styles/panel = SubResource("StyleBoxFlat_0vm47")
 
 [node name="Gameplay" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
-visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -1272,6 +1271,7 @@ requirement_reversed = true
 hide_if_unfulfilled = true
 
 [node name="Skin" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0

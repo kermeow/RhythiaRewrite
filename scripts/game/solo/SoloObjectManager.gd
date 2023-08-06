@@ -6,14 +6,14 @@ var ordered_notes:Array = []
 func prepare(_game:GameScene):
 	if _game.settings.advanced.note_render_mode == 1:
 		$NoteRenderer.free()
-	
+
 	super.prepare(_game)
-	
+
 	append_object(origin.get_node("World"),false)
 	append_object(origin.get_node("HUD"),false)
-	
+
 	spawn_offset = game.settings.approach.time * game.mods.speed
-	
+
 	for note in game.map.notes:
 		if note.time < game.mods.start_from: continue
 		ordered_notes.append(note)
@@ -29,11 +29,11 @@ func _process(_delta):
 func roll_notes(notes:Array):
 	var total_notes = notes.size()
 	if total_notes == 0: return
-	if game.sync_manager.current_time < notes[0].time - spawn_offset: return 
+	if game.sync_manager.current_time < notes[0].time - spawn_offset: return
 	while notes.size() > 0:
 		var note = notes.pop_front()
 		append_object(build_note(note))
-		if game.sync_manager.current_time + 1 < note.time - spawn_offset: break
+		if game.sync_manager.current_time + 0.1 < note.time - spawn_offset: break
 
 func build_notes(notes:Array):
 	var objects = []
