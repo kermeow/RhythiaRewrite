@@ -9,6 +9,9 @@ enum HitState {
 	MISS
 }
 
+static var hit_sound:AudioStreamPlayer
+static var miss_sound:AudioStreamPlayer
+
 var hittable:bool = true
 var can_hit:bool = false
 var hit_state:int = HitState.NONE:
@@ -22,7 +25,12 @@ func hit():
 	if hit_state != HitState.NONE: return
 	self.hit_state = HitState.HIT
 	visible = false
+	if hit_sound: hit_sound.play()
 func miss():
 	if hit_state != HitState.NONE: return
 	self.hit_state = HitState.MISS
 	visible = false
+	if miss_sound: miss_sound.play()
+	
+func get_visibility(_current_time:float):
+	return hit_state == HitState.NONE

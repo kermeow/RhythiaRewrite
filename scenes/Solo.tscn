@@ -1,7 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://ddypjfskuxw11"]
+[gd_scene load_steps=26 format=3 uid="uid://ddypjfskuxw11"]
 
 [ext_resource type="Script" path="res://scripts/game/solo/SoloGameScene.gd" id="1_ulth4"]
+[ext_resource type="AudioStream" uid="uid://clk4tkuh7l4sc" path="res://assets/sounds/sfx/hit.wav" id="2_mfdjv"]
 [ext_resource type="Script" path="res://scripts/game/managers/AudioSyncManager.gd" id="2_o63a0"]
+[ext_resource type="AudioStream" uid="uid://c2rmv8akf3ais" path="res://assets/sounds/sfx/miss.wav" id="3_4ih8g"]
 [ext_resource type="Script" path="res://scripts/game/map/objects/GameObject.gd" id="3_pci65"]
 [ext_resource type="Script" path="res://scripts/game/solo/SoloObjectManager.gd" id="3_ylywr"]
 [ext_resource type="Script" path="res://scripts/game/renderers/NoteRenderer.gd" id="4_tvxv6"]
@@ -87,6 +89,19 @@ origin = NodePath("Origin")
 player = NodePath("Origin/Player")
 metadata/is_game = true
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mfdjv")
+max_polyphony = 32
+bus = &"SFX"
+
+[node name="Miss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4ih8g")
+max_polyphony = 32
+bus = &"SFX"
+
 [node name="AudioSyncManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 process_priority = 2
 script = ExtResource("2_o63a0")
@@ -153,9 +168,6 @@ paused = true
 expand = true
 buffering_msec = 1000
 bus = &"Sound Space Plus"
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-bus = &"Music"
 
 [node name="PauseMenu" type="ColorRect" parent="."]
 process_mode = 3

@@ -45,11 +45,11 @@ func _ready():
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-#		Input.use_accumulated_input = false
+		Input.use_accumulated_input = false
 func _exit_tree():
 	if local_player:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-#		Input.use_accumulated_input = true
+		Input.use_accumulated_input = true
 
 func _input(event):
 	if event is InputEventMouseMotion:
