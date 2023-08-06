@@ -28,7 +28,7 @@ func load_from_folder(folder:String):
 	var maps = []
 	for file in dir.get_files():
 		var extension = file.get_extension()
-		if extension != "sspm" and extension != "rhy": continue
+		if extension != "sspm" and extension != "rhym": continue
 		var _start = Time.get_ticks_usec()
 		var full_path = folder.path_join(file)
 		var mapset:Mapset
