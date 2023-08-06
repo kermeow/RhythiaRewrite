@@ -25,6 +25,7 @@ func _ready():
 		set_surface_override_material(i, mesh.surface_get_material(i).duplicate())
 	color = note.colour
 	transparency = 1
+	scale_object_local(Vector3.ONE * game.settings.skin.block.scale)
 	translate_object_local(mesh_plus.offset)
 
 func _process(delta):

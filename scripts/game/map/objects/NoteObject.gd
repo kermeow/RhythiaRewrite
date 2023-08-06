@@ -10,7 +10,7 @@ func _init(_id:String="",_note:Map.Note=null,_colour:Color=Color.RED):
 	super._init(_id)
 	self.note = _note
 	colour = _colour
-	scale = Vector3.ONE*0.865
+	scale = Vector3.ONE * 0.865
 
 func _physics_process(_delta):
 	var time = note.time-game.sync_manager.current_time

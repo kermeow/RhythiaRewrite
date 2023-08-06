@@ -44,6 +44,7 @@ const SETTINGS_CONFIG = [
 			["mesh",Setting.Type.STRING,"cube"],
 			["colorset",Setting.Type.ARRAY,["#ff0000","#00ffff"]],
 			["opacity",Setting.Type.FLOAT,1.0],
+			["scale",Setting.Type.FLOAT,1.0],
 			["fade_in_mode",Setting.Type.ENUM,FadeInMode,FadeInMode.FADE],
 			["fade_in_time",Setting.Type.FLOAT,0.25],
 			["fade_in_amount",Setting.Type.FLOAT,1.0],

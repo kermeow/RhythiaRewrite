@@ -169,6 +169,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -1139,7 +1140,6 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
@@ -1157,6 +1157,7 @@ theme_override_font_sizes/font_size = 22
 theme_override_styles/panel = SubResource("StyleBoxFlat_0vm47")
 
 [node name="Gameplay" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -1271,7 +1272,6 @@ requirement_reversed = true
 hide_if_unfulfilled = true
 
 [node name="Skin" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
-visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -1311,6 +1311,15 @@ arrow_step = 5.0
 label = "Opacity"
 target = Array[String](["skin", "block", "opacity"])
 multiplier = 100.0
+
+[node name="Scale" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "x"
+arrow_step = 0.1
+step = 0.01
+allow_greater = true
+label = "Scale"
+target = Array[String](["skin", "block", "scale"])
 
 [node name="Fade" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
 layout_mode = 2
@@ -1407,6 +1416,7 @@ vertical_alignment = 2
 layout_mode = 2
 suffix = "x"
 arrow_step = 0.1
+step = 0.01
 allow_greater = true
 label = "Scale"
 target = Array[String](["skin", "cursor", "scale"])
@@ -1516,6 +1526,7 @@ vertical_alignment = 2
 [node name="Master" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume" instance=ExtResource("17_shbod")]
 layout_mode = 2
 suffix = "%"
+step = 1.0
 max_value = 200.0
 label = "Master"
 target = Array[String](["volume", "master"])
@@ -1524,6 +1535,7 @@ multiplier = 100.0
 [node name="Music" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume" instance=ExtResource("17_shbod")]
 layout_mode = 2
 suffix = "%"
+step = 1.0
 max_value = 200.0
 label = "Music"
 target = Array[String](["volume", "music"])
@@ -1532,6 +1544,7 @@ multiplier = 100.0
 [node name="SFX" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume" instance=ExtResource("17_shbod")]
 layout_mode = 2
 suffix = "%"
+step = 1.0
 max_value = 200.0
 label = "SFX"
 target = Array[String](["volume", "sfx"])

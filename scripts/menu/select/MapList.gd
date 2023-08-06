@@ -77,12 +77,12 @@ func sort_maps(a:Mapset,b:Mapset):
 	return a.name.naturalnocasecmp_to(b.name) < 0
 
 func update_list():
-	var offset = max(0,floori(list.scroll_vertical/80.0))
-	var no_items = ceili(list.size.y/80.0) + 1
+	var offset = max(0,floori(list.scroll_vertical/88.0))
+	var no_items = ceili(list.size.y/88.0) + 1
 	var end = min(listed_items.size(),offset+no_items)
 	var visible_items = listed_items.slice(offset,end)
-	top_separator.add_theme_constant_override("separation",(offset*80)-4)
-	btm_separator.add_theme_constant_override("separation",((listed_items.size()-end)*80.0)-4)
+	top_separator.add_theme_constant_override("separation",(offset*88)-4)
+	btm_separator.add_theme_constant_override("separation",((listed_items.size()-end)*88.0)-4)
 	var buttons_keys = buttons.keys()
 	var buttons_values = buttons.values()
 	for i in range(buttons_values.size()):
