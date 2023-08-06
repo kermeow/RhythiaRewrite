@@ -1424,6 +1424,40 @@ registry_name = "worlds"
 label = "World"
 target = Array[String](["skin", "background", "world"])
 
+[node name="Video" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Video"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Window" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Video/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Window"
+vertical_alignment = 2
+
+[node name="Fullscreen" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Fullscreen"
+target = Array[String](["fullscreen"])
+
+[node name="FPS" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("17_shbod")]
+layout_mode = 2
+step = 1.0
+allow_greater = true
+label = "FPS Limit"
+target = Array[String](["fps_limit"])
+
 [node name="Audio" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
 layout_mode = 2
@@ -1492,39 +1526,48 @@ allow_lesser = true
 label = "Music Offset"
 target = Array[String](["offset", "music"])
 
-[node name="Video" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+[node name="Advanced" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Video"]
+[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Advanced"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Window" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Video/Columns"]
+[node name="Advanced" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window"]
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Window"
+text = "Advanced Settings"
 vertical_alignment = 2
 
-[node name="Fullscreen" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("19_8t4jv")]
+[node name="Label2" type="Label" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced"]
 layout_mode = 2
-label = "Fullscreen"
-target = Array[String](["fullscreen"])
+theme_override_font_sizes/font_size = 24
+text = "IT IS STRONGLY RECOMMENDED THAT YOU DO NOT TOUCH THESE IF YOU DON'T KNOW WHAT YOU'RE DOING"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="FPS" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("17_shbod")]
+[node name="NoteRenderMode" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced" instance=ExtResource("19_bkaum")]
 layout_mode = 2
-step = 1.0
-allow_greater = true
-label = "FPS Limit"
-target = Array[String](["fps_limit"])
+enum_names = Array[String](["Multimesh", "Individual"])
+label = "Note Render Mode"
+target = Array[String](["advanced", "note_render_mode"])
+
+[node name="NoteSpawnMode" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced" instance=ExtResource("19_bkaum")]
+layout_mode = 2
+enum_names = Array[String](["Preload", "Rolling"])
+label = "Note Spawn Mode"
+target = Array[String](["advanced", "note_spawn_mode"])
 
 [node name="VersionNumberR" parent="Main" instance=ExtResource("1")]
 layout_mode = 1

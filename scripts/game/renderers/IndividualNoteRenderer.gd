@@ -11,6 +11,7 @@ var color:Color:
 		for i in mesh.get_surface_count():
 			var material = get_surface_override_material(i)
 			if material is ShaderMaterial:
+				material.set_shader_parameter("use_color_param", true)
 				material.set_shader_parameter("color", color)
 			else:
 				material.vertex_color_use_as_albedo = false

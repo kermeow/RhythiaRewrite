@@ -8,6 +8,11 @@ func prepare():
 	multimesh.use_colors = true
 	mesh = Rhythia.blocks.get_by_id(game.settings.skin.block.mesh)
 	multimesh.mesh = mesh.mesh
+	for i in multimesh.mesh.get_surface_count():
+		var material = multimesh.mesh.surface_get_material(i).duplicate()
+		if material is ShaderMaterial:
+			material.set_shader_parameter("use_color_param", false)
+		multimesh.mesh.surface_set_material(i, material)
 	multimesh.instance_count = 64
 
 func render_objects(objects:Array):

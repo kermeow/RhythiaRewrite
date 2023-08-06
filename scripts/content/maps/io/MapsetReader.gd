@@ -100,7 +100,6 @@ static func deserialise_v3_data(data:String,map:Map):
 	var parsed = JSON.parse_string(data)
 	if parsed.get("version",1) > 1:
 		map.unsupported = true
-	map.notes = []
 	for note_data in parsed.get("notes",[]):
 		var note = Map.Note.new()
 		note.index = note_data.index
@@ -188,7 +187,6 @@ static func _sspmv1(file:FileAccess,set:Mapset,full:bool):
 		set.broken = true
 	_audio(music_buffer,set)
 	if not full: return
-	map.notes = []
 	for i in range(note_count):
 		var note = Map.Note.new()
 		note.time = float(file.get_32())/1000
@@ -311,7 +309,6 @@ static func _sspmv2(file:FileAccess,set:Mapset,full:bool):
 	if !markers.has("ssp_note"):
 		map.broken = true
 		return
-	map.notes = []
 	for note_data in markers.get("ssp_note"):
 		if note_data[1] != 7: continue
 		var note = Map.Note.new()

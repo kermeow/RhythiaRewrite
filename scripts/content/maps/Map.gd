@@ -28,8 +28,8 @@ const LegacyCovers = { # LEGACY SUPPORT
 
 var unsupported:bool = false
 
-var notes:Array
-var data:Dictionary
+var notes:Array[Note] = []
+var data:Dictionary = {}
 
 class Note:
 	var index:int
