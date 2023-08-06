@@ -29,35 +29,8 @@ func _ready():
 
 	setup_managers()
 	sync_manager.connect("finished",Callable(self,"finish"))
-	
-	build_map()
 
 	call_deferred("ready")
-
-func build_map():
-	var objects = []
-	for note in map.notes:
-		if note.time < mods.start_from: continue
-		var object = build_note(note)
-		objects.append(object)
-	objects.sort_custom(func(a,b): return a.spawn_time < b.spawn_time)
-	for object in objects:
-		object_manager.append_object(object)
-
-func build_note(note:Map.Note):
-	var id = note.data.get("id","note-%s" % note.index)
-	var object = NoteObject.new(id,note)
-	object.name = id
-	var colorset = settings.skin.block.colorset
-	var colour_index = wrapi(note.index,0,colorset.size())
-	var colour = colorset[colour_index]
-	object.colour = Color.from_string(colour,Color.RED)
-	object.spawn_distance = settings.approach.distance
-	object.hittable = true
-	object.spawn_time = note.time - (settings.approach.time * mods.speed)
-	object.despawn_time = note.time + 1
-	object.visible = false
-	return object
 
 func ready():
 	pass

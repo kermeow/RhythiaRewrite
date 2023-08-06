@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MeshPlus" load_steps=5 format=3 uid="uid://bu3gso8kdjfh5"]
 
 [ext_resource type="Material" uid="uid://mo14d60r0wa8" path="res://assets/materials/blocks/Default.tres" id="1_oxi72"]
-[ext_resource type="Material" uid="uid://dylshod0cttj3" path="res://assets/materials/blocks/Transparent.tres" id="2_38w1m"]
+[ext_resource type="Material" uid="uid://dylshod0cttj3" path="res://assets/materials/blocks/Transparent.tres" id="2_ck7sp"]
 [ext_resource type="Script" path="res://scripts/content/resources/MeshPlus.gd" id="3_wm71y"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pntqv"]
@@ -22,7 +22,7 @@ _surfaces = [{
 "format": 4119,
 "index_count": 6,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 2, 0, 1, 0, 3, 0),
-"material": ExtResource("2_38w1m"),
+"material": ExtResource("2_ck7sp"),
 "name": "Transparent",
 "primitive": 3,
 "vertex_count": 4,

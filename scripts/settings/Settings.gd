@@ -17,6 +17,14 @@ enum FadeOutMode {
 	DISAPPEAR,
 	DISAPPEAR_NO_WINDOW
 }
+enum NoteRenderMode {
+	MULTIMESH,
+	INDIVIDUAL
+}
+enum NoteSpawnMode {
+	PRELOAD,
+	ROLLING
+}
 const SETTINGS_CONFIG = [
 	["first_time",Setting.Type.BOOLEAN,true],
 	["fps_limit",Setting.Type.INT,0],
@@ -74,6 +82,10 @@ const SETTINGS_CONFIG = [
 	]],
 	["folders",Setting.Type.CATEGORY,[
 		["maps",Setting.Type.ARRAY,["user://../SoundSpacePlus/maps"]]
+	]],
+	["advanced",Setting.Type.CATEGORY,[
+		["note_render_mode",Setting.Type.ENUM,NoteRenderMode,NoteRenderMode.INDIVIDUAL],
+		["note_spawn_mode",Setting.Type.ENUM,NoteSpawnMode,NoteSpawnMode.PRELOAD]
 	]]
 ]
 

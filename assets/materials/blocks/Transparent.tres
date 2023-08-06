@@ -5,10 +5,11 @@ code = "shader_type spatial;
 render_mode blend_mix, unshaded, depth_draw_opaque, cull_disabled;
 
 uniform float alpha_multi = 0.5;
+uniform vec4 color: source_color;
 
 void fragment() {
-	ALBEDO = COLOR.rgb;
-	ALPHA = ALPHA * COLOR.a * alpha_multi;
+	ALBEDO = color.rgb;
+	ALPHA = ALPHA * color.a * alpha_multi;
 }
 "
 
@@ -16,3 +17,4 @@ void fragment() {
 render_priority = 0
 shader = SubResource("39")
 shader_parameter/alpha_multi = 0.1
+shader_parameter/color = Color(1, 1, 1, 1)
