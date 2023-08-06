@@ -44,6 +44,10 @@ func seek(from:float=0):
 
 func just_paused():
 	audio_player.stop()
+func just_unpaused():
+	super()
+	if audio_started and real_time < length:
+		_start_audio()
 
 #func try_finish():
 #	if (real_time - time_delay) > length:

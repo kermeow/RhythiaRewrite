@@ -8,6 +8,7 @@ var mesh_plus:MeshPlus
 var color:Color:
 	set(value):
 		color = Color(value, 1.0)
+		transparency = 1.0 - note.mixed_colour.a
 		for i in mesh.get_surface_count():
 			var material = get_surface_override_material(i)
 			if material is ShaderMaterial:
@@ -27,5 +28,4 @@ func _ready():
 	translate_object_local(mesh_plus.offset)
 
 func _process(delta):
-	if color != note.colour: color = note.colour
-	transparency = 1.0 - note.mixed_colour.a
+	color = note.mixed_colour

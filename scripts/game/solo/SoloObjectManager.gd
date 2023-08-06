@@ -1,7 +1,7 @@
 extends ObjectManager
 
 var spawn_offset:float = 1.0
-var ordered_notes:Array[Map.Note] = []
+var ordered_notes:Array = []
 
 func prepare(_game:GameScene):
 	if _game.settings.advanced.note_render_mode == 1:
@@ -14,7 +14,9 @@ func prepare(_game:GameScene):
 	
 	spawn_offset = game.settings.approach.time * game.mods.speed
 	
-	ordered_notes = game.map.notes.duplicate()
+	for note in game.map.notes:
+		if note.time < game.mods.start_from: continue
+		ordered_notes.append(note)
 	ordered_notes.sort_custom(func(a,b): return a.time < b.time)
 	if game.settings.advanced.note_spawn_mode == 0:
 		build_notes(ordered_notes)
@@ -24,20 +26,18 @@ func _process(_delta):
 		roll_notes(ordered_notes)
 	super(_delta)
 
-func roll_notes(notes:Array[Map.Note]):
+func roll_notes(notes:Array):
 	var total_notes = notes.size()
 	if total_notes == 0: return
 	if game.sync_manager.current_time < notes[0].time - spawn_offset: return 
 	while notes.size() > 0:
 		var note = notes.pop_front()
 		append_object(build_note(note))
-		if game.sync_manager.current_time < note.time - spawn_offset: break
-	if Globals.debug: print("rolled %s notes" % (total_notes - notes.size()))
+		if game.sync_manager.current_time + 1 < note.time - spawn_offset: break
 
-func build_notes(notes:Array[Map.Note]):
+func build_notes(notes:Array):
 	var objects = []
 	for note in notes:
-		if note.time < game.mods.start_from: continue
 		var object = build_note(note)
 		objects.append(object)
 	objects.sort_custom(func(a,b): return a.spawn_time < b.spawn_time)

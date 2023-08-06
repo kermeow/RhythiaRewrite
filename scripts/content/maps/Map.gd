@@ -28,7 +28,7 @@ const LegacyCovers = { # LEGACY SUPPORT
 
 var unsupported:bool = false
 
-var notes:Array[Note] = []
+var notes:Array = []
 var data:Dictionary = {}
 
 class Note:
