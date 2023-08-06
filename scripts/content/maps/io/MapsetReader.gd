@@ -1,8 +1,11 @@
+#
+# TODO: Merge MapsetReader, MapsetWriter, Mapset -> Create new script for SSPM functionality
+#
 extends Object
 class_name MapsetReader
 
-const OLD_SIGNATURE:PackedByteArray = [0x53, 0x53, 0x2b, 0x6d]
 const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x4d]
+const OLD_SIGNATURE:PackedByteArray = [0x53, 0x53, 0x2b, 0x6d]
 
 static func read_from_file(path:String,full:bool=false,index:int=0) -> Mapset:
 	var file = FileAccess.open(path,FileAccess.READ)
@@ -14,11 +17,12 @@ static func read_from_file(path:String,full:bool=false,index:int=0) -> Mapset:
 		match file_version:
 			1: _sspmv1(file,set,full)
 			2: _sspmv2(file,set,full)
+		if file_version > 2: set.broken = true
 		set.format = file_version
 		file.close()
 		return set
 	file.seek(0)
-	assert(file.get_buffer(5) == SIGNATURE)
+	assert(file.get_buffer(8) == SIGNATURE)
 	set.format = 3
 	_rhyt(file,set,full,index)
 	file.close()
@@ -62,14 +66,12 @@ static func _rhyt(file:FileAccess,set:Mapset,full:bool,index:int=-1):
 	set.name = file.get_buffer(name_length).get_string_from_utf16()
 	var creator_length = file.get_16() # Map creator
 	set.creator = file.get_buffer(creator_length).get_string_from_utf16()
-
 	# Audio
 	set.file_offsets.audio = file.get_position()
 	var audio_length = file.get_64()
 	file.seek(file.get_position()+audio_length)
 	if audio_length < 1:
 		set.broken = true
-
 	# Cover
 	set.file_offsets.cover = file.get_position()
 	var cover_width = file.get_16()
@@ -78,7 +80,6 @@ static func _rhyt(file:FileAccess,set:Mapset,full:bool,index:int=-1):
 		_cover(image,set)
 	else:
 		set.broken = true
-
 	# Data
 	var indexed = index != -1
 	var map_count = file.get_8()
@@ -94,19 +95,22 @@ static func _rhyt(file:FileAccess,set:Mapset,full:bool,index:int=-1):
 		hash_ctx.start(HashingContext.HASH_MD5)
 		map.id = hash_ctx.finish().hex_encode()
 		if full and (!indexed or index == i):
-			deserialise_v3_data(data,map)
+			deserialise_data(data,map)
 		set.maps[i] = map
-static func deserialise_v3_data(data:String,map:Map):
+static func deserialise_data(data:String,map:Map):
 	var parsed = JSON.parse_string(data)
-	if parsed.get("version",1) > 1:
+	var version = parsed.get("version", 1)
+	if version > Map.VERSION:
 		map.unsupported = true
 	for note_data in parsed.get("notes",[]):
 		var note = Map.Note.new()
-		note.index = note_data.index
-		note.x = note_data.position[0]
-		note.y = note_data.position[1]
-		note.time = note_data.time
 		note.data = note_data
+		note.index = note_data.i
+		note.x = note_data.p[0]
+		note.y = note_data.p[1]
+		note.time = note_data.t
+		if version >= 2:
+			note.rotation = note_data.get("r", 0)
 		map.notes.append(note)
 	map.data = parsed
 

@@ -11,4 +11,4 @@
 
 [resource]
 script = ExtResource("1_jlhbl")
-items = Array[Resource("res://scripts/content/resources/ResourcePlus.gd")]([ExtResource("5_gcx31"), ExtResource("4_moucw"), ExtResource("1_esc8i"), ExtResource("1_qmpc6"), ExtResource("3_452j2"), ExtResource("7_xrs1a"), ExtResource("6_urtem")])
+items = Array[Resource("res://scripts/content/resources/ResourcePlus.gd")]([ExtResource("1_qmpc6"), ExtResource("5_gcx31"), ExtResource("4_moucw"), ExtResource("1_esc8i"), ExtResource("3_452j2"), ExtResource("7_xrs1a"), ExtResource("6_urtem")])

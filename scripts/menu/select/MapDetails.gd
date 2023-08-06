@@ -65,6 +65,7 @@ func update():
 	var index = 0
 	for map in mapset.maps:
 		var button = origin_map_button.duplicate()
+		button.disabled = map.unsupported
 		button.visible = true
 		button.get_node("Label").text = map.name
 		button.connect("pressed",Callable(self,"map_selected").bind(index))

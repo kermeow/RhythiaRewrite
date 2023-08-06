@@ -1,6 +1,8 @@
 extends ResourcePlus
 class_name Mapset
 
+const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x4d]
+
 var format:int
 
 var song:String

@@ -19,6 +19,8 @@ func _physics_process(_delta):
 func update(current_time:float):
 	var time = (note.time-current_time)/(note.time-spawn_time)
 	transform.origin = Vector3(-note.x+1,-note.y+1,time*spawn_distance)
+	rotation_degrees.z = note.rotation
+	
 	var fade_in_time = (1 - time) / game.settings.skin.block.fade_in_time
 	var fade_out_time = time / game.settings.skin.block.fade_out_time
 	var fade_in = min(fade_in_time/game.settings.skin.block.fade_in_amount,1.0)

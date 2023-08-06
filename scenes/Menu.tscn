@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cu2rno2ef0dtr"]
+[gd_scene load_steps=43 format=3 uid="uid://cu2rno2ef0dtr"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -70,6 +70,19 @@ corner_radius_bottom_left = 24
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6uy1"]
 bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8l2gp"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.784314, 0.313726, 0.313726, 1)
+border_blend = true
 corner_radius_top_left = 24
 corner_radius_top_right = 24
 corner_radius_bottom_right = 24
@@ -537,6 +550,7 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ce888")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pymji")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_j6uy1")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8l2gp")
 toggle_mode = true
 button_pressed = true
 text_overrun_behavior = 4

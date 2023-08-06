@@ -26,14 +26,20 @@ const LegacyCovers = { # LEGACY SUPPORT
 	Difficulty.TASUKETE: preload("res://assets/images/covers/tasukete.png"),
 }
 
+const VERSION:int = 2
+
+var version:int = 1
 var unsupported:bool = false
 
 var notes:Array = []
 var data:Dictionary = {}
 
 class Note:
+	var data:Dictionary = {}
+	# version 1
 	var index:int
 	var x:float
 	var y:float
 	var time:float
-	var data:Dictionary = {}
+	# version 2
+	var rotation:float = 0
