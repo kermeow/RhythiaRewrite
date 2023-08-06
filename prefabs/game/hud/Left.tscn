@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1plfltoc8it7"]
+[gd_scene load_steps=7 format=3 uid="uid://b1plfltoc8it7"]
 
 [ext_resource type="Script" path="res://scripts/game/hud/LeftHUD.gd" id="1_305e3"]
+[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_m3vgx"]
 [ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="3_7hh44"]
 [ext_resource type="FontFile" uid="uid://daxk4ur5wb382" path="res://assets/fonts/Lato/Lato-Light.ttf" id="4_6yhla"]
 
@@ -23,6 +24,7 @@ offset_right = 420.0
 offset_bottom = 1202.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_m3vgx")
 texture = SubResource("GradientTexture2D_1uofr")
 expand_mode = 1
 script = ExtResource("1_305e3")

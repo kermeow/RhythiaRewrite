@@ -37,9 +37,9 @@ func update():
 	$Song.text = mapset.name
 	$Creator.text = mapset.creator
 	var online_id = mapset.online_id
-	if online_id == null:
-		online_id = "N/A"
-	$Id.text = "id: %s" % online_id
+	if online_id == "":
+		online_id = "local"
+	$Id.text = "v: %s | id: %s | online: %s" % [mapset.format, mapset.id, online_id]
 	if !mapset.local:
 		$Length.visible = false
 		$Maps.visible = false
@@ -66,7 +66,7 @@ func update():
 	for map in mapset.maps:
 		var button = origin_map_button.duplicate()
 		button.visible = true
-		button.text = map.name
+		button.get_node("Label").text = map.name
 		button.connect("pressed",Callable(self,"map_selected").bind(index))
 		map_buttons_list.add_child(button)
 		map_buttons.append(button)

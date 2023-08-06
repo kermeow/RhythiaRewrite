@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cu2rno2ef0dtr"]
+[gd_scene load_steps=42 format=3 uid="uid://cu2rno2ef0dtr"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -48,11 +48,32 @@ colors = PackedColorArray(0.0941176, 0.0941176, 0.0941176, 1, 0, 0, 0, 0)
 gradient = SubResource("Gradient_204lt")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syg7m"]
-bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce888"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pymji"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6uy1"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hcgho"]
 
@@ -505,30 +526,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="Button" type="Button" parent="Main/TabBar/Select/MapDetails/Details/Maps/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.5
 theme_override_colors/font_color = Color(1, 1, 1, 0.588235)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ce888")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pymji")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j6uy1")
 toggle_mode = true
 button_pressed = true
-text = "A B C D E F G H"
-flat = true
 text_overrun_behavior = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Details/Maps/Buttons/Button"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Difficulty Name"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Id" type="Label" parent="Main/TabBar/Select/MapDetails/Details"]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -120.0
+offset_left = 8.0
 offset_top = -32.0
 offset_right = -8.0
 offset_bottom = -8.0

@@ -15,4 +15,4 @@ func _process(_delta):
 		floori(length/60),
 		floori(int(length)%60)
 	]
-	$Progress.value = current_time / length
+	$Progress/Bar.value = current_time / length

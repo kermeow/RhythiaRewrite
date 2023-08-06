@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://u5w2lt2ybh4v"]
+[gd_scene load_steps=19 format=3 uid="uid://u5w2lt2ybh4v"]
 
 [ext_resource type="Script" path="res://scripts/game/map/objects/GameObject.gd" id="1_siigk"]
 [ext_resource type="Script" path="res://scripts/game/hud/EnergyHUD.gd" id="2_jjhor"]
@@ -8,6 +8,15 @@
 [ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="3_78s4d"]
 [ext_resource type="Script" path="res://scripts/game/hud/TimerHUD.gd" id="3_fa4fg"]
 [ext_resource type="Texture2D" uid="uid://cftumuph2lfnj" path="res://assets/images/grid_inner.png" id="3_ll623"]
+[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="3_qou15"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbup1"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc6ms"]
 bg_color = Color(0.784314, 0.313726, 0.313726, 1)
@@ -45,26 +54,24 @@ gui_disable_input = true
 size = Vector2i(600, 120)
 render_target_update_mode = 4
 
-[node name="Control" type="Control" parent="EnergyViewport"]
-layout_mode = 3
-anchors_preset = 15
+[node name="Control" type="Panel" parent="EnergyViewport"]
+clip_children = 1
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = -1.0
-offset_bottom = -1.0
+offset_left = 24.0
+offset_top = 2.0
+offset_right = -24.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xbup1")
 script = ExtResource("2_jjhor")
 
 [node name="Health" type="ProgressBar" parent="EnergyViewport/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-offset_left = 20.0
-offset_right = -20.0
-offset_bottom = 10.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_jc6ms")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dbnyp")
@@ -91,18 +98,29 @@ offset_right = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_qou15")
 script = ExtResource("3_fa4fg")
 
-[node name="Progress" type="ProgressBar" parent="TimerViewport/Control"]
+[node name="Progress" type="Panel" parent="TimerViewport/Control"]
+clip_children = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 110.0
-offset_top = -10.0
+offset_top = -16.0
 offset_right = -110.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xbup1")
+
+[node name="Bar" type="ProgressBar" parent="TimerViewport/Control/Progress"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_558h4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_j8u77")
 max_value = 1.0
@@ -116,8 +134,8 @@ anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -56.0
-offset_bottom = -8.0
+offset_top = -64.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_78s4d")
@@ -131,7 +149,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -40.0
+offset_top = -4.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_78s4d")
