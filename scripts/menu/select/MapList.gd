@@ -16,12 +16,13 @@ var selected_mapset:Mapset
 var listed_items:Array
 
 var buttons = {}
+const BUTTON_SIZE = 84.0
 
 func _ready():
 	origin_button.visible = false
 	call_deferred("update_full")
 	playlists.on_playlist_selected.connect(playlist_selected)
-	$Filters/Search.text_changed.connect(search_updated)
+	$Search/SearchBox.text_changed.connect(search_updated)
 	if Rhythia.selected_mapset:
 		if Globals.debug: print("map already selected: ",Rhythia.selected_mapset)
 		call_deferred("select_mapset_id",Rhythia.selected_mapset)
@@ -34,7 +35,7 @@ func select_mapset_id(id:String):
 	print(index)
 	selected_mapset = mapset
 	on_mapset_selected.emit(mapset)
-	list.call_deferred("set","scroll_vertical",max(index * 88 - 8,0))
+	list.call_deferred("set","scroll_vertical",max(index * BUTTON_SIZE - 8.0,0))
 
 func playlist_selected(playlist:Playlist=null,all:bool=false):
 	if all or !playlist:
@@ -52,7 +53,7 @@ func _process(_delta):
 		_last_scroll = list.scroll_vertical
 		update_list()
 func _notification(what):
-	if what == NOTIFICATION_WM_SIZE_CHANGED:
+	if what == NOTIFICATION_WM_SIZE_CHANGED or what == NOTIFICATION_RESIZED:
 		call_deferred("update_list")
 
 func search_updated(_text:String):
@@ -65,7 +66,7 @@ func update_items():
 	listed_items = origin_list.filter(filter_maps)
 	listed_items.sort_custom(sort_maps)
 func filter_maps(set:Mapset):
-	var search = $Filters/Search.text.to_lower()
+	var search = $Search/SearchBox.text.to_lower()
 	if search == "": return true
 	return (
 		set.name.to_lower().contains(search) or
@@ -77,12 +78,12 @@ func sort_maps(a:Mapset,b:Mapset):
 	return a.name.naturalnocasecmp_to(b.name) < 0
 
 func update_list():
-	var offset = max(0,floori(list.scroll_vertical/88.0))
-	var no_items = ceili(list.size.y/88.0) + 1
+	var offset = max(0,floori(list.scroll_vertical/BUTTON_SIZE))
+	var no_items = ceili(list.size.y/BUTTON_SIZE) + 1
 	var end = min(listed_items.size(),offset+no_items)
 	var visible_items = listed_items.slice(offset,end)
-	top_separator.add_theme_constant_override("separation",(offset*88)-4)
-	btm_separator.add_theme_constant_override("separation",((listed_items.size()-end)*88.0)-4)
+	top_separator.add_theme_constant_override("separation",(offset*BUTTON_SIZE)-4)
+	btm_separator.add_theme_constant_override("separation",((listed_items.size()-end)*BUTTON_SIZE)-4)
 	var buttons_keys = buttons.keys()
 	var buttons_values = buttons.values()
 	for i in range(buttons_values.size()):

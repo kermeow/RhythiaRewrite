@@ -40,12 +40,13 @@ corner_radius_bottom_left = 8
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_swdcm"]
 
 [sub_resource type="Gradient" id="Gradient_204lt"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.25)
+offsets = PackedFloat32Array(0, 0.5)
 colors = PackedColorArray(0.0941176, 0.0941176, 0.0941176, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6pvy0"]
 gradient = SubResource("Gradient_204lt")
+width = 512
+use_hdr = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syg7m"]
 bg_color = Color(0.109804, 0.109804, 0.109804, 1)
@@ -246,16 +247,16 @@ unique_name_in_owner = true
 layout_mode = 1
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 16.0
+offset_left = 8.0
 offset_top = 8.0
-offset_right = -8.0
+offset_right = -4.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_3ykqk")
 playlists = NodePath("../Playlists")
 
-[node name="Filters" type="Panel" parent="Main/TabBar/Select/MapList"]
+[node name="Search" type="Panel" parent="Main/TabBar/Select/MapList"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -263,7 +264,7 @@ offset_bottom = 48.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tvhpi")
 
-[node name="Search" type="LineEdit" parent="Main/TabBar/Select/MapList/Filters"]
+[node name="SearchBox" type="LineEdit" parent="Main/TabBar/Select/MapList/Search"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -289,10 +290,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
+scroll_vertical_custom_step = 42.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
@@ -300,7 +305,7 @@ vertical_scroll_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 8
+theme_override_constants/separation = 4
 
 [node name="TopSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Maps/List/Contents"]
 layout_mode = 2
@@ -320,10 +325,9 @@ script = ExtResource("8_iudav")
 self_modulate = Color(0.8, 0.8, 0.8, 0.784314)
 clip_contents = true
 layout_mode = 1
-anchor_left = 0.5
+anchor_left = 0.6
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
@@ -345,7 +349,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -0.199982
 texture = SubResource("GradientTexture1D_6pvy0")
+expand_mode = 1
 
 [node name="Song" type="Label" parent="Main/TabBar/Select/MapList/Maps/List/Contents/Mapset"]
 clip_contents = true
@@ -417,9 +423,9 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
+offset_left = 4.0
 offset_top = 8.0
-offset_right = -16.0
+offset_right = -8.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -443,9 +449,12 @@ offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_syg7m")
 
 [node name="Cover" type="TextureRect" parent="Main/TabBar/Select/MapDetails/Details/CoverContainer"]
-layout_mode = 2
-offset_right = 144.0
-offset_bottom = 144.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_oas34")
 expand_mode = 1
 stretch_mode = 6
@@ -461,7 +470,8 @@ offset_bottom = 8.0
 grow_horizontal = 2
 theme_override_constants/line_spacing = -4
 theme_override_font_sizes/font_size = 24
-text = "that one schwank song that has a really long name the extra credit chromosome test one"
+text = "that one schwank song that has a really long name the extra credit chromosome test one
+xi - Freedom DIve"
 vertical_alignment = 2
 autowrap_mode = 3
 clip_text = true
