@@ -7,10 +7,10 @@ extends Viewport
 
 func _ready():
 	add_child(origin)
-	
+
 	use_xr = true
-	
+
 	handle_input_locally = false
-	
+
 	world_2d = _world_2d
 	world_3d = _world_3d

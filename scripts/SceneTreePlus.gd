@@ -7,6 +7,7 @@ func get_vr_interface():
 	vr_interface = XRServer.find_interface("OpenXR")
 	if vr_interface and vr_interface.is_initialized():
 		vr_enabled = true
+		return vr_interface
 
 var fps_limit:int = 0
 
