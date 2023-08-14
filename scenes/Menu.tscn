@@ -170,6 +170,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -1149,7 +1150,6 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
@@ -1165,6 +1165,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 22
 theme_override_styles/panel = SubResource("StyleBoxFlat_0vm47")
+clip_tabs = false
 
 [node name="Gameplay" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
 layout_mode = 2
@@ -1206,11 +1207,6 @@ allow_lesser = true
 label = "FOV"
 target = Array[String](["controls", "fov"])
 
-[node name="Lock" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
-layout_mode = 2
-label = "Camera Lock"
-target = Array[String](["controls", "lock"])
-
 [node name="Drift" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
 layout_mode = 2
 label = "Cursor Drift"
@@ -1220,6 +1216,49 @@ target = Array[String](["controls", "drift"])
 layout_mode = 2
 label = "Absolute Positioning"
 target = Array[String](["controls", "absolute"])
+
+[node name="Camera" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Camera
+"
+vertical_alignment = 2
+
+[node name="CamParallax" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "u"
+arrow_step = 0.1
+allow_greater = true
+allow_lesser = true
+label = "Camera Parallax"
+target = Array[String](["camera", "camera_parallax"])
+required_value = "1"
+requirement_reversed = true
+hide_if_unfulfilled = true
+multiplier = 10.0
+
+[node name="HudParallax" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera" instance=ExtResource("17_shbod")]
+visible = false
+layout_mode = 2
+suffix = "s"
+arrow_step = 0.1
+allow_greater = true
+allow_lesser = true
+label = "Hud Parallax"
+target = Array[String](["camera", "hud_parallax"])
+required_value = "1"
+requirement_reversed = true
+hide_if_unfulfilled = true
+
+[node name="Lock" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Camera Lock"
+target = Array[String](["camera", "lock"])
 
 [node name="Approach" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
 layout_mode = 2

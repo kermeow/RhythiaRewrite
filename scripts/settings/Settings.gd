@@ -8,6 +8,11 @@ enum ApproachMode {
 	DISTANCE_RATE,
 	RATE_TIME
 }
+enum CameraMode {
+	HALF_LOCK,
+	FULL_LOCK,
+	SPIN,
+}
 enum FadeInMode {
 	FADE,
 	APPEAR
@@ -35,9 +40,11 @@ const SETTINGS_CONFIG = [
 		["rate",Setting.Type.FLOAT,50.0],
 		["mode",Setting.Type.ENUM,ApproachMode,ApproachMode.RATE_TIME]
 	]],
-	["parallax",Setting.Type.CATEGORY,[
-		["camera",Setting.Type.FLOAT,1.0],
-		["hud",Setting.Type.FLOAT,0.0]
+	["camera",Setting.Type.CATEGORY,[
+		["camera_parallax",Setting.Type.FLOAT,1.0],
+		["hud_parallax",Setting.Type.FLOAT,0.0],
+		["mode", Setting.Type.ENUM, CameraMode, CameraMode.HALF_LOCK],
+		["lock",Setting.Type.BOOLEAN,true]
 	]],
 	["skin",Setting.Type.CATEGORY,[
 		["block",Setting.Type.CATEGORY,[
@@ -76,7 +83,6 @@ const SETTINGS_CONFIG = [
 			["mouse",Setting.Type.FLOAT,1.0],
 			["absolute",Setting.Type.FLOAT,1.0]
 		]],
-		["lock",Setting.Type.BOOLEAN,true],
 		["drift",Setting.Type.BOOLEAN,false],
 		["fov",Setting.Type.INT,70],
 		["absolute",Setting.Type.BOOLEAN,false]
