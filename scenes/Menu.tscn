@@ -1207,11 +1207,6 @@ allow_lesser = true
 label = "FOV"
 target = Array[String](["controls", "fov"])
 
-[node name="Drift" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
-layout_mode = 2
-label = "Cursor Drift"
-target = Array[String](["controls", "drift"])
-
 [node name="Absolute" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
 layout_mode = 2
 label = "Absolute Positioning"
@@ -1259,6 +1254,11 @@ hide_if_unfulfilled = true
 layout_mode = 2
 label = "Camera Lock"
 target = Array[String](["camera", "lock"])
+
+[node name="Drift" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Cursor Drift"
+target = Array[String](["camera", "drift"])
 
 [node name="Approach" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
 layout_mode = 2

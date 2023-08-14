@@ -62,7 +62,7 @@ func _input(event):
 		clamped_cursor_position = Vector2(
 			clamp(cursor_position.x,-clamp_value,clamp_value),
 			clamp(cursor_position.y,-clamp_value,clamp_value))
-		if game.settings.controls.drift:
+		if game.settings.camera.drift:
 			cursor_position = clamped_cursor_position
 func _absolute_movement(event:InputEventMouseMotion):
 	var cursor_position_3d = absolute_camera.project_position(event.position, -camera.position.z)
