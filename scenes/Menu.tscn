@@ -1231,7 +1231,7 @@ vertical_alignment = 2
 
 [node name="CamParallax" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera" instance=ExtResource("17_shbod")]
 layout_mode = 2
-suffix = "u"
+suffix = "x"
 arrow_step = 0.1
 allow_greater = true
 allow_lesser = true
