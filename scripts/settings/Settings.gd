@@ -41,8 +41,10 @@ const SETTINGS_CONFIG = [
 		["mode",Setting.Type.ENUM,ApproachMode,ApproachMode.RATE_TIME]
 	]],
 	["camera",Setting.Type.CATEGORY,[
-		["camera_parallax",Setting.Type.FLOAT,1.0],
-		["hud_parallax",Setting.Type.FLOAT,0.0],
+		["parallax",Setting.Type.CATEGORY, [
+			["camera",Setting.Type.FLOAT,1.0],
+			["hud",Setting.Type.FLOAT,0.0],
+		]],
 		["mode", Setting.Type.ENUM, CameraMode, CameraMode.HALF_LOCK],
 		["lock",Setting.Type.BOOLEAN,true]
 	]],

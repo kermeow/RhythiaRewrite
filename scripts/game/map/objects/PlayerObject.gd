@@ -54,7 +54,7 @@ func _exit_tree():
 func _input(event):
 	if event is InputEventMouseMotion:
 		var parallax = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
-		parallax *= game.settings.camera.camera_parallax
+		parallax *= game.settings.camera.parallax.camera
 		camera.position = camera_origin + (parallax + camera.basis.z) / 4
 		if game.settings.controls.absolute: _absolute_movement(event)
 		else: _relative_movement(event)
