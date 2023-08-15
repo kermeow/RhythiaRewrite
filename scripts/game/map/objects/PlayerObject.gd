@@ -54,7 +54,7 @@ func _exit_tree():
 func _input(event):
 	if event is InputEventMouseMotion:
 		var parallax = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
-		parallax *= game.settings.parallax.camera
+		parallax *= game.settings.camera.parallax.camera
 		camera.position = camera_origin + (parallax + camera.basis.z) / 4
 		if game.settings.controls.absolute: _absolute_movement(event)
 		else: _relative_movement(event)
@@ -62,18 +62,18 @@ func _input(event):
 		clamped_cursor_position = Vector2(
 			clamp(cursor_position.x,-clamp_value,clamp_value),
 			clamp(cursor_position.y,-clamp_value,clamp_value))
-		if game.settings.controls.drift:
+		if game.settings.camera.drift:
 			cursor_position = clamped_cursor_position
 func _absolute_movement(event:InputEventMouseMotion):
 	var cursor_position_3d = absolute_camera.project_position(event.position, -camera.position.z)
 	cursor_position = Vector2(cursor_position_3d.x, cursor_position_3d.y)
-	if !game.settings.controls.lock:
+	if !game.settings.camera.lock:
 		var spin_position = cursor_position_3d - camera.position
 		camera.rotation.y = atan(spin_position.x / -camera.position.z) + PI
 		camera.rotation.x = atan(spin_position.y / -camera.position.z)
 func _relative_movement(event:InputEventMouseMotion):
 	var mouse_movement = event.relative * game.settings.controls.sensitivity.mouse / 100.0
-	if game.settings.controls.lock:
+	if game.settings.camera.lock:
 		cursor_position -= mouse_movement
 	else:
 		camera.rotation_degrees -= Vector3(mouse_movement.y,mouse_movement.x,0) * 10

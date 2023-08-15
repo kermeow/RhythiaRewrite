@@ -35,9 +35,13 @@ const SETTINGS_CONFIG = [
 		["rate",Setting.Type.FLOAT,50.0],
 		["mode",Setting.Type.ENUM,ApproachMode,ApproachMode.RATE_TIME]
 	]],
-	["parallax",Setting.Type.CATEGORY,[
-		["camera",Setting.Type.FLOAT,1.0],
-		["hud",Setting.Type.FLOAT,0.0]
+	["camera",Setting.Type.CATEGORY,[
+		["parallax",Setting.Type.CATEGORY, [
+			["camera",Setting.Type.FLOAT,1.0],
+			["hud",Setting.Type.FLOAT,0.0],
+		]],
+		["lock",Setting.Type.BOOLEAN,true],
+		["drift",Setting.Type.BOOLEAN,false],
 	]],
 	["skin",Setting.Type.CATEGORY,[
 		["block",Setting.Type.CATEGORY,[
@@ -70,14 +74,12 @@ const SETTINGS_CONFIG = [
 	["offset",Setting.Type.CATEGORY,[
 		["music",Setting.Type.INT,0],
 		["sfx",Setting.Type.INT,0]
-	]],
+	]],	
 	["controls",Setting.Type.CATEGORY,[
 		["sensitivity",Setting.Type.CATEGORY,[
 			["mouse",Setting.Type.FLOAT,1.0],
 			["absolute",Setting.Type.FLOAT,1.0]
 		]],
-		["lock",Setting.Type.BOOLEAN,true],
-		["drift",Setting.Type.BOOLEAN,false],
 		["fov",Setting.Type.INT,70],
 		["absolute",Setting.Type.BOOLEAN,false]
 	]],
