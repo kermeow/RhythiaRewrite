@@ -85,11 +85,7 @@ func map_selected(selected_index:int=0):
 
 func convert_map():
 	if mapset.format == 3: return
-	var reader = MapsetReader.new()
-	var full_map = reader.read_from_file(mapset.path,true)
-	reader.free()
-	var writer = MapsetWriter.new()
-	writer.write_to_file(full_map,mapset.path)
-	writer.free()
+	var full_map = Mapset.read_from_file(mapset.path,true)
+	full_map.write_to_file(full_map,mapset.path)
 	mapset.broken = true
 	mapset_selected(null)

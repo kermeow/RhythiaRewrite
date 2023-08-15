@@ -142,7 +142,7 @@ var selected_mapset:String
 var selected_mods:Mods = Mods.new()
 var game_scene:Node
 func load_game_scene(game_type:int,mapset:Mapset,map_index:int=0):
-	var full_mapset = MapsetReader.read_from_file(mapset.path,true,map_index)
+	var full_mapset = Mapset.read_from_file(mapset.path,true,map_index)
 	assert(full_mapset.id == mapset.id)
 	selected_mapset = mapset.id
 	var scene:Node
