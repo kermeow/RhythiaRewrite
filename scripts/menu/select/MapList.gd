@@ -37,7 +37,7 @@ func select_mapset_id(id:String):
 	on_mapset_selected.emit(mapset)
 	list.call_deferred("set","scroll_vertical",max(index * BUTTON_SIZE - 8.0,0))
 
-func playlist_selected(playlist:Playlist=null,all:bool=false):
+func playlist_selected(playlist:Playlist=null,all:bool=false): # This code needs to be abstracted to a playlist list
 	if all or !playlist:
 		origin_list = Rhythia.mapsets.items
 	else:
