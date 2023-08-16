@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cu2rno2ef0dtr"]
+[gd_scene load_steps=43 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://scripts/menu/lobby/Lobby.gd" id="16_to4ol"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
-[ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
+[ext_resource type="PackedScene" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
 [ext_resource type="PackedScene" uid="uid://k4boo5xdg2m3" path="res://prefabs/menu/settings/EnumControl.tscn" id="19_bkaum"]
 [ext_resource type="Script" path="res://scripts/menu/Sidebar.gd" id="21_e3lc5"]
 
@@ -170,6 +170,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -1149,7 +1150,6 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
@@ -1168,6 +1168,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0vm47")
 clip_tabs = false
 
 [node name="Gameplay" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -1185,7 +1186,7 @@ theme_override_constants/separation = 4
 [node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Controls"
+text = "Camera & Controls"
 vertical_alignment = 2
 
 [node name="Sensitivity" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
@@ -1195,6 +1196,11 @@ allow_greater = true
 allow_lesser = true
 label = "Mouse Sensitivity"
 target = Array[String](["controls", "sensitivity", "mouse"])
+
+[node name="Absolute" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Absolute Positioning"
+target = Array[String](["controls", "absolute"])
 
 [node name="FOV" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
 layout_mode = 2
@@ -1207,24 +1213,12 @@ allow_lesser = true
 label = "FOV"
 target = Array[String](["controls", "fov"])
 
-[node name="Absolute" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
+[node name="Lock" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
 layout_mode = 2
-label = "Absolute Positioning"
-target = Array[String](["controls", "absolute"])
+label = "Camera Lock"
+target = Array[String](["camera", "lock"])
 
-[node name="Camera" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 4
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Camera
-"
-vertical_alignment = 2
-
-[node name="CamParallax" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera" instance=ExtResource("17_shbod")]
+[node name="CamParallax" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
 layout_mode = 2
 suffix = "x"
 arrow_step = 0.1
@@ -1237,7 +1231,7 @@ requirement_reversed = true
 hide_if_unfulfilled = true
 multiplier = 10.0
 
-[node name="HudParallax" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera" instance=ExtResource("17_shbod")]
+[node name="HudParallax" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
 visible = false
 layout_mode = 2
 suffix = "s"
@@ -1250,12 +1244,7 @@ required_value = "1"
 requirement_reversed = true
 hide_if_unfulfilled = true
 
-[node name="Lock" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera" instance=ExtResource("19_8t4jv")]
-layout_mode = 2
-label = "Camera Lock"
-target = Array[String](["camera", "lock"])
-
-[node name="Drift" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Camera" instance=ExtResource("19_8t4jv")]
+[node name="Drift" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
 layout_mode = 2
 label = "Cursor Drift"
 target = Array[String](["camera", "drift"])
@@ -1621,7 +1610,6 @@ label = "Music Offset"
 target = Array[String](["offset", "music"])
 
 [node name="Advanced" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
-visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -1662,6 +1650,26 @@ layout_mode = 2
 enum_names = Array[String](["Preload", "Rolling"])
 label = "Note Spawn Mode"
 target = Array[String](["advanced", "note_spawn_mode"])
+
+[node name="BreakTime" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "s"
+arrow_step = 0.1
+step = 0.01
+min_value = 1.0
+allow_greater = true
+label = "Required Break Time"
+target = Array[String](["advanced", "skip", "minimum_break_time"])
+
+[node name="SkipTime" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "s"
+arrow_step = 0.1
+step = 0.01
+min_value = 1.0
+allow_greater = true
+label = "Required Skip Time"
+target = Array[String](["advanced", "skip", "minimum_skip_time"])
 
 [node name="VersionNumberR" parent="Main" instance=ExtResource("1")]
 layout_mode = 1

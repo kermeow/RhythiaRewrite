@@ -20,6 +20,7 @@ signal failed
 
 var trails:Array = []
 var trail_position:Vector3 = Vector3.ZERO
+var trail_pre_position:Vector3 = Vector3.ZERO
 
 @onready var score:Score = Score.new()
 
@@ -98,6 +99,7 @@ func _process(_delta):
 
 	if game.settings.skin.cursor.trail_enabled:
 		var now = Time.get_ticks_msec()
+		var pre_position = trail_pre_position
 		var start_position = trail_position
 		var end_position = cursor.position
 		var gap = end_position - start_position
@@ -105,11 +107,17 @@ func _process(_delta):
 		if gap_length > 0:
 			var new_trails = floor(game.settings.skin.cursor.trail_detail*gap_length)
 			if new_trails > 0:
+				trail_pre_position = start_position
 				trail_position = end_position
+				var start_diff = start_position - pre_position
+				var mid_position = start_position + gap / 2 + start_diff / 2
+				var control_1 = start_position.lerp(mid_position,0.2)
+				var control_2 = end_position.lerp(mid_position,0.2)
 				for i in new_trails:
 					var progress = i/new_trails
 					trails.push_front(now - _delta * progress)
-					var position = end_position - gap * progress
+#					var position = end_position - gap * progress
+					var position = start_position.bezier_interpolate(control_1,control_2,end_position,progress)
 					trails.push_front(Transform3D(real.basis, position))
 		var total_trails = trails.size() / 2
 		var remove_trails = 0
