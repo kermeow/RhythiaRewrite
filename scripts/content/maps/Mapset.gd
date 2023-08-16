@@ -248,10 +248,10 @@ func _sspmv2(file:FileAccess,full:bool): # Load a v2 map
 	song = file.get_buffer(file.get_16()).get_string_from_utf8()
 	creator = ""
 	for i in range(file.get_16()):
-		var creator = file.get_buffer(file.get_16()).get_string_from_utf8()
+		var new_creator = file.get_buffer(file.get_16()).get_string_from_utf8()
 		if i != 0:
-			creator += " & "
-		creator += creator
+			new_creator += " & "
+		creator += new_creator
 	map.creator = creator
 	for i in range(file.get_16()):
 		var key_length = file.get_16()
@@ -341,7 +341,6 @@ func _read_data_type(file:FileAccess,skip_type:bool=false,skip_array_type:bool=f
 			return array
 # Cover reading
 func _cover_from_file(file:FileAccess): # Intended for v3
-	assert(format == 3)
 	file.seek(file_offsets.cover)
 	var cover_width = file.get_16()
 	var cover_height = file.get_16()
@@ -351,7 +350,6 @@ func _cover_from_file(file:FileAccess): # Intended for v3
 	return image
 # Audio reading
 func _audio_from_file(file:FileAccess): # Intended for v3
-	assert(format == 3)
 	file.seek(file_offsets.audio)
 	var audio_length = file.get_64()
 	var audio_buffer = file.get_buffer(audio_length)
