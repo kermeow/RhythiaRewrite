@@ -35,7 +35,7 @@ func attempt_pause():
 	Input.warp_mouse(get_viewport_rect().size*0.5)
 	if tween != null: tween.kill()
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(self,"modulate:a",1,0.4)
+	tween.tween_property(self,"modulate:a",1,0.15)
 	tween.play()
 func attempt_resume():
 	if !get_tree().paused: return
@@ -47,9 +47,9 @@ func attempt_resume():
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	if tween != null: tween.kill()
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(self,"modulate:a",0,0.4)
+	tween.tween_property(self,"modulate:a",0,0.15)
 	tween.play()
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.15).timeout
 	await tween.finished
 	get_tree().paused = false
 func attempt_restart():
