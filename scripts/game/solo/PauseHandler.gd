@@ -15,7 +15,7 @@ func _ready():
 func _input(event):
 	var paused = get_tree().paused
 	if event.is_action_pressed("pause"):
-		if !paused: attempt_pause()
+		if !(event.is_action_pressed("skip") and get_parent().check_skippable()) and !paused: attempt_pause()
 		else: attempt_resume()
 	if event.is_action_pressed("restart"):
 		get_tree().paused = true

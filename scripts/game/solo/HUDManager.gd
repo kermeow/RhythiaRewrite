@@ -30,3 +30,4 @@ func _process(_delta):
 	energy.health = game.player.health
 	timer.sync_manager = game.sync_manager
 	timer.song_name = "%s [%s]" % [game.mapset.name, game.map.name]
+	timer.skippable = game.check_skippable()

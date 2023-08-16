@@ -36,3 +36,24 @@ func ready():
 	pass
 func finish(_failed:bool=false):
 	pass
+
+func _next_note():
+	var current_time = sync_manager.current_time
+	for note in map.notes:
+		if note.time > current_time:
+			return note
+func check_skippable():
+	var current_time = sync_manager.current_time
+	var next_note = _next_note()
+	if !next_note and object_manager.objects_to_process.is_empty(): return true
+	var next_note_time = next_note.time
+	var last_note_time = 0
+	if map.notes.find(next_note) > 0:
+		last_note_time = map.notes[map.notes.find(next_note)-1].time
+	var is_break = (next_note_time - last_note_time) >= settings.advanced.skip.minimum_break_time
+	if !is_break: return false
+	return (next_note_time - current_time) > settings.advanced.skip.minimum_skip_time
+func skip():
+	var current_time = sync_manager.current_time
+	var next_note = _next_note()
+	sync_manager.seek(next_note.time - min(1.5,settings.advanced.skip.minimum_skip_time))

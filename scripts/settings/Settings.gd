@@ -58,6 +58,7 @@ const SETTINGS_CONFIG = [
 		]],
 		["cursor",Setting.Type.CATEGORY,[
 			["scale",Setting.Type.FLOAT,1.0],
+			["opacity",Setting.Type.FLOAT,1.0],
 			["trail_enabled",Setting.Type.BOOLEAN,false],
 			["trail_detail",Setting.Type.INT,100],
 			["trail_length",Setting.Type.FLOAT,0.1]
@@ -73,8 +74,9 @@ const SETTINGS_CONFIG = [
 	]],
 	["offset",Setting.Type.CATEGORY,[
 		["music",Setting.Type.INT,0],
-		["sfx",Setting.Type.INT,0]
-	]],	
+		["hit_sfx",Setting.Type.INT,0],
+		["miss_sfx",Setting.Type.INT,0]
+	]],
 	["controls",Setting.Type.CATEGORY,[
 		["sensitivity",Setting.Type.CATEGORY,[
 			["mouse",Setting.Type.FLOAT,1.0],
@@ -87,6 +89,10 @@ const SETTINGS_CONFIG = [
 		["maps",Setting.Type.ARRAY,["user://../SoundSpacePlus/maps"]]
 	]],
 	["advanced",Setting.Type.CATEGORY,[
+		["skip",Setting.Type.CATEGORY,[
+			["minimum_break_time",Setting.Type.FLOAT,5.0],
+			["minimum_skip_time",Setting.Type.FLOAT,2.0]
+		]],
 		["note_render_mode",Setting.Type.ENUM,NoteRenderMode,NoteRenderMode.INDIVIDUAL],
 		["note_spawn_mode",Setting.Type.ENUM,NoteSpawnMode,NoteSpawnMode.PRELOAD]
 	]]

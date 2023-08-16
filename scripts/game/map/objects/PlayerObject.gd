@@ -52,6 +52,8 @@ func _exit_tree():
 		Input.use_accumulated_input = true
 
 func _input(event):
+	if event.is_action_pressed("skip") and game.check_skippable():
+		game.skip()
 	if event is InputEventMouseMotion:
 		var parallax = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
 		parallax *= game.settings.camera.parallax.camera

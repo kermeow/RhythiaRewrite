@@ -19,7 +19,7 @@ func ready():
 		var world_node = world.load_world()
 		world_node.set_meta("game",self)
 		world_parent.add_child(world_node)
-	
+
 	HitObject.hit_sound = $Hit
 	HitObject.miss_sound = $Miss
 
