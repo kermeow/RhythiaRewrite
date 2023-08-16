@@ -1309,7 +1309,6 @@ requirement_reversed = true
 hide_if_unfulfilled = true
 
 [node name="Skin" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
-visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -1484,8 +1483,17 @@ layout_mode = 2
 suffix = "s"
 arrow_step = 0.05
 allow_greater = true
-label = "Trail Length"
+label = "Trail Decay"
 target = Array[String](["skin", "cursor", "trail_length"])
+
+[node name="TrailDistance" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "m"
+arrow_step = 0.05
+min_value = 0.01
+allow_greater = true
+label = "Trail Length"
+target = Array[String](["skin", "cursor", "trail_distance"])
 
 [node name="Background" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns"]
 layout_mode = 2
@@ -1610,6 +1618,7 @@ label = "Music Offset"
 target = Array[String](["offset", "music"])
 
 [node name="Advanced" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0

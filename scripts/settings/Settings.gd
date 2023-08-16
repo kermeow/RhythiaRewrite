@@ -61,7 +61,8 @@ const SETTINGS_CONFIG = [
 			["opacity",Setting.Type.FLOAT,1.0],
 			["trail_enabled",Setting.Type.BOOLEAN,false],
 			["trail_detail",Setting.Type.INT,100],
-			["trail_length",Setting.Type.FLOAT,0.1]
+			["trail_length",Setting.Type.FLOAT,0.1],
+			["trail_distance",Setting.Type.FLOAT,0.3]
 		]],
 		["background",Setting.Type.CATEGORY,[
 			["world",Setting.Type.STRING,"tunnel"]

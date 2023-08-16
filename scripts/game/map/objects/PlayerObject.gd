@@ -124,7 +124,9 @@ func _process(_delta):
 		trail.instance_count = total_trails
 		for trail_no in total_trails:
 			var time = (now - trails[trail_no*2+1])/1000
-			var alpha = 1 - (time / game.settings.skin.cursor.trail_length)
+			var time_alpha = 1 - (time / game.settings.skin.cursor.trail_length)
+			var distance_alpha = 1 - (float(trail_no) / (game.settings.skin.cursor.trail_distance * game.settings.skin.cursor.trail_detail))
+			var alpha = min(time_alpha, distance_alpha)
 			trail.set_instance_color(trail_no, Color(1,1,1,alpha))
 			trail.set_instance_transform(trail_no, trails[trail_no*2])
 			if alpha < 0: remove_trails += 1
