@@ -45,7 +45,7 @@ func _next_note():
 func check_skippable():
 	var current_time = sync_manager.current_time
 	var next_note = _next_note()
-	if !next_note and object_manager.objects_to_process.is_empty(): return true
+	if !next_note: return object_manager.objects_to_process.is_empty()
 	var next_note_time = next_note.time
 	var last_note_time = 0
 	if map.notes.find(next_note) > 0:
@@ -56,4 +56,8 @@ func check_skippable():
 func skip():
 	var current_time = sync_manager.current_time
 	var next_note = _next_note()
-	sync_manager.seek(next_note.time - min(1.5,settings.advanced.skip.minimum_skip_time))
+	if next_note:
+		var skip_time = next_note.time - min(1.5,settings.advanced.skip.minimum_skip_time)
+		sync_manager.seek(skip_time)
+		return
+	finish()
