@@ -7,5 +7,5 @@ func _init(_world:PackedScene=null):
 	world = _world
 
 func load_world():
-	var node = world.instantiate()
+	var node = world.duplicate().instantiate()
 	return node

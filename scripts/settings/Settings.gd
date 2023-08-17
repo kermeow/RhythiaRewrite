@@ -65,7 +65,10 @@ const SETTINGS_CONFIG = [
 			["trail_distance",Setting.Type.FLOAT,1.0]
 		]],
 		["background",Setting.Type.CATEGORY,[
-			["world",Setting.Type.STRING,"tunnel"]
+			["world",Setting.Type.STRING,"tunnel"],
+			["ignore_map",Setting.Type.BOOLEAN,false],
+			["full_static",Setting.Type.BOOLEAN,false],
+			["static_light",Setting.Type.BOOLEAN,false]
 		]]
 	]],
 	["volume",Setting.Type.CATEGORY,[

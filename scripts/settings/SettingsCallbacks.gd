@@ -8,6 +8,9 @@ var window:Window
 func bind_to(_settings:GameSettings):
 	settings = _settings
 
+	# Skin
+	settings.skin.background.get_setting("full_static").changed.connect(full_static)
+
 	# Approach Rate
 	settings.approach.get_setting("rate").changed.connect(approach_rate.bind("rate"))
 	settings.approach.get_setting("time").changed.connect(approach_rate.bind("time"))
@@ -23,6 +26,10 @@ func bind_to(_settings:GameSettings):
 
 	# Fullscreen
 	settings.get_setting("fullscreen").changed.connect(fullscreen)
+
+func full_static(value:bool):
+	if value:
+		settings.skin.background.static_lighting = true
 
 func approach_rate(_value,value:String):
 	var mode = settings.approach.mode

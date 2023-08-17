@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://scripts/menu/lobby/Lobby.gd" id="16_to4ol"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
-[ext_resource type="PackedScene" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
+[ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
 [ext_resource type="PackedScene" uid="uid://k4boo5xdg2m3" path="res://prefabs/menu/settings/EnumControl.tscn" id="19_bkaum"]
 [ext_resource type="Script" path="res://scripts/menu/Sidebar.gd" id="21_e3lc5"]
 
@@ -1317,6 +1317,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+columns = 2
 
 [node name="Notes" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns"]
 layout_mode = 2
@@ -1511,6 +1512,26 @@ layout_mode = 2
 registry_name = "worlds"
 label = "World"
 target = Array[String](["skin", "background", "world"])
+disable_revert = true
+
+[node name="IgnoreMap" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Ignore Map Setting"
+target = Array[String](["skin", "background", "ignore_map"])
+
+[node name="StaticWorld" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Full Static World"
+target = Array[String](["skin", "background", "full_static"])
+
+[node name="StaticLights" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Static Lighting"
+target = Array[String](["skin", "background", "static_light"])
+has_requirement = true
+requirement_target = Array[String](["skin", "background", "static"])
+required_value = "1"
+requirement_reversed = true
 
 [node name="Video" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
