@@ -47,6 +47,7 @@ func _ready():
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		Input.use_accumulated_input = false
+		_input(InputEventMouseMotion.new())
 func _exit_tree():
 	if local_player:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

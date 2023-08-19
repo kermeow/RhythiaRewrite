@@ -56,8 +56,9 @@ func _ready():
 func requirement_changed(value):
 	var fulfilled = str(value) == required_value
 	if requirement_reversed: fulfilled = !fulfilled
+	signal_emitter.set("disabled", !fulfilled)
+	signal_emitter.set("editable", fulfilled)
 	if hide_if_unfulfilled: visible = fulfilled
-	else: signal_emitter.disabled = !fulfilled
 
 func revert():
 	target_setting.value = target_setting.default

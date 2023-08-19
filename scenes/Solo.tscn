@@ -138,8 +138,6 @@ manager = NodePath("../../ObjectManager")
 script = ExtResource("10_tyqty")
 id = "World"
 permanent = true
-spawn_time = null
-despawn_time = null
 
 [node name="HUD" parent="Origin" instance=ExtResource("10_i0uko")]
 process_priority = -1

@@ -3,7 +3,7 @@ extends GameScene
 @export var hud_manager:HUDManager
 @export var reporter:StatisticsReporter
 
-@export var world_parent:Node3D
+@export var world_parent:WorldContainerObject
 
 func setup_managers():
 	super.setup_managers()
@@ -16,9 +16,7 @@ func ready():
 	if ids.has(selected_world):
 		world = Rhythia.worlds.get_by_id(selected_world)
 	if world != null:
-		var world_node = world.load_world()
-		world_node.set_meta("game",self)
-		world_parent.add_child(world_node)
+		world_parent.load_world(world)
 
 	HitObject.hit_sound = $Hit
 	HitObject.miss_sound = $Miss

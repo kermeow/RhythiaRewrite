@@ -170,7 +170,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
@@ -1150,6 +1149,7 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
@@ -1168,7 +1168,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0vm47")
 clip_tabs = false
 
 [node name="Gameplay" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
-visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -1229,7 +1228,6 @@ target = Array[String](["camera", "parallax", "camera"])
 required_value = "1"
 requirement_reversed = true
 hide_if_unfulfilled = true
-multiplier = 10.0
 
 [node name="HudParallax" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
 visible = false
@@ -1309,6 +1307,7 @@ requirement_reversed = true
 hide_if_unfulfilled = true
 
 [node name="Skin" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -1529,9 +1528,8 @@ layout_mode = 2
 label = "Static Lighting"
 target = Array[String](["skin", "background", "static_light"])
 has_requirement = true
-requirement_target = Array[String](["skin", "background", "static"])
-required_value = "1"
-requirement_reversed = true
+requirement_target = Array[String](["skin", "background", "full_static"])
+required_value = "false"
 
 [node name="Video" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
 visible = false

@@ -15,7 +15,8 @@ func hit(note:HitObject):
 
 func _ready():
 	game = get_meta("game")
-	game.player.connect("hit",Callable(self,"hit"))
+	if get_meta("lighting"):
+		game.player.connect("hit",Callable(self,"hit"))
 
 func _process(delta):
 	$tunnel.position.z -= rate * game.sync_manager.playback_speed * delta

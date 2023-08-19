@@ -29,7 +29,7 @@ func bind_to(_settings:GameSettings):
 
 func full_static(value:bool):
 	if value:
-		settings.skin.background.static_lighting = true
+		settings.skin.background.static_light = true
 
 func approach_rate(_value,value:String):
 	var mode = settings.approach.mode
