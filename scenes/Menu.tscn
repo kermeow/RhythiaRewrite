@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=42 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -21,7 +21,6 @@
 [ext_resource type="Script" path="res://scripts/menu/select/SpeedMods.gd" id="13_66cgf"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
 [ext_resource type="Script" path="res://scripts/menu/select/StartFrom.gd" id="14_sad65"]
-[ext_resource type="Script" path="res://scripts/menu/lobby/Lobby.gd" id="16_to4ol"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
 [ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
@@ -834,7 +833,6 @@ vertical_alignment = 1
 [node name="Lobby" type="Control" parent="Main/TabBar"]
 visible = false
 layout_mode = 2
-script = ExtResource("16_to4ol")
 
 [node name="Join" type="Panel" parent="Main/TabBar/Lobby"]
 layout_mode = 1
