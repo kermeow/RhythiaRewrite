@@ -9,13 +9,13 @@ var property_name:String
 
 @export var label:String = ""
 @export var target:Array[String] = []
-var target_setting:Setting
+var target_setting:GameSettings.Setting
 @export var disable_revert:bool = false
 
 @export_subgroup("Requirements")
 @export var has_requirement:bool = false
 @export var requirement_target:Array[String] = []
-var requirement_setting:Setting
+var requirement_setting:GameSettings.Setting
 @export var required_value:String
 @export var requirement_reversed:bool = false
 @export var hide_if_unfulfilled:bool = false

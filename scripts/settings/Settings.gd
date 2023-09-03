@@ -126,7 +126,7 @@ func _set(property,value):
 	return true
 
 # Saving/loading
-func load_setting(setting, data):
+static func load_setting(setting, data):
 	if setting.type == Setting.Type.CATEGORY:
 		if typeof(data) != TYPE_DICTIONARY: return
 		for key in data.keys():
@@ -134,25 +134,27 @@ func load_setting(setting, data):
 			if child_setting != null: load_setting(child_setting,data[key])
 		return
 	setting.value = data
-func parse_setting(setting):
-	if setting.type == GameSettings.Setting.Type.CATEGORY:
+static func parse_setting(setting):
+	if setting.type == Setting.Type.CATEGORY:
 		var value = {}
 		for key in setting.value.keys():
 			value[key] = parse_setting(setting.get_setting(key))
 		return value
 	return setting.value
 static func load_from_file(path:String):
+	var new_settings = new()
 	var data = {}
-	if FileAccess.file_exists(settings_path):
-		var file = FileAccess.open(settings_path,FileAccess.READ)
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.READ)
 		data = JSON.parse_string(file.get_as_text())
 	for key in data.keys():
-		var setting = settings.get_setting(key)
-		if setting != null: load_setting(setting,data[key])
+		var setting = new_settings.get_setting(key)
+		if setting != null: load_setting(setting, data[key])
+	return new_settings
 func save_to_file(path:String):
 	var data = {}
-	for key in settings.settings.keys():
-		data[key] = parse_setting(settings.get_setting(key))
-	var file = FileAccess.open(settings_path,FileAccess.WRITE)
-	file.store_string(JSON.stringify(data,"	",false))
+	for key in settings.keys():
+		data[key] = parse_setting(get_setting(key))
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	file.store_string(JSON.stringify(data, "	", false))
 	file.close()
