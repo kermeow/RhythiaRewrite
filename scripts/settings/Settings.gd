@@ -1,6 +1,9 @@
 extends Resource
 class_name GameSettings
 
+const Setting = preload("res://scripts/settings/Setting.gd")
+const Callbacks = preload("res://scripts/settings/SettingsCallbacks.gd")
+
 signal setting_changed
 
 enum ApproachMode {
@@ -121,3 +124,35 @@ func _set(property,value):
 	if settings[property].type == Setting.Type.CATEGORY: return false
 	settings[property].value = value
 	return true
+
+# Saving/loading
+func load_setting(setting, data):
+	if setting.type == Setting.Type.CATEGORY:
+		if typeof(data) != TYPE_DICTIONARY: return
+		for key in data.keys():
+			var child_setting = setting.get_setting(key)
+			if child_setting != null: load_setting(child_setting,data[key])
+		return
+	setting.value = data
+func parse_setting(setting):
+	if setting.type == GameSettings.Setting.Type.CATEGORY:
+		var value = {}
+		for key in setting.value.keys():
+			value[key] = parse_setting(setting.get_setting(key))
+		return value
+	return setting.value
+static func load_from_file(path:String):
+	var data = {}
+	if FileAccess.file_exists(settings_path):
+		var file = FileAccess.open(settings_path,FileAccess.READ)
+		data = JSON.parse_string(file.get_as_text())
+	for key in data.keys():
+		var setting = settings.get_setting(key)
+		if setting != null: load_setting(setting,data[key])
+func save_to_file(path:String):
+	var data = {}
+	for key in settings.settings.keys():
+		data[key] = parse_setting(settings.get_setting(key))
+	var file = FileAccess.open(settings_path,FileAccess.WRITE)
+	file.store_string(JSON.stringify(data,"	",false))
+	file.close()

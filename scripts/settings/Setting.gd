@@ -1,5 +1,4 @@
 extends Object
-class_name Setting
 
 signal changed
 
@@ -55,7 +54,7 @@ func _init(config:Array):
 		category_config = config[2]
 #		value = {}
 		for setting_config in category_config:
-			var setting = Setting.new(setting_config)
+			var setting = new(setting_config)
 			value[setting_config[0]] = setting
 	elif type == Type.ENUM:
 		enum_type = config[2]

@@ -1,5 +1,3 @@
-class_name GameSettingsCallbacks
-
 var settings:GameSettings
 
 var tree:SceneTree
