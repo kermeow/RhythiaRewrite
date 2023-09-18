@@ -1,35 +1,46 @@
 extends Node
 
 @onready var debug = OS.has_feature("debug")
+@onready var platform = get_platform()
 
-enum RootFolder {
+func get_platform():
+	var platform = "linux"
+	match OS.get_name():
+		"Windows", "UWP": platform = "win"
+		"macOS": platform = "mac"
+		"Android": platform = "android"
+		"iOS": platform = "ios"
+		"Web": platform = "web"
+	return platform
+
+enum RootPath {
 	USER,
 	RES,
 	EXECUTABLE,
 	SKIN
 }
 
-var Folders = {
+var Paths = {
 	user = "user://",
 	res = "res://",
 	executable = "",
 	skin = "",
 }
-const _folders = {
-	skin = [RootFolder.RES,"assets"],
-	maps = [RootFolder.USER,"maps"],
-	playlists = [RootFolder.USER,"playlists"]
+const _paths = {
+	skin = [RootPath.RES,"assets"],
+	maps = [RootPath.USER,"maps"],
+	playlists = [RootPath.USER,"playlists"]
 }
 
-func update_folders():
-	Folders.executable = OS.get_executable_path()
-	for key in _folders.keys():
-		var value = _folders[key]
+func update_paths():
+	Paths.executable = OS.get_executable_path()
+	for key in _paths.keys():
+		var value = _paths[key]
 		match value[0]:
-			RootFolder.USER: Folders[key] = Folders.user.path_join(value[1])
-			RootFolder.RES: Folders[key] = Folders.res.path_join(value[1])
-			RootFolder.EXECUTABLE: Folders[key] = Folders.executable.path_join(value[1])
-			RootFolder.SKIN: Folders[key] = Folders.skin.path_join(value[1])
+			RootPath.USER: Paths[key] = Paths.user.path_join(value[1])
+			RootPath.RES: Paths[key] = Paths.res.path_join(value[1])
+			RootPath.EXECUTABLE: Paths[key] = Paths.executable.path_join(value[1])
+			RootPath.SKIN: Paths[key] = Paths.skin.path_join(value[1])
 
 enum AudioFormat {
 	UNKNOWN,
@@ -93,4 +104,4 @@ const StatusMessages = {
 }
 
 func _ready():
-	update_folders()
+	update_paths()

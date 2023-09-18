@@ -43,14 +43,7 @@ func load_settings():
 	if FileAccess.file_exists(settings_path):
 		settings = GameSettings.load_from_file(settings_path)
 	else:
-		var platform = "linux"
-		match OS.get_name():
-			"Windows", "UWP": platform = "win"
-			"macOS": platform = "mac"
-			"Android": platform = "android"
-			"iOS": platform = "ios"
-			"Web": platform = "web"
-		var platform_default = "res://assets/settings/%s.json" % platform
+		var platform_default = "res://assets/settings/%s.json" % Globals.platform
 		settings = GameSettings.load_from_file(platform_default)
 	first_time = settings.first_time
 	
