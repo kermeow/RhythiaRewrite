@@ -40,10 +40,19 @@ func _ready():
 
 # Settings
 func load_settings():
-	var exec_settings = OS.get_executable_path().get_base_dir().path_join("preferences.json")
-	if FileAccess.file_exists(exec_settings): settings_path = exec_settings
 	
-	settings = GameSettings.load_from_file(settings_path)
+	if FileAccess.file_exists(settings_path):
+		settings = GameSettings.load_from_file(settings_path)
+	else:
+		var platform = "linux"
+		match OS.get_name():
+			"Windows", "UWP": platform = "win"
+			"macOS": platform = "mac"
+			"Android": platform = "android"
+			"iOS": platform = "ios"
+			"Web": platform = "web"
+		var platform_default = "res://assets/settings/%s.json" % platform
+		settings = GameSettings.load_from_file(platform_default)
 	first_time = settings.first_time
 	
 	var callbacks = GameSettings.Callbacks.new()
