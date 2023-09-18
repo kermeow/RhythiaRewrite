@@ -40,7 +40,6 @@ func _ready():
 
 # Settings
 func load_settings():
-	
 	if FileAccess.file_exists(settings_path):
 		settings = GameSettings.load_from_file(settings_path)
 	else:
