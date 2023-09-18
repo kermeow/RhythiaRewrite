@@ -6,6 +6,13 @@ const Callbacks = preload("res://scripts/settings/SettingsCallbacks.gd")
 
 signal setting_changed
 
+enum GuiScale {
+	VERY_LARGE,
+	LARGE,
+	MEDIUM,
+	SMALL,
+	TINY
+}
 enum ApproachMode {
 	DISTANCE_TIME,
 	DISTANCE_RATE,
@@ -32,6 +39,7 @@ const SETTINGS_CONFIG = [
 	["first_time",Setting.Type.BOOLEAN,true],
 	["fps_limit",Setting.Type.INT,0],
 	["fullscreen",Setting.Type.BOOLEAN,false],
+	["gui_scale",Setting.Type.ENUM,GuiScale,GuiScale.LARGE],
 	["approach",Setting.Type.CATEGORY,[
 		["time",Setting.Type.FLOAT,1.0],
 		["distance",Setting.Type.FLOAT,50.0],

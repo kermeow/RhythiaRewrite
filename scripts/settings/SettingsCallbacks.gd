@@ -24,6 +24,9 @@ func bind_to(_settings:GameSettings):
 
 	# Fullscreen
 	settings.get_setting("fullscreen").changed.connect(fullscreen)
+	
+	# Gui Scale
+	settings.get_setting("gui_scale").changed.connect(gui_scale)
 
 func full_static(value:bool):
 	if value:
@@ -58,3 +61,15 @@ func volume(value:float,bus:String="Master"):
 
 func set_fps(value:int):
 	tree.fps_limit = value
+
+func gui_scale(value:int):
+	var scale = 1
+	match value:
+		0: scale = 1.6 # 1280 / 800
+		1: scale = 1
+		2: scale = 0.8 # 1280 / 1600
+		3: scale = 1280.0 / 1920.0
+		4: scale = 0.5 # 1280 / 2560
+#	window.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+#	window.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
+	window.content_scale_factor = scale

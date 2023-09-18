@@ -1563,6 +1563,12 @@ allow_greater = true
 label = "FPS Limit"
 target = Array[String](["fps_limit"])
 
+[node name="Scale" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("19_bkaum")]
+layout_mode = 2
+enum_names = Array[String](["Very Large", "Large", "Medium", "Small", "Tiny"])
+label = "Gui Scale"
+target = Array[String](["gui_scale"])
+
 [node name="Audio" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
 layout_mode = 2
