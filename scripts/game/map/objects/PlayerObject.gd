@@ -53,30 +53,37 @@ func _exit_tree():
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		Input.use_accumulated_input = true
 
+func _preprocess_cursor():
+	var parallax = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
+	parallax *= game.settings.camera.parallax.camera
+	camera.position = camera_origin + (parallax + camera.basis.z) / 4
+func _postprocess_cursor():
+	var clamp_value = 1.36875
+	clamped_cursor_position = Vector2(
+		clamp(cursor_position.x,-clamp_value,clamp_value),
+		clamp(cursor_position.y,-clamp_value,clamp_value))
+	if game.settings.camera.drift:
+		cursor_position = clamped_cursor_position
 func _input(event):
 	if event.is_action_pressed("skip") and game.check_skippable():
 		game.skip()
 	if event is InputEventMouseMotion:
-		var parallax = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
-		parallax *= game.settings.camera.parallax.camera
-		camera.position = camera_origin + (parallax + camera.basis.z) / 4
-		if game.settings.controls.absolute: _absolute_movement(event)
-		else: _relative_movement(event)
-		var clamp_value = 1.36875
-		clamped_cursor_position = Vector2(
-			clamp(cursor_position.x,-clamp_value,clamp_value),
-			clamp(cursor_position.y,-clamp_value,clamp_value))
-		if game.settings.camera.drift:
-			cursor_position = clamped_cursor_position
-func _absolute_movement(event:InputEventMouseMotion):
-	var cursor_position_3d = absolute_camera.project_position(event.position, -camera.position.z)
+		_preprocess_cursor()
+		if Globals.platform == "linux":
+			if !game.settings.controls.absolute: _relative_movement(event.relative)
+		else:
+			if game.settings.controls.absolute: _absolute_movement(event.position)
+			else: _relative_movement(event.relative)
+		_postprocess_cursor()
+func _absolute_movement(mouse_position:Vector2):
+	var cursor_position_3d = absolute_camera.project_position(mouse_position, -camera.position.z)
 	cursor_position = Vector2(cursor_position_3d.x, cursor_position_3d.y)
 	if !game.settings.camera.lock:
 		var spin_position = cursor_position_3d - camera.position
 		camera.rotation.y = atan(spin_position.x / -camera.position.z) + PI
 		camera.rotation.x = atan(spin_position.y / -camera.position.z)
-func _relative_movement(event:InputEventMouseMotion):
-	var mouse_movement = event.relative * game.settings.controls.sensitivity.mouse / 100.0
+func _relative_movement(offset:Vector2):
+	var mouse_movement = offset * game.settings.controls.sensitivity.mouse / 100.0
 	if game.settings.camera.lock:
 		cursor_position -= mouse_movement
 	else:
@@ -92,7 +99,7 @@ func _process(_delta):
 		display_name.get_node("Accuracy").text = "%.2f%%" % (float(score.hits*100)/float(score.total))
 
 	if !local_player: return
-
+	
 	var difference = cursor_position - clamped_cursor_position
 	cursor.position = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
 	ghost.position = Vector3(difference.x,difference.y,0.01)
@@ -134,6 +141,11 @@ func _process(_delta):
 		trails.resize((total_trails - remove_trails)*2)
 
 func _physics_process(_delta):
+	if Globals.platform == "linux" and game.settings.controls.absolute:
+		_preprocess_cursor()
+		_absolute_movement(get_viewport().get_mouse_position())
+		_postprocess_cursor()
+	
 	var cursor_hitbox = 0.2625
 	var hitwindow = 1.75/30
 	var objects = manager.objects_to_process
