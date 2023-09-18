@@ -93,7 +93,7 @@ const SETTINGS_CONFIG = [
 		["absolute",Setting.Type.BOOLEAN,false]
 	]],
 	["folders",Setting.Type.CATEGORY,[
-		["maps",Setting.Type.ARRAY,["user://../SoundSpacePlus/maps"]]
+		["maps",Setting.Type.ARRAY,[]]
 	]],
 	["advanced",Setting.Type.CATEGORY,[
 		["skip",Setting.Type.CATEGORY,[
@@ -101,7 +101,7 @@ const SETTINGS_CONFIG = [
 			["minimum_skip_time",Setting.Type.FLOAT,2.0]
 		]],
 		["note_render_mode",Setting.Type.ENUM,NoteRenderMode,NoteRenderMode.INDIVIDUAL],
-		["note_spawn_mode",Setting.Type.ENUM,NoteSpawnMode,NoteSpawnMode.PRELOAD]
+		["note_spawn_mode",Setting.Type.ENUM,NoteSpawnMode,NoteSpawnMode.ROLLING]
 	]]
 ]
 
