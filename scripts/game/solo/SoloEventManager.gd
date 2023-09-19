@@ -4,7 +4,6 @@ var events = []
 
 func prepare(_game:GameScene):
 	super.prepare(_game)
-	print("hi")
 	events = get("eventList")
 
 	for event in events:
