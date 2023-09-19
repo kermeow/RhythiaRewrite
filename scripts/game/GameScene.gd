@@ -11,6 +11,7 @@ var map:Map
 @export_category("Game Managers")
 @export var sync_manager:SyncManager
 @export var object_manager:ObjectManager
+@export var event_manager:EventManager
 
 @export_category("Other Nodes")
 @export var origin:Node3D
@@ -20,6 +21,7 @@ var map:Map
 func setup_managers():
 	sync_manager.prepare(self)
 	object_manager.prepare(self)
+	event_manager.prepare(self)
 
 func _ready():
 	map = mapset.maps[map_index]

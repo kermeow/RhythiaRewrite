@@ -6,6 +6,7 @@ signal despawned
 
 @export var game:GameScene
 @export var manager:ObjectManager
+@export var event_manager:EventManager
 
 @export var id:String
 @export var permanent:bool = false
@@ -28,6 +29,6 @@ func update(_current_time:float):
 
 func get_visibility(current_time:float):
 	return permanent or (spawn_time <= current_time and despawn_time >= current_time)
-
+					
 func update_transform():
 	pass

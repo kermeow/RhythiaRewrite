@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ddypjfskuxw11"]
+[gd_scene load_steps=27 format=3 uid="uid://ddypjfskuxw11"]
 
 [ext_resource type="Script" path="res://scripts/game/solo/SoloGameScene.gd" id="1_ulth4"]
 [ext_resource type="AudioStream" uid="uid://clk4tkuh7l4sc" path="res://assets/sounds/sfx/hit.wav" id="2_mfdjv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/game/solo/HUDManager.gd" id="6_g35bn"]
 [ext_resource type="Script" path="res://scripts/game/StatisticsReporter.gd" id="7_1q1p4"]
 [ext_resource type="PackedScene" uid="uid://cbxyhhh3udi40" path="res://prefabs/game/LocalPlayer.tscn" id="7_qpehi"]
+[ext_resource type="Script" path="res://scripts/game/solo/SoloEventManager.gd" id="8_swd3s"]
 [ext_resource type="VideoStream" path="res://assets/test.ogv" id="10_8tule"]
 [ext_resource type="PackedScene" uid="uid://u5w2lt2ybh4v" path="res://prefabs/game/hud/HUD.tscn" id="10_i0uko"]
 [ext_resource type="Script" path="res://scripts/game/map/objects/WorldContainer.gd" id="10_tyqty"]
@@ -76,7 +77,7 @@ subdivide_width = 32
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjrtq"]
 
-[node name="Solo" type="Node3D" node_paths=PackedStringArray("hud_manager", "reporter", "world_parent", "sync_manager", "object_manager", "origin", "player")]
+[node name="Solo" type="Node3D" node_paths=PackedStringArray("hud_manager", "reporter", "world_parent", "sync_manager", "object_manager", "event_manager", "origin", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 top_level = true
 script = ExtResource("1_ulth4")
@@ -85,6 +86,7 @@ reporter = NodePath("StastisticsReporter")
 world_parent = NodePath("Origin/World")
 sync_manager = NodePath("AudioSyncManager")
 object_manager = NodePath("ObjectManager")
+event_manager = NodePath("EventManager")
 origin = NodePath("Origin")
 player = NodePath("Origin/Player")
 metadata/is_game = true
@@ -122,6 +124,11 @@ script = ExtResource("4_tvxv6")
 process_priority = 1
 script = ExtResource("6_g35bn")
 hud = NodePath("../Origin/HUD")
+
+[node name="EventManager" type="Node" parent="."]
+process_mode = 3
+process_priority = 1
+script = ExtResource("8_swd3s")
 
 [node name="StastisticsReporter" type="Node" parent="."]
 script = ExtResource("7_1q1p4")

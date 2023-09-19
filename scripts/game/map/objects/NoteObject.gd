@@ -5,6 +5,7 @@ var note:Map.Note
 var spawn_distance:float = 50
 var colour:Color
 var mixed_colour:Color
+var opacity:float = 1
 
 func _init(_id:String="",_note:Map.Note=null,_colour:Color=Color.RED):
 	super._init(_id)
@@ -27,9 +28,27 @@ func update(current_time:float):
 	var fade_out = min(fade_out_time/game.settings.skin.block.fade_out_amount,1.0)
 	if game.settings.skin.block.fade_in_mode != 0: fade_in = 1
 	if game.settings.skin.block.fade_out_mode != 0: fade_out = 1
-	var opacity = game.settings.skin.block.opacity
+	opacity = game.settings.skin.block.opacity
 	mixed_colour = Color(colour,max(0,opacity*fade_in*fade_out))
-
+	
+func animate(animationData:Dictionary):
+	if !self.visible: return
+	for key in animationData.keys():
+		if key == "position":
+			var tween = get_tree().create_tween()
+			var newX = animationData[key][0]
+			var newY = animationData[key][1]
+					
+			tween.tween_property(self, "position:x", 1 - newX, animationData.duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			tween.tween_property(self, "position:y", newY - 1, animationData.duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		if key == "opacity":
+			var tween = get_tree().create_tween()
+			tween.tween_property(self, "mixed_colour:a", animationData[key], animationData.duration)
+			pass
+		if key == "spawn_distance":
+			self.spawn_distance = animationData[key]	
+			pass
+			
 func get_visibility(current_time:float):
 	if game.settings.skin.block.fade_out_mode == 2:
 		return (note.time-current_time) > 0
