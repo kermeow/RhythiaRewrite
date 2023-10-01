@@ -37,7 +37,7 @@ func finish(failed:bool=false):
 	if failed:
 		if Globals.debug: print("fail animation")
 		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-		tween.tween_property(sync_manager,"playback_speed",0,2)
+		tween.tween_property(sync_manager,"playback_speed",0,1)
 		tween.play()
 		await tween.finished
 	else:

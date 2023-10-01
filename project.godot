@@ -65,7 +65,6 @@ window/size/extend_to_title=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation="sensor_landscape"
-window/vsync/vsync_mode=3
 window/vsync/use_vsync=false
 window/subwindows/embed_subwindows.mobile=true
 window/stretch/mode.mobile="canvas_items"

@@ -105,3 +105,4 @@ const StatusMessages = {
 
 func _ready():
 	update_paths()
+	if debug: print(platform)
