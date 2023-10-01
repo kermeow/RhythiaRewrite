@@ -126,8 +126,8 @@ func _do_init():
 	call_deferred("emit_signal","on_init_stage","Waiting")
 	_load_mapsets(true)
 	_load_playlists(true)
-	call_deferred("emit_signal","on_init_stage","Update folders")
-	Globals.call_deferred("update_folders")
+	call_deferred("emit_signal","on_init_stage","Update paths")
+	Globals.call_deferred("update_paths")
 	call_deferred("emit_signal","on_init_complete")
 func _reload():
 	call_deferred("emit_signal","on_init_stage","Reloading content")
