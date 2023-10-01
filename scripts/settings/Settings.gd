@@ -100,7 +100,7 @@ const SETTINGS_CONFIG = [
 		["fov",Setting.Type.INT,70],
 		["absolute",Setting.Type.BOOLEAN,false]
 	]],
-	["folders",Setting.Type.CATEGORY,[
+	["paths",Setting.Type.CATEGORY,[
 		["maps",Setting.Type.ARRAY,[]]
 	]],
 	["advanced",Setting.Type.CATEGORY,[
