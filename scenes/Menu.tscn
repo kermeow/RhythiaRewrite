@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=39 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="3_r3n0f"]
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ciuxvgefpjrm1" path="res://assets/images/ui/command_line_error.png" id="4_oas34"]
+[ext_resource type="Script" path="res://scripts/menu/maplist/Modifiers.gd" id="5_fv5pv"]
+[ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="6_yvoqp"]
 [ext_resource type="Texture2D" uid="uid://bk8ninr63d836" path="res://assets/images/ui/quit_to_desktop.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://b21p2flel8ywr" path="res://assets/images/ui/settings.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://b7v0bqlxe7ew4" path="res://assets/images/ui/favorite.png" id="9"]
@@ -602,6 +604,81 @@ custom_minimum_size = Vector2(416, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
 
+[node name="Modifiers" type="Control" parent="Main/TabBar/Select/MapList/Select/Sections/Right"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_fv5pv")
+
+[node name="Speed" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers"]
+layout_mode = 0
+offset_right = 408.0
+offset_bottom = 64.0
+toggle_mode = true
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers/Speed"]
+layout_mode = 0
+offset_right = 68.0
+offset_bottom = 64.0
+text = "Speed"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 68.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers/Grid"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+
+[node name="Reset" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.66893e-05
+offset_top = -36.0
+grow_vertical = 0
+size_flags_horizontal = 3
+
+[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers/Reset"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers/Reset/Layout"]
+layout_mode = 2
+texture = ExtResource("6_yvoqp")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers/Reset/Layout"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Reset Modifiers"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Debug" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Right"]
 modulate = Color(1, 1, 1, 0.392157)
 layout_mode = 1
@@ -618,34 +695,6 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 16
 text = "debug info"
 horizontal_alignment = 2
-
-[node name="TabContainer" type="TabContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Right"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Modifiers" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Right/TabContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 4
-theme_override_constants/v_separation = 4
-
-[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/TabContainer/Modifiers"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Button2" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/TabContainer/Modifiers"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Button3" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/TabContainer/Modifiers"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="Lobby" type="Control" parent="Main/TabBar"]
 visible = false
