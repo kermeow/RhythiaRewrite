@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=37 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -89,13 +89,6 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8amnf"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjl6"]
 bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 border_width_left = 1
@@ -110,6 +103,41 @@ expand_margin_left = 2.0
 expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nexjn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2c63c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5n37h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ah55v"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds4ea"]
+content_margin_left = 8.0
+content_margin_top = 0.0
+content_margin_right = 8.0
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yv05g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvhpi"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -206,6 +234,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Maps" type="Control" parent="Main/TabBar/Select/MapList"]
 layout_mode = 1
@@ -223,7 +253,7 @@ anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 64.0
 offset_right = -8.0
-offset_bottom = 640.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 8
@@ -310,886 +340,6 @@ horizontal_alignment = 2
 autowrap_mode = 3
 text_overrun_behavior = 4
 
-[node name="Button2" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button2"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button2/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Button3" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button3"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button3/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Button4" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button4"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button4/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Button5" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button5"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button5/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button5"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button5"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button5"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Button6" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button6"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button6/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button6"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button6"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button6"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Button7" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button7"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button7/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button7"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button7"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button7"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Button8" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button8"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button8/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button8"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button8"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button8"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Button9" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button9"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button9/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button9"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button9"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button9"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Button10" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button10"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button10/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button10"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button10"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button10"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Button11" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button11"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button11/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button11"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button11"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button11"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Button12" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button12"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8amnf")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button12/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button12"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button12"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button12"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
 [node name="Panel" type="Panel" parent="Main/TabBar/Select/MapList/Maps"]
 layout_mode = 1
 anchors_preset = 10
@@ -1200,6 +350,302 @@ offset_right = -8.0
 offset_bottom = 56.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
+
+[node name="Paginator" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="First" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/First"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "<<"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Previous" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/Previous"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "<"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftSeparator" type="VSeparator" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nexjn")
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+custom_minimum_size = Vector2(176, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Page 1 of 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightSeparator" type="VSeparator" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nexjn")
+
+[node name="Next" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/Next"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = ">"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Last" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/Last"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = ">>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="Button" parent="Main/TabBar/Select/MapList/Maps"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -36.0
+offset_right = 196.0
+offset_bottom = -4.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "< Return to Playlists"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="ColorRect" parent="Main/TabBar/Select/MapList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+color = Color(0, 0, 0, 0.784314)
+
+[node name="Sections" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.506
+offset_top = -284.0
+offset_bottom = 279.824
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Left" type="VBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+clip_children = 1
+custom_minimum_size = Vector2(224, 224)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpjht")
+
+[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Left/Cover"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r3n0f")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CoverSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_2c63c")
+
+[node name="Artist" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 20
+text = "Schwank "
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 20
+text = "Extra Credit On The Chromosome Test"
+autowrap_mode = 3
+
+[node name="DifficultySeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
+
+[node name="Maps" type="HFlowContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Left/Maps"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ah55v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ah55v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ds4ea")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ah55v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yv05g")
+toggle_mode = true
+button_pressed = true
+text = "Diff #1"
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Left/Maps/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Diff #1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
+
+[node name="ButtonSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
+
+[node name="Play" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Left/Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4")
+stretch_mode = 3
+
+[node name="Right" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections"]
+custom_minimum_size = Vector2(416, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
+
+[node name="Debug" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Right"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 8.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "debug info"
+horizontal_alignment = 2
+
+[node name="TabContainer" type="TabContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Right"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Modifiers" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Right/TabContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/TabContainer/Modifiers"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button2" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/TabContainer/Modifiers"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button3" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/TabContainer/Modifiers"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Lobby" type="Control" parent="Main/TabBar"]
 visible = false
