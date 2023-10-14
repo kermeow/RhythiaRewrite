@@ -1,9 +1,9 @@
-[gd_scene load_steps=41 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=35 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
 [ext_resource type="Script" path="res://scripts/menu/Warning.gd" id="2_0nvp3"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/MapList.gd" id="3_dxvp1"]
+[ext_resource type="PackedScene" uid="uid://djiqkbobmj6wr" path="res://prefabs/menu/maplist/List.tscn" id="3_0cnck"]
 [ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="3_r3n0f"]
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ciuxvgefpjrm1" path="res://assets/images/ui/command_line_error.png" id="4_oas34"]
@@ -23,92 +23,12 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnsra"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjl6"]
-bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbvoa"]
-bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52b6h"]
-bg_color = Color(0.08, 0.08, 0.08, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke8yw"]
-bg_color = Color(0.08, 0.08, 0.08, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhgv0"]
-bg_color = Color(0.08, 0.08, 0.08, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.8, 0.16, 0.16, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_un70j"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpjht"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nexjn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2c63c"]
 
@@ -142,6 +62,21 @@ expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yv05g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjl6"]
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvhpi"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -312,268 +247,8 @@ custom_minimum_size = Vector2(192, 192)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Maps" type="Control" parent="Main/TabBar/Select/MapList"]
+[node name="Maps" parent="Main/TabBar/Select/MapList" instance=ExtResource("3_0cnck")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_dxvp1")
-
-[node name="Filters" type="Panel" parent="Main/TabBar/Select/MapList/Maps"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 56.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
-
-[node name="Line" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps/Filters"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 8
-
-[node name="Filters" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps/Filters/Line"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 4
-
-[node name="Search" type="LineEdit" parent="Main/TabBar/Select/MapList/Maps/Filters/Line/Filters"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-placeholder_text = "Search for a mapset/mapper"
-
-[node name="Sorts" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps/Filters/Line"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 4
-
-[node name="Buttons" type="GridContainer" parent="Main/TabBar/Select/MapList/Maps"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 64.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
-columns = 2
-
-[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
-custom_minimum_size = Vector2(0, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
-theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
-
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qpjht")
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button/Cover"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_r3n0f")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_right = -8.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 20
-text = "Schwank - Extra Credit On The Chromosome Test "
-vertical_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Kermeet, Kiwie"
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = 48.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "6:03"
-horizontal_alignment = 2
-autowrap_mode = 3
-text_overrun_behavior = 4
-
-[node name="Paginator" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -44.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="First" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/First"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "<<"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Previous" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/Previous"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "<"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LeftSeparator" type="VSeparator" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
-layout_mode = 2
-theme_override_constants/separation = 8
-theme_override_styles/separator = SubResource("StyleBoxEmpty_nexjn")
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
-custom_minimum_size = Vector2(176, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "Page 1 of 1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RightSeparator" type="VSeparator" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
-layout_mode = 2
-theme_override_constants/separation = 8
-theme_override_styles/separator = SubResource("StyleBoxEmpty_nexjn")
-
-[node name="Next" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/Next"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = ">"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Last" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/Last"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = ">>"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Return" type="Button" parent="Main/TabBar/Select/MapList/Maps"]
-visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -36.0
-offset_right = 196.0
-offset_bottom = -4.0
-grow_vertical = 0
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Return"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "< Return to Playlists"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Select" type="ColorRect" parent="Main/TabBar/Select/MapList"]
 visible = false
