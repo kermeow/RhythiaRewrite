@@ -1,0 +1,95 @@
+extends Control
+
+signal mapset_selected
+
+@onready var button_container = $Buttons
+@onready var origin_button = $Buttons/Button
+
+var page = 0
+var max_page = 0
+
+@onready var mapsets = Rhythia.mapsets.items
+@onready var listed_mapsets = Rhythia.mapsets.items
+
+var buttons_per_page = 0
+var buttons = []
+
+func _ready():
+	button_container.remove_child(origin_button)
+	button_container.resized.connect(_on_container_resized)
+	_on_container_resized(button_container.size)
+	
+	$Paginator/First.pressed.connect(_first_paginator)
+	$Paginator/Last.pressed.connect(_last_paginator)
+	$Paginator/Previous.pressed.connect(_prev_paginator)
+	$Paginator/Next.pressed.connect(_next_paginator)
+
+func _on_container_resized(size=button_container.size):
+	_calculate_buttons_per_page(size)
+	_calculate_pages()
+	_create_buttons()
+	_update_buttons()
+	_update_paginator()
+
+func _calculate_buttons_per_page(size):
+	var columns = floor(size.x / 500)
+	var rows = floor(size.y / 104)
+	button_container.columns = columns
+	buttons_per_page = columns * rows
+func _calculate_pages():
+	max_page = floor(listed_mapsets.size() / buttons_per_page)
+	page = mini(page, max_page)
+
+func _create_buttons():
+	if buttons.size() == buttons_per_page: return
+	if buttons.size() > buttons_per_page:
+		for i in buttons.size() - buttons_per_page:
+			buttons.pop_back().free()
+		return
+	for i in buttons_per_page - buttons.size():
+		var button = origin_button.duplicate()
+		button_container.add_child(button)
+		buttons.append(button)
+		button.pressed.connect(_button_pressed.bind(button))
+func _update_button(button, mapset:Mapset):
+	button.set_meta("mapset", mapset)
+	button.get_node("Cover/Image").texture = mapset.cover
+	button.get_node("Title").text = mapset.name
+	button.get_node("Mapper").text = mapset.creator
+	button.get_node("Length").text = "%s:%02d" % [
+		floori(mapset.length/60),
+		floori(int(mapset.length)%60)
+	]
+func _update_buttons():
+	var page_offset = page * buttons_per_page
+	var visible_mapsets = listed_mapsets.slice(page_offset, page_offset + buttons_per_page)
+	for i in buttons.size():
+		var button = buttons[i]
+		if i >= visible_mapsets.size():
+			button.visible = false
+			continue
+		button.visible = true
+		var mapset = visible_mapsets[i]
+		_update_button(button, mapset)
+
+func _button_pressed(button):
+	mapset_selected.emit(button.get_meta("mapset"))
+
+func _update_paginator():
+	$Paginator/Label.text = "Page %s of %s" % [page + 1, max_page + 1]
+func _first_paginator():
+	page = 0
+	_update_buttons()
+	_update_paginator()
+func _last_paginator():
+	page = max_page
+	_update_buttons()
+	_update_paginator()
+func _prev_paginator():
+	page = maxi(0, page - 1)
+	_update_buttons()
+	_update_paginator()
+func _next_paginator():
+	page = mini(max_page, page + 1)
+	_update_buttons()
+	_update_paginator()

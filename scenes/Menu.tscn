@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=40 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
 [ext_resource type="Script" path="res://scripts/menu/Warning.gd" id="2_0nvp3"]
+[ext_resource type="Script" path="res://scripts/menu/maplist/MapList.gd" id="3_dxvp1"]
 [ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="3_r3n0f"]
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ciuxvgefpjrm1" path="res://assets/images/ui/command_line_error.png" id="4_oas34"]
@@ -239,6 +240,77 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Playlists" type="VBoxContainer" parent="Main/TabBar/Select/MapList"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_right = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Main/TabBar/Select/MapList/Playlists"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button2" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button3" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button4" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button5" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button6" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button7" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button8" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button9" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button10" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button11" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
 [node name="Maps" type="Control" parent="Main/TabBar/Select/MapList"]
 layout_mode = 1
 anchors_preset = 15
@@ -246,6 +318,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_dxvp1")
 
 [node name="Buttons" type="GridContainer" parent="Main/TabBar/Select/MapList/Maps"]
 layout_mode = 1
@@ -449,6 +522,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Return" type="Button" parent="Main/TabBar/Select/MapList/Maps"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -471,6 +545,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Select" type="ColorRect" parent="Main/TabBar/Select/MapList"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -606,6 +681,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
 
 [node name="Modifiers" type="Control" parent="Main/TabBar/Select/MapList/Select/Sections/Right"]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
