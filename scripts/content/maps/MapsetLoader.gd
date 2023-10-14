@@ -8,7 +8,9 @@ func _init(_registry:Registry):
 	registry = _registry
 
 func load_from_folder(folder:String):
+	print("Loading maps from %s" % folder)
 	if !DirAccess.dir_exists_absolute(folder):
+		print("Folder %s doesn't exist" % folder)
 		return
 	var dir = DirAccess.open(folder)
 
@@ -18,10 +20,12 @@ func load_from_folder(folder:String):
 	var cache = {}
 	var cache_exists = FileAccess.file_exists(folder.path_join(".cache"))
 	if cache_exists:
+		if Globals.debug: print("Found existing cache")
 		var cache_file = FileAccess.open(folder.path_join(".cache"),FileAccess.READ)
 		cache = JSON.parse_string(cache_file.get_as_text())
 		cache_file.close()
 		if cache.get("v",0) != CACHE_VERSION:
+			if Globals.debug: print("Cache is outdated")
 			cache = {}
 
 	# Load maps

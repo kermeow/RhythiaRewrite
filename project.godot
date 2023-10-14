@@ -81,6 +81,7 @@ enabled=PackedStringArray()
 
 [gui]
 
+theme/custom="res://default_theme.tres"
 timers/tooltip_delay_sec=0.05
 
 [input]

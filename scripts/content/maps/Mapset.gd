@@ -247,10 +247,11 @@ func _sspmv2(file:FileAccess,full:bool): # Load a v2 map
 	name = file.get_buffer(file.get_16()).get_string_from_utf8()
 	song = file.get_buffer(file.get_16()).get_string_from_utf8()
 	creator = ""
-	for i in range(file.get_16()):
+	var creators = file.get_16()
+	for i in range(creators):
 		var new_creator = file.get_buffer(file.get_16()).get_string_from_utf8()
-		if i != 0:
-			new_creator += " & "
+		if i < creators - 1:
+			new_creator += ", "
 		creator += new_creator
 	map.creator = creator
 	for i in range(file.get_16()):
