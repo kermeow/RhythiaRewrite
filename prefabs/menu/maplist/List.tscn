@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://djiqkbobmj6wr"]
+[gd_scene load_steps=14 format=3 uid="uid://djiqkbobmj6wr"]
 
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_w3x67"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/MapList.gd" id="1_w8li6"]
 [ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="2_hmvv6"]
+[ext_resource type="Texture2D" uid="uid://cf8tlo8olbb84" path="res://assets/images/ui/arrow_down_white.png" id="3_08ses"]
+[ext_resource type="Script" path="res://scripts/menu/maplist/SortButton.gd" id="4_av7s4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjl6"]
 bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
@@ -141,6 +143,66 @@ placeholder_text = "Search for a mapset/mapper"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Filters/Line/Sorts"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Sort by:"
+vertical_alignment = 1
+
+[node name="NameAlphabet" type="Button" parent="Filters/Line/Sorts"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 0
+toggle_mode = true
+text = "Name"
+icon = ExtResource("3_08ses")
+flat = true
+script = ExtResource("4_av7s4")
+
+[node name="Label" type="Label" parent="Filters/Line/Sorts/NameAlphabet"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Name"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MapperAlphabet" type="Button" parent="Filters/Line/Sorts"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 0
+toggle_mode = true
+text = "Mapper"
+icon = ExtResource("3_08ses")
+flat = true
+script = ExtResource("4_av7s4")
+
+[node name="Label" type="Label" parent="Filters/Line/Sorts/MapperAlphabet"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mapper"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="Buttons" type="GridContainer" parent="."]
 layout_mode = 1

@@ -25,6 +25,14 @@ func _ready():
 	$Paginator/Next.pressed.connect(_next_paginator)
 	
 	$Filters/Line/Filters/Search.text_changed.connect(_filter_updated)
+	$Filters/Line/Sorts/NameAlphabet.pressed.connect(func():
+		_sort_mapsets_name()
+		_update_buttons()
+	)
+	$Filters/Line/Sorts/MapperAlphabet.pressed.connect(func():
+		_sort_mapsets_mapper()
+		_update_buttons()
+	)
 
 func _on_container_resized(size=button_container.size):
 	_filter_mapsets()
@@ -49,11 +57,19 @@ func _filter_mapset(mapset):
 	return search_exact # or search_similarity
 func _filter_mapsets():
 	listed_mapsets = mapsets.filter(_filter_mapset)
-func _sort_mapset(a, b):
-	var alphabet_order = a.name.naturalnocasecmp_to(b.name)
-	return alphabet_order == -1
+func _sort_mapset_name(a, b):
+	var order = a.name.naturalnocasecmp_to(b.name)
+	if $Filters/Line/Sorts/NameAlphabet.button_pressed: return order == 1
+	return order == -1
+func _sort_mapsets_name(): listed_mapsets.sort_custom(_sort_mapset_name)
+func _sort_mapset_mapper(a, b):
+	var order = a.creator.naturalnocasecmp_to(b.creator)
+	if $Filters/Line/Sorts/MapperAlphabet.button_pressed: return order == 1
+	return order == -1
+func _sort_mapsets_mapper(): listed_mapsets.sort_custom(_sort_mapset_mapper)
 func _sort_mapsets():
-	listed_mapsets.sort_custom(_sort_mapset)
+	_sort_mapsets_mapper()
+	_sort_mapsets_name()
 func _filter_updated(_value):
 	_filter_mapsets()
 	_sort_mapsets()
