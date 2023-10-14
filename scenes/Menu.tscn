@@ -329,7 +329,7 @@ anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 64.0
 offset_right = -8.0
-offset_bottom = -36.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 8
@@ -433,8 +433,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -36.0
-offset_bottom = -4.0
+offset_top = -44.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 4
@@ -694,12 +694,12 @@ grow_vertical = 2
 texture = ExtResource("4")
 stretch_mode = 3
 
-[node name="Right" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections"]
+[node name="Extra" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections"]
 custom_minimum_size = Vector2(416, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
 
-[node name="Modifiers" type="Control" parent="Main/TabBar/Select/MapList/Select/Sections/Right"]
+[node name="Modifiers" type="Control" parent="Main/TabBar/Select/MapList/Select/Sections/Extra"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -712,13 +712,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_fv5pv")
 
-[node name="Speed" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers"]
+[node name="Speed" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
 layout_mode = 0
 offset_right = 408.0
 offset_bottom = 64.0
 toggle_mode = true
 
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers/Speed"]
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
 layout_mode = 0
 offset_right = 68.0
 offset_bottom = 64.0
@@ -726,7 +726,7 @@ text = "Speed"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Grid" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers"]
+[node name="Grid" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -736,13 +736,13 @@ offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers/Grid"]
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 
-[node name="Reset" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers"]
+[node name="Reset" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 1
 anchors_preset = -1
@@ -754,7 +754,7 @@ offset_top = -36.0
 grow_vertical = 0
 size_flags_horizontal = 3
 
-[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers/Reset"]
+[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Reset"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -763,19 +763,19 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers/Reset/Layout"]
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Reset/Layout"]
 layout_mode = 2
 texture = ExtResource("6_yvoqp")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Right/Modifiers/Reset/Layout"]
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Reset/Layout"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Reset Modifiers"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Debug" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Right"]
+[node name="Debug" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra"]
 modulate = Color(1, 1, 1, 0.392157)
 layout_mode = 1
 anchors_preset = 3
