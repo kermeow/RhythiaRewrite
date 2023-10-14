@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=41 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="3_r3n0f"]
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ciuxvgefpjrm1" path="res://assets/images/ui/command_line_error.png" id="4_oas34"]
+[ext_resource type="Script" path="res://scripts/menu/maplist/MapDetails.gd" id="5_3gata"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/Modifiers.gd" id="5_fv5pv"]
 [ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="6_yvoqp"]
 [ext_resource type="Texture2D" uid="uid://bk8ninr63d836" path="res://assets/images/ui/quit_to_desktop.png" id="7"]
@@ -554,6 +555,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_force_pass_scroll_events = false
 color = Color(0, 0, 0, 0.784314)
+script = ExtResource("5_3gata")
 
 [node name="Sections" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select"]
 layout_mode = 1
@@ -568,19 +570,19 @@ grow_vertical = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Left" type="VBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections"]
+[node name="Details" type="VBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
 clip_children = 1
 custom_minimum_size = Vector2(224, 224)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_qpjht")
 
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Left/Cover"]
+[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Cover"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -591,36 +593,54 @@ texture = ExtResource("3_r3n0f")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="CoverSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+[node name="CoverSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
 layout_mode = 2
 theme_override_constants/separation = 16
 theme_override_styles/separator = SubResource("StyleBoxEmpty_2c63c")
 
-[node name="Artist" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 20
-text = "Schwank "
-vertical_alignment = 1
+text = "Schwank - Extra Credit On The Chromosome Test"
 autowrap_mode = 3
 
-[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+[node name="Line" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 2.0
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 20
-text = "Extra Credit On The Chromosome Test"
+theme_override_font_sizes/font_size = 18
+text = "Kermeet, Kiwie
+"
 autowrap_mode = 3
 
-[node name="DifficultySeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.5
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 18
+text = "1:23"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="DifficultySeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
 
-[node name="Maps" type="HFlowContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+[node name="Maps" type="HFlowContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Left/Maps"]
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Maps"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
@@ -639,7 +659,7 @@ toggle_mode = true
 button_pressed = true
 text = "Diff #1"
 
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Left/Maps/Button"]
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Maps/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -650,21 +670,21 @@ text = "Diff #1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OptionSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+[node name="OptionSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
 
-[node name="ButtonSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+[node name="ButtonSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
 
-[node name="Play" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Left"]
+[node name="Play" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Left/Play"]
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Play"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

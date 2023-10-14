@@ -71,7 +71,6 @@ window/stretch/mode.mobile="canvas_items"
 
 [editor]
 
-run/main_run_args="-m"
 script/templates_search_path="res://scripts/templates"
 scene_naming=1
 script_templates_search_path="res://templates"
