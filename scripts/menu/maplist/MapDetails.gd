@@ -1,12 +1,22 @@
 extends Control
 
+signal map_selected
+
 @onready var maplist = $"../Maps"
+
+@onready var difficulty_container = $Sections/Details/Maps
+@onready var origin_difficulty = $Sections/Details/Maps/Button
+
+var difficulties = []
 
 var selected_mapset
 var selected_map_index = 0
 
 func _ready():
 	visible = false
+	
+	difficulty_container.remove_child(origin_difficulty)
+	
 	maplist.mapset_selected.connect(_mapset_selected)
 
 var tween:Tween
@@ -41,7 +51,10 @@ func _gui_input(event):
 
 func _mapset_selected(mapset):
 	selected_mapset = mapset
+	selected_map_index = mini(selected_map_index, selected_mapset.maps.size() - 1)
 	_update_details()
+	_create_difficulties()
+	_update_difficulties()
 	fade_in()
 
 func _update_details():
@@ -52,3 +65,32 @@ func _update_details():
 		floori(selected_mapset.length/60),
 		floori(int(selected_mapset.length)%60)
 	]
+	$Sections/Extra/Debug.text = "%s - %s" % [
+		selected_mapset.id,
+		"local" if selected_mapset.local else selected_mapset.online_id
+	]
+
+func _create_difficulties():
+	if difficulties.size() == selected_mapset.maps.size(): return
+	if difficulties.size() > selected_mapset.maps.size():
+		for i in difficulties.size() - selected_mapset.maps.size():
+			difficulties.pop_back().free()
+		return
+	for i in selected_mapset.maps.size() - difficulties.size():
+		var button = origin_difficulty.duplicate()
+		difficulty_container.add_child(button)
+		difficulties.append(button)
+		button.pressed.connect(_difficulty_pressed.bind(button))
+func _update_difficulties():
+	for i in selected_mapset.maps.size():
+		var map = selected_mapset.maps[i]
+		var button = difficulties[i]
+		button.set_meta("map_index", i)
+		button.text = map.name
+		button.get_node("Label").text = map.name
+		button.button_pressed = selected_map_index == i
+
+func _difficulty_pressed(button):
+	selected_map_index = button.get_meta("map_index")
+	map_selected.emit(selected_mapset, selected_map_index)
+	_update_difficulties()
