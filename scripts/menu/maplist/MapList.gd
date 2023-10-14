@@ -51,7 +51,7 @@ func _filter_mapsets():
 	listed_mapsets = mapsets.filter(_filter_mapset)
 func _sort_mapset(a, b):
 	var alphabet_order = a.name.naturalnocasecmp_to(b.name)
-	return alphabet_order == 1
+	return alphabet_order == -1
 func _sort_mapsets():
 	listed_mapsets.sort_custom(_sort_mapset)
 func _filter_updated(_value):
