@@ -18,6 +18,7 @@ func _ready():
 	difficulty_container.remove_child(origin_difficulty)
 	
 	maplist.mapset_selected.connect(_mapset_selected)
+	$Sections/Details/Play.pressed.connect(_play_pressed)
 
 var tween:Tween
 var moving = false
@@ -94,3 +95,7 @@ func _difficulty_pressed(button):
 	selected_map_index = button.get_meta("map_index")
 	map_selected.emit(selected_mapset, selected_map_index)
 	_update_difficulties()
+
+func _play_pressed():
+	var scene = Rhythia.load_game_scene(Rhythia.GameType.SOLO, selected_mapset, selected_map_index)
+	get_tree().change_scene_to_node(scene)
