@@ -31,8 +31,6 @@ func finish(failed:bool=false):
 	if ended: return
 	ended = true
 #	reporter.stop()
-	$PauseMenu.process_mode = Node.PROCESS_MODE_DISABLED
-	$PauseMenu.visible = false
 	if Globals.debug: print("failed: %s" % failed)
 	if failed:
 		if Globals.debug: print("fail animation")
@@ -42,6 +40,8 @@ func finish(failed:bool=false):
 		await tween.finished
 	else:
 		if Globals.debug: print("pass")
+		$PauseMenu.process_mode = Node.PROCESS_MODE_DISABLED
+		$PauseMenu.visible = false
 		await get_tree().create_timer(0.5).timeout
 	var packed_results:PackedScene = preload("res://scenes/Results.tscn")
 	var results:ResultsScreen = packed_results.instantiate()
