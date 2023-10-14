@@ -1,3 +1,4 @@
+# TODO: Rewrite this so it changes when the next warning slides in instead of suddenly replacing the old one
 extends ColorRect
 
 var scroll_speed:float = 24

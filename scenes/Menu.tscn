@@ -1,26 +1,20 @@
-[gd_scene load_steps=42 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=41 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
 [ext_resource type="Script" path="res://scripts/menu/Warning.gd" id="2_0nvp3"]
-[ext_resource type="Texture2D" uid="uid://c54ide18equ4n" path="res://assets/images/branding/icon.png" id="3_8w5xr"]
-[ext_resource type="Script" path="res://scripts/menu/select/PlaylistList.gd" id="3_l1ade"]
+[ext_resource type="Script" path="res://scripts/menu/maplist/MapList.gd" id="3_dxvp1"]
+[ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="3_r3n0f"]
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ciuxvgefpjrm1" path="res://assets/images/ui/command_line_error.png" id="4_oas34"]
-[ext_resource type="Script" path="res://scripts/menu/select/PlaylistEdit.gd" id="5_oqp4e"]
-[ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="5_sfmcr"]
+[ext_resource type="Script" path="res://scripts/menu/maplist/MapDetails.gd" id="5_3gata"]
+[ext_resource type="Script" path="res://scripts/menu/maplist/Modifiers.gd" id="5_fv5pv"]
+[ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="6_yvoqp"]
 [ext_resource type="Texture2D" uid="uid://bk8ninr63d836" path="res://assets/images/ui/quit_to_desktop.png" id="7"]
-[ext_resource type="Script" path="res://scripts/menu/select/MapList.gd" id="7_3ykqk"]
 [ext_resource type="Texture2D" uid="uid://b21p2flel8ywr" path="res://assets/images/ui/settings.png" id="8"]
-[ext_resource type="Script" path="res://scripts/menu/select/MapsetButton.gd" id="8_iudav"]
 [ext_resource type="Texture2D" uid="uid://b7v0bqlxe7ew4" path="res://assets/images/ui/favorite.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
-[ext_resource type="Script" path="res://scripts/menu/select/Music.gd" id="10_p0mnn"]
-[ext_resource type="Script" path="res://scripts/menu/select/MapDetails.gd" id="11_d7k75"]
-[ext_resource type="Script" path="res://scripts/menu/select/Play.gd" id="12_r8mhb"]
-[ext_resource type="Script" path="res://scripts/menu/select/SpeedMods.gd" id="13_66cgf"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
-[ext_resource type="Script" path="res://scripts/menu/select/StartFrom.gd" id="14_sad65"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
 [ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
@@ -29,64 +23,132 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnsra"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjl6"]
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbvoa"]
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52b6h"]
+bg_color = Color(0.08, 0.08, 0.08, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke8yw"]
+bg_color = Color(0.08, 0.08, 0.08, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhgv0"]
+bg_color = Color(0.08, 0.08, 0.08, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.16, 0.16, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_un70j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpjht"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nexjn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2c63c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5n37h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ah55v"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds4ea"]
+content_margin_left = 8.0
+content_margin_top = 0.0
+content_margin_right = 8.0
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yv05g"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvhpi"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_swdcm"]
-
-[sub_resource type="Gradient" id="Gradient_204lt"]
-offsets = PackedFloat32Array(0, 0.5)
-colors = PackedColorArray(0.0941176, 0.0941176, 0.0941176, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6pvy0"]
-gradient = SubResource("Gradient_204lt")
-width = 512
-use_hdr = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syg7m"]
-bg_color = Color(0.109804, 0.109804, 0.109804, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce888"]
-bg_color = Color(0.141176, 0.141176, 0.141176, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pymji"]
-bg_color = Color(0.141176, 0.141176, 0.141176, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6uy1"]
-bg_color = Color(0.188235, 0.188235, 0.188235, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8l2gp"]
-bg_color = Color(0.141176, 0.141176, 0.141176, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.784314, 0.313726, 0.313726, 1)
-border_blend = true
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hcgho"]
 
@@ -171,120 +233,503 @@ tabs_visible = false
 [node name="Select" type="Control" parent="Main/TabBar"]
 layout_mode = 2
 
-[node name="Playlists" type="ScrollContainer" parent="Main/TabBar/Select"]
-visible = false
-custom_minimum_size = Vector2(0, 112)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = -16.0
-offset_bottom = 96.0
-grow_horizontal = 2
-follow_focus = true
-horizontal_scroll_mode = 2
-vertical_scroll_mode = 0
-script = ExtResource("3_l1ade")
-
-[node name="List" type="HBoxContainer" parent="Main/TabBar/Select/Playlists"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 8
-
-[node name="All" type="Button" parent="Main/TabBar/Select/Playlists/List"]
-custom_minimum_size = Vector2(104, 104)
-layout_mode = 2
-size_flags_vertical = 0
-tooltip_text = "All Maps"
-theme_type_variation = &"PlaylistButton"
-toggle_mode = true
-button_pressed = true
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/Playlists/List/All"]
+[node name="MapList" type="Control" parent="Main/TabBar/Select"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_8w5xr")
-expand_mode = 1
-stretch_mode = 6
 
-[node name="Edit" type="VBoxContainer" parent="Main/TabBar/Select/Playlists/List"]
+[node name="Playlists" type="VBoxContainer" parent="Main/TabBar/Select/MapList"]
 visible = false
-layout_mode = 2
-alignment = 1
-script = ExtResource("5_oqp4e")
-
-[node name="Add" type="Button" parent="Main/TabBar/Select/Playlists/List/Edit"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_vertical = 3
-tooltip_text = "Create Playlist"
-theme_override_fonts/font = ExtResource("5_sfmcr")
-theme_override_font_sizes/font_size = 18
-text = "+"
-
-[node name="Remove" type="Button" parent="Main/TabBar/Select/Playlists/List/Edit"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_vertical = 3
-tooltip_text = "Remove Playlist"
-theme_override_fonts/font = ExtResource("5_sfmcr")
-theme_override_font_sizes/font_size = 18
-text = "-"
-
-[node name="MapList" type="Control" parent="Main/TabBar/Select" node_paths=PackedStringArray("playlists")]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -4.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("7_3ykqk")
-playlists = NodePath("../Playlists")
-
-[node name="Search" type="Panel" parent="Main/TabBar/Select/MapList"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 48.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tvhpi")
-
-[node name="SearchBox" type="LineEdit" parent="Main/TabBar/Select/MapList/Search"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 40.0
-grow_horizontal = 2
-placeholder_text = "Search for maps"
-clear_button_enabled = true
-
-[node name="Maps" type="Panel" parent="Main/TabBar/Select/MapList"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 56.0
+offset_left = 128.0
+offset_right = -128.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tvhpi")
+grow_vertical = 2
+alignment = 1
 
-[node name="List" type="ScrollContainer" parent="Main/TabBar/Select/MapList/Maps"]
+[node name="HFlowContainer" type="HFlowContainer" parent="Main/TabBar/Select/MapList/Playlists"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button2" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button3" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button4" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button5" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button6" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button7" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button8" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button9" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button10" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button11" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Maps" type="Control" parent="Main/TabBar/Select/MapList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_dxvp1")
+
+[node name="Filters" type="Panel" parent="Main/TabBar/Select/MapList/Maps"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
+
+[node name="Line" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps/Filters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Filters" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps/Filters/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Search" type="LineEdit" parent="Main/TabBar/Select/MapList/Maps/Filters/Line/Filters"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "Search for a mapset/mapper"
+
+[node name="Sorts" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps/Filters/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Buttons" type="GridContainer" parent="Main/TabBar/Select/MapList/Maps"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 64.0
+offset_right = -8.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Maps/Buttons"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_wbvoa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_52b6h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ke8yw")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rhgv0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_un70j")
+
+[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 96.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpjht")
+
+[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button/Cover"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r3n0f")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_right = -8.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 20
+text = "Schwank - Extra Credit On The Chromosome Test "
+vertical_alignment = 2
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = 48.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 16
+text = "Kermeet, Kiwie"
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/Buttons/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = 48.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 16
+text = "6:03"
+horizontal_alignment = 2
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="Paginator" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="First" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/First"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "<<"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Previous" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/Previous"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "<"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftSeparator" type="VSeparator" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nexjn")
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+custom_minimum_size = Vector2(176, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Page 1 of 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightSeparator" type="VSeparator" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nexjn")
+
+[node name="Next" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/Next"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = ">"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Last" type="Button" parent="Main/TabBar/Select/MapList/Maps/Paginator"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Paginator/Last"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = ">>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="Button" parent="Main/TabBar/Select/MapList/Maps"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -36.0
+offset_right = 196.0
+offset_bottom = -4.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Maps/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "< Return to Playlists"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="ColorRect" parent="Main/TabBar/Select/MapList"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+color = Color(0, 0, 0, 0.784314)
+script = ExtResource("5_3gata")
+
+[node name="Sections" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.506
+offset_top = -284.0
+offset_bottom = 279.824
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Details" type="VBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+clip_children = 1
+custom_minimum_size = Vector2(224, 224)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpjht")
+
+[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Cover"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r3n0f")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CoverSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_2c63c")
+
+[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 20
+text = "Schwank - Extra Credit On The Chromosome Test"
+autowrap_mode = 3
+
+[node name="Line" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 2.0
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 18
+text = "Kermeet, Kiwie
+"
+autowrap_mode = 3
+
+[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.5
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 18
+text = "1:23"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="DifficultySeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
+
+[node name="Maps" type="HFlowContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Maps"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ah55v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ah55v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ds4ea")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ah55v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yv05g")
+toggle_mode = true
+button_pressed = true
+text = "Diff #1"
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Maps/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Diff #1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
+
+[node name="ButtonSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
+
+[node name="Play" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4")
+stretch_mode = 3
+
+[node name="Extra" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections"]
+custom_minimum_size = Vector2(416, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
+
+[node name="Modifiers" type="Control" parent="Main/TabBar/Select/MapList/Select/Sections/Extra"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -295,540 +740,87 @@ offset_right = -4.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
-follow_focus = true
-scroll_vertical_custom_step = 42.0
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
+script = ExtResource("5_fv5pv")
 
-[node name="Contents" type="VBoxContainer" parent="Main/TabBar/Select/MapList/Maps/List"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 4
-
-[node name="TopSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Maps/List/Contents"]
-layout_mode = 2
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_swdcm")
-
-[node name="Mapset" type="Button" parent="Main/TabBar/Select/MapList/Maps/List/Contents"]
-clip_children = 2
-clip_contents = true
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-theme_type_variation = &"MapsetButton"
-toggle_mode = true
-script = ExtResource("8_iudav")
-
-[node name="Cover" type="Control" parent="Main/TabBar/Select/MapList/Maps/List/Contents/Mapset"]
-self_modulate = Color(0.8, 0.8, 0.8, 0.784314)
-clip_contents = true
-layout_mode = 1
-anchor_left = 0.6
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/List/Contents/Mapset/Cover"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_oas34")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Gradient" type="TextureRect" parent="Main/TabBar/Select/MapList/Maps/List/Contents/Mapset/Cover"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -0.199982
-texture = SubResource("GradientTexture1D_6pvy0")
-expand_mode = 1
-
-[node name="Song" type="Label" parent="Main/TabBar/Select/MapList/Maps/List/Contents/Mapset"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 8.0
-offset_right = -16.0
-offset_bottom = 8.0
-grow_horizontal = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "Normal Artist Name - Normal Song Name
-newline"
-vertical_alignment = 2
-autowrap_mode = 2
-clip_text = true
-
-[node name="Creator" type="Label" parent="Main/TabBar/Select/MapList/Maps/List/Contents/Mapset"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 4.0
-offset_right = -208.0
-grow_horizontal = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 14
-text = "Some mapper
-newline"
-autowrap_mode = 2
-clip_text = true
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Maps/List/Contents/Mapset"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -144.0
-offset_top = 40.0
-offset_right = -16.0
-offset_bottom = 72.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 18
-text = "3:00"
-horizontal_alignment = 2
-vertical_alignment = 2
-autowrap_mode = 2
-
-[node name="BottomSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Maps/List/Contents"]
-layout_mode = 2
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxEmpty_swdcm")
-
-[node name="Music" type="AudioStreamPlayer" parent="Main/TabBar/Select/MapList"]
-bus = &"Music"
-script = ExtResource("10_p0mnn")
-
-[node name="MapDetails" type="VBoxContainer" parent="Main/TabBar/Select"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Details" type="Panel" parent="Main/TabBar/Select/MapDetails"]
-custom_minimum_size = Vector2(0, 224)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tvhpi")
-script = ExtResource("11_d7k75")
-maplist_path = NodePath("../../MapList")
-
-[node name="CoverContainer" type="Panel" parent="Main/TabBar/Select/MapDetails/Details"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 0.5
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 152.0
-offset_bottom = 40.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_syg7m")
-
-[node name="Cover" type="TextureRect" parent="Main/TabBar/Select/MapDetails/Details/CoverContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_oas34")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Song" type="Label" parent="Main/TabBar/Select/MapDetails/Details"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 160.0
-offset_right = -80.0
-offset_bottom = 8.0
-grow_horizontal = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 24
-text = "that one schwank song that has a really long name the extra credit chromosome test one
-xi - Freedom DIve"
-vertical_alignment = 2
-autowrap_mode = 3
-clip_text = true
-
-[node name="Creator" type="Label" parent="Main/TabBar/Select/MapDetails/Details"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 160.0
-offset_top = 120.0
-offset_right = -8.0
-offset_bottom = 40.0
-grow_horizontal = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "mapper"
-autowrap_mode = 3
-clip_text = true
-
-[node name="Length" type="Label" parent="Main/TabBar/Select/MapDetails/Details"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -80.0
-offset_right = -8.0
-offset_bottom = 8.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 22
-text = "3:00"
-horizontal_alignment = 2
-vertical_alignment = 2
-autowrap_mode = 2
-clip_text = true
-
-[node name="Maps" type="Panel" parent="Main/TabBar/Select/MapDetails/Details"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -64.0
-offset_right = -8.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_syg7m")
-
-[node name="Buttons" type="HBoxContainer" parent="Main/TabBar/Select/MapDetails/Details/Maps"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="Button" type="Button" parent="Main/TabBar/Select/MapDetails/Details/Maps/Buttons"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 0.588235)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_ce888")
-theme_override_styles/hover = SubResource("StyleBoxFlat_pymji")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_j6uy1")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_8l2gp")
-toggle_mode = true
-button_pressed = true
-text_overrun_behavior = 4
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Details/Maps/Buttons/Button"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_right = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Difficulty Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Id" type="Label" parent="Main/TabBar/Select/MapDetails/Details"]
-modulate = Color(1, 1, 1, 0.501961)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -32.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 14
-text = "id: a4b3c2d1"
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Convert" type="Button" parent="Main/TabBar/Select/MapDetails/Details"]
-visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -35.0
-offset_right = 152.0
-offset_bottom = -8.0
-grow_vertical = 0
-text = "Convert to V3"
-
-[node name="Play" type="Panel" parent="Main/TabBar/Select/MapDetails"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_tvhpi")
-
-[node name="Local" type="TabContainer" parent="Main/TabBar/Select/MapDetails/Play"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -8.0
-
-[node name="Play" type="Control" parent="Main/TabBar/Select/MapDetails/Play/Local"]
-layout_mode = 2
-script = ExtResource("12_r8mhb")
-
-[node name="Speed" type="HBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 56.0
-grow_horizontal = 2
-alignment = 1
-script = ExtResource("13_66cgf")
-
-[node name="MMM" type="VBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/MMM"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/MMM"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "---"
-horizontal_alignment = 1
-
-[node name="MM" type="VBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/MM"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/MM"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "--"
-horizontal_alignment = 1
-
-[node name="M" type="VBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/M"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/M"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "-"
-horizontal_alignment = 1
-
-[node name="Normal" type="VBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/Normal"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/Normal"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "N"
-horizontal_alignment = 1
-
-[node name="P" type="VBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/P"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/P"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "+"
-horizontal_alignment = 1
-
-[node name="PP" type="VBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/PP"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/PP"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "++"
-horizontal_alignment = 1
-
-[node name="PPP" type="VBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/PPP"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/PPP"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "+++"
-horizontal_alignment = 1
-
-[node name="Custom" type="VBoxContainer" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="CheckBox" type="CheckBox" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/Custom"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-
-[node name="Value" type="SpinBox" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/Speed/Custom"]
-layout_mode = 2
-size_flags_vertical = 3
-min_value = 50.0
-max_value = 200.0
-value = 100.0
-suffix = "%"
-custom_arrow_step = 5.0
-
-[node name="NoFail" type="CheckBox" parent="Main/TabBar/Select/MapDetails/Play/Local/Play"]
+[node name="Speed" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 56.0
-offset_right = 144.0
-offset_bottom = 83.0
-text = "No Fail"
+offset_right = 408.0
+offset_bottom = 64.0
+toggle_mode = true
 
-[node name="StartFrom" type="Control" parent="Main/TabBar/Select/MapDetails/Play/Local/Play"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 16.0
-offset_top = 94.0
-offset_right = -16.0
-offset_bottom = 142.0
-grow_horizontal = 2
-script = ExtResource("14_sad65")
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
+layout_mode = 0
+offset_right = 68.0
+offset_bottom = 64.0
+text = "Speed"
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="Slider" type="HSlider" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/StartFrom"]
+[node name="Grid" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -16.0
+offset_top = 68.0
+offset_bottom = -40.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Play/Local/Play/StartFrom"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 32.0
-grow_horizontal = 2
-text = "Start from 0m 0s"
-vertical_alignment = 2
-
-[node name="Play" type="Button" parent="Main/TabBar/Select/MapDetails/Play/Local/Play"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -48.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "PLAY"
-
-[node name="Leaderboard" type="Control" parent="Main/TabBar/Select/MapDetails/Play/Local"]
-visible = false
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid"]
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
 
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapDetails/Play/Local/Leaderboard"]
+[node name="Reset" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.66893e-05
+offset_top = -36.0
+grow_vertical = 0
+size_flags_horizontal = 3
+
+[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Reset"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "There's nothing here."
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Reset/Layout"]
+layout_mode = 2
+texture = ExtResource("6_yvoqp")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Reset/Layout"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Reset Modifiers"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Debug" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 8.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "debug info"
+horizontal_alignment = 2
 
 [node name="Lobby" type="Control" parent="Main/TabBar"]
 visible = false
