@@ -23,11 +23,42 @@ func _ready():
 	$Paginator/Last.pressed.connect(_last_paginator)
 	$Paginator/Previous.pressed.connect(_prev_paginator)
 	$Paginator/Next.pressed.connect(_next_paginator)
+	
+	$Filters/Line/Filters/Search.text_changed.connect(_filter_updated)
 
 func _on_container_resized(size=button_container.size):
+	_filter_mapsets()
+	_sort_mapsets()
 	_calculate_buttons_per_page(size)
 	_calculate_pages()
 	_create_buttons()
+	_update_buttons()
+	_update_paginator()
+
+func _filter_mapset(mapset):
+	var search = $Filters/Line/Filters/Search.text.strip_edges().to_lower()
+	if search.is_empty(): return true
+	var search_exact = (
+		mapset.name.to_lower().contains(search) or
+		mapset.creator.to_lower().contains(search)
+	)
+#	var search_similarity = maxf(
+#		mapset.name.to_lower().similarity(search),
+#		mapset.creator.to_lower().similarity(search)
+#	) > 0.4
+	return search_exact # or search_similarity
+func _filter_mapsets():
+	listed_mapsets = mapsets.filter(_filter_mapset)
+func _sort_mapset(a, b):
+	var alphabet_order = a.name.naturalnocasecmp_to(b.name)
+	return alphabet_order == 1
+func _sort_mapsets():
+	listed_mapsets.sort_custom(_sort_mapset)
+func _filter_updated(_value):
+	_filter_mapsets()
+	_sort_mapsets()
+	_calculate_pages()
+#	_create_buttons()
 	_update_buttons()
 	_update_paginator()
 

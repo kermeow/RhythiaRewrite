@@ -23,6 +23,21 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnsra"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjl6"]
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbvoa"]
 bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 border_width_left = 1
@@ -92,21 +107,6 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjl6"]
-bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nexjn"]
 
@@ -321,6 +321,47 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_dxvp1")
 
+[node name="Filters" type="Panel" parent="Main/TabBar/Select/MapList/Maps"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
+
+[node name="Line" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps/Filters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Filters" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps/Filters/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Search" type="LineEdit" parent="Main/TabBar/Select/MapList/Maps/Filters/Line/Filters"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "Search for a mapset/mapper"
+
+[node name="Sorts" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps/Filters/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
 [node name="Buttons" type="GridContainer" parent="Main/TabBar/Select/MapList/Maps"]
 layout_mode = 1
 anchors_preset = -1
@@ -415,17 +456,6 @@ text = "6:03"
 horizontal_alignment = 2
 autowrap_mode = 3
 text_overrun_behavior = 4
-
-[node name="Panel" type="Panel" parent="Main/TabBar/Select/MapList/Maps"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 56.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
 
 [node name="Paginator" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Maps"]
 layout_mode = 1
