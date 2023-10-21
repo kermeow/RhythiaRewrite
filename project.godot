@@ -145,6 +145,8 @@ anti_aliasing/quality/msaa_3d=1
 mesh_lod/lod_change/threshold_pixels=0.0
 environment/defaults/default_environment="res://default_env.tres"
 2d/options/use_software_skinning=false
+anti_aliasing/quality/msaa_3d.android=0
+anti_aliasing/quality/msaa_2d.android=0
 
 [xr]
 

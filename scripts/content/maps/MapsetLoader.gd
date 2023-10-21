@@ -56,6 +56,7 @@ func load_from_folder(folder:String):
 			var _end = Time.get_ticks_usec()
 			if Globals.debug: print("Loaded v3 map from cache in %sms" % [(_end-_start)/1000.0])
 		else:
+			if Globals.debug: print(file)
 			mapset = Mapset.read_from_file(full_path)
 			var _end = Time.get_ticks_usec()
 			if Globals.debug: print("Loaded v%s map from file in %sms" % [mapset.format,(_end-_start)/1000.0])
@@ -80,6 +81,7 @@ func load_from_folder(folder:String):
 			file_offsets = mapset.file_offsets,
 			length = mapset.length
 		}
+	if cache_exists: DirAccess.remove_absolute(folder.path_join(".cache"))
 	var cache_file = FileAccess.open(folder.path_join(".cache"),FileAccess.WRITE)
 	cache_file.store_string(JSON.stringify(new_cache,"",false))
 	cache_file.close()

@@ -29,10 +29,12 @@ var Paths = {
 const _paths = {
 	skin = [RootPath.RES,"assets"],
 	maps = [RootPath.USER,"maps"],
-	playlists = [RootPath.USER,"playlists"]
+	playlists = [RootPath.USER,"playlists"],
+	settings = [RootPath.USER,"preferences.json"]
 }
 
 func update_paths():
+	if OS.has_feature("android"): Paths.user = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP, false)
 	Paths.executable = OS.get_executable_path()
 	for key in _paths.keys():
 		var value = _paths[key]

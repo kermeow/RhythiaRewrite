@@ -28,14 +28,19 @@ extends Node
 @onready var blocks:Registry = preload("res://assets/content/Blocks.tres")
 @onready var worlds:Registry = preload("res://assets/content/Worlds.tres")
 
-var settings_path = "user://preferences.json"
+var settings_path
 var settings:GameSettings
 var first_time:bool = false
 
 func _ready():
 	on_init_complete.connect(_on_init_complete)
 
+	# Android permissions
+	if OS.has_feature("android"):
+		OS.request_permissions()
+
 	# Load settings
+	settings_path = Globals.Paths.settings
 	call_deferred("load_settings")
 
 # Settings
@@ -46,7 +51,7 @@ func load_settings():
 		var platform_default = "res://assets/settings/%s.json" % Globals.platform
 		settings = GameSettings.load_from_file(platform_default)
 	first_time = settings.first_time
-	
+
 	var callbacks = GameSettings.Callbacks.new()
 	callbacks.tree = get_tree()
 	callbacks.window = get_window()
@@ -55,7 +60,7 @@ func load_settings():
 func save_settings():
 	var exec_settings = OS.get_executable_path().get_base_dir().path_join("preferences.json")
 	if FileAccess.file_exists(exec_settings): settings_path = exec_settings
-	
+
 	settings.save_to_file(settings_path)
 
 # Init
@@ -93,8 +98,7 @@ func _load_mapsets(reset:bool=false):
 	var loader = MapsetLoader.new(mapsets)
 	loader.load_from_folder(Globals.Paths.get("maps"))
 	for folder in settings.paths.maps:
-		if DirAccess.dir_exists_absolute(folder):
-			loader.load_from_folder(ProjectSettings.globalize_path(folder))
+		if DirAccess.dir_exists_absolute(folder): loader.load_from_folder(ProjectSettings.globalize_path(folder))
 func _load_playlists(reset:bool=false):
 	if reset: playlists.clear()
 	var list_reader = PlaylistReader.new()

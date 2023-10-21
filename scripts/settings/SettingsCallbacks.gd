@@ -24,7 +24,7 @@ func bind_to(_settings:GameSettings):
 
 	# Fullscreen
 	settings.get_setting("fullscreen").changed.connect(fullscreen)
-	
+
 	# Gui Scale
 	settings.get_setting("gui_scale").changed.connect(gui_scale)
 
@@ -65,7 +65,7 @@ func set_fps(value:int):
 func gui_scale(value:int):
 	var scale = 1
 	match value:
-		0: scale = 1.6 # 1280 / 800
+		0: scale = 1280.0 / 960.0
 		1: scale = 1
 		2: scale = 0.8 # 1280 / 1600
 		3: scale = 1280.0 / 1920.0
