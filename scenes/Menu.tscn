@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=36 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -99,6 +99,8 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_floo6"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mql7r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xhego"]
 
@@ -1384,7 +1386,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_floo6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_floo6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_floo6")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_floo6")
-theme_override_styles/focus = SubResource("StyleBoxFlat_floo6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mql7r")
 metadata/_edit_lock_ = true
 
 [node name="Sidebar" type="ColorRect" parent="."]

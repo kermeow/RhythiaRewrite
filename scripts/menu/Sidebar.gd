@@ -8,16 +8,18 @@ var showing = false
 @onready var pages = [ $Buttons/Play, $Buttons/Multi, $Buttons/Content, $Buttons/Credits, $Buttons/Settings ]
 
 func _ready():
-	$Open.connect("mouse_entered",Callable(self,"show_bar"))
-	$"../SidebarClose".connect("mouse_entered",Callable(self,"hide_bar"))
+	$Open.connect("mouse_entered", show_bar)
+	$Open.connect("pressed", show_bar)
+	$"../SidebarClose".connect("mouse_entered", hide_bar)
+	$"../SidebarClose".connect("pressed", hide_bar)
 
 	for i in range(pages.size()):
 		var button = pages[i]
-		button.connect("pressed",Callable(self,"_move_highlight").bind(button))
-		button.connect("pressed",Callable(tabs,"set").bind("current_tab",i))
+		button.connect("pressed", _move_highlight.bind(button))
+		button.connect("pressed", tabs.set.bind("current_tab",i))
 
-	$Buttons/Quit.connect("pressed",Callable(get_tree(),"call_deferred").bind("quit_animated"))
-	
+	$Buttons/Quit.connect("pressed", Callable(get_tree(),"call_deferred").bind("quit_animated"))
+
 	call_deferred("_move_highlight", pages[tabs.current_tab])
 func _move_highlight(button):
 	var dest_y = button.global_position.y
