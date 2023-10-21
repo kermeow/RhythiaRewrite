@@ -10,6 +10,9 @@ var last_time:int = 0
 @export var real_time:float = 0
 var current_time:float:
 	get: return real_time + game_offset * playback_speed
+var physics_offset:float = 0
+var physics_time:float:
+	get: return self.current_time + physics_offset
 @export var length:float = 0
 
 @onready var game_offset:float
@@ -59,6 +62,11 @@ func _process(delta):
 	last_time = now
 	real_time += time
 	try_finish()
+func _physics_process(delta):
+	if !playing:
+		physics_offset = 0
+		return
+	physics_offset = (Time.get_ticks_usec() - last_time) / 1000000.0
 
 func try_finish():
 	if current_time > length:

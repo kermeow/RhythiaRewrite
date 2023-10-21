@@ -67,7 +67,8 @@ func _postprocess_cursor():
 func _input(event):
 	if event.is_action_pressed("skip") and game.check_skippable():
 		game.skip()
-	if event is InputEventMouseMotion:
+	var should_process_mouse = event is InputEventMouseMotion
+	if should_process_mouse:
 		_preprocess_cursor()
 		if Globals.platform == "linux":
 			if !game.settings.controls.absolute: _relative_movement(event.relative)
@@ -99,7 +100,7 @@ func _process(_delta):
 		display_name.get_node("Accuracy").text = "%.2f%%" % (float(score.hits*100)/float(score.total))
 
 	if !local_player: return
-	
+
 	var difference = cursor_position - clamped_cursor_position
 	cursor.position = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
 	ghost.position = Vector3(difference.x,difference.y,0.01)
@@ -145,12 +146,12 @@ func _physics_process(_delta):
 		_preprocess_cursor()
 		_absolute_movement(get_viewport().get_mouse_position())
 		_postprocess_cursor()
-	
+
 	var cursor_hitbox = 0.2625
 	var hitwindow = 1.75/30
 	var objects = manager.objects_to_process
 	for object in objects:
-		if game.sync_manager.current_time < object.spawn_time: break
+		if game.sync_manager.physics_time < object.spawn_time: break
 		if object.hit_state != HitObject.HitState.NONE: continue
 		if !(object.hittable and object.can_hit): continue
 		var x = abs(object.position.x - clamped_cursor_position.x)
@@ -161,7 +162,7 @@ func _physics_process(_delta):
 		if x <= hitbox_x and y <= hitbox_y:
 			object.hit()
 		elif object is NoteObject:
-			if game.sync_manager.current_time > (object as NoteObject).note.time + hitwindow:
+			if game.sync_manager.physics_time > (object as NoteObject).note.time + hitwindow:
 				object.miss()
 
 func hit_object_state_changed(state:int,object:HitObject):
