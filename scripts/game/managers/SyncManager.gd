@@ -57,6 +57,7 @@ func _process(delta):
 	if !is_multiplayer_authority():
 		current_time = real_time + game_offset
 		return
+	physics_offset = 0
 	var now = Time.get_ticks_usec()
 	var time = playback_speed * (now - last_time) / 1000000.0
 	last_time = now
@@ -66,7 +67,8 @@ func _physics_process(delta):
 	if !playing:
 		physics_offset = 0
 		return
-	physics_offset = (Time.get_ticks_usec() - last_time) / 1000000.0
+#	physics_offset = (Time.get_ticks_usec() - last_time) / 1000000.0
+	physics_offset += delta
 
 func try_finish():
 	if current_time > length:
