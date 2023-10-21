@@ -11,15 +11,14 @@ var settings:Dictionary
 var frames:Array[Frame]
 
 class Frame:
-	enum Target { PLAYER, PLAYER_CAMERA }
-	const targets:Array[Target] = [] # Targets the frame type will be applied to
-	const opcode:int = 0x00 # Used for writing to files
 	var time:float # Time of the frame
 	func _encode() -> PackedByteArray: return [] # Convert the frame data to bytes
 	func _decode(_bytes:PackedByteArray): pass # Convert bytes to frame data
-	func _apply(_node:Node): pass # Apply frame data to node, specified in targets
 class UnknownTypeFrame:
 	extends Frame
+	static var opcode = 0x00
+const CameraRotationFrame = preload("frames/CameraRotationFrame.gd")
+const CursorPositionFrame = preload("frames/CursorPositionFrame.gd")
 
 # Writing files
 func write_to_file(path:String):
@@ -39,9 +38,8 @@ func write_to_file(path:String):
 	# Frames
 	file.store_32(frames.size()) # Frame count
 	for frame in frames:
-		file.store_8(frame.opcode)
+		file.store_8(frame.get("opcode") or 0x00)
 		var data = frame._encode()
-		file.store_16(data.size())
 		if data.size() > 0: file.store_buffer(data)
 # Reading files
 static func read_from_file(path:String) -> Replay: # Generate Replay from file at path
@@ -67,10 +65,12 @@ static func read_from_file(path:String) -> Replay: # Generate Replay from file a
 		var opcode = file.get_8()
 		var frame:Frame
 		match opcode:
+			0x02: frame = CursorPositionFrame.new()
+			0x01: frame = CameraRotationFrame.new()
 			0x00, _:
 				frame = UnknownTypeFrame.new()
 				print("Unknown frame type! Index %s Opcode %2x" % [i, opcode])
-		var data_length = file.get_16()
+		var data_length = frame.get("data_length") or 0
 		if data_length > 0:
 			var data = file.get_buffer(data_length)
 			frame._decode(data)

@@ -44,7 +44,8 @@ func load_settings():
 		settings = GameSettings.load_from_file(settings_path)
 	else:
 		var platform_default = "res://assets/settings/%s.json" % Globals.platform
-		settings = GameSettings.load_from_file(platform_default)
+		if FileAccess.file_exists(platform_default):
+			settings = GameSettings.load_from_file(platform_default)
 	first_time = settings.first_time
 	
 	var callbacks = GameSettings.Callbacks.new()
