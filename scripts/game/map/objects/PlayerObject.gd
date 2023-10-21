@@ -70,11 +70,11 @@ func _input(event):
 	var should_process_mouse = event is InputEventMouseMotion
 	if should_process_mouse:
 		_preprocess_cursor()
-		if Globals.platform == "linux":
-			if !game.settings.controls.absolute: _relative_movement(event.relative)
-		else:
-			if game.settings.controls.absolute: _absolute_movement(event.position)
-			else: _relative_movement(event.relative)
+#		if Globals.platform == "linux":
+#			if !game.settings.controls.absolute: _relative_movement(event.relative)
+#		else:
+		if game.settings.controls.absolute: _absolute_movement(event.position)
+		else: _relative_movement(event.relative)
 		_postprocess_cursor()
 func _absolute_movement(mouse_position:Vector2):
 	var cursor_position_3d = absolute_camera.project_position(mouse_position, -camera.position.z)
@@ -142,10 +142,10 @@ func _process(_delta):
 		trails.resize((total_trails - remove_trails)*2)
 
 func _physics_process(_delta):
-	if Globals.platform == "linux" and game.settings.controls.absolute:
-		_preprocess_cursor()
-		_absolute_movement(get_viewport().get_mouse_position())
-		_postprocess_cursor()
+#	if Globals.platform == "linux" and game.settings.controls.absolute:
+#		_preprocess_cursor()
+#		_absolute_movement(get_viewport().get_mouse_position())
+#		_postprocess_cursor()
 
 	var cursor_hitbox = 0.2625
 	var hitwindow = 1.75/30
