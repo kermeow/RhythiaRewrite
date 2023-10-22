@@ -1,7 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=37 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
-[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
+[ext_resource type="Theme" uid="uid://tin0gsmmldph" path="res://themes/mod_button_theme.tres" id="1_s75qo"]
 [ext_resource type="Script" path="res://scripts/menu/Warning.gd" id="2_0nvp3"]
 [ext_resource type="PackedScene" uid="uid://djiqkbobmj6wr" path="res://prefabs/menu/maplist/List.tscn" id="3_0cnck"]
 [ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="3_r3n0f"]
@@ -78,6 +78,8 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="Theme" id="Theme_a5w1n"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvhpi"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 corner_radius_top_left = 8
@@ -112,7 +114,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_kkcab")
+theme = ExtResource("1_s75qo")
 color = Color(0.12549, 0.12549, 0.12549, 1)
 
 [node name="Warning" type="ColorRect" parent="."]
@@ -422,6 +424,7 @@ script = ExtResource("5_fv5pv")
 layout_mode = 0
 offset_right = 408.0
 offset_bottom = 64.0
+disabled = true
 toggle_mode = true
 
 [node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
@@ -434,8 +437,8 @@ vertical_alignment = 1
 
 [node name="SpeedSpinbox" type="SpinBox" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
 layout_mode = 0
-offset_left = 80.0
-offset_right = 178.25
+offset_left = 67.0
+offset_right = 165.25
 offset_bottom = 64.0
 min_value = 0.1
 max_value = 5.0
@@ -453,11 +456,36 @@ offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid"]
+[node name="NofailButton" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_s75qo")
 toggle_mode = true
+action_mode = 0
+keep_pressed_outside = true
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/NofailButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_a5w1n")
+text = "No Fail"
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/NofailButton"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 56.0
+offset_bottom = 57.0
+texture = ExtResource("4")
+expand_mode = 1
 
 [node name="Reset" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
 custom_minimum_size = Vector2(0, 36)
