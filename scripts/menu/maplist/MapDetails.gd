@@ -9,7 +9,7 @@ signal map_selected
 
 var difficulties = []
 
-@export var selected_mapset: Mapset = null
+var selected_mapset = null
 var selected_map_index = 0
 
 func _ready():
@@ -71,9 +71,7 @@ func _update_details():
 		"local" if selected_mapset.local else selected_mapset.online_id
 	]
 	
-	Rhythia.selected_mods.start_from = min(Rhythia.selected_mods.start_from, selected_mapset.length as float)
-	$Sections/Extra/Modifiers.update_seek_slider()
-	$Sections/Extra/Modifiers.update_time_label()
+	$Sections/Extra/Modifiers.update_seeking_panel()
 
 func _create_difficulties():
 	if difficulties.size() == selected_mapset.maps.size(): return

@@ -8,9 +8,15 @@ func _ready():
 	
 	$Speed/SpeedSpinbox.value = Rhythia.selected_mods.speed_custom
 	$Grid/NofailButton.button_pressed = Rhythia.selected_mods.no_fail
-	update_seek_slider()
-	update_time_label()
-	
+
+	update_seeking_panel()
+
+func update_seeking_panel():
+	var selected_mapset = $"../../..".selected_mapset	
+	Rhythia.selected_mods.start_from = min(Rhythia.selected_mods.start_from, selected_mapset.length as float)
+	$Sections/Extra/Modifiers.update_seek_slider()
+	$Sections/Extra/Modifiers.update_time_label()
+
 func get_map_secs():
 	var selected_mapset = $"../../..".selected_mapset
 	if selected_mapset == null: return -1.0
