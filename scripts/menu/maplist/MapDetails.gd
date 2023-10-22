@@ -14,9 +14,9 @@ var selected_map_index = 0
 
 func _ready():
 	visible = false
-	
+
 	difficulty_container.remove_child(origin_difficulty)
-	
+
 	maplist.mapset_selected.connect(_mapset_selected)
 	$Sections/Details/Play.pressed.connect(_play_pressed)
 
