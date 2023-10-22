@@ -255,6 +255,7 @@ size_flags_vertical = 4
 layout_mode = 1
 
 [node name="Select" type="ColorRect" parent="Main/TabBar/Select/MapList"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -435,11 +436,32 @@ text = "Speed"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="SpeedSpinboxBackground" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = 16.0
+offset_right = -235.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_j808x")
+
 [node name="SpeedSpinbox" type="SpinBox" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
-layout_mode = 0
-offset_left = 67.0
-offset_right = 165.25
-offset_bottom = 64.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 72.0
+offset_top = -13.0
+offset_right = -237.75
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_j808x")
 min_value = 0.1
 max_value = 5.0
 step = 0.05
