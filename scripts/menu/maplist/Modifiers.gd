@@ -8,6 +8,8 @@ func _ready():
 	
 	$Speed/SpeedSpinbox.value = Rhythia.selected_mods.speed_custom
 	$Grid/NofailButton.button_pressed = Rhythia.selected_mods.no_fail
+	update_seek_slider()
+	update_time_label()
 	
 func get_map_secs():
 	var selected_mapset = $"../../..".selected_mapset
@@ -34,4 +36,7 @@ func _set_speed(value):
 	Rhythia.selected_mods.speed_custom = value
 
 func _on_reset_modifiers():
-	pass
+	Rhythia.selected_mods.start_from = 0.0
+	Rhythia.selected_mods.speed_custom = 1.0
+	Rhythia.selected_mods.no_fail = false
+	_ready()
