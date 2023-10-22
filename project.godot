@@ -69,10 +69,6 @@ window/vsync/vsync_mode=0
 window/subwindows/embed_subwindows.mobile=true
 window/stretch/mode.mobile="canvas_items"
 
-[dotnet]
-
-project/assembly_name="Rhythia"
-
 [editor]
 
 script/templates_search_path="res://scripts/templates"
