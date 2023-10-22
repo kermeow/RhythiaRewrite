@@ -72,7 +72,6 @@ func _update_details():
 	]
 	
 	Rhythia.selected_mods.start_from = min(Rhythia.selected_mods.start_from, selected_mapset.length as float)
-	print(Rhythia.selected_mods.start_from)
 	$Sections/Extra/Modifiers.update_seek_slider()
 	$Sections/Extra/Modifiers.update_time_label()
 

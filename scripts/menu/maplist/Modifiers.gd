@@ -19,7 +19,6 @@ func sec_to_min_sec(sec: float):
 
 func update_seek_slider():
 	$SeekButton/SeekSlider.value = (Rhythia.selected_mods.start_from/get_map_secs())*100.0
-	print("AAA: ", $SeekButton/SeekSlider.value)
 func update_time_label():
 	$SeekButton/TimeLabel.text = sec_to_min_sec(Rhythia.selected_mods.start_from)
 
