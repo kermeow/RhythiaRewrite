@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=37 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -85,7 +85,12 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hcgho"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lp8xu"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ur6lp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vm47"]
 content_margin_left = 16.0
@@ -168,6 +173,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="MapList" type="Control" parent="Main/TabBar/Select"]
@@ -785,7 +791,6 @@ visible = false
 layout_mode = 2
 
 [node name="Credits" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Main/TabBar/Credits"]
@@ -794,8 +799,8 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -320.0
-offset_right = 320.0
+offset_left = -448.0
+offset_right = 448.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -803,18 +808,85 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 
-[node name="HSeparator" type="HSeparator" parent="Main/TabBar/Credits/ScrollContainer/List"]
+[node name="Logo" type="Control" parent="Main/TabBar/Credits/ScrollContainer/List"]
+custom_minimum_size = Vector2(0, 248)
 layout_mode = 2
-theme_override_constants/separation = 32
-theme_override_styles/separator = SubResource("StyleBoxEmpty_hcgho")
 
-[node name="Logo" type="TextureRect" parent="Main/TabBar/Credits/ScrollContainer/List"]
-custom_minimum_size = Vector2(0, 184)
-layout_mode = 2
+[node name="Image" type="TextureRect" parent="Main/TabBar/Credits/ScrollContainer/List/Logo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("14_ack2s")
-expand_mode = 3
-stretch_mode = 6
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Licenses" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/List"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Licenses"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LicenseButton" type="Button" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses/LicenseButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Rhythia"
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses/LicenseButton"]
+show_behind_parent = true
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lp8xu")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses/LicenseButton/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses/LicenseButton/Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa enim nec dui nunc. Facilisi cras fermentum odio eu feugiat pretium nibh ipsum. Lacus suspendisse faucibus interdum posuere lorem ipsum. Nisl condimentum id venenatis a condimentum. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit eget. Morbi tempus iaculis urna id volutpat lacus laoreet non curabitur. In fermentum posuere urna nec tincidunt praesent semper feugiat. Arcu non odio euismod lacinia at quis risus sed. Vel orci porta non pulvinar neque laoreet suspendisse interdum. Scelerisque purus semper eget duis at tellus at urna condimentum. Suspendisse interdum consectetur libero id faucibus nisl. Nisi lacus sed viverra tellus in hac. Id velit ut tortor pretium viverra. Lectus quam id leo in vitae. Id velit ut tortor pretium viverra suspendisse. Ipsum faucibus vitae aliquet nec ullamcorper sit amet. Ornare lectus sit amet est placerat in egestas erat. Semper quis lectus nulla at volutpat diam ut. Aliquam faucibus purus in massa tempor nec feugiat nisl pretium."
+autowrap_mode = 3
+
+[node name="ScrollRoom" type="HSeparator" parent="Main/TabBar/Credits/ScrollContainer/List"]
+layout_mode = 2
+theme_override_constants/separation = 64
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ur6lp")
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
 visible = false
