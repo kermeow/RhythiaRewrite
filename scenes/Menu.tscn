@@ -1,6 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=38 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
+[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3cijv"]
 [ext_resource type="Theme" uid="uid://tin0gsmmldph" path="res://themes/modifier_theme.tres" id="1_j808x"]
 [ext_resource type="Script" path="res://scripts/menu/Warning.gd" id="2_0nvp3"]
 [ext_resource type="PackedScene" uid="uid://djiqkbobmj6wr" path="res://prefabs/menu/maplist/List.tscn" id="3_0cnck"]
@@ -114,6 +115,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_3cijv")
 color = Color(0.12549, 0.12549, 0.12549, 1)
 
 [node name="Warning" type="ColorRect" parent="."]

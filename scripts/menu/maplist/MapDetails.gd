@@ -6,7 +6,7 @@ signal map_selected
 
 @onready var difficulty_container = $Sections/Details/Maps
 @onready var origin_difficulty = $Sections/Details/Maps/Button
-
+@onready var 
 var difficulties = []
 
 var selected_mapset = null
