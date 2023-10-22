@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://eobt2fotkbfh"]
+[gd_scene load_steps=6 format=3 uid="uid://eobt2fotkbfh"]
 
 [ext_resource type="Script" path="res://scripts/menu/loading/Init.gd" id="1"]
-[ext_resource type="Theme" uid="uid://tin0gsmmldph" path="res://themes/modifier_theme.tres" id="1_mls4r"]
 [ext_resource type="Texture2D" uid="uid://c54ide18equ4n" path="res://assets/images/branding/icon.png" id="4_2wpeo"]
 [ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="4_awb3p"]
 [ext_resource type="PackedScene" uid="uid://lsgq5t65pdtf" path="res://prefabs/menu/VersionNumberL.tscn" id="8"]
@@ -11,7 +10,6 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource("1_mls4r")
 color = Color(0, 0, 0, 1)
 script = ExtResource("1")
 

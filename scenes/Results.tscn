@@ -79,6 +79,7 @@ grow_vertical = 2
 theme_type_variation = &"ResultsPanel"
 
 [node name="Rank" type="Label" parent="AspectRatio/Container/Score"]
+layout_mode = 0
 offset_top = 16.0
 offset_right = 256.0
 offset_bottom = 144.0
