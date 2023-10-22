@@ -5,6 +5,7 @@ func _ready():
 	$Speed/SpeedSpinbox.value_changed.connect(_set_speed)
 	$Grid/NofailButton.toggled.connect(_toggle_nofail)
 	
+	$Speed/SpeedSpinbox.value = Rhythia.selected_mods.speed_custom
 	$Grid/NofailButton.button_pressed = Rhythia.selected_mods.no_fail
 	
 func _toggle_nofail(pressed):
