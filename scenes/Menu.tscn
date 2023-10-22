@@ -255,7 +255,6 @@ size_flags_vertical = 4
 layout_mode = 1
 
 [node name="Select" type="ColorRect" parent="Main/TabBar/Select/MapList"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -471,7 +470,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 58.0
+offset_left = 62.0
 offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -485,7 +484,7 @@ offset_left = 6.0
 offset_top = 7.0
 offset_right = 56.0
 offset_bottom = 57.0
-texture = ExtResource("4")
+texture = ExtResource("9")
 expand_mode = 1
 
 [node name="Reset" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
