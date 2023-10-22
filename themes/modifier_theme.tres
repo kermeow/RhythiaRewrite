@@ -1,11 +1,11 @@
 [gd_resource type="Theme" load_steps=44 format=3 uid="uid://tin0gsmmldph"]
 
-[ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="1_u0fxq"]
-[ext_resource type="FontFile" uid="uid://b3w5apfxq72o0" path="res://assets/fonts/NotoColorEmoji.ttf" id="2_m5yde"]
-[ext_resource type="FontFile" uid="uid://bf8h1hxdvj8x8" path="res://assets/fonts/Noto_Sans_JP/NotoSansJP-Medium.otf" id="3_nifr7"]
+[ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="1_y8uon"]
+[ext_resource type="FontFile" uid="uid://b3w5apfxq72o0" path="res://assets/fonts/NotoColorEmoji.ttf" id="2_5ucn0"]
+[ext_resource type="FontFile" uid="uid://bf8h1hxdvj8x8" path="res://assets/fonts/Noto_Sans_JP/NotoSansJP-Medium.otf" id="3_je1s4"]
 
 [sub_resource type="FontFile" id="17"]
-fallbacks = Array[Font]([ExtResource("1_u0fxq"), ExtResource("2_m5yde"), ExtResource("3_nifr7")])
+fallbacks = Array[Font]([ExtResource("1_y8uon"), ExtResource("2_5ucn0"), ExtResource("3_je1s4")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -1014,7 +1014,7 @@ corner_radius_bottom_left = 8
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvany"]
 content_margin_left = 8.0
 content_margin_right = 8.0
-bg_color = Color(0.278431, 0.278431, 0.278431, 1)
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -1390,7 +1390,7 @@ expand_margin_right = 8.0
 expand_margin_bottom = 4.0
 
 [resource]
-default_font = ExtResource("1_u0fxq")
+default_font = ExtResource("1_y8uon")
 default_font_size = 18
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 0.8)

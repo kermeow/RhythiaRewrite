@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
-[ext_resource type="Theme" uid="uid://tin0gsmmldph" path="res://themes/mod_button_theme.tres" id="1_s75qo"]
+[ext_resource type="Theme" uid="uid://tin0gsmmldph" path="res://themes/modifier_theme.tres" id="1_j808x"]
 [ext_resource type="Script" path="res://scripts/menu/Warning.gd" id="2_0nvp3"]
 [ext_resource type="PackedScene" uid="uid://djiqkbobmj6wr" path="res://prefabs/menu/maplist/List.tscn" id="3_0cnck"]
 [ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="3_r3n0f"]
@@ -114,7 +114,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_s75qo")
+theme = ExtResource("1_j808x")
 color = Color(0.12549, 0.12549, 0.12549, 1)
 
 [node name="Warning" type="ColorRect" parent="."]
@@ -255,6 +255,7 @@ size_flags_vertical = 4
 layout_mode = 1
 
 [node name="Select" type="ColorRect" parent="Main/TabBar/Select/MapList"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -460,7 +461,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_s75qo")
+theme = ExtResource("1_j808x")
 toggle_mode = true
 action_mode = 0
 keep_pressed_outside = true
