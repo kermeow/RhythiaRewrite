@@ -26,7 +26,7 @@ var speed:float:
 			
 var no_fail:bool = false
 
-var start_from:int = 0
+var start_from:float = 0
 
 var data:Dictionary:
 	get:
