@@ -5,7 +5,9 @@ func _ready():
 	$Speed/SpeedSpinbox.value_changed.connect(_set_speed)
 	$Grid/NofailButton.toggled.connect(_toggle_nofail)
 	$SeekButton/SeekSlider.value_changed.connect(_seek_slider_changed)
+	set_modifier_values()
 	
+func set_modifier_values():
 	$Speed/SpeedSpinbox.value = Rhythia.selected_mods.speed_custom
 	$Grid/NofailButton.button_pressed = Rhythia.selected_mods.no_fail
 
@@ -44,4 +46,4 @@ func _on_reset_modifiers():
 	Rhythia.selected_mods.start_from = 0.0
 	Rhythia.selected_mods.speed_custom = 1.0
 	Rhythia.selected_mods.no_fail = false
-	_ready()
+	set_modifier_values()
