@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnna3u1wwqnfr"]
+[gd_scene load_steps=6 format=3 uid="uid://cnna3u1wwqnfr"]
 
 [ext_resource type="Script" path="res://scripts/menu/ResultsScreen.gd" id="1_3bkcb"]
-[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_gcb34"]
 [ext_resource type="Texture2D" uid="uid://baudi0q5biiuy" path="res://assets/images/covers/easy.png" id="2_edm8f"]
 [ext_resource type="Material" uid="uid://4b20ukp1h0uf" path="res://assets/materials/ui/BlurOverlay.tres" id="3_u78g1"]
 [ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="5_3hqhr"]
@@ -14,7 +13,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_gcb34")
 script = ExtResource("1_3bkcb")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -79,6 +77,7 @@ grow_vertical = 2
 theme_type_variation = &"ResultsPanel"
 
 [node name="Rank" type="Label" parent="AspectRatio/Container/Score"]
+layout_mode = 0
 offset_top = 16.0
 offset_right = 256.0
 offset_bottom = 144.0

@@ -122,7 +122,6 @@ id = "World"
 permanent = true
 
 [node name="Music" type="AudioStreamPlayer" parent="Players/LocalPlayer"]
-bus = &"Game Music"
 
 [node name="Light" type="OmniLight3D" parent="."]
 layers = 2

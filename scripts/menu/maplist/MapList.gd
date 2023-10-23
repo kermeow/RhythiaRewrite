@@ -86,6 +86,8 @@ func _calculate_buttons_per_page(size):
 func _calculate_pages():
 	max_page = ceil(listed_mapsets.size() / buttons_per_page) - 1
 	page = mini(page, max_page)
+	
+	if page == -1 and max_page != -1: page = 0
 
 func _create_buttons():
 	if buttons.size() == buttons_per_page: return
