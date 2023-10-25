@@ -14,7 +14,7 @@ const SpeedPresets = [
 	1.25,
 	1.35
 ]
-var speed_mod = Speed.PRESET
+var speed_mod = Speed.CUSTOM
 var speed_preset = 3
 var speed_custom = 1
 var speed:float:
@@ -26,7 +26,7 @@ var speed:float:
 			
 var no_fail:bool = false
 
-var start_from:int = 0
+var start_from:float = 0
 
 var data:Dictionary:
 	get:
