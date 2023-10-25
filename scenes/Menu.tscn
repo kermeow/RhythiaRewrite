@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=41 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3cijv"]
@@ -15,7 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://b21p2flel8ywr" path="res://assets/images/ui/settings.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://b7v0bqlxe7ew4" path="res://assets/images/ui/favorite.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
+[ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="13_0gtk4"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
+[ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="14_kq106"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
 [ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
@@ -88,10 +90,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lp8xu"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fx0e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ur6lp"]
 
@@ -176,7 +175,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="MapList" type="Control" parent="Main/TabBar/Select"]
@@ -910,30 +908,35 @@ visible = false
 layout_mode = 2
 
 [node name="Credits" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Main/TabBar/Credits"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -448.0
-offset_right = 448.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
-[node name="List" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Main/TabBar/Credits/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 0
 
-[node name="Logo" type="Control" parent="Main/TabBar/Credits/ScrollContainer/List"]
+[node name="Items" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Logo" type="Control" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
 custom_minimum_size = Vector2(0, 248)
 layout_mode = 2
 
-[node name="Image" type="TextureRect" parent="Main/TabBar/Credits/ScrollContainer/List/Logo"]
+[node name="Image" type="TextureRect" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Logo"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -946,63 +949,142 @@ texture = ExtResource("14_ack2s")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Licenses" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/List"]
+[node name="Developers" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
 layout_mode = 2
-theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses"]
+[node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Licenses"
+text = "Developers"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LicenseButton" type="Button" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses"]
-custom_minimum_size = Vector2(0, 36)
+[node name="Items" type="HBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers"]
 layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
 
-[node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses/LicenseButton"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "Rhythia"
-vertical_alignment = 1
+[node name="LeftPadding" type="VSeparator" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
+layout_mode = 2
+theme_override_constants/separation = 200
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0fx0e")
 
-[node name="Panel" type="Panel" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses/LicenseButton"]
-show_behind_parent = true
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lp8xu")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses/LicenseButton/Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 24.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Main/TabBar/Credits/ScrollContainer/List/Licenses/LicenseButton/Panel/ScrollContainer"]
+[node name="kermeet" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa enim nec dui nunc. Facilisi cras fermentum odio eu feugiat pretium nibh ipsum. Lacus suspendisse faucibus interdum posuere lorem ipsum. Nisl condimentum id venenatis a condimentum. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit eget. Morbi tempus iaculis urna id volutpat lacus laoreet non curabitur. In fermentum posuere urna nec tincidunt praesent semper feugiat. Arcu non odio euismod lacinia at quis risus sed. Vel orci porta non pulvinar neque laoreet suspendisse interdum. Scelerisque purus semper eget duis at tellus at urna condimentum. Suspendisse interdum consectetur libero id faucibus nisl. Nisi lacus sed viverra tellus in hac. Id velit ut tortor pretium viverra. Lectus quam id leo in vitae. Id velit ut tortor pretium viverra suspendisse. Ipsum faucibus vitae aliquet nec ullamcorper sit amet. Ornare lectus sit amet est placerat in egestas erat. Semper quis lectus nulla at volutpat diam ut. Aliquam faucibus purus in massa tempor nec feugiat nisl pretium."
-autowrap_mode = 3
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[center][b]kermeet[/b]
+krmeet on GitHub
+"
+fit_content = true
+scroll_active = false
 
-[node name="ScrollRoom" type="HSeparator" parent="Main/TabBar/Credits/ScrollContainer/List"]
+[node name="kiwie" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[center][b]kiwie[/b]
+David20122 on GitHub
+"
+fit_content = true
+scroll_active = false
+
+[node name="RightPadding" type="VSeparator" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
+layout_mode = 2
+theme_override_constants/separation = 200
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0fx0e")
+
+[node name="Attribution" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Attribution"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Godot" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[b]Godot Engine[/b]
+This game uses Godot Engine, available under the following license:
+Copyright (c) 2014-present Godot Engine contributors. Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+"
+fit_content = true
+scroll_active = false
+
+[node name="FreeType" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[b]FreeType[/b]
+Portions of this software are copyright © 1996-2023 The FreeType Project (www.freetype.org). All rights reserved."
+fit_content = true
+scroll_active = false
+
+[node name="ENet" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[b]ENet[/b]
+Copyright (c) 2002-2020 Lee Salzman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+"
+fit_content = true
+scroll_active = false
+
+[node name="mbedTLS" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[b]mbed TLS[/b]
+Copyright The Mbed TLS Contributors
+
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+"
+fit_content = true
+scroll_active = false
+
+[node name="ScrollRoom" type="HSeparator" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
 layout_mode = 2
 theme_override_constants/separation = 64
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ur6lp")

@@ -6,7 +6,7 @@ func _ready():
 	$Grid/NofailButton.toggled.connect(_toggle_nofail)
 	$SeekButton/SeekSlider.value_changed.connect(_seek_slider_changed)
 	set_modifier_values()
-	
+
 func set_modifier_values():
 	$Speed/SpeedSpinbox.value = Rhythia.selected_mods.speed_custom
 	$Grid/NofailButton.button_pressed = Rhythia.selected_mods.no_fail
@@ -22,7 +22,7 @@ func get_map_secs():
 	var selected_mapset = $"../../..".selected_mapset
 	if selected_mapset == null: return -1.0
 	return selected_mapset.length as float
-	
+
 func sec_to_min_sec(sec: float):
 	return "%02d:%02d" % [floor(sec / 60.0), (sec as int % 60)]
 
@@ -35,7 +35,7 @@ func _seek_slider_changed(value):
 	var secs_in = get_map_secs()/(100.0/value)
 	Rhythia.selected_mods.start_from = secs_in
 	update_time_label()
-	
+
 func _toggle_nofail(pressed):
 	Rhythia.selected_mods.no_fail = pressed
 

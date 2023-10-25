@@ -70,7 +70,7 @@ func _update_details():
 		selected_mapset.id,
 		"local" if selected_mapset.local else selected_mapset.online_id
 	]
-	
+
 	$Sections/Extra/Modifiers.set_modifier_values()
 
 func _create_difficulties():
