@@ -1,12 +1,9 @@
 extends Replay.Frame
 
-static var opcode = 0x02
-static var data_length = 4
-
 var position:Vector2
 func _encode() -> PackedByteArray:
 	var bytes = PackedByteArray()
-	bytes.resize(data_length)
+	bytes.resize(4)
 	var x_packed = roundi(position.x * 32767.0/128.0)
 	var y_packed = roundi(position.y * 32767.0/128.0)
 	bytes.encode_s16(0, x_packed)

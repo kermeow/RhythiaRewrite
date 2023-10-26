@@ -1,8 +1,5 @@
 extends Replay.Frame
 
-static var opcode = 0x01
-static var data_length = 4
-
 var rotation:Vector2
 func _encode() -> PackedByteArray:
 	var bytes = PackedByteArray()

@@ -16,9 +16,18 @@ class Frame:
 	func _decode(_bytes:PackedByteArray): pass # Convert bytes to frame data
 class UnknownTypeFrame:
 	extends Frame
-	static var opcode = 0x00
 const CameraRotationFrame = preload("frames/CameraRotationFrame.gd")
 const CursorPositionFrame = preload("frames/CursorPositionFrame.gd")
+const Opcodes = {
+	0x01: CameraRotationFrame,
+	0x02: CursorPositionFrame
+}
+
+func get_opcode_for(frame:Frame):
+	for opcode in Opcodes:
+		var type = Opcodes[opcode]
+		if is_instance_of(frame, type): return opcode
+	return 0x00
 
 # Writing files
 func write_to_file(path:String):
@@ -38,8 +47,9 @@ func write_to_file(path:String):
 	# Frames
 	file.store_32(frames.size()) # Frame count
 	for frame in frames:
-		file.store_8(frame.get("opcode") or 0x00)
+		file.store_8(get_opcode_for(frame) or 0x00)
 		var data = frame._encode()
+		file.store_8(data.size())
 		if data.size() > 0: file.store_buffer(data)
 # Reading files
 static func read_from_file(path:String) -> Replay: # Generate Replay from file at path
@@ -64,13 +74,13 @@ static func read_from_file(path:String) -> Replay: # Generate Replay from file a
 	for i in frame_count:
 		var opcode = file.get_8()
 		var frame:Frame
-		match opcode:
-			0x02: frame = CursorPositionFrame.new()
-			0x01: frame = CameraRotationFrame.new()
-			0x00, _:
-				frame = UnknownTypeFrame.new()
-				print("Unknown frame type! Index %s Opcode %2x" % [i, opcode])
-		var data_length = frame.get("data_length") or 0
+		var type = Opcodes[opcode]
+		if type != null:
+			frame = type.new()
+		else:
+			frame = UnknownTypeFrame.new()
+			print("Unknown frame type! Index %s Opcode %2x" % [i, opcode])
+		var data_length = file.get_8()
 		if data_length > 0:
 			var data = file.get_buffer(data_length)
 			frame._decode(data)
