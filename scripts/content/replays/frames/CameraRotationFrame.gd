@@ -3,7 +3,7 @@ extends Replay.Frame
 var rotation:Vector2
 func _encode() -> PackedByteArray:
 	var bytes = PackedByteArray()
-	bytes.resize(data_length)
+	bytes.resize(4)
 	var yaw_packed = floori(rotation.y * 65535.0/360.0)
 	var pitch_packed = floori(rotation.x * 65535.0/360.0)
 	bytes.encode_u16(0, yaw_packed)

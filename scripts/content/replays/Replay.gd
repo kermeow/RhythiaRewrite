@@ -48,6 +48,7 @@ func write_to_file(path:String):
 	file.store_32(frames.size()) # Frame count
 	for frame in frames:
 		file.store_8(get_opcode_for(frame) or 0x00)
+		file.store_float(frame.time)
 		var data = frame._encode()
 		file.store_8(data.size())
 		if data.size() > 0: file.store_buffer(data)
@@ -80,6 +81,7 @@ static func read_from_file(path:String) -> Replay: # Generate Replay from file a
 		else:
 			frame = UnknownTypeFrame.new()
 			print("Unknown frame type! Index %s Opcode %2x" % [i, opcode])
+		frame.time = file.get_float()
 		var data_length = file.get_8()
 		if data_length > 0:
 			var data = file.get_buffer(data_length)
