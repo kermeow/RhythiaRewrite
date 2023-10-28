@@ -10,6 +10,14 @@ var mods:PackedByteArray
 var settings:Dictionary
 var frames:Array[Frame]
 
+func get_frames_by_type(type:Variant):
+	return frames.filter(func(frame): return is_instance_of(frame, type))
+func get_frames_by_types(types:Array[Variant]):
+	var _frames = []
+	for type in types:
+		frames.filter(func(frame): return is_instance_of(frame, type) and not frame in _frames)
+	return _frames
+
 class Frame:
 	var time:float # Time of the frame
 	func _encode() -> PackedByteArray: return [] # Convert the frame data to bytes
@@ -18,9 +26,11 @@ class UnknownTypeFrame:
 	extends Frame
 const CameraRotationFrame = preload("frames/CameraRotationFrame.gd")
 const CursorPositionFrame = preload("frames/CursorPositionFrame.gd")
+const HitStateFrame = preload("frames/HitStateFrame.gd")
 const Opcodes = {
 	0x01: CameraRotationFrame,
-	0x02: CursorPositionFrame
+	0x02: CursorPositionFrame,
+	0x03: HitStateFrame
 }
 
 func get_opcode_for(frame:Frame):

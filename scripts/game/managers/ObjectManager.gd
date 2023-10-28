@@ -55,7 +55,7 @@ func append_object(object:GameObject,parent:bool=true,include_children:bool=fals
 	if object is HitObject:
 		if player != null: object.connect(
 			"on_hit_state_changed",
-			Callable(player,"hit_object_state_changed").bind(object)
+			player.hit_object_state_changed.bind(object)
 		)
 
 	if parent: # Reparent to origin

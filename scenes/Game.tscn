@@ -123,6 +123,7 @@ script = ExtResource("6_f855g")
 
 [node name="ReplayManager" type="Node" parent="."]
 script = ExtResource("7_j81du")
+mode = null
 
 [node name="HUDManager" type="Node" parent="." node_paths=PackedStringArray("hud")]
 process_priority = 1

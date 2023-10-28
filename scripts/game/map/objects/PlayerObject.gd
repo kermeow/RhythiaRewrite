@@ -3,6 +3,7 @@ class_name PlayerObject
 
 signal hit
 signal missed
+signal hit_state_changed
 signal score_changed
 signal failed
 
@@ -150,8 +151,9 @@ func _physics_process(_delta):
 		elif object is NoteObject:
 			if game.sync_manager.current_time > (object as NoteObject).note.time + hitwindow:
 				object.miss()
-func hit_object_state_changed(state:int, object:HitObject):
+func hit_object_state_changed(state:HitObject.HitState, object:HitObject):
 	if lock_score: return
+	hit_state_changed.emit(game.object_manager.objects.rfind(object), state)
 	match state:
 		HitObject.HitState.HIT:
 			hit.emit(object)
