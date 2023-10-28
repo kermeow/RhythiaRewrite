@@ -20,7 +20,6 @@ signal failed
 @onready var _ghost_cursor:MeshInstance3D = cursor.get_node("Ghost")
 @export var trail:MultiMesh
 
-
 var trails:Array = []
 var trail_position:Vector3 = Vector3.ZERO
 var trail_pre_position:Vector3 = Vector3.ZERO

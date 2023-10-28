@@ -3,16 +3,16 @@ class_name Replay
 
 const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x52] # rhythiaR
 
-var mapset_id:String 
-var map_id:String
-var player_name:String
+var mapset_id:String = "MAPSET_ID"
+var map_id:String = "MAP_ID"
+var player_name:String = "Player"
 var mods:PackedByteArray
 var settings:PackedByteArray
 var frames:Array[Frame]
 
 func write_settings(_settings:GameSettings):
 	settings = PackedByteArray()
-	settings.resize(7)
+	settings.resize(9)
 	var flags = 0
 	if _settings.camera.lock: flags |= 1 << 0
 	if _settings.camera.drift: flags |= 1 << 1
@@ -20,6 +20,7 @@ func write_settings(_settings:GameSettings):
 	settings.encode_half(1, _settings.approach.time)
 	settings.encode_half(3, _settings.approach.distance)
 	settings.encode_half(5, _settings.camera.fov)
+	settings.encode_half(7, _settings.camera.parallax.camera)
 func read_settings(_settings:GameSettings):
 	var flags = settings[0]
 	_settings.camera.lock = flags & 1 << 0
@@ -27,6 +28,7 @@ func read_settings(_settings:GameSettings):
 	_settings.approach.time = settings.decode_half(1)
 	_settings.approach.distance = settings.decode_half(3)
 	_settings.camera.fov = settings.decode_half(5)
+	_settings.camera.parallax.camera = settings.decode_half(7)
 
 class Frame:
 	var time:float # Time of the frame
@@ -54,6 +56,7 @@ func write_to_file(path:String):
 	var file = FileAccess.open(path,FileAccess.WRITE)
 	assert(file != null)
 	file.store_buffer(SIGNATURE)
+#	file.store_line("gullible") # David asked for this
 	# Map info
 	file.store_pascal_string(mapset_id)
 	file.store_pascal_string(map_id)
@@ -77,6 +80,7 @@ static func read_from_file(path:String) -> Replay: # Generate Replay from file a
 	var file = FileAccess.open(path,FileAccess.READ)
 	assert(file != null)
 	assert(file.get_buffer(8) == SIGNATURE)
+#	file.get_line()
 	var replay = Replay.new()
 	# Map info
 	replay.mapset_id = file.get_pascal_string()

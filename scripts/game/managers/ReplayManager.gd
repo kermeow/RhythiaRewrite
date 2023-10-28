@@ -17,10 +17,18 @@ func start():
 	assert(!active)
 	active = true
 	start_time = Time.get_ticks_msec()
-	game.player.hit_state_changed.connect(record_hit_frame)
+	match mode:
+		_, Mode.RECORD:
+			game.player.hit_state_changed.connect(record_hit_frame)
+			if Globals.debug: print("Recording new replay")
+			replay.mapset_id = game.mapset.id
+			replay.map_id = game.map.id
+		Mode.PLAY:
+			if Globals.debug: print("Playing replay")
 func stop():
 	if !active: return
 	active = false
+	replay.write_to_file("user://test.rhyr")
 
 func _process(_delta):
 	if !active: return
@@ -44,21 +52,22 @@ func record_frame(important:bool=false):
 		frame.position = cursor_position
 	else:
 		frame = Replay.CameraRotationFrame.new()
-		frame.position = game.player.camera.position
 		var rotation = game.player.camera.rotation_degrees
 		frame.rotation = Vector3(
-			wrapf(rotation.x, 0, 360),
-			wrapf(rotation.y, 0, 360),
-			wrapf(rotation.z, 0, 360)
+			fposmod(rotation.x, 360),
+			fposmod(rotation.y, 360),
+			fposmod(rotation.z, 360)
 		)
+		frame.position = game.player.camera.position
 	_record_frame(frame, important)
+var _last_frame:float = 0
 func _record_frame(frame:Replay.Frame, important:bool=false): # I stole this concept from osu
 	var should_record = important
 	var now = (Time.get_ticks_msec() - start_time) / 1000.0
 	if replay.frames.size() > 0 and !important:
-		var last_frame = replay.frames.back()
-		should_record = now - last_frame.time >= 1.0 / record_rate
+		should_record = now - _last_frame >= 1.0 / record_rate
 	if !should_record: return false
-	frame.time = now
+	_last_frame = now
+	frame.time = game.sync_manager.real_time
 	replay.frames.append(frame)
 	return true
