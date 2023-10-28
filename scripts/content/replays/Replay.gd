@@ -6,7 +6,7 @@ const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x5
 var mapset_id:String 
 var map_id:String
 var player_name:String
-var mods:Dictionary
+var mods:PackedByteArray
 var settings:Dictionary
 var frames:Array[Frame]
 
@@ -41,7 +41,7 @@ func write_to_file(path:String):
 	var player_name_buffer = player_name.to_utf16_buffer() # Player name
 	file.store_16(player_name_buffer.size())
 	file.store_buffer(player_name_buffer)
-	file.store_pascal_string(JSON.stringify(mods)) # Mods
+	file.store_buffer(mods)
 	file.store_pascal_string(JSON.stringify(settings.approach)) # Settings
 	file.store_pascal_string(JSON.stringify(settings.gameplay))
 	# Frames
@@ -64,7 +64,7 @@ static func read_from_file(path:String) -> Replay: # Generate Replay from file a
 	# Player info
 	var player_name_length = file.get_16() # Player name
 	replay.player_name = file.get_buffer(player_name_length).get_string_from_utf16()
-	replay.mods = JSON.parse_string(file.get_pascal_string()) # Mods
+	replay.mods = file.get_buffer(Mods.DataLength)
 	replay.settings = {
 		approach = JSON.parse_string(file.get_pascal_string()),
 		gameplay = JSON.parse_string(file.get_pascal_string())
