@@ -7,16 +7,8 @@ var mapset_id:String
 var map_id:String
 var player_name:String
 var mods:PackedByteArray
-var settings:Dictionary
+var settings:PackedByteArray
 var frames:Array[Frame]
-
-func get_frames_by_type(type:Variant):
-	return frames.filter(func(frame): return is_instance_of(frame, type))
-func get_frames_by_types(types:Array[Variant]):
-	var _frames = []
-	for type in types:
-		frames.filter(func(frame): return is_instance_of(frame, type) and not frame in _frames)
-	return _frames
 
 class Frame:
 	var time:float # Time of the frame
@@ -52,8 +44,8 @@ func write_to_file(path:String):
 	file.store_16(player_name_buffer.size())
 	file.store_buffer(player_name_buffer)
 	file.store_buffer(mods)
-	file.store_pascal_string(JSON.stringify(settings.approach)) # Settings
-	file.store_pascal_string(JSON.stringify(settings.gameplay))
+	file.store_16(settings.size())
+	file.store_buffer(settings)
 	# Frames
 	file.store_32(frames.size()) # Frame count
 	for frame in frames:
@@ -75,10 +67,7 @@ static func read_from_file(path:String) -> Replay: # Generate Replay from file a
 	var player_name_length = file.get_16() # Player name
 	replay.player_name = file.get_buffer(player_name_length).get_string_from_utf16()
 	replay.mods = file.get_buffer(Mods.DataLength)
-	replay.settings = {
-		approach = JSON.parse_string(file.get_pascal_string()),
-		gameplay = JSON.parse_string(file.get_pascal_string())
-	}
+	replay.settings = file.get_buffer(file.get_8())
 	# Frames
 	replay.frames = []
 	var frame_count = file.get_32()
