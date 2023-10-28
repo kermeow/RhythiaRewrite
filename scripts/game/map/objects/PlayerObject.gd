@@ -15,8 +15,8 @@ signal failed
 @export var camera_origin:Vector3 = Vector3(0,0,-3.5)
 @export_subgroup("Cursor")
 @export var cursor:Node3D
-@onready var real:MeshInstance3D = cursor.get_node("Real")
-@onready var ghost:MeshInstance3D = cursor.get_node("Ghost")
+@onready var _real_cursor:MeshInstance3D = cursor.get_node("Real")
+@onready var _ghost_cursor:MeshInstance3D = cursor.get_node("Ghost")
 @export var trail:MultiMesh
 
 
@@ -47,8 +47,8 @@ func _ready():
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		Input.use_accumulated_input = false
 		_move_cursor(Vector2(), false)
-	real.scale = Vector3.ONE * game.settings.skin.cursor.scale / 2.0
-	ghost.scale = real.scale
+	_real_cursor.scale = Vector3.ONE * game.settings.skin.cursor.scale / 2.0
+	_ghost_cursor.scale = _real_cursor.scale
 	trail.instance_count = 0
 	if controller:
 		controller.player = self
@@ -92,8 +92,8 @@ func _relative_movement(offset:Vector2):
 func _process(_delta):
 	var difference = cursor_position - clamped_cursor_position
 	cursor.position = Vector3(clamped_cursor_position.x,clamped_cursor_position.y,0)
-	ghost.position = Vector3(difference.x,difference.y,0.01)
-	ghost.transparency = max(0.5,1-(difference.length_squared()*2))
+	_ghost_cursor.position = Vector3(difference.x,difference.y,0.01)
+	_ghost_cursor.transparency = max(0.5,1-(difference.length_squared()*2))
 	if game.settings.skin.cursor.trail_enabled:
 		_cursor_trail(_delta)
 
@@ -118,7 +118,7 @@ func _cursor_trail(_delta):
 				trails.push_front(now - _delta * progress)
 #					var position = end_position - gap * progress
 				var position = start_position.bezier_interpolate(control_1,control_2,end_position,progress)
-				trails.push_front(Transform3D(real.basis, position))
+				trails.push_front(Transform3D(_real_cursor.basis, position))
 	var total_trails = trails.size() / 2
 	var remove_trails = 0
 	trail.instance_count = total_trails

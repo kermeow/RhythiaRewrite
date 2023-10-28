@@ -10,6 +10,6 @@ func _encode() -> PackedByteArray:
 	bytes.encode_s16(2, y_packed)
 	return bytes
 func _decode(bytes:PackedByteArray):
-	var x = bytes.decode_u16(0) * 3.0/32767.0
-	var y = bytes.decode_u16(2) * 3.0/32767.0
+	var x = bytes.decode_s16(0) * 3.0/32767.0
+	var y = bytes.decode_s16(2) * 3.0/32767.0
 	position = Vector2(x, y)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://iucly4rdcttd"]
+[gd_scene load_steps=28 format=3 uid="uid://iucly4rdcttd"]
 
 [ext_resource type="Script" path="res://scripts/game/GameScene.gd" id="1_v55rs"]
 [ext_resource type="AudioStream" uid="uid://clk4tkuh7l4sc" path="res://assets/sounds/sfx/hit.wav" id="2_lwaxm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/game/managers/AudioSyncManager.gd" id="4_b30te"]
 [ext_resource type="Script" path="res://scripts/game/managers/ObjectManager.gd" id="5_cnc7d"]
 [ext_resource type="Script" path="res://scripts/game/renderers/NoteRenderer.gd" id="6_f855g"]
+[ext_resource type="Script" path="res://scripts/game/managers/ReplayManager.gd" id="7_j81du"]
 [ext_resource type="Script" path="res://scripts/game/managers/HUDManager.gd" id="7_k3pke"]
 [ext_resource type="Script" path="res://scripts/game/StatisticsReporter.gd" id="8_mqnii"]
 [ext_resource type="PackedScene" uid="uid://cbxyhhh3udi40" path="res://prefabs/game/LocalPlayer.tscn" id="9_8qmtd"]
@@ -77,12 +78,13 @@ subdivide_width = 32
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjrtq"]
 
-[node name="Solo" type="Node3D" node_paths=PackedStringArray("sync_manager", "object_manager", "hud_manager", "reporter", "origin", "world_parent", "player")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("sync_manager", "object_manager", "replay_manager", "hud_manager", "reporter", "origin", "world_parent", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 top_level = true
 script = ExtResource("1_v55rs")
 sync_manager = NodePath("AudioSyncManager")
 object_manager = NodePath("ObjectManager")
+replay_manager = NodePath("ReplayManager")
 hud_manager = NodePath("HUDManager")
 reporter = NodePath("StastisticsReporter")
 origin = NodePath("Origin")
@@ -118,6 +120,9 @@ cast_shadow = 0
 gi_mode = 0
 multimesh = SubResource("MultiMesh_t5tpd")
 script = ExtResource("6_f855g")
+
+[node name="ReplayManager" type="Node" parent="."]
+script = ExtResource("7_j81du")
 
 [node name="HUDManager" type="Node" parent="." node_paths=PackedStringArray("hud")]
 process_priority = 1

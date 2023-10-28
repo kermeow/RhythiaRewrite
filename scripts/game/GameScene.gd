@@ -11,6 +11,7 @@ var map:Map
 @export_category("Game Managers")
 @export var sync_manager:SyncManager
 @export var object_manager:ObjectManager
+@export var replay_manager:ReplayManager
 @export var hud_manager:HUDManager
 @export var reporter:StatisticsReporter
 
@@ -23,6 +24,7 @@ var map:Map
 func setup_managers():
 	sync_manager.prepare(self)
 	object_manager.prepare(self)
+	replay_manager.prepare(self)
 	hud_manager.prepare(self)
 
 func _ready():
@@ -45,6 +47,7 @@ func _ready():
 	HitObject.miss_sound = $Miss
 
 #	reporter.start()
+	replay_manager.start()
 	
 	player.connect("failed",finish.bind(true))
 
@@ -56,6 +59,7 @@ func finish(failed:bool=false):
 	if ended: return
 	ended = true
 #	reporter.stop()
+	replay_manager.stop()
 	if Globals.debug: print("failed: %s" % failed)
 	if failed:
 		if Globals.debug: print("fail animation")
