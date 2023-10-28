@@ -1,28 +1,5 @@
 extends Node
 
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# WITHERJPG IS STORED IN THE BALLS
-# https://cdn.discordapp.com/attachments/724388098724724838/1143301700749373470/image.png
-
 @onready var playlists:Registry = preload("res://assets/content/Playlists.tres")
 @onready var mapsets:Registry = preload("res://assets/content/Mapsets.tres")
 @onready var blocks:Registry = preload("res://assets/content/Blocks.tres")
@@ -138,29 +115,22 @@ func _reload():
 
 # Game Scene
 enum GameType {
-	SOLO,
-	MULTI
+	SOLO
 }
 var selected_mapset:String
 var selected_mods:Mods = Mods.new()
 var game_scene:Node
-func load_game_scene(game_type:int,mapset:Mapset,map_index:int=0):
-	var full_mapset = Mapset.read_from_file(mapset.path,true,map_index)
+func load_game_scene(game_type:int, mapset:Mapset, map_index:int=0):
+	var full_mapset = Mapset.read_from_file(mapset.path, true, map_index)
 	assert(full_mapset.id == mapset.id)
 	selected_mapset = mapset.id
 	var scene:Node
 	match game_type:
 		GameType.SOLO:
-			var packed_scene:PackedScene = preload("res://scenes/Solo.tscn")
+			var packed_scene:PackedScene = preload("res://scenes/Game.tscn")
 			scene = packed_scene.instantiate()
 			scene.mods = selected_mods
 			scene.settings = settings
-			scene.mapset = full_mapset
-			scene.map_index = map_index
-		GameType.MULTI:
-			var packed_scene:PackedScene = preload("res://scenes/Multi.tscn")
-			scene = packed_scene.instantiate()
-			scene.mods = Multiplayer.lobby.mods
 			scene.mapset = full_mapset
 			scene.map_index = map_index
 	game_scene = scene

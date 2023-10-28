@@ -1,5 +1,5 @@
 extends Node
-class_name BaseManager
+class_name GameManager
 
 signal preparing
 

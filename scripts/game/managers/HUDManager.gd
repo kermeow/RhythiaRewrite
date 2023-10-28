@@ -1,4 +1,4 @@
-extends BaseManager
+extends GameManager
 class_name HUDManager
 
 @export var hud:Node3D

@@ -15,8 +15,8 @@ var seek:float = 0
 
 var score_multiplier:float = 1
 
-func _init(_data:PackedByteArray):
-	_decode(_data)
+func _init(_data:PackedByteArray=[]):
+	if !_data.is_empty(): _decode(_data)
 
 var data:PackedByteArray:
 	get = _encode,
