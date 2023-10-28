@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3cijv"]
-[ext_resource type="Theme" uid="uid://tin0gsmmldph" path="res://themes/modifier_theme.tres" id="1_j808x"]
 [ext_resource type="Script" path="res://scripts/menu/Warning.gd" id="2_0nvp3"]
 [ext_resource type="PackedScene" uid="uid://djiqkbobmj6wr" path="res://prefabs/menu/maplist/List.tscn" id="3_0cnck"]
 [ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="3_r3n0f"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="6_yvoqp"]
 [ext_resource type="Texture2D" uid="uid://bk8ninr63d836" path="res://assets/images/ui/quit_to_desktop.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://b21p2flel8ywr" path="res://assets/images/ui/settings.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://fh157hhoi26n" path="res://assets/images/ui/humor_funny.png" id="8_710wh"]
 [ext_resource type="Texture2D" uid="uid://b7v0bqlxe7ew4" path="res://assets/images/ui/favorite.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
 [ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="13_0gtk4"]
@@ -81,7 +81,16 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
-[sub_resource type="Theme" id="Theme_a5w1n"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywk44"]
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvhpi"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -260,7 +269,6 @@ size_flags_vertical = 4
 layout_mode = 1
 
 [node name="Select" type="ColorRect" parent="Main/TabBar/Select/MapList"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -413,7 +421,7 @@ custom_minimum_size = Vector2(416, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
 
-[node name="Modifiers" type="Control" parent="Main/TabBar/Select/MapList/Select/Sections/Extra"]
+[node name="Modifiers" type="VBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -427,162 +435,114 @@ grow_vertical = 2
 script = ExtResource("5_fv5pv")
 
 [node name="Speed" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
-layout_mode = 0
-offset_right = 408.0
-offset_bottom = 64.0
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
 disabled = true
 toggle_mode = true
 
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
-layout_mode = 0
-offset_right = 68.0
-offset_bottom = 64.0
-text = "Speed"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="SpeedSpinboxBackground" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
+[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 72.0
-offset_top = 16.0
-offset_right = -235.0
-offset_bottom = -16.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_j808x")
 
-[node name="SpeedSpinbox" type="SpinBox" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
+[node name="Icon" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed/Layout"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("8_710wh")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed/Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Speed"
+vertical_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NoFail" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+action_mode = 0
+keep_pressed_outside = true
+
+[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/NoFail"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 72.0
-offset_top = -13.0
-offset_right = -237.75
-offset_bottom = 14.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_j808x")
-min_value = 0.1
-max_value = 5.0
-step = 0.01
-value = 1.0
-suffix = "x"
 
-[node name="SeekButton" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
+[node name="Icon" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/NoFail/Layout"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("9")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/NoFail/Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "No Fail"
+vertical_alignment = 1
+
+[node name="Seek" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
-offset_top = 480.0
-offset_right = 408.0
-offset_bottom = 516.0
 size_flags_horizontal = 3
-theme = ExtResource("1_j808x")
 disabled = true
 toggle_mode = true
 action_mode = 0
 button_mask = 0
 keep_pressed_outside = true
 
-[node name="SeekSlider" type="VSlider" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/SeekButton"]
+[node name="Slider" type="HSlider" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Seek"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 342.0
-offset_top = -8.0
-offset_right = -50.0
-offset_bottom = 328.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -68.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 1.5708
-theme = ExtResource("1_j808x")
+theme_override_styles/slider = SubResource("StyleBoxFlat_ywk44")
 step = 0.01
 
-[node name="TimeLabelBackground" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/SeekButton"]
+[node name="TimeLabel" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Seek"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 11
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 345.0
-offset_top = 7.0
-offset_right = -2.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_j808x")
-
-[node name="TimeLabel" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/SeekButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 148.0
-offset_top = -12.0
-offset_right = 195.0
-offset_bottom = 15.0
-grow_horizontal = 2
+offset_left = -68.0
+offset_right = -8.0
+grow_horizontal = 0
 grow_vertical = 2
 text = "00:00"
-horizontal_alignment = 1
-
-[node name="Grid" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 68.0
-offset_bottom = -87.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="NofailButton" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_j808x")
-toggle_mode = true
-action_mode = 0
-keep_pressed_outside = true
-
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/NofailButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 62.0
-offset_right = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_a5w1n")
-text = "No Fail"
+horizontal_alignment = 2
 vertical_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/NofailButton"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 7.0
-offset_right = 56.0
-offset_bottom = 57.0
-texture = ExtResource("9")
-expand_mode = 1
 
 [node name="Reset" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
 custom_minimum_size = Vector2(0, 36)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.66893e-05
-offset_top = -36.0
-grow_vertical = 0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Reset"]
