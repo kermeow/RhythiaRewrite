@@ -8,6 +8,8 @@ var mapset:Mapset
 var map_index:int
 var map:Map
 
+var replay:Replay
+
 @export_category("Game Managers")
 @export var sync_manager:SyncManager
 @export var object_manager:ObjectManager
@@ -28,6 +30,13 @@ func setup_managers():
 	hud_manager.prepare(self)
 
 func _ready():
+	if replay != null:
+		replay.read_settings(settings)
+		replay_manager.mode = ReplayManager.Mode.RECORD
+		replay_manager.replay = replay
+	else:
+		replay = replay_manager.replay
+	
 	map = mapset.maps[map_index]
 
 	if sync_manager is AudioSyncManager: sync_manager.audio_stream = mapset.audio

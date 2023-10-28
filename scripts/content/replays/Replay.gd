@@ -10,6 +10,24 @@ var mods:PackedByteArray
 var settings:PackedByteArray
 var frames:Array[Frame]
 
+func write_settings(_settings:GameSettings):
+	settings = PackedByteArray()
+	settings.resize(7)
+	var flags = 0
+	if _settings.camera.lock: flags |= 1 << 0
+	if _settings.camera.drift: flags |= 1 << 1
+	settings[0] = flags
+	settings.encode_half(1, _settings.approach.time)
+	settings.encode_half(3, _settings.approach.distance)
+	settings.encode_half(5, _settings.camera.fov)
+func read_settings(_settings:GameSettings):
+	var flags = settings[0]
+	_settings.camera.lock = flags & 1 << 0
+	_settings.camera.drift = flags & 1 << 1
+	_settings.approach.time = settings.decode_half(1)
+	_settings.approach.distance = settings.decode_half(3)
+	_settings.camera.fov = settings.decode_half(5)
+
 class Frame:
 	var time:float # Time of the frame
 	func _encode() -> PackedByteArray: return [] # Convert the frame data to bytes
