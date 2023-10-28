@@ -33,11 +33,11 @@ func _ready():
 
 	setup_managers()
 
-	var world = Rhythia.worlds.items.front()
+	var world = Rhythia.get("worlds").items.front()
 	var selected_world = settings.skin.background.world
-	var ids = Rhythia.worlds.get_ids()
+	var ids = Rhythia.get("worlds").get_ids()
 	if ids.has(selected_world):
-		world = Rhythia.worlds.get_by_id(selected_world)
+		world = Rhythia.get("worlds").get_by_id(selected_world)
 	if world != null:
 		world_parent.call_deferred("load_world", world)
 

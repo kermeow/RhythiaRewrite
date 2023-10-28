@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ddypjfskuxw11"]
+[gd_scene load_steps=27 format=3 uid="uid://iucly4rdcttd"]
 
 [ext_resource type="Script" path="res://scripts/game/GameScene.gd" id="1_v55rs"]
 [ext_resource type="AudioStream" uid="uid://clk4tkuh7l4sc" path="res://assets/sounds/sfx/hit.wav" id="2_lwaxm"]
