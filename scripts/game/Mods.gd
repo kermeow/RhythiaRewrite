@@ -22,35 +22,32 @@ var data:PackedByteArray:
 	get = _encode,
 	set = _decode
 
-const DataLength = 18
 func _encode() -> PackedByteArray:
 	var bytes = PackedByteArray()
-	bytes.resize(DataLength)
-	
+	bytes.resize(18)
+
 	var flags = 0
 	if no_fail: flags |= 1 << 0
 	if speed_enabled: flags |= 1 << 1
 	bytes.encode_s16(0, flags)
-	
+
 	var speed_down_bit = 1 << 7 if !_speed_up else 0
 	bytes.encode_double(2, _speed_amount)
 	bytes[2] = bytes[2] | speed_down_bit
-	
+
 	bytes.encode_double(10, seek)
-	
+
 	return bytes
 func _decode(bytes:PackedByteArray):
-	assert(bytes.size() == DataLength)
-	
 	var bytes2 = PackedByteArray(bytes) # FOR DATA MANIPULATION WITHOUT AFFECTING THE ORIGINAL
-	
+
 	var flags = bytes[0] | bytes[1]
 	no_fail = flags & 1 << 0
 	speed_enabled = flags & 1 << 1
-	
+
 	var speed_down_bit = 1 << 7
 	_speed_up = bytes[2] & speed_down_bit == 0
 	bytes2[2] = bytes[2] & ~speed_down_bit
 	_speed_amount = bytes2.decode_double(2)
-	
+
 	seek = bytes.decode_double(10)

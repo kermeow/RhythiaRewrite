@@ -36,7 +36,7 @@ func _ready():
 		replay_manager.replay = replay
 	else:
 		replay = replay_manager.replay
-	
+
 	map = mapset.maps[map_index]
 
 	if sync_manager is AudioSyncManager: sync_manager.audio_stream = mapset.audio
@@ -57,7 +57,7 @@ func _ready():
 
 #	reporter.start()
 	replay_manager.start()
-	
+
 	player.connect("failed",finish.bind(true))
 
 	sync_manager.connect("finished",Callable(self,"finish"))

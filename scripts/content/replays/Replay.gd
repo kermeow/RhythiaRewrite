@@ -6,8 +6,18 @@ const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x5
 var mapset_id:String = "MAPSET_ID"
 var map_id:String = "MAP_ID"
 var player_name:String = "Player"
-var mods:PackedByteArray
+
+var score:Score
+var _score:PackedByteArray:
+	get: return score.data
+	set(value): score = Score.new(value)
+var mods:Mods
+var _mods:PackedByteArray:
+	get: return mods.data
+	set(value): mods = mods.new(value)
+
 var settings:PackedByteArray
+
 var frames:Array[Frame]
 
 func write_settings(_settings:GameSettings):
@@ -36,6 +46,11 @@ class Frame:
 	func _decode(_bytes:PackedByteArray): pass # Convert bytes to frame data
 class UnknownTypeFrame:
 	extends Frame
+	var opcode:int
+	var original_data:PackedByteArray
+	func _init(_opcode:int): opcode = _opcode
+	func _encode(): return original_data
+	func _decode(_bytes): original_data = _bytes
 const CameraRotationFrame = preload("frames/CameraRotationFrame.gd")
 const CursorPositionFrame = preload("frames/CursorPositionFrame.gd")
 const HitStateFrame = preload("frames/HitStateFrame.gd")
@@ -64,9 +79,12 @@ func write_to_file(path:String):
 	var player_name_buffer = player_name.to_utf16_buffer() # Player name
 	file.store_16(player_name_buffer.size())
 	file.store_buffer(player_name_buffer)
-	file.store_buffer(mods)
-	file.store_16(settings.size())
+	file.store_8(_mods.size())
+	file.store_buffer(_mods)
+	file.store_8(settings.size())
 	file.store_buffer(settings)
+	file.store_8(_score.size())
+	file.store_buffer(_score)
 	# Frames
 	file.store_32(frames.size()) # Frame count
 	for frame in frames:
@@ -88,7 +106,7 @@ static func read_from_file(path:String) -> Replay: # Generate Replay from file a
 	# Player info
 	var player_name_length = file.get_16() # Player name
 	replay.player_name = file.get_buffer(player_name_length).get_string_from_utf16()
-	replay.mods = file.get_buffer(Mods.DataLength)
+	replay.mods = file.get_buffer(file.get_8())
 	replay.settings = file.get_buffer(file.get_8())
 	# Frames
 	replay.frames = []
@@ -100,8 +118,8 @@ static func read_from_file(path:String) -> Replay: # Generate Replay from file a
 		if type != null:
 			frame = type.new()
 		else:
-			frame = UnknownTypeFrame.new()
-			print("Unknown frame type! Index %s Opcode %2x" % [i, opcode])
+			frame = UnknownTypeFrame.new(opcode)
+			push_warning("Unknown replay opcode! %01x at frame %s" % [opcode, i])
 		frame.time = file.get_float()
 		var data_length = file.get_8()
 		if data_length > 0:

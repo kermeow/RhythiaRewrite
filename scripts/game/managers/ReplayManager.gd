@@ -23,12 +23,19 @@ func start():
 			if Globals.debug: print("Recording new replay")
 			replay.mapset_id = game.mapset.id
 			replay.map_id = game.map.id
+			replay.mods = game.mods
+			replay.score = game.score
 		Mode.PLAY:
 			if Globals.debug: print("Playing replay")
 func stop():
 	if !active: return
 	active = false
-	replay.write_to_file("user://test.rhyr")
+	if Globals.debug: print("Stopping replay")
+	match mode:
+		_, Mode.RECORD:
+			replay.write_to_file("user://recent.rhyr")
+		Mode.PLAY:
+			pass
 
 func _process(_delta):
 	if !active: return
