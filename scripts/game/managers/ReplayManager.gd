@@ -24,6 +24,7 @@ func start():
 			replay.mapset_id = game.mapset.id
 			replay.map_id = game.map.id
 			replay.mods = game.mods
+			replay.write_settings(game.settings)
 			replay.score = game.player.score
 		Mode.PLAY:
 			if Globals.debug: print("Playing replay")

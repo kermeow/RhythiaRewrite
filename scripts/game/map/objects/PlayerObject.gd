@@ -8,7 +8,14 @@ signal score_changed
 signal failed
 
 @export_category("Configuration")
-@export var controller:PlayerController
+var controller:PlayerController:
+	set(value):
+		if controller == value: return
+		controller = value
+		controller.player = self
+		controller.call_deferred("ready")
+		controller.skip_request.connect(_skip_request)
+		controller.move_cursor.connect(_move_cursor)
 @export var local_player:bool = false
 @export_subgroup("Camera")
 @export var camera:Camera3D
@@ -50,11 +57,6 @@ func _ready():
 	_real_cursor.scale = Vector3.ONE * game.settings.skin.cursor.scale / 2.0
 	_ghost_cursor.scale = _real_cursor.scale
 	trail.instance_count = 0
-	if controller:
-		controller.player = self
-		controller.call_deferred("ready")
-		controller.skip_request.connect(_skip_request)
-		controller.move_cursor.connect(_move_cursor)
 func _exit_tree():
 	if local_player:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

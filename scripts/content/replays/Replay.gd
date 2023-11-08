@@ -18,7 +18,7 @@ var _mods:PackedByteArray:
 
 var settings:PackedByteArray
 
-var frames:Array[Frame] = []
+var frames:Array = []
 
 func write_settings(_settings:GameSettings):
 	settings = PackedByteArray()
@@ -29,7 +29,7 @@ func write_settings(_settings:GameSettings):
 	settings[0] = flags
 	settings.encode_half(1, _settings.approach.time)
 	settings.encode_half(3, _settings.approach.distance)
-	settings.encode_half(5, _settings.camera.fov)
+	settings.encode_half(5, _settings.controls.fov)
 	settings.encode_half(7, _settings.camera.parallax.camera)
 func read_settings(_settings:GameSettings):
 	var flags = settings[0]
@@ -37,7 +37,7 @@ func read_settings(_settings:GameSettings):
 	_settings.camera.drift = flags & 1 << 1
 	_settings.approach.time = settings.decode_half(1)
 	_settings.approach.distance = settings.decode_half(3)
-	_settings.camera.fov = settings.decode_half(5)
+	_settings.controls.fov = settings.decode_half(5)
 	_settings.camera.parallax.camera = settings.decode_half(7)
 
 class Frame:
@@ -61,7 +61,7 @@ const Opcodes = {
 	0x03: HitStateFrame
 }
 
-func get_opcode_for(frame:Frame):
+static func get_opcode_for(frame:Frame):
 	for opcode in Opcodes:
 		var type = Opcodes[opcode]
 		if is_instance_of(frame, type): return opcode
@@ -89,7 +89,7 @@ func write_to_file(path:String):
 	# Frames
 	file.store_32(frames.size()) # Frame count
 	for frame in frames:
-		file.store_8(get_opcode_for(frame) or 0x00)
+		file.store_8(get_opcode_for(frame))
 		file.store_float(frame.time)
 		var data = frame._encode()
 		file.store_8(data.size())
