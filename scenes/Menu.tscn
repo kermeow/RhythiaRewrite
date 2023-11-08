@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=36 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_kkcab"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b7v0bqlxe7ew4" path="res://assets/images/ui/favorite.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
+[ext_resource type="Script" path="res://scripts/menu/settings/LastReplayButton.gd" id="15_yay33"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
 [ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
@@ -166,6 +167,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="MapList" type="Control" parent="Main/TabBar/Select"]
@@ -814,7 +816,6 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="Settings" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
@@ -1369,6 +1370,29 @@ min_value = 1.0
 allow_greater = true
 label = "Required Skip Time"
 target = Array[String](["advanced", "skip", "minimum_skip_time"])
+
+[node name="LastReplay" type="Button" parent="Main/TabBar/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_top = 16.0
+offset_right = -12.0
+offset_bottom = 44.0
+grow_horizontal = 0
+script = ExtResource("15_yay33")
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/LastReplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Last Replay"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VersionNumberR" parent="Main" instance=ExtResource("1")]
 layout_mode = 1

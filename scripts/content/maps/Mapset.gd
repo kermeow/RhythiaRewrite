@@ -38,6 +38,9 @@ var length:float:
 		return 0
 
 var maps:Array
+func get_index_by_id(map_id:String):
+	for i in maps.size():
+		if maps[i].id == map_id: return i
 
 # Writing files
 func write_to_file(path:String): # Write mapset to a path
