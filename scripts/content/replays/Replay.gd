@@ -14,11 +14,11 @@ var _score:PackedByteArray:
 var mods:Mods
 var _mods:PackedByteArray:
 	get: return mods.data
-	set(value): mods = mods.new(value)
+	set(value): mods = Mods.new(value)
 
 var settings:PackedByteArray
 
-var frames:Array[Frame]
+var frames:Array[Frame] = []
 
 func write_settings(_settings:GameSettings):
 	settings = PackedByteArray()
@@ -41,6 +41,7 @@ func read_settings(_settings:GameSettings):
 	_settings.camera.parallax.camera = settings.decode_half(7)
 
 class Frame:
+	var index:int # Index of the frame
 	var time:float # Time of the frame
 	func _encode() -> PackedByteArray: return [] # Convert the frame data to bytes
 	func _decode(_bytes:PackedByteArray): pass # Convert bytes to frame data
@@ -106,10 +107,10 @@ static func read_from_file(path:String) -> Replay: # Generate Replay from file a
 	# Player info
 	var player_name_length = file.get_16() # Player name
 	replay.player_name = file.get_buffer(player_name_length).get_string_from_utf16()
-	replay.mods = file.get_buffer(file.get_8())
+	replay._mods = file.get_buffer(file.get_8())
 	replay.settings = file.get_buffer(file.get_8())
+	replay._score = file.get_buffer(file.get_8())
 	# Frames
-	replay.frames = []
 	var frame_count = file.get_32()
 	for i in frame_count:
 		var opcode = file.get_8()
@@ -120,6 +121,7 @@ static func read_from_file(path:String) -> Replay: # Generate Replay from file a
 		else:
 			frame = UnknownTypeFrame.new(opcode)
 			push_warning("Unknown replay opcode! %01x at frame %s" % [opcode, i])
+		frame.index = i
 		frame.time = file.get_float()
 		var data_length = file.get_8()
 		if data_length > 0:
