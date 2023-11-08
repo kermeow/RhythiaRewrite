@@ -59,15 +59,16 @@ var data:PackedByteArray:
 
 func _encode() -> PackedByteArray:
 	var bytes = PackedByteArray()
-	bytes.resize(13)
+	bytes.resize(15)
 
 	var flags = 0
 	if failed: flags |= 1 << 0
 	bytes[0] = flags
 
-	bytes.encode_u32(1, score)
-	bytes.encode_u32(5, hits)
-	bytes.encode_u32(9, misses)
+	bytes.encode_half(1, failed_at)
+	bytes.encode_u32(3, score)
+	bytes.encode_u32(7, hits)
+	bytes.encode_u32(11, misses)
 
 	return bytes
 func _decode(bytes:PackedByteArray):
@@ -76,6 +77,7 @@ func _decode(bytes:PackedByteArray):
 	var flags = bytes[0]
 	failed = flags & 1 << 0
 
-	score = bytes.decode_u32(1)
-	hits = bytes.decode_u32(5)
-	misses = bytes.decode_u32(9)
+	failed_at = bytes.decode_half(1)
+	score = bytes.decode_u32(3)
+	hits = bytes.decode_u32(7)
+	misses = bytes.decode_u32(11)

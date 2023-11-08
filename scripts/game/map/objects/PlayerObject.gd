@@ -179,6 +179,7 @@ func fail():
 	if !local_player: return
 	did_fail = true
 	score.failed = true
+	score.failed_at = game.sync_manager.current_time
 	if !game.mods.no_fail:
 		lock_score = true
 		failed.emit()
