@@ -16,6 +16,7 @@ var controller:PlayerController:
 		controller.call_deferred("ready")
 		controller.skip_request.connect(_skip_request)
 		controller.move_cursor.connect(_move_cursor)
+		controller.move_cursor_raw.connect(_move_cursor_raw)
 @export var local_player:bool = false
 @export_subgroup("Camera")
 @export var camera:Camera3D
@@ -195,4 +196,8 @@ func _move_cursor(_position:Vector2, is_absolute:bool=false):
 	_preprocess_cursor()
 	if is_absolute: _absolute_movement(_position)
 	else: _relative_movement(_position)
+	_postprocess_cursor()
+func _move_cursor_raw(_position:Vector2):
+	_preprocess_cursor()
+	cursor_position = _position
 	_postprocess_cursor()

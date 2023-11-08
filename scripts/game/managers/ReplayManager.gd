@@ -18,7 +18,7 @@ func start():
 	active = true
 	start_time = Time.get_ticks_msec()
 	match mode:
-		_, Mode.RECORD:
+		Mode.RECORD:
 			game.player.hit_state_changed.connect(record_hit_frame)
 			if Globals.debug: print("Recording new replay")
 			replay.mapset_id = game.mapset.id
@@ -33,7 +33,7 @@ func stop():
 	active = false
 	if Globals.debug: print("Stopping replay")
 	match mode:
-		_, Mode.RECORD:
+		Mode.RECORD:
 			replay.write_to_file("user://recent.rhyr")
 		Mode.PLAY:
 			pass
@@ -41,14 +41,16 @@ func stop():
 func _process(_delta):
 	if !active: return
 	match mode:
-		_, Mode.RECORD: record_frame()
+		Mode.RECORD: record_frame()
 		Mode.PLAY:
 			var controller = game.player.controller
-			var now = (Time.get_ticks_msec() - start_time) / 1000.0
+			var now = game.sync_manager.real_time
 			controller.replay_time = now
 			var next_frame = controller.next_frame
-			if next_frame == null: controller.set_next_frame(replay.frames[0])
-			while next_frame.time < now:
+			if next_frame == null:
+				next_frame = replay.frames[0]
+				controller.set_next_frame(next_frame)
+			while next_frame.time <= now and next_frame.index < replay.frames.size():
 				next_frame = replay.frames[next_frame.index + 1]
 				controller.set_next_frame(next_frame)
 

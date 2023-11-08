@@ -22,4 +22,14 @@ func set_next_frame(frame:Replay.Frame):
 	next_frame = frame
 
 func _process(_delta):
-	pass
+	if next_movement_frame != null:
+		var next_time = next_movement_frame.time
+		var last_time = 0
+		var cursor_position = Vector2()
+		if last_movement_frame != null:
+			last_time = last_movement_frame.time
+			cursor_position = last_movement_frame.position
+		var time_difference = replay_time - last_time
+		var time_gap = next_time - last_time
+		cursor_position = cursor_position.lerp(next_movement_frame.position, time_difference / time_gap)
+		move_cursor_raw.emit(cursor_position)
