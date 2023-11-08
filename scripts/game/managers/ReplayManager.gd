@@ -41,6 +41,15 @@ func _process(_delta):
 	if !active: return
 	match mode:
 		_, Mode.RECORD: record_frame()
+		Mode.PLAY:
+			var controller = game.player.controller
+			var now = (Time.get_ticks_msec() - start_time) / 1000.0
+			controller.replay_time = now
+			var next_frame = controller.next_frame
+			if next_frame == null: controller.set_next_frame(replay.frames[0])
+			while next_frame.time < now:
+				next_frame = replay.frames[next_frame.index + 1]
+				controller.set_next_frame(next_frame)
 
 func record_hit_frame(object_index:int, hit_state:HitObject.HitState):
 	var frame = Replay.HitStateFrame.new()

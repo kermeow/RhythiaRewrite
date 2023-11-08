@@ -1,7 +1,8 @@
 extends Node
 class_name PlayerController
 
-const Solo = preload("SoloPlayerController.gd")
+const SoloController = preload("SoloPlayerController.gd")
+const ReplayController = preload("ReplayPlayerController.gd")
 
 var game:GameScene
 var player:PlayerObject
@@ -11,3 +12,6 @@ signal move_cursor
 
 func ready():
 	game = player.game
+
+func input(_event:InputEvent):
+	pass

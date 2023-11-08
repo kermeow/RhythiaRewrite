@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://iucly4rdcttd"]
+[gd_scene load_steps=27 format=3 uid="uid://iucly4rdcttd"]
 
 [ext_resource type="Script" path="res://scripts/game/GameScene.gd" id="1_v55rs"]
 [ext_resource type="AudioStream" uid="uid://clk4tkuh7l4sc" path="res://assets/sounds/sfx/hit.wav" id="2_lwaxm"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://scripts/game/StatisticsReporter.gd" id="8_mqnii"]
 [ext_resource type="PackedScene" uid="uid://cbxyhhh3udi40" path="res://prefabs/game/LocalPlayer.tscn" id="9_8qmtd"]
 [ext_resource type="Script" path="res://scripts/game/map/objects/WorldContainer.gd" id="10_4mtvq"]
-[ext_resource type="Script" path="res://scripts/game/controllers/SoloPlayerController.gd" id="10_mqeqn"]
 [ext_resource type="PackedScene" uid="uid://u5w2lt2ybh4v" path="res://prefabs/game/hud/HUD.tscn" id="11_11c3h"]
 [ext_resource type="VideoStream" path="res://assets/test.ogv" id="12_cdsab"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="13_usleo"]
@@ -135,14 +134,10 @@ script = ExtResource("8_mqnii")
 [node name="Origin" type="Node3D" parent="."]
 process_mode = 1
 
-[node name="Player" parent="Origin" node_paths=PackedStringArray("controller", "absolute_camera", "game", "manager") instance=ExtResource("9_8qmtd")]
-controller = NodePath("SoloController")
+[node name="Player" parent="Origin" node_paths=PackedStringArray("absolute_camera", "game", "manager") instance=ExtResource("9_8qmtd")]
 absolute_camera = NodePath("AbsCamera")
 game = NodePath("../..")
 manager = NodePath("../../ObjectManager")
-
-[node name="SoloController" type="Node" parent="Origin/Player"]
-script = ExtResource("10_mqeqn")
 
 [node name="World" type="Node3D" parent="Origin"]
 script = ExtResource("10_4mtvq")

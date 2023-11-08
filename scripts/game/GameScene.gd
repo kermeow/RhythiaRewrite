@@ -32,9 +32,15 @@ func setup_managers():
 func _ready():
 	if replay != null:
 		replay.read_settings(settings)
-		replay_manager.mode = ReplayManager.Mode.RECORD
+		replay_manager.mode = ReplayManager.Mode.PLAY
 		replay_manager.replay = replay
+		var replay_controller = PlayerController.ReplayController.new()
+		player.controller = replay_controller
+		call_deferred("add_child", replay_controller)
 	else:
+		var solo_controller = PlayerController.SoloController.new()
+		player.controller = solo_controller
+		call_deferred("add_child", solo_controller)
 		replay = replay_manager.replay
 
 	map = mapset.maps[map_index]

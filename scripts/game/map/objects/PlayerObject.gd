@@ -8,8 +8,8 @@ signal score_changed
 signal failed
 
 @export_category("Configuration")
-@export var local_player:bool = false
 @export var controller:PlayerController
+@export var local_player:bool = false
 @export_subgroup("Camera")
 @export var camera:Camera3D
 @export var absolute_camera:Camera3D
@@ -185,6 +185,8 @@ func fail():
 		failed.emit()
 
 # Controller Events
+func _input(event:InputEvent):
+	controller.input(event)
 func _skip_request():
 	if game.check_skippable(): game.skip()
 func _move_cursor(_position:Vector2, is_absolute:bool=false):

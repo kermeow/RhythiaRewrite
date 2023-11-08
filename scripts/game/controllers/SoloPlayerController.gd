@@ -1,6 +1,6 @@
 extends PlayerController
 
-func _input(event):
+func input(event):
 	if event.is_action_pressed("skip"):
 		skip_request.emit()
 	if event is InputEventMouseMotion:
