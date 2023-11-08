@@ -44,13 +44,13 @@ func _process(_delta):
 		Mode.RECORD: record_frame()
 		Mode.PLAY:
 			var controller = game.player.controller
-			var now = game.sync_manager.real_time
+			var now = (Time.get_ticks_msec() - start_time) / 1000.0#game.sync_manager.real_time
 			controller.replay_time = now
 			var next_frame = controller.next_frame
 			if next_frame == null:
 				next_frame = replay.frames[0]
 				controller.set_next_frame(next_frame)
-			while next_frame.time <= now and next_frame.index < replay.frames.size():
+			while next_frame.time < now and next_frame.index != replay.frames.size():
 				next_frame = replay.frames[next_frame.index + 1]
 				controller.set_next_frame(next_frame)
 
@@ -58,8 +58,8 @@ func record_hit_frame(object_index:int, hit_state:HitObject.HitState):
 	var frame = Replay.HitStateFrame.new()
 	frame.object_index = object_index
 	frame.hit_state = hit_state
-	_record_frame(frame, true)
 	record_frame(true)
+	_record_frame(frame, true)
 var _last_cursor_position:Vector2 = Vector2()
 func record_frame(important:bool=false):
 	var cursor_position = game.player.cursor_position
@@ -87,6 +87,6 @@ func _record_frame(frame:Replay.Frame, important:bool=false): # I stole this con
 		should_record = now - _last_frame >= 1.0 / record_rate
 	if !should_record: return false
 	_last_frame = now
-	frame.time = game.sync_manager.real_time
+	frame.time = now#game.sync_manager.real_time
 	replay.frames.append(frame)
 	return true

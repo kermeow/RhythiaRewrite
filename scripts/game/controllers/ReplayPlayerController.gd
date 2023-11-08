@@ -31,5 +31,5 @@ func _process(_delta):
 			cursor_position = last_movement_frame.position
 		var time_difference = replay_time - last_time
 		var time_gap = next_time - last_time
-		cursor_position = cursor_position.lerp(next_movement_frame.position, time_difference / time_gap)
+		cursor_position = cursor_position.lerp(next_movement_frame.position, minf(time_difference / time_gap, 1))
 		move_cursor_raw.emit(cursor_position)
