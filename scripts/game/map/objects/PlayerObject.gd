@@ -17,6 +17,7 @@ var controller:PlayerController:
 		controller.skip_request.connect(_skip_request)
 		controller.move_cursor.connect(_move_cursor)
 		controller.move_cursor_raw.connect(_move_cursor_raw)
+		controller.move_camera_raw.connect(_move_camera_raw)
 @export var local_player:bool = false
 @export_subgroup("Camera")
 @export var camera:Camera3D
@@ -74,6 +75,11 @@ func _postprocess_cursor():
 		clamp(cursor_position.y,-clamp_value,clamp_value))
 	if game.settings.camera.drift:
 		cursor_position = clamped_cursor_position
+func _spin_cursor():
+	cursor_position = Vector2(camera.position.x,camera.position.y) + Vector2(
+		tan(camera.rotation.y),
+		tan(camera.rotation.x)
+	) * -camera.position.z
 func _absolute_movement(mouse_position:Vector2):
 	var cursor_position_3d = absolute_camera.project_position(mouse_position, -camera.position.z)
 	cursor_position = Vector2(cursor_position_3d.x, cursor_position_3d.y)
@@ -86,11 +92,8 @@ func _relative_movement(offset:Vector2):
 	if game.settings.camera.lock:
 		cursor_position -= mouse_movement
 	else:
-		camera.rotation_degrees -= Vector3(mouse_movement.y,mouse_movement.x,0) * 10
-		cursor_position = Vector2(camera.position.x,camera.position.y) + Vector2(
-			tan(camera.rotation.y),
-			tan(camera.rotation.x)
-		) * -camera.position.z
+		camera.rotation_degrees -= Vector3(mouse_movement.y, mouse_movement.x, 0) * 10
+		_spin_cursor()
 
 func _process(_delta):
 	var difference = cursor_position - clamped_cursor_position
@@ -200,4 +203,10 @@ func _move_cursor(_position:Vector2, is_absolute:bool=false):
 func _move_cursor_raw(_position:Vector2):
 	_preprocess_cursor()
 	cursor_position = _position
+	_postprocess_cursor()
+func _move_camera_raw(_rotation:Vector3, _position:Vector3):
+	_preprocess_cursor()
+	camera.rotation = _rotation
+	camera.position = _position
+	_spin_cursor()
 	_postprocess_cursor()

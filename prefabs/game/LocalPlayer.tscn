@@ -30,7 +30,7 @@ id = "Player"
 permanent = true
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.5)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, -3.5)
 cull_mask = 1048543
 fov = 70.0
 

@@ -10,6 +10,7 @@ var player:PlayerObject
 signal skip_request
 signal move_cursor
 signal move_cursor_raw
+signal move_camera_raw
 
 func ready():
 	game = player.game

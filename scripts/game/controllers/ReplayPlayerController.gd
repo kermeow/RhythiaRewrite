@@ -23,13 +23,36 @@ func set_next_frame(frame:Replay.Frame):
 
 func _process(_delta):
 	if next_movement_frame != null:
-		var next_time = next_movement_frame.time
-		var last_time = 0
-		var cursor_position = Vector2()
-		if last_movement_frame != null:
-			last_time = last_movement_frame.time
-			cursor_position = last_movement_frame.position
-		var time_difference = replay_time - last_time
-		var time_gap = next_time - last_time
-		cursor_position = cursor_position.lerp(next_movement_frame.position, minf(time_difference / time_gap, 1))
-		move_cursor_raw.emit(cursor_position)
+		if game.settings.camera.lock: _process_lock()
+		else: _process_spin()
+func _process_lock():
+	var next_time = next_movement_frame.time
+	var last_time = 0
+	var position = Vector2()
+	if last_movement_frame != null:
+		last_time = last_movement_frame.time
+		position = last_movement_frame.position
+	var time_difference = replay_time - last_time
+	var time_gap = next_time - last_time
+	var t = minf(time_difference / time_gap, 1)
+	position = position.lerp(next_movement_frame.position, t)
+	move_cursor_raw.emit(position)
+func _process_spin():
+	var next_time = next_movement_frame.time
+	var last_time = 0
+	var position = Vector3()
+	var rotation = Vector3(0,-180,0)
+	if last_movement_frame != null:
+		last_time = last_movement_frame.time
+		position = last_movement_frame.position
+		rotation = last_movement_frame.rotation
+	var time_difference = replay_time - last_time
+	var time_gap = next_time - last_time
+	var t = minf(time_difference / time_gap, 1)
+	position = position.lerp(next_movement_frame.position, t)
+	rotation = Vector3(
+		lerp_angle(rotation.x, next_movement_frame.rotation.x, t),
+		lerp_angle(rotation.y, next_movement_frame.rotation.y, t),
+		lerp_angle(rotation.z, next_movement_frame.rotation.z, t)
+	)
+	move_camera_raw.emit(rotation, position)

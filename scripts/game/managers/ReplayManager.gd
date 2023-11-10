@@ -71,12 +71,8 @@ func record_frame(important:bool=false):
 		frame.position = cursor_position
 	else:
 		frame = Replay.CameraRotationFrame.new()
-		var rotation = game.player.camera.rotation_degrees
-		frame.rotation = Vector3(
-			fposmod(rotation.x, 360),
-			fposmod(rotation.y, 360),
-			fposmod(rotation.z, 360)
-		)
+		var rotation = game.player.camera.rotation
+		frame.rotation = rotation
 		frame.position = game.player.camera.position
 	_record_frame(frame, important)
 var _last_frame:float = 0
