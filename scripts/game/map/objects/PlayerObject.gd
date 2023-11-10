@@ -6,6 +6,7 @@ signal missed
 signal hit_state_changed
 signal score_changed
 signal failed
+signal skipped
 
 @export_category("Configuration")
 var controller:PlayerController:
@@ -139,26 +140,15 @@ func _cursor_trail(_delta):
 	trails.resize((total_trails - remove_trails)*2)
 
 func _physics_process(_delta):
-	var cursor_hitbox = 0.2625
-	var hitwindow = 1.75/30
 	var objects = manager.objects_to_process
 	for object in objects:
 		if game.sync_manager.current_time < object.spawn_time: break
 		if object.hit_state != HitObject.HitState.NONE: continue
 		if !(object.hittable and object.can_hit): continue
-		var x = abs(object.position.x - clamped_cursor_position.x)
-		var y = abs(object.position.y - clamped_cursor_position.y)
-		var object_scale = object.global_transform.basis.get_scale()
-		var hitbox_x = (object_scale.x + cursor_hitbox) / 2.0
-		var hitbox_y = (object_scale.y + cursor_hitbox) / 2.0
-		if x <= hitbox_x and y <= hitbox_y:
-			object.hit()
-		elif object is NoteObject:
-			if game.sync_manager.current_time > (object as NoteObject).note.time + hitwindow:
-				object.miss()
+		controller.process_hitobject(object)
 func hit_object_state_changed(state:HitObject.HitState, object:HitObject):
 	if lock_score: return
-	hit_state_changed.emit(game.object_manager.objects.rfind(object), state)
+	hit_state_changed.emit(object.hit_index, state)
 	match state:
 		HitObject.HitState.HIT:
 			hit.emit(object)
@@ -194,7 +184,9 @@ func fail():
 func _input(event:InputEvent):
 	controller.input(event)
 func _skip_request():
-	if game.check_skippable(): game.skip()
+	if game.check_skippable():
+		game.skip()
+		skipped.emit()
 func _move_cursor(_position:Vector2, is_absolute:bool=false):
 	_preprocess_cursor()
 	if is_absolute: _absolute_movement(_position)

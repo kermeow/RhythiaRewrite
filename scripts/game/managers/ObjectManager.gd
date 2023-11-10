@@ -10,6 +10,8 @@ var objects:Array[GameObject] = []
 var objects_ids:Dictionary = {}
 var objects_to_process:Array[GameObject]
 
+var last_hit_index:int = 0
+
 var spawn_offset:float = 1.0
 var ordered_notes:Array = []
 
@@ -53,6 +55,8 @@ func append_object(object:GameObject,parent:bool=true,include_children:bool=fals
 	object.process_priority = 4
 
 	if object is HitObject:
+		object.hit_index = last_hit_index
+		last_hit_index += 1
 		if player != null: object.connect(
 			"on_hit_state_changed",
 			player.hit_object_state_changed.bind(object)

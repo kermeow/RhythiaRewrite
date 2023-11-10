@@ -21,6 +21,16 @@ func set_next_frame(frame:Replay.Frame):
 	last_frame = next_frame
 	next_frame = frame
 
+func process_hitobject(object:HitObject):
+	var frame
+	for _frame in unhandled_hit_frames:
+		if _frame.object_index == object.hit_index:
+			frame = _frame
+			break
+	if frame == null: return
+	object.hit_state = frame.hit_state
+	unhandled_hit_frames.erase(frame)
+
 func _process(_delta):
 	if next_movement_frame != null:
 		if game.settings.camera.lock: _process_lock()

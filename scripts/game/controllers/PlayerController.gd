@@ -17,3 +17,5 @@ func ready():
 
 func input(_event:InputEvent):
 	pass
+func process_hitobject(_object:HitObject):
+	pass
