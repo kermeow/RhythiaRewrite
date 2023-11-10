@@ -50,7 +50,7 @@ func _process(_delta):
 			if next_frame == null:
 				next_frame = replay.frames[0]
 				controller.set_next_frame(next_frame)
-			while next_frame.time < now and next_frame.index != replay.frames.size():
+			while next_frame.time < now and next_frame.index != replay.frames.size() - 1:
 				next_frame = replay.frames[next_frame.index + 1]
 				controller.set_next_frame(next_frame)
 
