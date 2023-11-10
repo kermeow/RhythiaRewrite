@@ -81,7 +81,7 @@ func record_frame(important:bool=false):
 	_record_frame(frame, important)
 var _last_frame:float = 0
 func _record_frame(frame:Replay.Frame, important:bool=false): # I stole this concept from osu
-	var should_record = important
+	var should_record = true
 	var now = (Time.get_ticks_msec() - start_time) / 1000.0
 	if replay.frames.size() > 0 and !important:
 		should_record = now - _last_frame >= 1.0 / record_rate
