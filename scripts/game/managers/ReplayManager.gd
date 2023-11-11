@@ -20,6 +20,7 @@ func start():
 	match mode:
 		Mode.RECORD:
 			game.player.hit_state_changed.connect(record_hit_frame)
+			game.player.skipped.connect(record_skip_frame)
 			if Globals.debug: print("Recording new replay")
 			replay.mapset_id = game.mapset.id
 			replay.map_id = game.map.id
@@ -49,11 +50,16 @@ func _process(_delta):
 			var next_frame = controller.next_frame
 			if next_frame == null:
 				next_frame = replay.frames[0]
-				controller.set_next_frame(next_frame)
-			while next_frame.time < now and next_frame.index != replay.frames.size() - 1:
+				if next_frame.time <= now: controller.set_next_frame(next_frame)
+				else: return
+			while next_frame.time <= now and next_frame.index != replay.frames.size() - 1:
 				next_frame = replay.frames[next_frame.index + 1]
 				controller.set_next_frame(next_frame)
 
+func record_skip_frame():
+	var frame = Replay.SkipFrame.new()
+	_record_frame(frame, true)
+	record_frame(true)
 func record_hit_frame(object_index:int, hit_state:HitObject.HitState):
 	var frame = Replay.HitStateFrame.new()
 	frame.object_index = object_index
@@ -83,6 +89,6 @@ func _record_frame(frame:Replay.Frame, important:bool=false): # I stole this con
 		should_record = now - _last_frame >= 1.0 / record_rate
 	if !should_record: return false
 	_last_frame = now
-	frame.time = now#game.sync_manager.real_time
+	frame.time = now #game.sync_manager.real_time
 	replay.frames.append(frame)
 	return true

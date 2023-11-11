@@ -31,6 +31,7 @@ func setup_managers():
 
 func _ready():
 	if replay != null:
+		mods = replay.mods
 		replay.read_settings(settings)
 		replay_manager.mode = ReplayManager.Mode.PLAY
 		replay_manager.replay = replay
