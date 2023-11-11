@@ -24,7 +24,7 @@ func load_settings():
 		if FileAccess.file_exists(platform_default):
 			settings = GameSettings.load_from_file(platform_default)
 	first_time = settings.first_time
-	
+
 	var callbacks = GameSettings.Callbacks.new()
 	callbacks.tree = get_tree()
 	callbacks.window = get_window()
@@ -33,7 +33,7 @@ func load_settings():
 func save_settings():
 	var exec_settings = OS.get_executable_path().get_base_dir().path_join("preferences.json")
 	if FileAccess.file_exists(exec_settings): settings_path = exec_settings
-	
+
 	settings.save_to_file(settings_path)
 
 # Init
@@ -130,7 +130,7 @@ func load_game_scene(game_type:int, mapset:Mapset, map_index:int=0):
 			var packed_scene:PackedScene = preload("res://scenes/Game.tscn")
 			scene = packed_scene.instantiate()
 			scene.mods = selected_mods
-			scene.settings = settings
+			scene.settings = settings.clone()
 			scene.mapset = full_mapset
 			scene.map_index = map_index
 	game_scene = scene

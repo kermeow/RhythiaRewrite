@@ -117,6 +117,10 @@ func _init(config=SETTINGS_CONFIG):
 	for setting_config in config:
 		var setting = Setting.new(setting_config)
 		settings[setting_config[0]] = setting
+func clone():
+	var new_settings = new()
+	new_settings.load_from_data(get_data())
+	return new_settings
 
 var settings:Dictionary = {}
 
@@ -155,14 +159,19 @@ static func load_from_file(path:String):
 	if FileAccess.file_exists(path):
 		var file = FileAccess.open(path, FileAccess.READ)
 		data = JSON.parse_string(file.get_as_text())
-	for key in data.keys():
-		var setting = new_settings.get_setting(key)
-		if setting != null: load_setting(setting, data[key])
+	new_settings.load_from_data(data)
 	return new_settings
 func save_to_file(path:String):
-	var data = {}
-	for key in settings.keys():
-		data[key] = parse_setting(get_setting(key))
+	var data = get_data()
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(data, "	", false))
 	file.close()
+func get_data():
+	var data = {}
+	for key in settings.keys():
+		data[key] = parse_setting(get_setting(key))
+	return data
+func load_from_data(data:Dictionary):
+	for key in data.keys():
+		var setting = get_setting(key)
+		if setting != null: load_setting(setting, data[key])
