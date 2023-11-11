@@ -30,7 +30,10 @@ func process_hitobject(object:HitObject):
 			frame = _frame
 			break
 	if frame == null: return
-	object.hit_state = frame.hit_state
+	match frame.hit_state:
+		HitObject.HitState.HIT: object.hit()
+		HitObject.HitState.MISS: object.miss()
+		HitObject.HitState.NONE, _: pass
 	unhandled_hit_frames.erase(frame)
 
 func _process(_delta):
