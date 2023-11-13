@@ -1,6 +1,8 @@
 extends SyncManager
 class_name AudioSyncManager
 
+signal started_audio
+
 @export var audio_player:AudioStreamPlayer
 var audio_started:bool = false
 
@@ -26,6 +28,7 @@ func _start_audio():
 	audio_player.stream = audio_stream
 	audio_player.play(real_time)
 	_set_offset()
+	started_audio.emit(current_time)
 
 func _process(delta:float):
 	super._process(delta)

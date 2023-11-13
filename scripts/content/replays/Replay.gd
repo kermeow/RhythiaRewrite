@@ -55,12 +55,12 @@ class UnknownTypeFrame:
 const CameraRotationFrame = preload("frames/CameraRotationFrame.gd")
 const CursorPositionFrame = preload("frames/CursorPositionFrame.gd")
 const HitStateFrame = preload("frames/HitStateFrame.gd")
-const SkipFrame = preload("frames/SkipFrame.gd")
+const SyncFrame = preload("frames/SyncFrame.gd")
 const Opcodes = {
 	0x01: CameraRotationFrame,
 	0x02: CursorPositionFrame,
 	0x03: HitStateFrame,
-	0x04: SkipFrame
+	0x04: SyncFrame
 }
 
 static func get_opcode_for(frame:Frame):

@@ -13,8 +13,8 @@ var passed_frames:Array[Replay.Frame] = []
 
 func set_next_frame(frame:Replay.Frame):
 	passed_frames.append(frame)
-	if is_instance_of(frame, Replay.SkipFrame):
-		skip_request.emit()
+	if is_instance_of(frame, Replay.SyncFrame):
+		game.sync_manager.seek(frame.sync_time)
 	if is_instance_of(frame, Replay.HitStateFrame):
 		unhandled_hit_frames.append(frame)
 	if is_instance_of(frame, Replay.CameraRotationFrame) or is_instance_of(frame, Replay.CursorPositionFrame):

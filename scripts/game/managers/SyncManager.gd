@@ -1,6 +1,7 @@
 extends GameManager
 class_name SyncManager
 
+signal started
 signal finished
 
 @export var playing:bool = false
@@ -27,6 +28,7 @@ func start(from:float=0):
 	last_time = Time.get_ticks_usec()
 	real_time = min(from - game_offset * playback_speed, from)
 	playing = true
+	started.emit(current_time)
 func seek(from:float=0):
 	last_time = Time.get_ticks_usec()
 	real_time = from - game_offset * playback_speed
