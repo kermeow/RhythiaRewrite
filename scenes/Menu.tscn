@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=41 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3cijv"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ciuxvgefpjrm1" path="res://assets/images/ui/command_line_error.png" id="4_oas34"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/MapDetails.gd" id="5_3gata"]
-[ext_resource type="Script" path="res://scripts/menu/maplist/Modifiers.gd" id="5_fv5pv"]
 [ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="6_yvoqp"]
 [ext_resource type="Texture2D" uid="uid://bk8ninr63d836" path="res://assets/images/ui/quit_to_desktop.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://b21p2flel8ywr" path="res://assets/images/ui/settings.png" id="8"]
@@ -17,8 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
 [ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="13_0gtk4"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
-[ext_resource type="Script" path="res://scripts/menu/settings/LastReplayButton.gd" id="15_yay33"]
 [ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="14_kq106"]
+[ext_resource type="Script" path="res://scripts/menu/settings/LastReplayButton.gd" id="15_yay33"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
 [ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
@@ -433,7 +432,6 @@ offset_right = -4.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("5_fv5pv")
 
 [node name="Speed" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
 custom_minimum_size = Vector2(0, 64)
