@@ -8,13 +8,13 @@ var last_frame:Replay.Frame
 var next_movement_frame:Replay.Frame
 var last_movement_frame:Replay.Frame
 
-var unhandled_hit_frames:Array[Replay.HitStateFrame] = []
+var queued_hit_frames:Array[Replay.HitStateFrame] = []
 var queued_frames:Array[Replay.Frame] = []
 
 func queue_frame(frame:Replay.Frame):
 	if frame.time < replay_time: return
 	if is_instance_of(frame, Replay.HitStateFrame):
-		unhandled_hit_frames.append(frame)
+		queued_hit_frames.append(frame)
 		return
 	queued_frames.append(frame)
 func queue_frames(frames:Array):
@@ -40,7 +40,7 @@ func set_next_frame(frame:Replay.Frame):
 
 func process_hitobject(object:HitObject):
 	var frame
-	for _frame in unhandled_hit_frames:
+	for _frame in queued_hit_frames:
 		if _frame.object_index == object.hit_index:
 			frame = _frame
 			break
@@ -49,7 +49,7 @@ func process_hitobject(object:HitObject):
 		HitObject.HitState.HIT: object.hit()
 		HitObject.HitState.MISS: object.miss()
 		HitObject.HitState.NONE, _: pass
-	unhandled_hit_frames.erase(frame)
+	queued_hit_frames.erase(frame)
 
 func _process(_delta):
 	process_frame_queue()
