@@ -23,13 +23,15 @@ func start():
 			game.player.skipped.connect(record_sync_frame)
 			game.sync_manager.started.connect(record_sync_frame)
 			game.sync_manager.started_audio.connect(record_sync_frame)
-			if Globals.debug: print("Recording new replay")
 			replay.mapset_id = game.mapset.id
 			replay.map_id = game.map.id
 			replay.mods = game.mods
 			replay.write_settings(game.settings)
 			replay.score = game.player.score
+			if Globals.debug: print("Recording new replay")
 		Mode.PLAY:
+			var controller = game.player.controller
+			controller.queue_frames(replay.frames)
 			if Globals.debug: print("Playing replay")
 func stop():
 	if !active: return
@@ -49,14 +51,6 @@ func _process(_delta):
 			var controller = game.player.controller
 			var now = (Time.get_ticks_msec() - start_time) / 1000.0#game.sync_manager.real_time
 			controller.replay_time = now
-			var next_frame = controller.next_frame
-			if next_frame == null:
-				next_frame = replay.frames[0]
-				if next_frame.time <= now: controller.set_next_frame(next_frame)
-				else: return
-			while next_frame.time <= now and next_frame.index != replay.frames.size() - 1:
-				next_frame = replay.frames[next_frame.index + 1]
-				controller.set_next_frame(next_frame)
 
 func record_sync_frame():
 	var frame = Replay.SyncFrame.new()

@@ -9,14 +9,29 @@ var next_movement_frame:Replay.Frame
 var last_movement_frame:Replay.Frame
 
 var unhandled_hit_frames:Array[Replay.HitStateFrame] = []
-var passed_frames:Array[Replay.Frame] = []
+var queued_frames:Array[Replay.Frame] = []
 
-func set_next_frame(frame:Replay.Frame):
-	passed_frames.append(frame)
-	if is_instance_of(frame, Replay.SyncFrame):
-		game.sync_manager.seek(frame.sync_time)
+func queue_frame(frame:Replay.Frame):
+	if frame.time < replay_time: return
 	if is_instance_of(frame, Replay.HitStateFrame):
 		unhandled_hit_frames.append(frame)
+		return
+	queued_frames.append(frame)
+func queue_frames(frames:Array):
+	for frame in frames:
+		if not frame is Replay.Frame: continue
+		queue_frame(frame)
+	if Globals.debug: print("Queued %s replay frames" % queued_frames.size())
+func process_frame_queue():
+	if next_frame == null:
+		if queued_frames.size() > 0: set_next_frame(queued_frames.pop_front())
+		return
+	while replay_time > next_frame.time and queued_frames.size() > 0:
+		var frame = queued_frames.pop_front()
+		set_next_frame(frame)
+func set_next_frame(frame:Replay.Frame):
+	if is_instance_of(next_frame, Replay.SyncFrame):
+		game.sync_manager.seek(next_frame.sync_time)
 	if is_instance_of(frame, Replay.CameraRotationFrame) or is_instance_of(frame, Replay.CursorPositionFrame):
 		last_movement_frame = next_movement_frame
 		next_movement_frame = frame
@@ -37,6 +52,7 @@ func process_hitobject(object:HitObject):
 	unhandled_hit_frames.erase(frame)
 
 func _process(_delta):
+	process_frame_queue()
 	if next_movement_frame != null:
 		if game.settings.camera.lock: _process_lock()
 		else: _process_spin()
