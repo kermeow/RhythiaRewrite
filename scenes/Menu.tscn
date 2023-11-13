@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=42 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3cijv"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
 [ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="13_0gtk4"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
+[ext_resource type="Script" path="res://scripts/menu/settings/LastReplayButton.gd" id="15_yay33"]
 [ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="14_kq106"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
@@ -1605,6 +1606,29 @@ min_value = 1.0
 allow_greater = true
 label = "Required Skip Time"
 target = Array[String](["advanced", "skip", "minimum_skip_time"])
+
+[node name="LastReplay" type="Button" parent="Main/TabBar/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_top = 16.0
+offset_right = -12.0
+offset_bottom = 44.0
+grow_horizontal = 0
+script = ExtResource("15_yay33")
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/LastReplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Last Replay"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VersionNumberR" parent="Main" instance=ExtResource("1")]
 layout_mode = 1

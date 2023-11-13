@@ -1,7 +1,7 @@
 extends ResourcePlus
 class_name Mapset
 
-const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x4d]
+const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x4d] # rhythiaM
 const OLD_SIGNATURE:PackedByteArray = [0x53, 0x53, 0x2b, 0x6d]
 
 var format:int
@@ -38,6 +38,9 @@ var length:float:
 		return 0
 
 var maps:Array
+func get_index_by_id(map_id:String):
+	for i in maps.size():
+		if maps[i].id == map_id: return i
 
 # Writing files
 func write_to_file(path:String): # Write mapset to a path

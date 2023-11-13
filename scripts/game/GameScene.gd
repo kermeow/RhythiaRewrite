@@ -8,34 +8,97 @@ var mapset:Mapset
 var map_index:int
 var map:Map
 
+var replay:Replay
+
 @export_category("Game Managers")
 @export var sync_manager:SyncManager
 @export var object_manager:ObjectManager
+@export var replay_manager:ReplayManager
+@export var hud_manager:HUDManager
+@export var reporter:StatisticsReporter
 
 @export_category("Other Nodes")
 @export var origin:Node3D
+@export var world_parent:WorldContainerObject
 @export var player:PlayerObject
 @onready var local_player:bool = player.local_player
 
 func setup_managers():
 	sync_manager.prepare(self)
 	object_manager.prepare(self)
+	replay_manager.prepare(self)
+	hud_manager.prepare(self)
 
 func _ready():
+	if replay != null:
+		mods = replay.mods
+		replay.read_settings(settings)
+		replay_manager.mode = ReplayManager.Mode.PLAY
+		replay_manager.replay = replay
+		var replay_controller = PlayerController.ReplayController.new()
+		player.controller = replay_controller
+		call_deferred("add_child", replay_controller)
+	else:
+		var solo_controller = PlayerController.SoloController.new()
+		player.controller = solo_controller
+		call_deferred("add_child", solo_controller)
+		replay = replay_manager.replay
+
 	map = mapset.maps[map_index]
 
 	if sync_manager is AudioSyncManager: sync_manager.audio_stream = mapset.audio
 	sync_manager.playback_speed = mods.speed
 
 	setup_managers()
+
+	var world = Rhythia.get("worlds").items.front()
+	var selected_world = settings.skin.background.world
+	var ids = Rhythia.get("worlds").get_ids()
+	if ids.has(selected_world):
+		world = Rhythia.get("worlds").get_by_id(selected_world)
+	if world != null:
+		world_parent.call_deferred("load_world", world)
+
+	HitObject.hit_sound = $Hit
+	HitObject.miss_sound = $Miss
+
+#	reporter.start()
+	replay_manager.start()
+
+	player.connect("failed",finish.bind(true))
+
 	sync_manager.connect("finished",Callable(self,"finish"))
+	sync_manager.call_deferred("start", mods.seek - (settings.approach.time + 1.5) * sync_manager.playback_speed)
 
-	call_deferred("ready")
-
-func ready():
-	pass
-func finish(_failed:bool=false):
-	pass
+var ended:bool = false
+func finish(failed:bool=false):
+	if ended: return
+	ended = true
+#	reporter.stop()
+	replay_manager.stop()
+	if Globals.debug: print("failed: %s" % failed)
+	if failed:
+		if Globals.debug: print("fail animation")
+		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+		tween.tween_property(sync_manager,"playback_speed",0,1)
+		tween.play()
+		await tween.finished
+	else:
+		if Globals.debug: print("pass")
+		$PauseMenu.process_mode = Node.PROCESS_MODE_DISABLED
+		$PauseMenu.visible = false
+		await get_tree().create_timer(0.5).timeout
+	var packed_results:PackedScene = preload("res://scenes/Results.tscn")
+	var results:ResultsScreen = packed_results.instantiate()
+	var image = get_viewport().get_texture().get_image() # hacky screenshot
+	results.screenshot = ImageTexture.create_from_image(image)
+	results.mapset = mapset
+	results.map_index = map_index
+	results.score = player.score
+	results.mods = mods
+#	results.statistics = reporter.statistics
+	results.settings = settings
+	get_tree().change_scene_to_node(results)
 
 func _next_note():
 	var current_time = sync_manager.current_time

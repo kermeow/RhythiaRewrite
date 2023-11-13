@@ -1,4 +1,4 @@
-extends BaseManager
+extends GameManager
 class_name SyncManager
 
 signal finished

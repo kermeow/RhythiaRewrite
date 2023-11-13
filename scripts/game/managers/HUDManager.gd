@@ -1,4 +1,4 @@
-extends BaseManager
+extends GameManager
 class_name HUDManager
 
 @export var hud:Node3D
@@ -30,4 +30,6 @@ func _process(_delta):
 	energy.health = game.player.health
 	timer.sync_manager = game.sync_manager
 	timer.song_name = "%s [%s]" % [game.mapset.name, game.map.name]
+	if game.replay_manager.mode == ReplayManager.Mode.PLAY:
+		timer.song_name = "WATCHING %s PLAY %s" % [game.replay.player_name, timer.song_name]
 	timer.skippable = game.check_skippable()
