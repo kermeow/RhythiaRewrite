@@ -5,7 +5,6 @@ extends Node
 @onready var blocks:Registry = preload("res://assets/content/Blocks.tres")
 @onready var worlds:Registry = preload("res://assets/content/Worlds.tres")
 
-var settings_path
 var settings:GameSettings
 var first_time:bool = false
 
@@ -17,14 +16,13 @@ func _ready():
 		OS.request_permissions()
 
 	# Load settings
-	settings_path = Globals.Paths.settings
 	call_deferred("load_settings")
 
 # Settings
 func load_settings():
 	settings = GameSettings.new()
-	if FileAccess.file_exists(settings_path):
-		settings = GameSettings.load_from_file(settings_path)
+	if FileAccess.file_exists(Globals.Paths.settings):
+		settings = GameSettings.load_from_file(Globals.Paths.settings)
 	else:
 		var platform_default = "res://assets/settings/%s.json" % Globals.platform
 		if FileAccess.file_exists(platform_default):
@@ -38,9 +36,9 @@ func load_settings():
 	callbacks.reference()
 func save_settings():
 	var exec_settings = OS.get_executable_path().get_base_dir().path_join("preferences.json")
-	if FileAccess.file_exists(exec_settings): settings_path = exec_settings
+	if FileAccess.file_exists(exec_settings): Globals.Paths.settings = exec_settings
 
-	settings.save_to_file(settings_path)
+	settings.save_to_file(Globals.Paths.settings)
 
 # Init
 var _initialised:bool = false

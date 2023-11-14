@@ -24,18 +24,27 @@ var Paths = {
 	user = "user://",
 	res = "res://",
 	executable = "",
+
 	skin = "",
+	maps = "",
+	playlists = "",
+	replays = "",
+	settings = ""
 }
 const _paths = {
-	skin = [RootPath.RES,"assets"],
-	maps = [RootPath.USER,"maps"],
-	playlists = [RootPath.USER,"playlists"],
-	settings = [RootPath.USER,"preferences.json"]
+	skin = [RootPath.RES, "assets"],
+	maps = [RootPath.USER, "maps"],
+	playlists = [RootPath.USER, "playlists"],
+	replays = [RootPath.USER, "replays"],
+	settings = [RootPath.USER, "preferences.json"]
 }
 
 func update_paths():
-	if OS.has_feature("android"): Paths.user = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP, false)
 	Paths.executable = OS.get_executable_path()
+	if FileAccess.file_exists(Paths.executable.path_join(".sc")):
+		Paths.user = Paths.executable.path_join("data")
+	if OS.has_feature("android"):
+		Paths.user = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP, false)
 	for key in _paths.keys():
 		var value = _paths[key]
 		match value[0]:
