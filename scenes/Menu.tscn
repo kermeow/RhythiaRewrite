@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=40 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3cijv"]
@@ -99,8 +99,6 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fx0e"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ur6lp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vm47"]
@@ -184,6 +182,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="MapList" type="Control" parent="Main/TabBar/Select"]
@@ -867,7 +866,6 @@ visible = false
 layout_mode = 2
 
 [node name="Credits" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Main/TabBar/Credits"]
@@ -889,7 +887,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(900, 0)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 16
+theme_override_constants/separation = 8
 
 [node name="Logo" type="Control" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
 custom_minimum_size = Vector2(0, 248)
@@ -908,27 +906,29 @@ texture = ExtResource("14_ack2s")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Developers" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
+[node name="Control" type="Control" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
 layout_mode = 2
+
+[node name="Developers" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Developers"
+theme_override_font_sizes/font_size = 24
+text = "Lead Developers"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Items" type="HBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers"]
+[node name="Items" type="HFlowContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 alignment = 1
 
-[node name="LeftPadding" type="VSeparator" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
-layout_mode = 2
-theme_override_constants/separation = 200
-theme_override_styles/separator = SubResource("StyleBoxEmpty_0fx0e")
-
 [node name="kermeet" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("13_0gtk4")
@@ -943,6 +943,7 @@ fit_content = true
 scroll_active = false
 
 [node name="kiwie" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("13_0gtk4")
@@ -956,10 +957,70 @@ David20122 on GitHub
 fit_content = true
 scroll_active = false
 
-[node name="RightPadding" type="VSeparator" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
+[node name="Contributors" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
+custom_minimum_size = Vector2(640, 0)
 layout_mode = 2
-theme_override_constants/separation = 200
-theme_override_styles/separator = SubResource("StyleBoxEmpty_0fx0e")
+size_flags_horizontal = 4
+
+[node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Contributors"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Contributors"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Items" type="HFlowContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Contributors"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+alignment = 1
+
+[node name="anthony63" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Contributors/Items"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[center][b]kermeet[/b]
+"
+fit_content = true
+scroll_active = false
+
+[node name="Mentions" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Mentions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Honorable Mentions"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Items" type="HFlowContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Mentions"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+alignment = 1
+
+[node name="Basil" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Mentions/Items"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[center][b]Chedski[/b]
+Created Sound Space Plus
+"
+fit_content = true
+scroll_active = false
 
 [node name="Attribution" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
 layout_mode = 2
@@ -967,7 +1028,7 @@ theme_override_constants/separation = 8
 
 [node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Attribution"
 horizontal_alignment = 1
 vertical_alignment = 1
