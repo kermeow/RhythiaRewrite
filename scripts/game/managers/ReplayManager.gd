@@ -23,6 +23,7 @@ func start():
 			game.player.skipped.connect(record_sync_frame)
 			game.sync_manager.started.connect(record_sync_frame)
 			game.sync_manager.started_audio.connect(record_sync_frame)
+			replay.player_name = game.settings.online.name
 			replay.mapset_id = game.mapset.id
 			replay.map_id = game.map.id
 			replay.mods = game.mods
