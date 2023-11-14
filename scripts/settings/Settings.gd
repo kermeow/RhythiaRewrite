@@ -103,6 +103,10 @@ const SETTINGS_CONFIG = [
 	["paths",Setting.Type.CATEGORY,[
 		["maps",Setting.Type.ARRAY,[]]
 	]],
+	["online",Setting.Type.CATEGORY,[
+		["name",Setting.Type.STRING,"Player"],
+		["color",Setting.Type.STRING,"#ffffff"]
+	]],
 	["advanced",Setting.Type.CATEGORY,[
 		["skip",Setting.Type.CATEGORY,[
 			["minimum_break_time",Setting.Type.FLOAT,5.0],

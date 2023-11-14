@@ -4,6 +4,9 @@ class_name Replay
 const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x52] # rhythiaR
 
 var mapset_id:String = "MAPSET_ID"
+var mapset:Mapset:
+	get: return Rhythia.mapsets.get_by_id(mapset_id)
+	set(value): mapset_id = value.id
 var map_id:String = "MAP_ID"
 var player_name:String = "Player"
 

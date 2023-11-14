@@ -11,16 +11,16 @@ var settings:GameSettings
 
 func _ready():
 	$Background.texture = screenshot
-	
+
 	%Container/Score/Rank.text = score.rank
 	%Container/Score/PP.text = ""
 	%Container/Score/PP/Unranked.visible = true
 	%Container/Score/Score.text = HUDManager.comma_sep(score.score)
 	%Container/Score/Accuracy.text = "%.2f%%" % (float(score.hits*100)/float(score.total))
-	
+
 	%Container/Restart.pressed.connect(restart)
 	%Container/Return.pressed.connect(return_to_menu)
-	
+
 	call_deferred("fade_in")
 
 func restart():

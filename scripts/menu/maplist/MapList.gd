@@ -18,12 +18,12 @@ func _ready():
 	button_container.remove_child(origin_button)
 	button_container.resized.connect(_on_container_resized)
 	_on_container_resized(button_container.size)
-	
+
 	$Paginator/First.pressed.connect(_first_paginator)
 	$Paginator/Last.pressed.connect(_last_paginator)
 	$Paginator/Previous.pressed.connect(_prev_paginator)
 	$Paginator/Next.pressed.connect(_next_paginator)
-	
+
 	$Filters/Line/Filters/Search.text_changed.connect(_filter_updated)
 	$Filters/Line/Sorts/NameAlphabet.pressed.connect(func():
 		_sort_mapsets_name()
@@ -86,7 +86,7 @@ func _calculate_buttons_per_page(size):
 func _calculate_pages():
 	max_page = ceil(listed_mapsets.size() / buttons_per_page) - 1
 	page = mini(page, max_page)
-	
+
 	if page == -1 and max_page != -1: page = 0
 
 func _create_buttons():

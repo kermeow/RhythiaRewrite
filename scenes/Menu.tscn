@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=43 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3cijv"]
@@ -17,11 +17,12 @@
 [ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="13_0gtk4"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
 [ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="14_kq106"]
-[ext_resource type="Script" path="res://scripts/menu/settings/LastReplayButton.gd" id="15_yay33"]
 [ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
+[ext_resource type="Script" path="res://scripts/menu/replays/LastReplayButton.gd" id="18_snorp"]
 [ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
 [ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
 [ext_resource type="PackedScene" uid="uid://k4boo5xdg2m3" path="res://prefabs/menu/settings/EnumControl.tscn" id="19_bkaum"]
+[ext_resource type="Script" path="res://scripts/menu/replays/ReplayList.gd" id="19_mtdwv"]
 [ext_resource type="Script" path="res://scripts/menu/Sidebar.gd" id="21_e3lc5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnsra"]
@@ -111,6 +112,28 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sonn3"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqbjr"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_floo6"]
 bg_color = Color(1, 1, 1, 1)
 
@@ -182,7 +205,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
 tabs_visible = false
 
 [node name="Select" type="Control" parent="Main/TabBar"]
-visible = false
 layout_mode = 2
 
 [node name="MapList" type="Control" parent="Main/TabBar/Select"]
@@ -866,6 +888,7 @@ visible = false
 layout_mode = 2
 
 [node name="Credits" type="Control" parent="Main/TabBar"]
+visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Main/TabBar/Credits"]
@@ -1439,6 +1462,177 @@ has_requirement = true
 requirement_target = Array[String](["skin", "background", "full_static"])
 required_value = "false"
 
+[node name="Replays" type="Control" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="LastReplay" type="Button" parent="Main/TabBar/Settings/TabContainer/Replays"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -164.0
+offset_top = -31.0
+offset_right = 16.0
+offset_bottom = -3.0
+grow_horizontal = 0
+script = ExtResource("18_snorp")
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/LastReplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Last Replay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="List" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer/Replays"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+script = ExtResource("19_mtdwv")
+
+[node name="Items" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Replays/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Panel" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sonn3")
+
+[node name="Cover" type="Panel" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 94.0
+offset_bottom = -2.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oqbjr")
+
+[node name="Image" type="TextureRect" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Cover"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r3n0f")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_right = -140.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 20
+text = "Schwank - Extra Credit On The Chromosome Test [Tasukete]"
+vertical_alignment = 2
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="Player" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 40.0
+offset_right = -140.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 16
+text = "Player - Date"
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="Score" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 64.0
+
+[node name="Score" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Score"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "999,999,999"
+
+[node name="Accuracy" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Score"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "99.99%"
+
+[node name="Failed" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Score"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Failed"
+
+[node name="Buttons" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_right = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Buttons"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Buttons/Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Delete" type="Button" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Buttons"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Buttons/Delete"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Delete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Video" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
 visible = false
 layout_mode = 2
@@ -1612,29 +1806,6 @@ min_value = 1.0
 allow_greater = true
 label = "Required Skip Time"
 target = Array[String](["advanced", "skip", "minimum_skip_time"])
-
-[node name="LastReplay" type="Button" parent="Main/TabBar/Settings"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -192.0
-offset_top = 16.0
-offset_right = -12.0
-offset_bottom = 44.0
-grow_horizontal = 0
-script = ExtResource("15_yay33")
-
-[node name="Label" type="Label" parent="Main/TabBar/Settings/LastReplay"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Play Last Replay"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="VersionNumberR" parent="Main" instance=ExtResource("1")]
 layout_mode = 1

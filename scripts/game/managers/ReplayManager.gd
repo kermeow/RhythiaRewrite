@@ -39,7 +39,15 @@ func stop():
 	if Globals.debug: print("Stopping replay")
 	match mode:
 		Mode.RECORD:
-			replay.write_to_file("user://recent.rhyr")
+			replay.write_to_file(Globals.Paths.user.path_join("recent.rhyr")) # Save to recent
+			# Save to permanent folder
+			var current_date = Time.get_datetime_string_from_system()
+			var replay_name = (
+				replay.mapset_id.substr(0, 8) +
+				replay.map_id.substr(0, 8) +
+				current_date + ".rhyr"
+			)
+			replay.write_to_file(Globals.Paths.replays.path_join(replay_name))
 		Mode.PLAY:
 			pass
 
@@ -52,9 +60,9 @@ func _process(_delta):
 			var now = (Time.get_ticks_msec() - start_time) / 1000.0#game.sync_manager.real_time
 			controller.replay_time = now
 
-func record_sync_frame():
+func record_sync_frame(current_time:float):
 	var frame = Replay.SyncFrame.new()
-	frame.sync_time = game.sync_manager.current_time
+	frame.sync_time = current_time
 	_record_frame(frame, true)
 	record_frame(true)
 func record_hit_frame(object_index:int, hit_state:HitObject.HitState):

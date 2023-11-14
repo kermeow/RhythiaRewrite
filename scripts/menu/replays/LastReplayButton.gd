@@ -10,7 +10,7 @@ func _ready():
 		replay = Replay.read_from_file("user://recent.rhyr")
 
 func _pressed():
-	var mapset:Mapset = Rhythia.mapsets.get_by_id(replay.mapset_id)
+	var mapset:Mapset = replay.mapset
 	var index = mapset.get_index_by_id(replay.map_id)
 	var scene = Rhythia.load_game_scene(Rhythia.GameType.SOLO, mapset, index)
 	scene.replay = replay
