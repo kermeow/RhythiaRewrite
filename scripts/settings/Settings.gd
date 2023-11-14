@@ -104,7 +104,7 @@ const SETTINGS_CONFIG = [
 		["maps",Setting.Type.ARRAY,[]]
 	]],
 	["online",Setting.Type.CATEGORY,[
-		["name",Setting.Type.STRING,"Player"],
+		["player_name",Setting.Type.STRING,"Player"],
 		["color",Setting.Type.STRING,"#ffffff"]
 	]],
 	["advanced",Setting.Type.CATEGORY,[
