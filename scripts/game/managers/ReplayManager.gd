@@ -11,7 +11,7 @@ var replay:Replay = Replay.new()
 var active:bool = false
 var start_time:int = 0
 
-var record_rate:int = 60
+var record_rate:int = 90
 
 func start():
 	assert(!active)
