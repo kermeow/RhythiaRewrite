@@ -41,12 +41,10 @@ func stop():
 		Mode.RECORD:
 			replay.write_to_file(Globals.Paths.user.path_join("recent.rhyr")) # Save to recent
 			# Save to permanent folder
-			var current_date = Time.get_datetime_string_from_system()
+			var current_date = Time.get_datetime_string_from_system(false, true)
 			var replay_name = (
-				replay.mapset_id.substr(0, 8) +
-				replay.map_id.substr(0, 8) +
-				current_date + ".rhyr"
-			)
+				replay.mapset.name + current_date + ".rhyr"
+			).validate_filename()
 			replay.write_to_file(Globals.Paths.replays.path_join(replay_name))
 		Mode.PLAY:
 			pass
