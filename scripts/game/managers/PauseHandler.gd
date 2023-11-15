@@ -54,17 +54,14 @@ func attempt_resume():
 	get_tree().paused = false
 func attempt_restart():
 	if !get_tree().paused: return
-	if !ReplayManager.Mode.PLAY:
-		print("Restarting")
-	else:
-		print("Restarting replay.")
+	print("Restarting")
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	get_parent().process_mode = Node.PROCESS_MODE_DISABLED
 	get_tree().paused = false
 	var game_scene = Rhythia.load_game_scene(Rhythia.GameType.SOLO,get_parent().mapset,get_parent().map_index)
 	if ReplayManager.Mode.PLAY:
 		var game:GameScene = get_parent()
-		game_scene.replay = game.replay_manager.replay
+		game_scene.replay = game.replay
 	get_tree().change_scene_to_node(game_scene)
 func attempt_return():
 	if !get_tree().paused: return
