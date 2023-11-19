@@ -22,7 +22,6 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://assets/images/branding/icon.png"
 config/version="rewrite"
-networking/enabled=true
 config/menu_scene="res://scenes/Menu.tscn"
 startup/disable_intro=true
 startup/disable_health_warning=true
@@ -32,8 +31,9 @@ outro/play_sound=true
 outro/disabled.editor=true
 startup/disable_intro.debug=true
 startup/disable_health_warning.editor=true
-networking/server="https://rhythia.net/"
-networking/archive_index="https://cdn.rhythia.net/index.json"
+networking/maps/archive_index="https://cdn.rhythia.net/index.json"
+networking/multiplayer/master_server=""
+networking/multiplayer/master_server.editor="localhost"
 
 [audio]
 
