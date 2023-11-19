@@ -59,6 +59,9 @@ func attempt_restart():
 	get_parent().process_mode = Node.PROCESS_MODE_DISABLED
 	get_tree().paused = false
 	var game_scene = Rhythia.load_game_scene(Rhythia.GameType.SOLO,get_parent().mapset,get_parent().map_index)
+	var game:GameScene = get_parent()
+	if game.replay_manager.mode == ReplayManager.Mode.PLAY:
+		game_scene.replay = game.replay
 	get_tree().change_scene_to_node(game_scene)
 func attempt_return():
 	if !get_tree().paused: return
