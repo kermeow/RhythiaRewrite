@@ -16,13 +16,9 @@ var physics_time:float:
 	get: return self.current_time + physics_offset
 @export var length:float = 0
 
-@onready var game_offset:float
+@onready var game_offset:float = float(_find_game().settings.offset.music) / 1000.0
 
 @export var parent_sync_manager:SyncManager
-
-func prepare(_game:GameScene):
-	game_offset = float(_game.settings.offset.music) / 1000.0
-	super.prepare(_game)
 
 func start(from:float=0):
 	last_time = Time.get_ticks_usec()

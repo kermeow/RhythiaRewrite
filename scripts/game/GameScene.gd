@@ -23,12 +23,6 @@ var replay:Replay
 @export var player:PlayerObject
 @onready var local_player:bool = player.local_player
 
-func setup_managers():
-	sync_manager.prepare(self)
-	object_manager.prepare(self)
-	replay_manager.prepare(self)
-	hud_manager.prepare(self)
-
 func _ready():
 	if replay != null:
 		mods = replay.mods
@@ -48,8 +42,6 @@ func _ready():
 
 	if sync_manager is AudioSyncManager: sync_manager.audio_stream = mapset.audio
 	sync_manager.playback_speed = mods.speed
-
-	setup_managers()
 
 	var world = Rhythia.get("worlds").items.front()
 	var selected_world = settings.skin.background.world

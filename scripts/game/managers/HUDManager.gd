@@ -17,8 +17,7 @@ static func comma_sep(n: int):
 		result += string[i]
 	return result
 
-func prepare(_game:GameScene):
-	super.prepare(_game)
+func _ready():
 	right.manager = self
 	left.manager = self
 	energy.manager = self

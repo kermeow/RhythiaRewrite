@@ -15,7 +15,7 @@ var controller:PlayerController:
 		controller = value
 		controller.player = self
 		controller.call_deferred("ready")
-		controller.skip_request.connect(_skip_request)
+		controller.skip_request.connect(_skip_request, 1)
 		controller.move_cursor.connect(_move_cursor)
 		controller.move_cursor_raw.connect(_move_cursor_raw)
 		controller.move_camera_raw.connect(_move_camera_raw)

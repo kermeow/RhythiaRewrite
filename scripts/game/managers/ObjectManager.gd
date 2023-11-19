@@ -17,10 +17,8 @@ var ordered_notes:Array = []
 
 var player:PlayerObject
 
-func prepare(_game:GameScene):
-	super.prepare(_game)
-
-	if _game.settings.advanced.note_render_mode == 1:
+func _post_ready():
+	if game.settings.advanced.note_render_mode == 1:
 		$NoteRenderer.free()
 	else:
 		$NoteRenderer.prepare()

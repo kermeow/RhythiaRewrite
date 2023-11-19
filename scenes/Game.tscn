@@ -44,6 +44,8 @@ use_colors = true
 use_custom_data = true
 mesh = SubResource("ArrayMesh_4e33t")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjrtq"]
+
 [sub_resource type="Shader" id="Shader_1muv0"]
 code = "shader_type spatial;
 render_mode unshaded;
@@ -74,8 +76,6 @@ shader_parameter/video_texture = SubResource("ViewportTexture_7n8xb")
 flip_faces = true
 size = Vector2(19.2, 10.8)
 subdivide_width = 32
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjrtq"]
 
 [node name="Game" type="Node3D" node_paths=PackedStringArray("sync_manager", "object_manager", "replay_manager", "hud_manager", "reporter", "origin", "world_parent", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
@@ -122,12 +122,149 @@ script = ExtResource("6_f855g")
 
 [node name="ReplayManager" type="Node" parent="."]
 script = ExtResource("7_j81du")
-mode = null
 
 [node name="HUDManager" type="Node" parent="." node_paths=PackedStringArray("hud")]
 process_priority = 1
 script = ExtResource("7_k3pke")
 hud = NodePath("../Origin/HUD")
+
+[node name="PauseHandler" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("14_24aaj")
+
+[node name="Control" type="ColorRect" parent="PauseHandler"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("13_usleo")
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Panel" type="Panel" parent="PauseHandler/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -102.0
+offset_right = 160.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yjrtq")
+
+[node name="Title" type="Label" parent="PauseHandler/Control/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_right = 128.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="PauseHandler/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Resume" type="Button" parent="PauseHandler/Control/Panel/Buttons"]
+self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PauseHandler/Control/Panel/Buttons/Resume"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = 64.0
+grow_vertical = 2
+texture = ExtResource("15_704wd")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PauseHandler/Control/Panel/Buttons/Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "RESUME"
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="PauseHandler/Control/Panel/Buttons"]
+self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PauseHandler/Control/Panel/Buttons/Restart"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = 64.0
+grow_vertical = 2
+texture = ExtResource("16_w57xb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PauseHandler/Control/Panel/Buttons/Restart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "RESTART"
+vertical_alignment = 1
+
+[node name="Return" type="Button" parent="PauseHandler/Control/Panel/Buttons"]
+self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PauseHandler/Control/Panel/Buttons/Return"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = 64.0
+grow_vertical = 2
+texture = ExtResource("17_qxm8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PauseHandler/Control/Panel/Buttons/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "RETURN TO MENU"
+vertical_alignment = 1
 
 [node name="StastisticsReporter" type="Node" parent="."]
 script = ExtResource("8_mqnii")
@@ -174,139 +311,3 @@ paused = true
 expand = true
 buffering_msec = 1000
 bus = &"Sound Space Plus"
-
-[node name="PauseMenu" type="ColorRect" parent="."]
-process_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("13_usleo")
-color = Color(0, 0, 0, 0.501961)
-script = ExtResource("14_24aaj")
-
-[node name="Panel" type="Panel" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -102.0
-offset_right = 160.0
-offset_bottom = 102.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_yjrtq")
-
-[node name="Title" type="Label" parent="PauseMenu/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -128.0
-offset_top = -64.0
-offset_right = 128.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-text = "PAUSED"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Buttons" type="VBoxContainer" parent="PauseMenu/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 8
-
-[node name="Resume" type="Button" parent="PauseMenu/Panel/Buttons"]
-self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="PauseMenu/Panel/Buttons/Resume"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_right = 64.0
-grow_vertical = 2
-texture = ExtResource("15_704wd")
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="PauseMenu/Panel/Buttons/Resume"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 72.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "RESUME"
-vertical_alignment = 1
-
-[node name="Restart" type="Button" parent="PauseMenu/Panel/Buttons"]
-self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="PauseMenu/Panel/Buttons/Restart"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_right = 64.0
-grow_vertical = 2
-texture = ExtResource("16_w57xb")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="PauseMenu/Panel/Buttons/Restart"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 72.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "RESTART"
-vertical_alignment = 1
-
-[node name="Return" type="Button" parent="PauseMenu/Panel/Buttons"]
-self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="PauseMenu/Panel/Buttons/Return"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_right = 64.0
-grow_vertical = 2
-texture = ExtResource("17_qxm8e")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="PauseMenu/Panel/Buttons/Return"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 72.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "RETURN TO MENU"
-vertical_alignment = 1
