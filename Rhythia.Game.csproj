@@ -4,4 +4,9 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <DefaultItemExcludes>$(DefaultItemExcludes);templates\**</DefaultItemExcludes>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Rhythia.Core">
+      <HintPath>..\server\Rhythia.Core\bin\Debug\net7.0\Rhythia.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
