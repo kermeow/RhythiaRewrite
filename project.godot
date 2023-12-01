@@ -51,6 +51,7 @@ gdscript/warnings/assert_always_true=0
 gdscript/warnings/narrowing_conversion=false
 gdscript/warnings/onready_with_export=1
 gdscript/warnings/unused_argument=false
+gdscript/templates_search_path="res://templates"
 
 [display]
 

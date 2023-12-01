@@ -1,5 +1,7 @@
 build/**
 !build/.gdignore
+discord/bin/**
+!discord/bin/.gdignore
 android/
 .godot/
 *.translation
