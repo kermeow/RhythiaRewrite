@@ -9,4 +9,14 @@
       <HintPath>..\server\Rhythia.Core\bin\Debug\net7.0\Rhythia.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <DiscordBinFiles Include="discord\bin\x86_64\*.*"/>
+  </ItemGroup>
+  <Target Name="CopyDiscord" AfterTargets="AfterBuild">
+    <Copy SourceFiles="@(DiscordBinFiles)" DestinationFolder="$(OutDir)" />
+  </Target>
+  <Target Name="CopyDiscordPublish" AfterTargets="Publish">
+    <Copy SourceFiles="discord\bin\x86_64\discord_game_sdk.dll" DestinationFolder="$(PublishDir)" Condition="$([MSBuild]::IsOSPlatform('Windows'))" />
+    <Copy SourceFiles="discord\bin\x86_64\libdiscord_game_sdk.so" DestinationFolder="$(PublishDir)" Condition="$([MSBuild]::IsOSPlatform('Linux'))" />
+  </Target>
 </Project>

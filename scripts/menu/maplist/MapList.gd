@@ -15,6 +15,8 @@ var buttons_per_page = 0
 var buttons = []
 
 func _ready():
+	Discord.SetActivity("Browsing", "Choosing a map", false)
+
 	button_container.remove_child(origin_button)
 	button_container.resized.connect(_on_container_resized)
 	_on_container_resized(button_container.size)

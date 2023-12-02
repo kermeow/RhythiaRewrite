@@ -38,8 +38,8 @@ networking/multiplayer/master_server.editor="localhost"
 [autoload]
 
 Globals="*res://scripts/Globals.gd"
+Discord="*res://discord/DiscordWrapper.cs"
 Rhythia="*res://scripts/Rhythia.gd"
-Multiplayer="*res://scripts/Multiplayer.gd"
 XRViewport="*res://scripts/xr/XRViewport.gd"
 
 [debug]

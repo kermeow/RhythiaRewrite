@@ -18,6 +18,9 @@ func _ready():
 	# Load settings
 	call_deferred("load_settings")
 
+	# Discord
+	Discord.SetActivity("Loading", "Testing the rewrite", false)
+
 # Settings
 func load_settings():
 	settings = GameSettings.new()

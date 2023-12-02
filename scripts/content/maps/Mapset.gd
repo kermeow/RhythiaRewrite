@@ -6,8 +6,6 @@ const OLD_SIGNATURE:PackedByteArray = [0x53, 0x53, 0x2b, 0x6d]
 
 var format:int
 
-var song:String
-
 var file_offsets:Dictionary = {
 	audio = 0,
 	cover = 0
@@ -176,7 +174,6 @@ func _sspmv1(file:FileAccess,full:bool): # Load a v1 map
 	id = file.get_line()
 	map.id = id
 	name = file.get_line()
-	song = name
 	creator = file.get_line()
 	map.creator = creator
 	file.seek(file.get_position()+4) # skip last_ms
@@ -248,7 +245,7 @@ func _sspmv2(file:FileAccess,full:bool): # Load a v2 map
 	id = file.get_buffer(file.get_16()).get_string_from_utf8()
 	map.id = id
 	name = file.get_buffer(file.get_16()).get_string_from_utf8()
-	song = file.get_buffer(file.get_16()).get_string_from_utf8()
+	var _song = file.get_buffer(file.get_16()).get_string_from_utf8()
 	creator = ""
 	var creators = file.get_16()
 	for i in range(creators):
