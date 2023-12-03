@@ -12,6 +12,9 @@
   <ItemGroup>
     <DiscordBinFiles Include="discord\bin\x86_64\*.*"/>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="online\" />
+  </ItemGroup>
   <Target Name="CopyDiscord" AfterTargets="AfterBuild">
     <Copy SourceFiles="@(DiscordBinFiles)" DestinationFolder="$(OutDir)" />
   </Target>

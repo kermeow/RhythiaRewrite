@@ -7,8 +7,9 @@ public partial class DiscordWrapper : Node
     public const long ClientId = 1066457505246486598;
     public const ulong ClientFlags = (ulong)Discord.CreateFlags.NoRequireDiscord;
     
-    public Discord.Discord Core;
-    public ActivityManager ActivityManager => Core.GetActivityManager();
+    public static Discord.Discord Core;
+    public static ActivityManager ActivityManager => Core.GetActivityManager();
+    public static ApplicationManager ApplicationManager => Core.GetApplicationManager();
 
     public void SetActivity(string state, string details, bool instance = false)
     {
