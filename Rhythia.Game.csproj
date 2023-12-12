@@ -1,4 +1,4 @@
-<Project Sdk="Godot.NET.Sdk/4.1.3">
+<Project Sdk="Godot.NET.Sdk/4.2.0">
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
@@ -10,7 +10,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <DiscordBinFiles Include="discord\bin\x86_64\*.*"/>
+    <DiscordBinFiles Include="discord\bin\x86_64\*.*" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="online\" />

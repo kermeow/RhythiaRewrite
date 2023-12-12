@@ -40,7 +40,7 @@ func _ready():
 
 	map = mapset.maps[map_index]
 
-	Discord.SetActivity("Playing %s" % map.name, mapset.name, true)
+	Discord.SetActivity("%s" % map.name, mapset.name, true)
 
 	if sync_manager is AudioSyncManager: sync_manager.audio_stream = mapset.audio
 	sync_manager.playback_speed = mods.speed
