@@ -1,4 +1,4 @@
-extends Viewport
+extends Window
 class_name ViewportPlus
 
 func _ready():
