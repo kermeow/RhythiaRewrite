@@ -11,17 +11,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <DiscordBinFiles Include="discord\bin\x86_64\*.*" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="7.0.14" />
   </ItemGroup>
-  <Target Name="CopyDiscord" AfterTargets="AfterBuild">
-    <Copy SourceFiles="@(DiscordBinFiles)" DestinationFolder="$(OutDir)" />
-  </Target>
   <Target Name="CopyDiscordPublish" AfterTargets="Publish">
-    <Copy SourceFiles="discord\bin\x86_64\discord_game_sdk.dll" DestinationFolder="$(PublishDir)" Condition="$([MSBuild]::IsOSPlatform('Windows'))" />
-    <Copy SourceFiles="discord\bin\x86_64\libdiscord_game_sdk.so" DestinationFolder="$(PublishDir)" Condition="$([MSBuild]::IsOSPlatform('Linux'))" />
+    <Copy SourceFiles="discord\bin\x86_64\discord_game_sdk.dll" DestinationFolder="$(PublishDir)" />
+    <Copy SourceFiles="discord\bin\x86_64\libdiscord_game_sdk.so" DestinationFolder="$(PublishDir)" />
+<!--    <Copy SourceFiles="discord\bin\x86_64\discord_game_sdk.dll" DestinationFolder="$(PublishDir)" Condition="$([MSBuild]::IsOSPlatform('Windows'))" />-->
+<!--    <Copy SourceFiles="discord\bin\x86_64\libdiscord_game_sdk.so" DestinationFolder="$(PublishDir)" Condition="$([MSBuild]::IsOSPlatform('Linux'))" />-->
   </Target>
 </Project>
