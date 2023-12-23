@@ -1,0 +1,2 @@
+extends EditorObject
+class_name EditorTrackObject

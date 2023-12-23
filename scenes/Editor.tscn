@@ -1,15 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://b5a436ibr04gg"]
+[gd_scene load_steps=27 format=3 uid="uid://bcu0du21f2cun"]
 
-[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_4lo71"]
-[ext_resource type="Script" path="res://scripts/editor/EditorScene.gd" id="2_1ttip"]
-[ext_resource type="Script" path="res://scripts/game/GameScene.gd" id="3_bo7ew"]
-[ext_resource type="Script" path="res://scripts/game/managers/AudioSyncManager.gd" id="3_oqs3w"]
-[ext_resource type="Script" path="res://scripts/game/managers/ObjectManager.gd" id="4_1s6re"]
-[ext_resource type="Script" path="res://scripts/game/renderers/NoteRenderer.gd" id="5_5c6oa"]
-[ext_resource type="Script" path="res://scripts/game/map/objects/PlayerObject.gd" id="7_qqf80"]
+[ext_resource type="Script" path="res://scripts/editor/EditorScene.gd" id="1_h346y"]
+[ext_resource type="Script" path="res://scripts/editor/managers/EditorAudioSyncManager.gd" id="2_nnyjj"]
+[ext_resource type="Script" path="res://scripts/editor/managers/EditorObjectManager.gd" id="3_qvt3c"]
+[ext_resource type="Script" path="res://scripts/editor/renderers/EditorNoteRenderer.gd" id="4_sek3c"]
+[ext_resource type="Script" path="res://scripts/editor/managers/EditorReplayManager.gd" id="5_oxm3e"]
+[ext_resource type="Script" path="res://scripts/editor/map/objects/EditorPlayerObject.gd" id="5_pv2p3"]
+[ext_resource type="Script" path="res://scripts/editor/managers/EditorPauseHandler.gd" id="6_3dk7c"]
+[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="6_ah145"]
+[ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="7_ddkwk"]
+[ext_resource type="Script" path="res://scripts/editor/map/objects/EditorWorldContainer.gd" id="7_f4axk"]
+[ext_resource type="Texture2D" uid="uid://d17i486v0j8hv" path="res://assets/images/ui/old_menu.png" id="8_3f1df"]
+[ext_resource type="Script" path="res://scripts/editor/map/objects/EditorObject.gd" id="8_i4u47"]
 [ext_resource type="Texture2D" uid="uid://ctmjd7r2b7750" path="res://assets/images/default_cursor.png" id="8_t5o5t"]
-[ext_resource type="Script" path="res://scripts/game/map/objects/WorldContainer.gd" id="9_a4ix1"]
-[ext_resource type="Script" path="res://scripts/game/map/objects/GameObject.gd" id="10_bnp8e"]
+[ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="9_1qx7a"]
 [ext_resource type="Texture2D" uid="uid://d1mkaxv1bs88f" path="res://assets/images/grid_outer.png" id="11_teq7f"]
 [ext_resource type="Texture2D" uid="uid://cftumuph2lfnj" path="res://assets/images/grid_inner.png" id="12_ko4t1"]
 
@@ -39,6 +43,8 @@ use_colors = true
 use_custom_data = true
 mesh = SubResource("ArrayMesh_p4fbj")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kqb0t"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2xxy"]
 transparency = 1
 shading_mode = 0
@@ -50,128 +56,266 @@ material = SubResource("StandardMaterial3D_y2xxy")
 flip_faces = true
 size = Vector2(0.525, 0.525)
 
-[sub_resource type="MultiMesh" id="MultiMesh_it0w6"]
+[sub_resource type="MultiMesh" id="MultiMesh_mhntg"]
 transform_format = 1
 use_colors = true
 mesh = SubResource("QuadMesh_rq05a")
 
-[node name="Editor" type="ColorRect"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_4lo71")
-color = Color(0.07, 0.07, 0.07, 1)
-script = ExtResource("2_1ttip")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pjek"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("8_t5o5t")
 
-[node name="Game" type="Node3D" parent="." node_paths=PackedStringArray("sync_manager", "object_manager", "replay_manager", "hud_manager", "reporter", "origin", "world_parent", "player")]
+[sub_resource type="QuadMesh" id="QuadMesh_3bi28"]
+material = SubResource("StandardMaterial3D_5pjek")
+flip_faces = true
+size = Vector2(0.525, 0.525)
+
+[sub_resource type="MultiMesh" id="MultiMesh_it0w6"]
+transform_format = 1
+use_colors = true
+mesh = SubResource("QuadMesh_3bi28")
+
+[node name="Editor" type="Node3D" node_paths=PackedStringArray("sync_manager", "object_manager", "replay_manager", "origin", "world_parent", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 top_level = true
-script = ExtResource("3_bo7ew")
+script = ExtResource("1_h346y")
 sync_manager = NodePath("AudioSyncManager")
 object_manager = NodePath("ObjectManager")
-replay_manager = NodePath("")
-hud_manager = NodePath("")
-reporter = NodePath("")
+replay_manager = NodePath("ReplayManager")
 origin = NodePath("Origin")
 world_parent = NodePath("Origin/World")
 player = NodePath("Origin/Player")
 metadata/is_game = true
 
-[node name="Music" type="AudioStreamPlayer" parent="Game"]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
 
-[node name="AudioSyncManager" type="Node" parent="Game" node_paths=PackedStringArray("audio_player")]
+[node name="AudioSyncManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 process_priority = 2
-script = ExtResource("3_oqs3w")
+script = ExtResource("2_nnyjj")
 audio_player = NodePath("../Music")
 
-[node name="ObjectManager" type="Node" parent="Game"]
+[node name="ObjectManager" type="Node" parent="."]
 process_mode = 3
 process_priority = 1
-script = ExtResource("4_1s6re")
+script = ExtResource("3_qvt3c")
 
-[node name="NoteRenderer" type="MultiMeshInstance3D" parent="Game/ObjectManager"]
+[node name="NoteRenderer" type="MultiMeshInstance3D" parent="ObjectManager"]
 cast_shadow = 0
 gi_mode = 0
 multimesh = SubResource("MultiMesh_t5tpd")
-script = ExtResource("5_5c6oa")
+script = ExtResource("4_sek3c")
 
-[node name="Origin" type="Node3D" parent="Game"]
+[node name="ReplayManager" type="Node" parent="."]
+script = ExtResource("5_oxm3e")
+
+[node name="PauseHandler" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("6_3dk7c")
+
+[node name="Control" type="ColorRect" parent="PauseHandler"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_ah145")
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Panel" type="Panel" parent="PauseHandler/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -102.0
+offset_right = 160.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kqb0t")
+
+[node name="Title" type="Label" parent="PauseHandler/Control/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_right = 128.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="PauseHandler/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Resume" type="Button" parent="PauseHandler/Control/Panel/Buttons"]
+self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PauseHandler/Control/Panel/Buttons/Resume"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = 64.0
+grow_vertical = 2
+texture = ExtResource("7_ddkwk")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PauseHandler/Control/Panel/Buttons/Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "RESUME"
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="PauseHandler/Control/Panel/Buttons"]
+self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PauseHandler/Control/Panel/Buttons/Restart"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = 64.0
+grow_vertical = 2
+texture = ExtResource("8_3f1df")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PauseHandler/Control/Panel/Buttons/Restart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "RESTART"
+vertical_alignment = 1
+
+[node name="Return" type="Button" parent="PauseHandler/Control/Panel/Buttons"]
+self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PauseHandler/Control/Panel/Buttons/Return"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = 64.0
+grow_vertical = 2
+texture = ExtResource("9_1qx7a")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PauseHandler/Control/Panel/Buttons/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "RETURN TO MENU"
+vertical_alignment = 1
+
+[node name="Origin" type="Node3D" parent="."]
 process_mode = 1
 
-[node name="Player" type="Node3D" parent="Game/Origin" node_paths=PackedStringArray("camera", "absolute_camera", "cursor", "game", "manager")]
+[node name="Player" type="Node3D" parent="Origin" node_paths=PackedStringArray("camera", "absolute_camera", "cursor", "editor", "manager")]
 process_priority = 5
-script = ExtResource("7_qqf80")
-local_player = true
+script = ExtResource("5_pv2p3")
 camera = NodePath("Camera")
 absolute_camera = NodePath("AbsCamera")
 cursor = NodePath("Cursor")
-trail = SubResource("MultiMesh_it0w6")
-game = NodePath("../..")
+trail = SubResource("MultiMesh_mhntg")
+editor = NodePath("../..")
 manager = NodePath("../../ObjectManager")
-id = "Player"
-permanent = true
 
-[node name="Camera" type="Camera3D" parent="Game/Origin/Player"]
+[node name="Camera" type="Camera3D" parent="Origin/Player"]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, -3.5)
 cull_mask = 1048543
 fov = 70.0
 
-[node name="AbsCamera" type="Camera3D" parent="Game/Origin/Player"]
+[node name="AbsCamera" type="Camera3D" parent="Origin/Player"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.5)
 cull_mask = 1048543
 fov = 70.0
 
-[node name="Cursor" type="Node3D" parent="Game/Origin/Player"]
+[node name="Cursor" type="Node3D" parent="Origin/Player"]
+visible = false
 
-[node name="Real" type="MeshInstance3D" parent="Game/Origin/Player/Cursor"]
+[node name="Real" type="MeshInstance3D" parent="Origin/Player/Cursor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 layers = 2
 cast_shadow = 0
 gi_mode = 0
-mesh = SubResource("QuadMesh_rq05a")
+mesh = SubResource("QuadMesh_3bi28")
 
-[node name="Ghost" type="MeshInstance3D" parent="Game/Origin/Player/Cursor"]
+[node name="Ghost" type="MeshInstance3D" parent="Origin/Player/Cursor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 layers = 2
 transparency = 1.0
 cast_shadow = 0
 gi_mode = 0
-mesh = SubResource("QuadMesh_rq05a")
+mesh = SubResource("QuadMesh_3bi28")
 
-[node name="CursorTrail" type="MultiMeshInstance3D" parent="Game/Origin/Player"]
+[node name="CursorTrail" type="MultiMeshInstance3D" parent="Origin/Player"]
 top_level = true
 layers = 2
 sorting_offset = -1.0
-material_override = SubResource("StandardMaterial3D_y2xxy")
+material_override = SubResource("StandardMaterial3D_5pjek")
 cast_shadow = 0
 gi_mode = 0
 multimesh = SubResource("MultiMesh_it0w6")
 
-[node name="World" type="Node3D" parent="Game/Origin"]
-script = ExtResource("9_a4ix1")
-id = "World"
-permanent = true
+[node name="World" type="Node3D" parent="Origin"]
+script = ExtResource("7_f4axk")
 
-[node name="HUD" type="Node3D" parent="Game/Origin"]
+[node name="HUD" type="Node3D" parent="Origin"]
 process_priority = -1
-script = ExtResource("10_bnp8e")
-id = "HUD"
-permanent = true
+script = ExtResource("8_i4u47")
 
-[node name="Grid" type="Node3D" parent="Game/Origin/HUD"]
-script = ExtResource("10_bnp8e")
-id = "HUD.Grid"
-permanent = true
+[node name="Grid" type="Node3D" parent="Origin/HUD"]
+script = ExtResource("8_i4u47")
 
-[node name="Outer" type="Sprite3D" parent="Game/Origin/HUD/Grid"]
+[node name="Outer" type="Sprite3D" parent="Origin/HUD/Grid"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
 pixel_size = 0.0025
 texture = ExtResource("11_teq7f")
 
-[node name="Inner" type="Sprite3D" parent="Game/Origin/HUD/Grid"]
+[node name="Inner" type="Sprite3D" parent="Origin/HUD/Grid"]
 visible = false
 pixel_size = 0.0025
 texture = ExtResource("12_ko4t1")

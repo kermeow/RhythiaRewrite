@@ -392,7 +392,7 @@ func _audio(buffer:PackedByteArray):
 			stream.data = buffer
 		Globals.AudioFormat.OGG:
 			stream = AudioStreamOggVorbis.new()
-			stream.packet_sequence = Globals.get_ogg_packet_sequence(buffer)
+			stream.packet_sequence = AudioStreamOggVorbis.load_from_buffer(buffer)
 		Globals.AudioFormat.MP3:
 			stream = AudioStreamMP3.new()
 			stream.data = buffer
