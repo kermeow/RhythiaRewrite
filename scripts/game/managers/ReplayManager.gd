@@ -3,7 +3,8 @@ class_name ReplayManager
 
 enum Mode {
 	RECORD,
-	PLAY
+	PLAY,
+	SPECTATE
 }
 @export var mode:Mode
 
@@ -29,17 +30,27 @@ func start():
 			replay.mods = game.mods
 			replay.write_settings(game.settings)
 			replay.score = game.player.score
+			Online.GDStartStreaming(replay)
 			if Globals.debug: print("Recording new replay")
 		Mode.PLAY:
 			var controller = game.player.controller
 			controller.queue_frames(replay.frames)
 			if Globals.debug: print("Playing replay")
+		Mode.SPECTATE:
+			var controller = game.player.controller
+			controller.queue_frames(replay.frames)
+			replay.frames_received.connect(controller.queue_frames)
+			if Globals.debug: print("Spectating")
 func stop():
 	if !active: return
 	active = false
 	if Globals.debug: print("Stopping replay")
 	match mode:
 		Mode.RECORD:
+			var now = (Time.get_ticks_msec() - start_time) / 1000.0
+			Online.GDSendStreamData(replay, _stream_frames, now, game.sync_manager.real_time)
+			_stream_frames = []
+			Online.GDStopStreaming()
 			replay.write_to_file(Globals.Paths.user.path_join("recent.rhyr")) # Save to recent
 			# Save to permanent folder
 			var current_date = Time.get_datetime_string_from_system(false, true)
@@ -86,6 +97,7 @@ func record_frame(important:bool=false):
 		frame.position = game.player.camera.position
 	_record_frame(frame, important)
 var _last_frame:float = 0
+var _stream_frames:Array = []
 func _record_frame(frame:Replay.Frame, important:bool=false): # I stole this concept from osu
 	var should_record = true
 	var now = (Time.get_ticks_msec() - start_time) / 1000.0
@@ -95,4 +107,8 @@ func _record_frame(frame:Replay.Frame, important:bool=false): # I stole this con
 	_last_frame = now
 	frame.time = now #game.sync_manager.real_time
 	replay.frames.append(frame)
+	if _stream_frames.size() > 5:
+		Online.GDSendStreamData(replay, _stream_frames, now, game.sync_manager.real_time)
+		_stream_frames = []
+	_stream_frames.append(frame)
 	return true

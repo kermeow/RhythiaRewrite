@@ -3,6 +3,8 @@ class_name Replay
 
 const SIGNATURE:PackedByteArray = [0x72, 0x68, 0x79, 0x74, 0x68, 0x69, 0x61, 0x52] # rhythiaR
 
+signal frames_received
+
 var mapset_id:String = "MAPSET_ID"
 var mapset:Mapset:
 	get: return Rhythia.mapsets.get_by_id(mapset_id)
@@ -71,6 +73,12 @@ static func get_opcode_for(frame:Frame):
 		var type = Opcodes[opcode]
 		if is_instance_of(frame, type): return opcode
 	return 0x00
+
+static func c_translate_frame(opcode:int, time:float, data:PackedByteArray):
+	var frame = Opcodes[opcode].new()
+	frame.time = time
+	frame._decode(data)
+	return frame
 
 # Writing files
 func write_to_file(path:String):
