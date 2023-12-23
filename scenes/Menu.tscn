@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=44 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3cijv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ciuxvgefpjrm1" path="res://assets/images/ui/command_line_error.png" id="4_oas34"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/MapDetails.gd" id="5_3gata"]
+[ext_resource type="Texture2D" uid="uid://bmyj7u2y7c0jo" path="res://assets/images/ui/cloud_32.png" id="6_swruk"]
 [ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="6_yvoqp"]
 [ext_resource type="Texture2D" uid="uid://bk8ninr63d836" path="res://assets/images/ui/quit_to_desktop.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://b21p2flel8ywr" path="res://assets/images/ui/settings.png" id="8"]
@@ -422,6 +423,20 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
+
+[node name="Edit" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Edit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_swruk")
+stretch_mode = 3
 
 [node name="Play" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
 custom_minimum_size = Vector2(0, 48)

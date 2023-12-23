@@ -118,7 +118,8 @@ func _reload():
 
 # Game Scene
 enum GameType {
-	SOLO
+	SOLO,
+	EDIT
 }
 var selected_mapset:String
 var selected_mods:Mods = Mods.new()
@@ -131,6 +132,13 @@ func load_game_scene(game_type:int, mapset:Mapset, map_index:int=0):
 	match game_type:
 		GameType.SOLO:
 			var packed_scene:PackedScene = preload("res://scenes/Game.tscn")
+			scene = packed_scene.instantiate()
+			scene.mods = selected_mods
+			scene.settings = settings.clone()
+			scene.mapset = full_mapset
+			scene.map_index = map_index
+		GameType.EDIT:
+			var packed_scene:PackedScene = preload("res://scenes/Editor.tscn")
 			scene = packed_scene.instantiate()
 			scene.mods = selected_mods
 			scene.settings = settings.clone()
