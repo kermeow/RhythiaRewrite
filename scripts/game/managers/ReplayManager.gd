@@ -58,14 +58,14 @@ func stop():
 				replay.mapset.name + current_date + ".rhyr"
 			).validate_filename()
 			replay.write_to_file(Globals.Paths.replays.path_join(replay_name))
-		Mode.PLAY:
+		Mode.PLAY, Mode.SPECTATE		:
 			pass
 
 func _process(_delta):
 	if !active: return
 	match mode:
 		Mode.RECORD: record_frame()
-		Mode.PLAY:
+		Mode.PLAY, Mode.SPECTATE:
 			var controller = game.player.controller
 			var now = (Time.get_ticks_msec() - start_time) / 1000.0#game.sync_manager.real_time
 			controller.replay_time = now
@@ -97,6 +97,7 @@ func record_frame(important:bool=false):
 		frame.position = game.player.camera.position
 	_record_frame(frame, important)
 var _last_frame:float = 0
+var _last_stream:float = 0
 var _stream_frames:Array = []
 func _record_frame(frame:Replay.Frame, important:bool=false): # I stole this concept from osu
 	var should_record = true
@@ -107,8 +108,8 @@ func _record_frame(frame:Replay.Frame, important:bool=false): # I stole this con
 	_last_frame = now
 	frame.time = now #game.sync_manager.real_time
 	replay.frames.append(frame)
-	if _stream_frames.size() > 5:
-		Online.GDSendStreamData(replay, _stream_frames, now, game.sync_manager.real_time)
-		_stream_frames = []
 	_stream_frames.append(frame)
+	if now - _last_stream >= 0.5:
+		Online.GDSendStreamData(replay, _stream_frames, now, game.sync_manager.real_time)
+		_stream_frames.clear()
 	return true

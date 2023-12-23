@@ -9,10 +9,10 @@ namespace Rhythia.Game;
 
 public partial class DiscordWrapper : Node
 {
-    public static bool Connected = false; 
+    public static bool Connected = false;
     public const long ClientId = 1066457505246486598;
     public const ulong ClientFlags = (ulong)Discord.CreateFlags.NoRequireDiscord;
-    
+
     public static Discord.Discord? Core;
     public static ActivityManager ActivityManager => Core!.GetActivityManager();
     public static ApplicationManager ApplicationManager => Core!.GetApplicationManager();
@@ -47,18 +47,16 @@ public partial class DiscordWrapper : Node
         if (OS.HasFeature("debug")) GD.Print($"State: {state} | Details: {details} | Instance: {instance}");
         try
         {
-            ActivityManager.UpdateActivity(activity, (result) =>
-            {
-                GD.Print(result);
-            });
+            ActivityManager.UpdateActivity(activity, (result) => { GD.Print(result); });
         }
         catch (ResultException exception)
         {
             resultError(exception);
         }
     }
-    
+
     private Timer _callbackTimer = new();
+
     public override async void _Ready()
     {
         try
@@ -76,12 +74,10 @@ public partial class DiscordWrapper : Node
                     GD.Print("Couldn't get OAuth2 token");
                     return;
                 }
+
                 OAuthToken = token.AccessToken;
             });
-            UserManager.OnCurrentUserUpdate += async () =>
-            {
-                User = UserManager.GetCurrentUser();
-            };
+            UserManager.OnCurrentUserUpdate += async () => { User = UserManager.GetCurrentUser(); };
             Connected = true;
             GD.Print("Created Discord Core");
         }
@@ -104,9 +100,25 @@ public partial class DiscordWrapper : Node
         disable();
     }
 
-    private void onActivityJoin(string secret)
+    public void Spectate(SpectatedUser user)
     {
-        GD.Print($"Attempt to join with secret {secret}");
+        var replay = user.Replay;
+        var rhythia = GetNode("/root/Rhythia");
+        var mapsets = (GodotObject)rhythia.Get("mapsets");
+        var scene = (GodotObject)rhythia.Call("load_game_scene", 0, mapsets.Call("get_by_id", replay.Get("mapset_id")));
+        scene.Set("replay", replay);
+        scene.Set("replay_mode", true);
+        GetTree().Call("change_scene_to_node", scene);
+    }
+    private async void onActivityJoin(string secret)
+    {
+        foreach (var id in Online.SpectatorClient.WatchingUsers.Keys)
+            Online.SpectatorClient.StopWatching(id);
+        GD.Print($"Attempt to spectate with secret {secret}");
+        var user = secret.Split(' ')[1];
+        await Online.SpectatorClient.StartWatching(user);
+        var spectateUser = Online.SpectatorClient.WatchingUsers[user];
+        spectateUser.StreamStarted += () => CallDeferred(nameof(Spectate), spectateUser);
     }
 
     private void resultError(ResultException exception)

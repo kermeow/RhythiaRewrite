@@ -90,7 +90,7 @@ public partial class Online : Node
     public void GDStartStreaming(GodotObject replay)
     {
         var info = new StreamInfo();
-        info.MapId = replay.Get("map_id").AsString();
+        info.MapId = replay.Get("mapset_id").AsString();
         info.Mods = replay.Get("_mods").AsByteArray();
         info.Score = replay.Get("_score").AsByteArray();
         info.Settings = replay.Get("settings").AsByteArray();
