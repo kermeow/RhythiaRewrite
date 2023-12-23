@@ -33,7 +33,9 @@ startup/disable_intro.debug=true
 startup/disable_health_warning.editor=true
 networking/maps/archive_index="https://cdn.rhythia.net/index.json"
 networking/multiplayer/master_server=""
-networking/multiplayer/master_server.editor="localhosts"
+networking/multiplayer/master_server.editor="http://localhost:5000"
+networking/multiplayer/status_endpoint=""
+networking/multiplayer/status_endpoint.editor="http://localhost:5000/status"
 
 [autoload]
 
