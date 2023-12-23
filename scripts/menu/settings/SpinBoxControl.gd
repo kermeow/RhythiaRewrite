@@ -14,7 +14,7 @@ func configure():
 	signal_emitter = $Container/SpinBox
 	signal_name = "value_changed"
 	property_name = "value"
-	
+
 	signal_emitter.prefix = prefix
 	signal_emitter.suffix = suffix
 	signal_emitter.custom_arrow_step = arrow_step

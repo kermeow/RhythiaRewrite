@@ -1,8 +1,8 @@
 extends Node
 
 func _ready():
-	Rhythia.connect("on_init_stage",Callable(self,"_on_init_stage"))
-	Rhythia.connect("on_init_complete",Callable(self,"_finish").bind(),4)
+	Rhythia.connect("on_init_stage",_on_init_stage)
+	Rhythia.connect("on_init_complete",_finish)
 
 func _on_init_stage(stage,progress=[]):
 	if stage != null: $Container/Label.text = stage

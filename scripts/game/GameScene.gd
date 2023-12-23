@@ -69,7 +69,6 @@ func finish(failed:bool=false):
 	if ended: return
 	ended = true
 #	reporter.stop()
-	replay_manager.stop()
 	if Globals.debug: print("failed: %s" % failed)
 	if failed:
 		if Globals.debug: print("fail animation")
@@ -93,6 +92,9 @@ func finish(failed:bool=false):
 #	results.statistics = reporter.statistics
 	results.settings = settings
 	get_tree().change_scene_to_node(results)
+
+func _exit_tree():
+	replay_manager.stop()
 
 func _next_note():
 	var current_time = sync_manager.current_time
