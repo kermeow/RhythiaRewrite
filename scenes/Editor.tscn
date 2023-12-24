@@ -266,7 +266,6 @@ manager = NodePath("../../ObjectManager")
 [node name="Camera" type="Camera3D" parent="Origin/Player"]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, -3.5)
 cull_mask = 1048543
-fov = 70.0
 
 [node name="AbsCamera" type="Camera3D" parent="Origin/Player"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.5)
@@ -319,3 +318,55 @@ texture = ExtResource("11_teq7f")
 visible = false
 pixel_size = 0.0025
 texture = ExtResource("12_ko4t1")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="ReferenceRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="HBoxContainer" parent="UI/Main"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.129
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -9.0
+offset_bottom = 10.12
+
+[node name="HFlowContainer" type="HFlowContainer" parent="UI/Main/ScrollContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+
+[node name="Button" type="Control" parent="UI/Main/ScrollContainer/HFlowContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/Main/ScrollContainer/HFlowContainer/Button"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Button2" type="Control" parent="UI/Main/ScrollContainer/HFlowContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/Main/ScrollContainer/HFlowContainer/Button2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0

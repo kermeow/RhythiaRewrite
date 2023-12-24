@@ -19,11 +19,12 @@ transform_format = 1
 use_colors = true
 mesh = SubResource("QuadMesh_rq05a")
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("camera", "cursor")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("camera", "absolute_camera", "cursor")]
 process_priority = 5
 script = ExtResource("1_fwd1t")
 local_player = true
 camera = NodePath("Camera")
+absolute_camera = NodePath("AbsCamera")
 cursor = NodePath("Cursor")
 trail = SubResource("MultiMesh_it0w6")
 id = "Player"
@@ -37,6 +38,7 @@ fov = 70.0
 [node name="AbsCamera" type="Camera3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.5)
 cull_mask = 1048543
+current = true
 fov = 70.0
 
 [node name="Cursor" type="Node3D" parent="."]
