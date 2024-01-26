@@ -33,15 +33,6 @@ public partial class DiscordWrapper : Node
                 LargeImage = "icon-bg",
                 LargeText = "Rhythia Rewrite"
             },
-            Party =
-            {
-                Id = userId,
-                Privacy = ActivityPartyPrivacy.Public
-            },
-            Secrets =
-            {
-                Join = $"spec {userId}"
-            },
             Instance = instance
         };
         if (OS.HasFeature("debug")) GD.Print($"State: {state} | Details: {details} | Instance: {instance}");
@@ -67,17 +58,8 @@ public partial class DiscordWrapper : Node
             var executablePath = OS.GetExecutablePath();
             ActivityManager.RegisterCommand(executablePath);
             ActivityManager.OnActivityJoin += onActivityJoin;
-            ApplicationManager.GetOAuth2Token((Result result, ref OAuth2Token token) =>
-            {
-                if (result != Result.Ok)
-                {
-                    GD.Print("Couldn't get OAuth2 token");
-                    return;
-                }
-
-                OAuthToken = token.AccessToken;
-            });
             UserManager.OnCurrentUserUpdate += async () => { User = UserManager.GetCurrentUser(); };
+            Task.Run(() => AttemptGetOAuthToken());
             Connected = true;
             GD.Print("Created Discord Core");
         }
@@ -93,6 +75,28 @@ public partial class DiscordWrapper : Node
         _callbackTimer.ProcessMode = ProcessModeEnum.Always;
         _callbackTimer.Timeout += runCallbacks;
         AddChild(_callbackTimer);
+    }
+
+    public static string? AttemptGetOAuthToken()
+    {
+        string? resultToken = null;
+        AutoResetEvent gotToken = new(false);
+        Task.Run(() => ApplicationManager.GetOAuth2Token((Result result, ref OAuth2Token token) =>
+        {
+            if (result != Result.Ok)
+            {
+                GD.Print("Couldn't get OAuth2 token");
+                gotToken.Set();
+                return;
+            }
+
+            GD.Print("Got OAuth2 token");
+            resultToken = token.AccessToken;
+            gotToken.Set();
+        }));
+        gotToken.WaitOne();
+        OAuthToken = resultToken;
+        return resultToken;
     }
 
     public override void _ExitTree()

@@ -8,7 +8,7 @@ namespace Rhythia.Game;
 public partial class SpectatedUser : GodotObject
 {
     public string UserId;
-    public string UserName;
+    public string UserName = "Someone";
     public bool Playing = false;
     public StreamInfo? Info;
     public GodotObject? Replay = (GodotObject)GD.Load<GDScript>("res://scripts/content/replays/Replay.gd").New();
@@ -26,10 +26,11 @@ public partial class SpectatedUser : GodotObject
     {
         Info = info;
         var syncFrame = (GodotObject)GD.Load<GDScript>("res://scripts/content/replays/frames/SyncFrame.gd").New();
-        syncFrame.Set("time", info.SyncData.ReplayTime - 0.5);
-        syncFrame.Set("sync_time", info.SyncData.SyncTime - 0.5);
-        Replay ??= (GodotObject)GD.Load<GDScript>("res://scripts/content/replays/Replay.gd").New();
+        syncFrame.Set("time", info.SyncData.ReplayTime);
+        syncFrame.Set("sync_time", info.SyncData.SyncTime);
+        Replay = (GodotObject)GD.Load<GDScript>("res://scripts/content/replays/Replay.gd").New();
         Replay.Get("frames").AsGodotArray().Add(syncFrame);
+        Replay.Set("player_name", info.UserName ?? UserName);
         Replay.Set("mapset_id", info.MapId);
         Replay.Set("_mods", info.Mods);
         Replay.Set("_score", info.Score);

@@ -10,10 +10,11 @@ public class HubClient
     public bool Connected { get; private set; } = false;
     private HubConnector connector;
     protected HubConnection? connection => connector?.CurrentConnection;
+    public HubConnectionState? State => connection?.State;
 
     public HubClient(string endpoint)
     {
-        connector = new HubConnector(endpoint);
+        connector = new(endpoint);
         connector.ConfigureConnection = ConfigureConnection;
     }
 

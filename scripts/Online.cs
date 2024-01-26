@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Discord;
 using Godot;
 using Godot.Collections;
+using Microsoft.AspNetCore.SignalR.Client;
 using Rhythia.Core.Online.Spectator;
 using Rhythia.Core.Replays;
 
@@ -34,9 +35,11 @@ public partial class Online : Node
         GD.Print("Attempting connection");
         var attempt = attemptConnect();
         attempt.Wait();
-        Connected = attempt.Result;
-        var state = SpectatorClient.AttemptConnect();
-        GD.Print($"Connected?: {Connected} | Message: {ConnectMessage} | Spectate: {state}");
+        var authenticated = attempt.Result;
+        if (authenticated)
+            SpectatorClient.AttemptConnect();
+        Connected = authenticated && SpectatorClient.State == HubConnectionState.Connected;
+        GD.Print($"Connected?: {Connected} | Message: {ConnectMessage} | Spectate: {SpectatorClient.State}");
         return attempt.Result;
     }
 
@@ -56,9 +59,11 @@ public partial class Online : Node
     }
     private static async Task<bool> attemptConnect()
     {
+        ConnectMessage = "Unknown error";
+        DiscordWrapper.AttemptGetOAuthToken();
         if (!DiscordWrapper.Connected || DiscordWrapper.OAuthToken is null)
         {
-            ConnectMessage = "Discord not connected";
+            ConnectMessage = $"Discord not connected - {DiscordWrapper.Connected},{DiscordWrapper.OAuthToken}";
             return false;
         }
         if (DiscordWrapper.User is null) return false;
@@ -94,6 +99,11 @@ public partial class Online : Node
         info.Mods = replay.Get("_mods").AsByteArray();
         info.Score = replay.Get("_score").AsByteArray();
         info.Settings = replay.Get("settings").AsByteArray();
+        info.SyncData = new StreamSyncData()
+        {
+            ReplayTime = 0,
+            SyncTime = -1
+        };
         SpectatorClient.StartStreaming(info);
     }
     public void GDSendStreamData(GodotObject replay, Array frames, float replayTime, float syncTime)
