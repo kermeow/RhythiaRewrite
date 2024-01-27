@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Godot;
 using Microsoft.AspNetCore.SignalR.Client;
 using Rhythia.Core.Online.Spectator;
 
@@ -15,9 +16,25 @@ public class SpectatorClient : HubClient, ISpectatorClient, ISpectatorServer
 
     public override void ConfigureConnection(HubConnection connection)
     {
+        connection.On<string, string>(nameof(PlayerAdded), PlayerAdded);
+        connection.On<string>(nameof(PlayerRemoved), PlayerRemoved);
         connection.On<string, StreamData>(nameof(StreamDataReceived), StreamDataReceived);
         connection.On<string, StreamInfo>(nameof(StreamStarted), StreamStarted);
         connection.On<string>(nameof(StreamEnded), StreamEnded);
+    }
+
+    public async Task PlayerAdded(string userId, string userName)
+    {
+        GD.Print($"Player added! {userId} {userName}");
+        Online.Instance.SpectatePlayerNames[userId] = userName;
+        Online.Instance.SpectatePlayerMaps[userId] = "N/A";
+    }
+
+    public async Task PlayerRemoved(string userId)
+    {
+        GD.Print($"Player removed! {userId}");
+        Online.Instance.SpectatePlayerNames.Remove(userId);
+        Online.Instance.SpectatePlayerMaps.Remove(userId);
     }
 
     public Task StartStreaming(StreamInfo streamInfo)
@@ -62,6 +79,8 @@ public class SpectatorClient : HubClient, ISpectatorClient, ISpectatorServer
 
     public async Task StreamStarted(string userId, StreamInfo streamInfo)
     {
+        Online.Instance.SpectatePlayerNames[userId] = streamInfo.UserName ?? "unknown";
+        Online.Instance.SpectatePlayerMaps[userId] = streamInfo.MapId ?? "unknown";
         var exists = WatchingUsers.TryGetValue(userId, out var user);
         if (!exists || user is null) return;
         user.Started(streamInfo);
@@ -69,6 +88,7 @@ public class SpectatorClient : HubClient, ISpectatorClient, ISpectatorServer
 
     public async Task StreamEnded(string userId)
     {
+        Online.Instance.SpectatePlayerMaps[userId] = "N/A";
         var exists = WatchingUsers.TryGetValue(userId, out var user);
         if (!exists || user is null) return;
         user.Ended();

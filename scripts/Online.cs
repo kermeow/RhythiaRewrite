@@ -20,16 +20,32 @@ public partial class Online : Node
     }
 
     public static bool Connected { get; private set; } = false;
+    public bool GDConnected => Connected;
     public static string ConnectMessage { get; private set; } = "No attempt made to connect";
     public static string UserId { get; private set; }
     public static string UserName { get; private set; }
+    public string GDUserName => UserName;
 
     public static string MasterServer => ProjectSettings
         .GetSettingWithOverride("application/networking/multiplayer/master_server").AsString();
+
+    public static string AuthEndpoint => MasterServer.PathJoin("auth");
     public static string StatusEndpoint => ProjectSettings
         .GetSettingWithOverride("application/networking/multiplayer/status_endpoint").AsString();
 
     public static SpectatorClient SpectatorClient = new();
+
+    [Signal]
+    public delegate void SpectatePlayerAddedEventHandler(string userId, string username);
+
+    [Signal]
+    public delegate void SpectatePlayerRemovedEventHandler(string userId);
+
+    [Signal]
+    public delegate void SpectateInfoChangedEventHandler(string userId, string? mapId);
+
+    public Dictionary<string, string> SpectatePlayerNames = new();
+    public Dictionary<string, string> SpectatePlayerMaps = new();
     public static bool AttemptConnect()
     {
         GD.Print("Attempting connection");
@@ -60,7 +76,7 @@ public partial class Online : Node
     private static async Task<bool> attemptConnect()
     {
         ConnectMessage = "Unknown error";
-        DiscordWrapper.AttemptGetOAuthToken();
+        if (DiscordWrapper.Connected && DiscordWrapper.OAuthToken is null) DiscordWrapper.AttemptGetOAuthToken();
         if (!DiscordWrapper.Connected || DiscordWrapper.OAuthToken is null)
         {
             ConnectMessage = $"Discord not connected - {DiscordWrapper.Connected},{DiscordWrapper.OAuthToken}";
@@ -72,7 +88,7 @@ public partial class Online : Node
         UserName = user.Username;
         using var client = new System.Net.Http.HttpClient();
         client.DefaultRequestHeaders.Add("Discord", DiscordWrapper.OAuthToken);
-        var response = await client.GetAsync(StatusEndpoint);
+        var response = await client.GetAsync(AuthEndpoint);
         var result = await response.Content.ReadAsStringAsync();
         ConnectMessage = result;
         var status = response.StatusCode;
@@ -130,5 +146,65 @@ public partial class Online : Node
     public void GDStopStreaming()
     {
         SpectatorClient.StopStreaming();
+    }
+
+    public bool Watching = false;
+    public bool HasMap = true;
+    public string MapId = "";
+
+    private SpectatedUser? watchingUser;
+    public void Spectate()
+    {
+        var replay = watchingUser.Replay;
+        var rhythia = GetNode("/root/Rhythia");
+        var mapsets = (GodotObject)rhythia.Get("mapsets");
+        var mapset = mapsets.Call("get_by_id", replay.Get("mapset_id"));
+        if (mapset.VariantType == Variant.Type.Nil)
+        {
+            HasMap = false;
+            MapId = replay.Get("mapset_id").AsString();
+            return;
+        }
+        HasMap = true;
+        var scene = (GodotObject)rhythia.Call("load_game_scene", 0, mapset);
+        scene.Set("replay", replay);
+        scene.Set("replay_mode", true);
+        GetTree().Call("change_scene_to_node", scene);
+    }
+
+    public void SpectateDeferred()
+    {
+        CallDeferred("Spectate");
+    }
+
+    public void FinishSpectate()
+    {
+        HasMap = true;
+    }
+    public async void StartSpectating(string user)
+    {
+        if (watchingUser is not null)
+        {
+            watchingUser.StreamStarted -= SpectateDeferred;
+            watchingUser.StreamEnded -= FinishSpectate;
+            await SpectatorClient.StopWatching(watchingUser.UserId);
+        }
+        await SpectatorClient.StartWatching(user);
+        watchingUser = SpectatorClient.WatchingUsers[user];
+        watchingUser.StreamStarted += SpectateDeferred;
+        watchingUser.StreamEnded += FinishSpectate;
+        Watching = true;
+    }
+
+    public async void StopSpectating()
+    {
+        if (watchingUser is not null)
+        {
+            watchingUser.StreamStarted -= SpectateDeferred;
+            watchingUser.StreamEnded -= FinishSpectate;
+            await SpectatorClient.StopWatching(watchingUser.UserId);
+        }
+        watchingUser = null;
+        Watching = false;
     }
 }

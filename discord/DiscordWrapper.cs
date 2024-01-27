@@ -57,7 +57,6 @@ public partial class DiscordWrapper : Node
             runCallbacks();
             var executablePath = OS.GetExecutablePath();
             ActivityManager.RegisterCommand(executablePath);
-            ActivityManager.OnActivityJoin += onActivityJoin;
             UserManager.OnCurrentUserUpdate += async () => { User = UserManager.GetCurrentUser(); };
             Task.Run(() => AttemptGetOAuthToken());
             Connected = true;
@@ -95,36 +94,14 @@ public partial class DiscordWrapper : Node
             gotToken.Set();
         }));
         gotToken.WaitOne();
-        OAuthToken = resultToken;
-        return resultToken;
+        OAuthToken = resultToken ?? OAuthToken;
+        return OAuthToken;
     }
 
     public override void _ExitTree()
     {
         disable();
     }
-
-    public void Spectate(SpectatedUser user)
-    {
-        var replay = user.Replay;
-        var rhythia = GetNode("/root/Rhythia");
-        var mapsets = (GodotObject)rhythia.Get("mapsets");
-        var scene = (GodotObject)rhythia.Call("load_game_scene", 0, mapsets.Call("get_by_id", replay.Get("mapset_id")));
-        scene.Set("replay", replay);
-        scene.Set("replay_mode", true);
-        GetTree().Call("change_scene_to_node", scene);
-    }
-    private async void onActivityJoin(string secret)
-    {
-        foreach (var id in Online.SpectatorClient.WatchingUsers.Keys)
-            Online.SpectatorClient.StopWatching(id);
-        GD.Print($"Attempt to spectate with secret {secret}");
-        var user = secret.Split(' ')[1];
-        await Online.SpectatorClient.StartWatching(user);
-        var spectateUser = Online.SpectatorClient.WatchingUsers[user];
-        spectateUser.StreamStarted += () => CallDeferred(nameof(Spectate), spectateUser);
-    }
-
     private void resultError(ResultException exception)
     {
         if (exception.Result == Result.NotRunning)

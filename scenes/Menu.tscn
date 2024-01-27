@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://djiqkbobmj6wr" path="res://prefabs/menu/maplist/List.tscn" id="3_0cnck"]
 [ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="3_r3n0f"]
 [ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://ciuxvgefpjrm1" path="res://assets/images/ui/command_line_error.png" id="4_oas34"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/MapDetails.gd" id="5_3gata"]
 [ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="6_yvoqp"]
 [ext_resource type="Texture2D" uid="uid://bk8ninr63d836" path="res://assets/images/ui/quit_to_desktop.png" id="7"]
@@ -14,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://fh157hhoi26n" path="res://assets/images/ui/humor_funny.png" id="8_710wh"]
 [ext_resource type="Texture2D" uid="uid://b7v0bqlxe7ew4" path="res://assets/images/ui/favorite.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
+[ext_resource type="Script" path="res://scripts/menu/spectate/Spectate.gd" id="10_jly7g"]
 [ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="13_0gtk4"]
 [ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
 [ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="14_kq106"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://k4boo5xdg2m3" path="res://prefabs/menu/settings/EnumControl.tscn" id="19_bkaum"]
 [ext_resource type="Script" path="res://scripts/menu/replays/ReplayList.gd" id="19_mtdwv"]
 [ext_resource type="Script" path="res://scripts/menu/Sidebar.gd" id="21_e3lc5"]
+[ext_resource type="Texture2D" uid="uid://bmyj7u2y7c0jo" path="res://assets/images/ui/cloud_32.png" id="21_g4ats"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnsra"]
 
@@ -92,13 +93,6 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 shadow_size = 2
 shadow_offset = Vector2(1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvhpi"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ur6lp"]
 
@@ -438,6 +432,7 @@ texture = ExtResource("4")
 stretch_mode = 3
 
 [node name="Extra" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections"]
+visible = false
 custom_minimum_size = Vector2(416, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
@@ -603,285 +598,178 @@ theme_override_font_sizes/font_size = 16
 text = "debug info"
 horizontal_alignment = 2
 
-[node name="Lobby" type="Control" parent="Main/TabBar"]
+[node name="Spectate" type="Control" parent="Main/TabBar"]
 visible = false
 layout_mode = 2
+script = ExtResource("10_jly7g")
 
-[node name="Join" type="Panel" parent="Main/TabBar/Lobby"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.5
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -4.0
-offset_bottom = 96.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tvhpi")
-
-[node name="Address" type="LineEdit" parent="Main/TabBar/Lobby/Join"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.5
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -90.0
-offset_bottom = 40.0
-placeholder_text = "Server Address"
-clear_button_enabled = true
-
-[node name="HideAddress" type="CheckBox" parent="Main/TabBar/Lobby/Join"]
+[node name="Disconnected" type="VBoxContainer" parent="Main/TabBar/Spectate"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -82.0
-offset_top = 8.0
-offset_bottom = 40.0
-button_pressed = true
-text = "Hide"
-
-[node name="Buttons" type="HBoxContainer" parent="Main/TabBar/Lobby/Join"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 40.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_right = 256.0
 grow_horizontal = 2
-theme_override_constants/separation = 8
+grow_vertical = 2
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Connect" type="Button" parent="Main/TabBar/Lobby/Join/Buttons"]
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Spectate/Disconnected"]
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
-size_flags_horizontal = 3
+texture = ExtResource("8_710wh")
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="Main/TabBar/Lobby/Join/Buttons/Connect"]
+[node name="Label" type="Label" parent="Main/TabBar/Spectate/Disconnected"]
+custom_minimum_size = Vector2(400, 24)
+layout_mode = 2
+text = "You aren't connected to the spectator server.
+Make sure you accept the OAuth2 prompt in Discord."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Main/TabBar/Spectate/Disconnected"]
+layout_mode = 2
+alignment = 1
+
+[node name="Retry" type="Button" parent="Main/TabBar/Spectate/Disconnected/Buttons"]
+custom_minimum_size = Vector2(128, 36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Spectate/Disconnected/Buttons/Retry"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Connect"
+text = "Retry"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Host" type="Button" parent="Main/TabBar/Lobby/Join/Buttons"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="Main/TabBar/Lobby/Join/Buttons/Host"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Host"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Leave" type="Button" parent="Main/TabBar/Lobby/Join/Buttons"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="Main/TabBar/Lobby/Join/Buttons/Leave"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Leave"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Nickname" type="LineEdit" parent="Main/TabBar/Lobby/Join"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.513
-offset_left = 8.0
-offset_top = 48.0
-offset_right = -7.74802
-offset_bottom = 80.0
-placeholder_text = "Nickname"
-max_length = 32
-clear_button_enabled = true
-
-[node name="ColorPicker" type="ColorPickerButton" parent="Main/TabBar/Lobby/Join"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.513
-anchor_right = 1.0
-offset_left = 0.251984
-offset_top = 48.0
-offset_right = -244.0
-offset_bottom = 80.0
-grow_horizontal = 2
-flat = true
-color = Color(1, 1, 1, 1)
-edit_alpha = false
-
-[node name="Label" type="Label" parent="Main/TabBar/Lobby/Join/ColorPicker"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_right = 152.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "Player Color"
-vertical_alignment = 1
-
-[node name="Players" type="Panel" parent="Main/TabBar/Lobby"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 104.0
-offset_right = -4.0
-offset_bottom = -8.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tvhpi")
-
-[node name="List" type="RichTextLabel" parent="Main/TabBar/Lobby/Players"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = -16.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "Players:"
-autowrap_mode = 0
-
-[node name="Details" type="Panel" parent="Main/TabBar/Lobby"]
+[node name="Watching" type="VBoxContainer" parent="Main/TabBar/Spectate"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_right = 1.0
-offset_left = 4.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 252.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tvhpi")
-
-[node name="CoverContainer" type="AspectRatioContainer" parent="Main/TabBar/Lobby/Details"]
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 0.5
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 144.0
-offset_bottom = 16.0
-alignment_horizontal = 0
-alignment_vertical = 0
-
-[node name="Cover" type="TextureRect" parent="Main/TabBar/Lobby/Details/CoverContainer"]
-layout_mode = 2
-texture = ExtResource("4_oas34")
-expand_mode = 1
-
-[node name="Song" type="Label" parent="Main/TabBar/Lobby/Details"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 152.0
-offset_right = -104.0
-offset_bottom = -40.0
-grow_horizontal = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 24
-text = "that one schwank song that has a really long name the extra credit chromosome test one"
-vertical_alignment = 2
-autowrap_mode = 3
-clip_text = true
-
-[node name="Creator" type="Label" parent="Main/TabBar/Lobby/Details"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 152.0
-offset_top = 88.0
-offset_right = -104.0
-offset_bottom = 16.0
-grow_horizontal = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 16
-text = "mapper"
-autowrap_mode = 3
-clip_text = true
-
-[node name="Length" type="Label" parent="Main/TabBar/Lobby/Details"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = 48.0
-offset_right = -24.0
-offset_bottom = -40.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 22
-text = "3:00"
-horizontal_alignment = 2
-vertical_alignment = 2
-autowrap_mode = 2
-clip_text = true
-
-[node name="Difficulty" type="Label" parent="Main/TabBar/Lobby/Details"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -100.0
-offset_bottom = -28.0
+offset_left = -256.0
+offset_right = 256.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 24
-text = "the difficulty name"
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Spectate/Watching"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+texture = ExtResource("21_g4ats")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Main/TabBar/Spectate/Watching"]
+custom_minimum_size = Vector2(400, 24)
+layout_mode = 2
+text = "You're spectating username but you don't have the map: super_long_map_id_blah_blah_blah_blah_blah"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-clip_text = true
 
-[node name="Id" type="Label" parent="Main/TabBar/Lobby/Details"]
+[node name="Buttons" type="HBoxContainer" parent="Main/TabBar/Spectate/Watching"]
+layout_mode = 2
+alignment = 1
+
+[node name="Stop" type="Button" parent="Main/TabBar/Spectate/Watching/Buttons"]
+custom_minimum_size = Vector2(192, 36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Spectate/Watching/Buttons/Stop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stop Spectating"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Connected" type="Control" parent="Main/TabBar/Spectate"]
 visible = false
-modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Status" type="Label" parent="Main/TabBar/Spectate/Connected"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+text = "Connected as: User | Players: 0"
+vertical_alignment = 1
+
+[node name="List" type="ScrollContainer" parent="Main/TabBar/Spectate/Connected"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Buttons" type="GridContainer" parent="Main/TabBar/Spectate/Connected/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Player" type="Button" parent="Main/TabBar/Spectate/Connected/List/Buttons"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Username" type="Label" parent="Main/TabBar/Spectate/Connected/List/Buttons/Player"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = 5.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Username"
+
+[node name="Map" type="Label" parent="Main/TabBar/Spectate/Connected/List/Buttons/Player"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -120.0
+offset_left = 8.0
 offset_top = -32.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 0
+offset_right = -24.0
+grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 14
-text = "id: a4b3c2d1"
-horizontal_alignment = 2
-vertical_alignment = 2
+text = "super_long_map_id_for_some_reason_dont_ask_me_why_im_just_testing_"
+text_overrun_behavior = 3
 
 [node name="Content" type="Control" parent="Main/TabBar"]
 visible = false
@@ -1878,31 +1766,30 @@ theme_override_font_sizes/font_size = 24
 text = "Map Select"
 vertical_alignment = 1
 
-[node name="Multi" type="Button" parent="Sidebar/Buttons"]
-visible = false
+[node name="Spectate" type="Button" parent="Sidebar/Buttons"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="Icon" type="TextureRect" parent="Sidebar/Buttons/Multi"]
+[node name="Icon" type="TextureRect" parent="Sidebar/Buttons/Spectate"]
 layout_mode = 0
 anchor_bottom = 1.0
 offset_top = 8.0
 offset_right = 64.0
 offset_bottom = -8.0
-texture = ExtResource("4")
+texture = ExtResource("21_g4ats")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="Sidebar/Buttons/Multi"]
+[node name="Label" type="Label" parent="Sidebar/Buttons/Spectate"]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 64.0
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 24
-text = "Multiplayer"
+text = "Spectator Beta"
 vertical_alignment = 1
 
 [node name="Content" type="Button" parent="Sidebar/Buttons"]

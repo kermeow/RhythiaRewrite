@@ -14,6 +14,8 @@ public partial class SpectatedUser : GodotObject
     public GodotObject? Replay = (GodotObject)GD.Load<GDScript>("res://scripts/content/replays/Replay.gd").New();
     [Signal]
     public delegate void StreamStartedEventHandler();
+    [Signal]
+    public delegate void StreamEndedEventHandler();
 
     public SpectatedUser(string userId)
     {
@@ -44,6 +46,7 @@ public partial class SpectatedUser : GodotObject
         Info = null;
         Replay = null;
         Playing = false;
+        EmitSignal(SignalName.StreamEnded);
     }
 
     public void ProcessData(StreamData data)
