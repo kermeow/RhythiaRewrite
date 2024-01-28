@@ -5,3 +5,4 @@ discord/bin/**
 android/
 .godot/
 *.translation
+*.old
