@@ -146,9 +146,17 @@ func _physics_process(_delta):
 		if object.hit_state != HitObject.HitState.NONE: continue
 		if !(object.hittable and object.can_hit): continue
 		controller.process_hitobject(object)
+var max_combo_score = 0
+var current_combo_score = 0
+var max_base_score = 0
+var current_base_score = 0
 func hit_object_state_changed(state:HitObject.HitState, object:HitObject):
 	if lock_score: return
 	hit_state_changed.emit(object.hit_index, state)
+	if max_base_score == 0:
+		max_base_score = game.map.notes.size()
+		for i in game.map.notes.size():
+			max_combo_score += sqrt(clampi(ceil(i/10), 1, 8))
 	match state:
 		HitObject.HitState.HIT:
 			hit.emit(object)
@@ -156,9 +164,11 @@ func hit_object_state_changed(state:HitObject.HitState, object:HitObject):
 			score.combo += 1
 			score.sub_multiplier += 1
 			if score.sub_multiplier == 10 and score.multiplier < 8:
-				score.sub_multiplier = 1
+				score.sub_multiplier = 0
 				score.multiplier += 1
-			score.score += 25 * score.multiplier
+			#score.score += 25 * score.multiplier
+			current_combo_score += sqrt(score.multiplier)
+			current_base_score += 1
 			if !did_fail: health = minf(health+0.625,5)
 		HitObject.HitState.MISS:
 			missed.emit(object)
@@ -167,6 +177,10 @@ func hit_object_state_changed(state:HitObject.HitState, object:HitObject):
 			score.sub_multiplier = 0
 			score.multiplier -= 1
 			if !did_fail: health = maxf(health-1,0)
+	score.score = (
+		500000 * (float(current_combo_score) / float(max_combo_score)) +
+		500000 * pow(float(current_base_score) / float(max_base_score), 5)
+		)
 	score_changed.emit(score,health)
 	if health == 0 and !did_fail:
 		fail()
@@ -186,7 +200,7 @@ func _input(event:InputEvent):
 func _skip_request():
 	if game.check_skippable():
 		game.skip()
-		skipped.emit()
+		skipped.emit(game.sync_manager.current_time)
 func _move_cursor(_position:Vector2, is_absolute:bool=false):
 	_preprocess_cursor()
 	if is_absolute: _absolute_movement(_position)
