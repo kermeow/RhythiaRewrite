@@ -19,5 +19,5 @@ func process_hitobject(object:HitObject):
 	if x <= hitbox_x and y <= hitbox_y:
 		object.hit()
 	elif object is NoteObject:
-		if game.sync_manager.current_time > (object as NoteObject).note.time + hitwindow:
+		if game.sync_manager.physics_time > (object as NoteObject).note.time + hitwindow:
 			object.miss()

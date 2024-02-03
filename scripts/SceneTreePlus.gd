@@ -15,8 +15,8 @@ func _initialize():
 
 	get_vr_interface()
 
-	root.get_window().min_size = Vector2(800,600)
-	root.get_window().move_to_foreground()
+	root.min_size = Vector2(800,600)
+	root.move_to_foreground()
 
 func change_scene_to_node(node:Node):
 	call_deferred("_change_scene_to_node",node)

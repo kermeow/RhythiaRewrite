@@ -20,7 +20,7 @@ var hit_state:int = HitState.NONE:
 	set(value):
 		hit_state = value
 		on_hit_state_changed.emit(value)
-		visible = hit_state == HitState.NONE
+		visible = get_visibility(game.sync_manager.current_time)
 		self.force_despawn = hit_state != HitState.NONE
 
 func hit():
