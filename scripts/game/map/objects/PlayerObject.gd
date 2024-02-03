@@ -156,7 +156,7 @@ func hit_object_state_changed(state:HitObject.HitState, object:HitObject):
 	if max_base_score == 0:
 		max_base_score = game.map.notes.size()
 		for i in game.map.notes.size():
-			max_combo_score += sqrt(clampi(ceil(i/10), 1, 8))
+			max_combo_score += sqrt(clampi(floor((i+1)/10)+1, 1, 8))
 	match state:
 		HitObject.HitState.HIT:
 			hit.emit(object)
@@ -177,9 +177,12 @@ func hit_object_state_changed(state:HitObject.HitState, object:HitObject):
 			score.sub_multiplier = 0
 			score.multiplier -= 1
 			if !did_fail: health = maxf(health-1,0)
+	var combo_portion = float(current_combo_score) / float(max_combo_score)
+	var accuracy_portion = float(current_base_score) / float(max_base_score)
+	#print("Combo: %s | Acc: %s" % [combo_portion, accuracy_portion])
 	score.score = (
-		500000 * (float(current_combo_score) / float(max_combo_score)) +
-		500000 * pow(float(current_base_score) / float(max_base_score), 5)
+		500000 * combo_portion +
+		500000 * pow(accuracy_portion, 5)
 		)
 	score_changed.emit(score,health)
 	if health == 0 and !did_fail:

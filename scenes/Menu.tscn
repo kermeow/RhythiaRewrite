@@ -453,6 +453,7 @@ texture = ExtResource("4")
 stretch_mode = 3
 
 [node name="Extra" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections"]
+visible = false
 custom_minimum_size = Vector2(416, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
