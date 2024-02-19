@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d1x4owtlent1e"]
+[gd_scene load_steps=47 format=3 uid="uid://d1x4owtlent1e"]
 
 [ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3cijv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b21p2flel8ywr" path="res://assets/images/ui/settings.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://fh157hhoi26n" path="res://assets/images/ui/humor_funny.png" id="8_710wh"]
 [ext_resource type="Texture2D" uid="uid://b7v0bqlxe7ew4" path="res://assets/images/ui/favorite.png" id="9"]
+[ext_resource type="Script" path="res://scripts/menu/mods/Seek.gd" id="9_1beqt"]
 [ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
 [ext_resource type="Script" path="res://scripts/menu/spectate/Spectate.gd" id="10_jly7g"]
 [ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="13_0gtk4"]
@@ -93,6 +94,25 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 shadow_size = 2
 shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ythsm"]
+content_margin_right = 4.0
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5usp8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vnjmm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvhpi"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ur6lp"]
 
@@ -281,9 +301,11 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="Maps" parent="Main/TabBar/Select/MapList" instance=ExtResource("3_0cnck")]
+unique_name_in_owner = true
 layout_mode = 1
 
 [node name="Select" type="ColorRect" parent="Main/TabBar/Select/MapList"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -449,13 +471,17 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Speed" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
+[node name="Grid" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Speed" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 disabled = true
 toggle_mode = true
 
-[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed"]
+[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/Speed"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -467,23 +493,19 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Icon" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed/Layout"]
+[node name="Icon" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/Speed/Layout"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("8_710wh")
 expand_mode = 4
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Speed/Layout"]
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/Speed/Layout"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Speed"
 vertical_alignment = 1
-
-[node name="Grid" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="NoFail" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid"]
 custom_minimum_size = Vector2(0, 64)
@@ -528,6 +550,7 @@ toggle_mode = true
 action_mode = 0
 button_mask = 0
 keep_pressed_outside = true
+script = ExtResource("9_1beqt")
 
 [node name="Slider" type="HSlider" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Seek"]
 layout_mode = 1
@@ -554,6 +577,24 @@ grow_vertical = 2
 text = "00:00"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="Edit" type="LineEdit" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Seek/TimeLabel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 5.0
+offset_right = 2.25
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ythsm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5usp8")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_vnjmm")
+text = "00:00"
+alignment = 2
 
 [node name="Reset" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
 custom_minimum_size = Vector2(0, 36)

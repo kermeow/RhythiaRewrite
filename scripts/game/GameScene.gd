@@ -81,7 +81,7 @@ func finish(failed:bool=false):
 		if Globals.debug: print("pass")
 		$PauseHandler.process_mode = Node.PROCESS_MODE_DISABLED
 		$PauseHandler/Control.visible = false
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.2).timeout
 	var packed_results:PackedScene = preload("res://scenes/Results.tscn")
 	var results:ResultsScreen = packed_results.instantiate()
 	var image = get_viewport().get_texture().get_image() # hacky screenshot

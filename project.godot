@@ -31,6 +31,7 @@ outro/play_sound=true
 outro/disabled.editor=true
 startup/disable_intro.debug=true
 startup/disable_health_warning.editor=true
+networking/enabled=false
 networking/maps/archive_index="https://cdn.rhythia.net/index.json"
 networking/multiplayer/master_server="https://game.rhythia.net"
 networking/multiplayer/master_server.editor="http://localhost:5000"
