@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://5eltoy4hwcsd"]
+
+[ext_resource type="Script" path="res://scripts/menu/settings/RegistryControl.gd" id="1_1jcb8"]
+[ext_resource type="Script" path="res://scripts/menu/settings/SettingLabel.gd" id="2_d2iqc"]
+[ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="3_ht0og"]
+
+[node name="RegistryControl" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+theme_override_constants/separation = 16
+script = ExtResource("1_1jcb8")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("2_d2iqc")
+
+[node name="Container" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Container"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+fit_to_longest_item = false
+
+[node name="Revert" type="Button" parent="Container"]
+layout_mode = 2
+icon = ExtResource("3_ht0og")
+flat = true

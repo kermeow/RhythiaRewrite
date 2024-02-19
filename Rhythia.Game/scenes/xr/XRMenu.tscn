@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ee8obatuushg"]
+
+[ext_resource type="PackedScene" uid="uid://cu2rno2ef0dtr" path="res://scenes/Menu.tscn" id="1_ajgim"]
+
+[sub_resource type="Environment" id="Environment_8ukro"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_x6rx7"]
+viewport_path = NodePath("Menu")
+
+[node name="XRMenu" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8ukro")
+
+[node name="Screen" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3)
+pixel_size = 0.003
+texture = SubResource("ViewportTexture_x6rx7")
+
+[node name="Menu" type="SubViewport" parent="."]
+disable_3d = true
+handle_input_locally = false
+msaa_2d = 1
+screen_space_aa = 1
+use_occlusion_culling = true
+gui_disable_input = true
+gui_embed_subwindows = true
+size = Vector2i(1275, 800)
+
+[node name="Menu" parent="Menu" instance=ExtResource("1_ajgim")]

@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://ebiywqexmvd0"]
+
+[ext_resource type="Texture2D" uid="uid://cgx1mxv2mnctd" path="res://assets/content/worlds/rings/ring.png" id="1_u5yoy"]
+[ext_resource type="Script" path="res://assets/content/worlds/rings/Ring.gd" id="2_n3x7k"]
+
+[sub_resource type="Environment" id="Environment_td30n"]
+background_mode = 1
+background_color = Color(0.03, 0.03, 0.03, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
+
+[node name="Neon Tunnel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_td30n")
+
+[node name="Rings" type="Node3D" parent="."]
+
+[node name="Ring" type="Sprite3D" parent="Rings"]
+visibility_range_end = 40.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
+pixel_size = 0.0075
+texture = ExtResource("1_u5yoy")
+script = ExtResource("2_n3x7k")
+ring_speed = 8.0
+
+[node name="Ring3" type="Sprite3D" parent="Rings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+visibility_range_end = 40.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
+pixel_size = 0.0075
+texture = ExtResource("1_u5yoy")
+script = ExtResource("2_n3x7k")
+ring_speed = 8.0
+
+[node name="Ring5" type="Sprite3D" parent="Rings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+visibility_range_end = 40.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
+pixel_size = 0.0075
+texture = ExtResource("1_u5yoy")
+script = ExtResource("2_n3x7k")
+ring_speed = 8.0
+
+[node name="Ring7" type="Sprite3D" parent="Rings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45)
+visibility_range_end = 40.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
+pixel_size = 0.0075
+texture = ExtResource("1_u5yoy")
+script = ExtResource("2_n3x7k")
+ring_speed = 8.0
+
+[node name="Ring9" type="Sprite3D" parent="Rings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45)
+visibility_range_end = 40.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
+pixel_size = 0.0075
+texture = ExtResource("1_u5yoy")
+script = ExtResource("2_n3x7k")
+ring_speed = 8.0
+
+[node name="Ring11" type="Sprite3D" parent="Rings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+visibility_range_end = 40.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
+pixel_size = 0.0075
+texture = ExtResource("1_u5yoy")
+script = ExtResource("2_n3x7k")
+ring_speed = 8.0
+
+[node name="Ring13" type="Sprite3D" parent="Rings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+visibility_range_end = 40.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
+pixel_size = 0.0075
+texture = ExtResource("1_u5yoy")
+script = ExtResource("2_n3x7k")
+ring_speed = 8.0

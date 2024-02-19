@@ -1,0 +1,1946 @@
+[gd_scene load_steps=47 format=3 uid="uid://d1x4owtlent1e"]
+
+[ext_resource type="PackedScene" uid="uid://de1sj0rkm2iu7" path="res://prefabs/menu/VersionNumberR.tscn" id="1"]
+[ext_resource type="Theme" uid="uid://diarojdcbhxg8" path="res://default_theme.tres" id="1_3cijv"]
+[ext_resource type="Script" path="res://scripts/menu/Warning.gd" id="2_0nvp3"]
+[ext_resource type="PackedScene" uid="uid://djiqkbobmj6wr" path="res://prefabs/menu/maplist/List.tscn" id="3_0cnck"]
+[ext_resource type="Texture2D" uid="uid://jp6gfn1blub6" path="res://assets/images/covers/tasukete.png" id="3_r3n0f"]
+[ext_resource type="Texture2D" uid="uid://cmx7ntw62nhki" path="res://assets/images/ui/play_circle.png" id="4"]
+[ext_resource type="Script" path="res://scripts/menu/maplist/MapDetails.gd" id="5_3gata"]
+[ext_resource type="Texture2D" uid="uid://crn45ox0vkija" path="res://assets/images/ui/reset_to_default_white.png" id="6_yvoqp"]
+[ext_resource type="Texture2D" uid="uid://bk8ninr63d836" path="res://assets/images/ui/quit_to_desktop.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://b21p2flel8ywr" path="res://assets/images/ui/settings.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://fh157hhoi26n" path="res://assets/images/ui/humor_funny.png" id="8_710wh"]
+[ext_resource type="Texture2D" uid="uid://b7v0bqlxe7ew4" path="res://assets/images/ui/favorite.png" id="9"]
+[ext_resource type="Script" path="res://scripts/menu/mods/Seek.gd" id="9_1beqt"]
+[ext_resource type="Texture2D" uid="uid://bae4xwfedhtyw" path="res://assets/images/ui/add_icon.png" id="10"]
+[ext_resource type="Script" path="res://scripts/menu/spectate/Spectate.gd" id="10_jly7g"]
+[ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="13_0gtk4"]
+[ext_resource type="Texture2D" uid="uid://bqslrhmo3j14o" path="res://assets/images/branding/logo.png" id="14_ack2s"]
+[ext_resource type="FontFile" uid="uid://b13iyosmvgqik" path="res://assets/fonts/Lato/Lato-Bold.ttf" id="14_kq106"]
+[ext_resource type="PackedScene" uid="uid://mkyi4x10xs87" path="res://prefabs/menu/settings/SpinBoxControl.tscn" id="17_shbod"]
+[ext_resource type="Script" path="res://scripts/menu/replays/LastReplayButton.gd" id="18_snorp"]
+[ext_resource type="PackedScene" uid="uid://5eltoy4hwcsd" path="res://prefabs/menu/settings/RegistryControl.tscn" id="18_ysblq"]
+[ext_resource type="PackedScene" uid="uid://dxqjak2gfp3nf" path="res://prefabs/menu/settings/ToggleControl.tscn" id="19_8t4jv"]
+[ext_resource type="PackedScene" uid="uid://k4boo5xdg2m3" path="res://prefabs/menu/settings/EnumControl.tscn" id="19_bkaum"]
+[ext_resource type="Script" path="res://scripts/menu/replays/ReplayList.gd" id="19_mtdwv"]
+[ext_resource type="Script" path="res://scripts/menu/Sidebar.gd" id="21_e3lc5"]
+[ext_resource type="Texture2D" uid="uid://bmyj7u2y7c0jo" path="res://assets/images/ui/cloud_32.png" id="21_g4ats"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnsra"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpjht"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2c63c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5n37h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ah55v"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds4ea"]
+content_margin_left = 8.0
+content_margin_top = 0.0
+content_margin_right = 8.0
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yv05g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjl6"]
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywk44"]
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ythsm"]
+content_margin_right = 4.0
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5usp8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vnjmm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ur6lp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vm47"]
+content_margin_left = 16.0
+content_margin_top = 0.0
+content_margin_right = 16.0
+content_margin_bottom = 0.0
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sonn3"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqbjr"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_floo6"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mql7r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xhego"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4g6xw"]
+
+[node name="Menu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3cijv")
+color = Color(0.08, 0.08, 0.08, 1)
+
+[node name="Warning" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+color = Color(0.141176, 0.513726, 0.701961, 1)
+script = ExtResource("2_0nvp3")
+
+[node name="Slider" type="HBoxContainer" parent="Warning"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 32
+
+[node name="LabelA" type="Label" parent="Warning/Slider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 16
+text = "This is a warning banner. It appears sometimes, for example if the servers go down, or there is an important message."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelB" type="Label" parent="Warning/Slider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 16
+text = "This is a warning banner. It appears sometimes, for example if the servers go down, or there is an important message."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main" type="ReferenceRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_bottom = -24.0
+
+[node name="TabBar" type="TabContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rnsra")
+tabs_visible = false
+
+[node name="Select" type="Control" parent="Main/TabBar"]
+layout_mode = 2
+
+[node name="MapList" type="Control" parent="Main/TabBar/Select"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Playlists" type="VBoxContainer" parent="Main/TabBar/Select/MapList"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_right = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Main/TabBar/Select/MapList/Playlists"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button2" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button3" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button4" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button5" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button6" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button7" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button8" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button9" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button10" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button11" type="Button" parent="Main/TabBar/Select/MapList/Playlists/HFlowContainer"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Maps" parent="Main/TabBar/Select/MapList" instance=ExtResource("3_0cnck")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="Select" type="ColorRect" parent="Main/TabBar/Select/MapList"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+color = Color(0, 0, 0, 0.784314)
+script = ExtResource("5_3gata")
+
+[node name="Sections" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.506
+offset_top = -284.0
+offset_bottom = 279.824
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Details" type="VBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Cover" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+clip_children = 1
+custom_minimum_size = Vector2(224, 224)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpjht")
+
+[node name="Image" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Cover"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r3n0f")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CoverSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_2c63c")
+
+[node name="Title" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 20
+text = "Schwank - Extra Credit On The Chromosome Test"
+autowrap_mode = 3
+
+[node name="Line" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Mapper" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 2.0
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 18
+text = "Kermeet, Kiwie
+"
+autowrap_mode = 3
+
+[node name="Length" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.5
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 18
+text = "1:23"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="DifficultySeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
+
+[node name="Maps" type="HFlowContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Maps"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ah55v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ah55v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ds4ea")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ah55v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yv05g")
+toggle_mode = true
+button_pressed = true
+text = "Diff #1"
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Maps/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Diff #1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
+
+[node name="ButtonSeparator" type="HSeparator" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5n37h")
+
+[node name="Play" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Details"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Details/Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4")
+stretch_mode = 3
+
+[node name="Extra" type="Panel" parent="Main/TabBar/Select/MapList/Select/Sections"]
+visible = false
+custom_minimum_size = Vector2(416, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7tjl6")
+
+[node name="Modifiers" type="VBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grid" type="GridContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Speed" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+disabled = true
+toggle_mode = true
+
+[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/Speed"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/Speed/Layout"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("8_710wh")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/Speed/Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Speed"
+vertical_alignment = 1
+
+[node name="NoFail" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+action_mode = 0
+keep_pressed_outside = true
+
+[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/NoFail"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/NoFail/Layout"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("9")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Grid/NoFail/Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "No Fail"
+vertical_alignment = 1
+
+[node name="Seek" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+toggle_mode = true
+action_mode = 0
+button_mask = 0
+keep_pressed_outside = true
+script = ExtResource("9_1beqt")
+
+[node name="Slider" type="HSlider" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Seek"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/slider = SubResource("StyleBoxFlat_ywk44")
+step = 0.01
+
+[node name="TimeLabel" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Seek"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_right = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "00:00"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Edit" type="LineEdit" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Seek/TimeLabel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 5.0
+offset_right = 2.25
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ythsm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5usp8")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_vnjmm")
+text = "00:00"
+alignment = 2
+
+[node name="Reset" type="Button" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Layout" type="HBoxContainer" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Reset"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Reset/Layout"]
+layout_mode = 2
+texture = ExtResource("6_yvoqp")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra/Modifiers/Reset/Layout"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Reset Modifiers"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Debug" type="Label" parent="Main/TabBar/Select/MapList/Select/Sections/Extra"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 8.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "debug info"
+horizontal_alignment = 2
+
+[node name="Spectate" type="Control" parent="Main/TabBar"]
+visible = false
+layout_mode = 2
+script = ExtResource("10_jly7g")
+
+[node name="Disconnected" type="VBoxContainer" parent="Main/TabBar/Spectate"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Spectate/Disconnected"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+texture = ExtResource("8_710wh")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Main/TabBar/Spectate/Disconnected"]
+custom_minimum_size = Vector2(400, 24)
+layout_mode = 2
+text = "You aren't connected to the spectator server.
+Make sure you accept the OAuth2 prompt in Discord."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Main/TabBar/Spectate/Disconnected"]
+layout_mode = 2
+alignment = 1
+
+[node name="Retry" type="Button" parent="Main/TabBar/Spectate/Disconnected/Buttons"]
+custom_minimum_size = Vector2(128, 36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Spectate/Disconnected/Buttons/Retry"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Watching" type="VBoxContainer" parent="Main/TabBar/Spectate"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Main/TabBar/Spectate/Watching"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+texture = ExtResource("21_g4ats")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Main/TabBar/Spectate/Watching"]
+custom_minimum_size = Vector2(400, 24)
+layout_mode = 2
+text = "You're spectating username but you don't have the map: super_long_map_id_blah_blah_blah_blah_blah"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Main/TabBar/Spectate/Watching"]
+layout_mode = 2
+alignment = 1
+
+[node name="Stop" type="Button" parent="Main/TabBar/Spectate/Watching/Buttons"]
+custom_minimum_size = Vector2(192, 36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Spectate/Watching/Buttons/Stop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stop Spectating"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Connected" type="Control" parent="Main/TabBar/Spectate"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Status" type="Label" parent="Main/TabBar/Spectate/Connected"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+text = "Connected as: User | Players: 0"
+vertical_alignment = 1
+
+[node name="List" type="ScrollContainer" parent="Main/TabBar/Spectate/Connected"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Buttons" type="GridContainer" parent="Main/TabBar/Spectate/Connected/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Player" type="Button" parent="Main/TabBar/Spectate/Connected/List/Buttons"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Username" type="Label" parent="Main/TabBar/Spectate/Connected/List/Buttons/Player"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = 5.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Username"
+
+[node name="Map" type="Label" parent="Main/TabBar/Spectate/Connected/List/Buttons/Player"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -32.0
+offset_right = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "super_long_map_id_for_some_reason_dont_ask_me_why_im_just_testing_"
+text_overrun_behavior = 3
+
+[node name="Content" type="Control" parent="Main/TabBar"]
+visible = false
+layout_mode = 2
+
+[node name="Credits" type="Control" parent="Main/TabBar"]
+visible = false
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/TabBar/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Main/TabBar/Credits/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Items" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="Logo" type="Control" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
+custom_minimum_size = Vector2(0, 248)
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Logo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_ack2s")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Developers" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Developers"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Items" type="HFlowContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+alignment = 1
+
+[node name="kermeet" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[center][b]kermeet[/b]
+krmeet on GitHub
+"
+fit_content = true
+scroll_active = false
+
+[node name="kiwie" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[center][b]kiwie[/b]
+David20122 on GitHub
+"
+fit_content = true
+scroll_active = false
+
+[node name="helmeto" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Developers/Items"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[center][b]helmeto[/b]
+mycpphurts on GitHub
+"
+fit_content = true
+scroll_active = false
+
+[node name="Attribution" type="VBoxContainer" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Attribution"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Godot" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[b]Godot Engine[/b]
+This game uses Godot Engine, available under the following license:
+Copyright (c) 2014-present Godot Engine contributors. Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+"
+fit_content = true
+scroll_active = false
+
+[node name="FreeType" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[b]FreeType[/b]
+Portions of this software are copyright © 1996-2023 The FreeType Project (www.freetype.org). All rights reserved."
+fit_content = true
+scroll_active = false
+
+[node name="ENet" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[b]ENet[/b]
+Copyright (c) 2002-2020 Lee Salzman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+"
+fit_content = true
+scroll_active = false
+
+[node name="mbedTLS" type="RichTextLabel" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items/Attribution"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("13_0gtk4")
+theme_override_fonts/bold_font = ExtResource("14_kq106")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[b]mbed TLS[/b]
+Copyright The Mbed TLS Contributors
+
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+"
+fit_content = true
+scroll_active = false
+
+[node name="ScrollRoom" type="HSeparator" parent="Main/TabBar/Credits/ScrollContainer/CenterContainer/Items"]
+layout_mode = 2
+theme_override_constants/separation = 64
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ur6lp")
+
+[node name="Settings" type="Control" parent="Main/TabBar"]
+visible = false
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Main/TabBar/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/panel = SubResource("StyleBoxFlat_0vm47")
+clip_tabs = false
+
+[node name="Gameplay" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Controls" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Camera & Controls"
+vertical_alignment = 2
+
+[node name="Sensitivity" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
+layout_mode = 2
+arrow_step = 0.1
+allow_greater = true
+allow_lesser = true
+label = "Mouse Sensitivity"
+target = Array[String](["controls", "sensitivity", "mouse"])
+
+[node name="Absolute" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Absolute Positioning"
+target = Array[String](["controls", "absolute"])
+
+[node name="FOV" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
+layout_mode = 2
+arrow_step = 5.0
+step = 1.0
+min_value = 20.0
+max_value = 120.0
+allow_greater = true
+allow_lesser = true
+label = "FOV"
+target = Array[String](["controls", "fov"])
+
+[node name="Lock" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Camera Lock"
+target = Array[String](["camera", "lock"])
+
+[node name="CamParallax" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "x"
+arrow_step = 0.1
+allow_greater = true
+allow_lesser = true
+label = "Camera Parallax"
+target = Array[String](["camera", "parallax", "camera"])
+required_value = "1"
+requirement_reversed = true
+hide_if_unfulfilled = true
+
+[node name="HudParallax" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("17_shbod")]
+visible = false
+layout_mode = 2
+suffix = "s"
+arrow_step = 0.1
+allow_greater = true
+allow_lesser = true
+label = "Hud Parallax"
+target = Array[String](["camera", "parallax", "hud"])
+required_value = "1"
+requirement_reversed = true
+hide_if_unfulfilled = true
+
+[node name="Drift" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Controls" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Cursor Drift"
+target = Array[String](["camera", "drift"])
+
+[node name="Approach" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Approach"
+vertical_alignment = 2
+
+[node name="Mode" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach" instance=ExtResource("19_bkaum")]
+layout_mode = 2
+enum_names = Array[String](["Distance / Time", "Distance / Rate", "Rate / Time"])
+label = "Approach Mode"
+target = Array[String](["approach", "mode"])
+
+[node name="Distance" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "m"
+arrow_step = 10.0
+allow_greater = true
+allow_lesser = true
+label = "Approach Distance"
+target = Array[String](["approach", "distance"])
+has_requirement = true
+requirement_target = Array[String](["approach", "mode"])
+required_value = "2"
+requirement_reversed = true
+hide_if_unfulfilled = true
+
+[node name="Rate" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "m/s"
+arrow_step = 10.0
+allow_greater = true
+allow_lesser = true
+label = "Approach Rate"
+target = Array[String](["approach", "rate"])
+has_requirement = true
+requirement_target = Array[String](["approach", "mode"])
+required_value = "0"
+requirement_reversed = true
+hide_if_unfulfilled = true
+
+[node name="Time" parent="Main/TabBar/Settings/TabContainer/Gameplay/Columns/Approach" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "s"
+arrow_step = 0.1
+allow_greater = true
+allow_lesser = true
+label = "Approach Time"
+target = Array[String](["approach", "time"])
+has_requirement = true
+requirement_target = Array[String](["approach", "mode"])
+required_value = "1"
+requirement_reversed = true
+hide_if_unfulfilled = true
+
+[node name="Skin" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Skin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="Notes" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Notes"
+vertical_alignment = 2
+
+[node name="Appearance" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Appearance"
+vertical_alignment = 2
+
+[node name="Mesh" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("18_ysblq")]
+layout_mode = 2
+registry_name = "blocks"
+label = "Mesh"
+target = Array[String](["skin", "block", "mesh"])
+
+[node name="Opacity" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "%"
+arrow_step = 5.0
+label = "Opacity"
+target = Array[String](["skin", "block", "opacity"])
+multiplier = 100.0
+
+[node name="Scale" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "x"
+arrow_step = 0.1
+step = 0.01
+allow_greater = true
+label = "Scale"
+target = Array[String](["skin", "block", "scale"])
+
+[node name="Fade" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Fade"
+vertical_alignment = 2
+
+[node name="FadeInM" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("19_bkaum")]
+layout_mode = 2
+enum_names = Array[String](["Fade", "Appear"])
+label = "Fade In Mode"
+target = Array[String](["skin", "block", "fade_in_mode"])
+
+[node name="FadeInT" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "%"
+arrow_step = 5.0
+step = 1.0
+min_value = 1.0
+label = "Fade In Length"
+target = Array[String](["skin", "block", "fade_in_time"])
+has_requirement = true
+requirement_target = Array[String](["skin", "block", "fade_in_mode"])
+required_value = "0"
+hide_if_unfulfilled = true
+multiplier = 100.0
+
+[node name="FadeInA" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "%"
+arrow_step = 5.0
+step = 1.0
+min_value = 1.0
+label = "Fade In Amount"
+target = Array[String](["skin", "block", "fade_in_amount"])
+has_requirement = true
+requirement_target = Array[String](["skin", "block", "fade_in_mode"])
+required_value = "0"
+hide_if_unfulfilled = true
+multiplier = 100.0
+
+[node name="FadeOutM" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("19_bkaum")]
+layout_mode = 2
+enum_names = Array[String](["Fade", "Disappear", "Disappear (no hitwindow)"])
+label = "Fade Out Mode"
+target = Array[String](["skin", "block", "fade_out_mode"])
+
+[node name="FadeOutT" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "%"
+arrow_step = 5.0
+step = 1.0
+min_value = 1.0
+label = "Fade Out Length"
+target = Array[String](["skin", "block", "fade_out_time"])
+has_requirement = true
+requirement_target = Array[String](["skin", "block", "fade_out_mode"])
+required_value = "0"
+hide_if_unfulfilled = true
+multiplier = 100.0
+
+[node name="FadeOutA" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Notes" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "%"
+arrow_step = 5.0
+step = 1.0
+min_value = 1.0
+label = "Fade Out Amount"
+target = Array[String](["skin", "block", "fade_out_amount"])
+has_requirement = true
+requirement_target = Array[String](["skin", "block", "fade_out_mode"])
+required_value = "0"
+hide_if_unfulfilled = true
+multiplier = 100.0
+
+[node name="Cursor" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Cursor"
+vertical_alignment = 2
+
+[node name="Appearance" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Appearance"
+vertical_alignment = 2
+
+[node name="Scale" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "x"
+arrow_step = 0.1
+step = 0.01
+allow_greater = true
+label = "Scale"
+target = Array[String](["skin", "cursor", "scale"])
+
+[node name="Trail" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Trail"
+vertical_alignment = 2
+
+[node name="TrailEnabled" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Trail Enabled"
+target = Array[String](["skin", "cursor", "trail_enabled"])
+
+[node name="TrailDetail" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor" instance=ExtResource("17_shbod")]
+layout_mode = 2
+arrow_step = 5.0
+step = 1.0
+min_value = 1.0
+allow_greater = true
+label = "Trail Detail"
+target = Array[String](["skin", "cursor", "trail_detail"])
+
+[node name="TrailLength" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "s"
+arrow_step = 0.05
+allow_greater = true
+label = "Trail Decay"
+target = Array[String](["skin", "cursor", "trail_length"])
+
+[node name="TrailDistance" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Cursor" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "m"
+arrow_step = 0.05
+min_value = 0.01
+allow_greater = true
+label = "Trail Length"
+target = Array[String](["skin", "cursor", "trail_distance"])
+
+[node name="Background" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Skin/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Background"
+vertical_alignment = 2
+
+[node name="World" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background" instance=ExtResource("18_ysblq")]
+layout_mode = 2
+registry_name = "worlds"
+label = "World"
+target = Array[String](["skin", "background", "world"])
+disable_revert = true
+
+[node name="IgnoreMap" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Ignore Map Setting"
+target = Array[String](["skin", "background", "ignore_map"])
+
+[node name="StaticWorld" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Full Static World"
+target = Array[String](["skin", "background", "full_static"])
+
+[node name="StaticLights" parent="Main/TabBar/Settings/TabContainer/Skin/Columns/Background" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Static Lighting"
+target = Array[String](["skin", "background", "static_light"])
+has_requirement = true
+requirement_target = Array[String](["skin", "background", "full_static"])
+required_value = "false"
+
+[node name="Replays" type="Control" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="LastReplay" type="Button" parent="Main/TabBar/Settings/TabContainer/Replays"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -164.0
+offset_top = -31.0
+offset_right = 16.0
+offset_bottom = -3.0
+grow_horizontal = 0
+script = ExtResource("18_snorp")
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/LastReplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Last Replay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="List" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer/Replays"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+script = ExtResource("19_mtdwv")
+
+[node name="Items" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Replays/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Panel" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sonn3")
+
+[node name="Cover" type="Panel" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 94.0
+offset_bottom = -2.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oqbjr")
+
+[node name="Image" type="TextureRect" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Cover"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r3n0f")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_right = -140.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 20
+text = "Schwank - Extra Credit On The Chromosome Test [Tasukete]"
+vertical_alignment = 2
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="Player" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 40.0
+offset_right = -140.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 16
+text = "Player - Date"
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="Score" type="HBoxContainer" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 64.0
+
+[node name="Score" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Score"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "999,999,999"
+
+[node name="Accuracy" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Score"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "99.99%"
+
+[node name="Failed" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Score"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Failed"
+
+[node name="Buttons" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_right = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Buttons"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Buttons/Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Delete" type="Button" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Buttons"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Replays/List/Items/Button/Buttons/Delete"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Delete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Video" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Video"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Window" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Video/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Window"
+vertical_alignment = 2
+
+[node name="Fullscreen" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("19_8t4jv")]
+layout_mode = 2
+label = "Fullscreen"
+target = Array[String](["fullscreen"])
+
+[node name="FPS" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("17_shbod")]
+layout_mode = 2
+step = 1.0
+allow_greater = true
+label = "FPS Limit"
+target = Array[String](["fps_limit"])
+
+[node name="Scale" parent="Main/TabBar/Settings/TabContainer/Video/Columns/Window" instance=ExtResource("19_bkaum")]
+layout_mode = 2
+enum_names = Array[String](["Very Large", "Large", "Medium", "Small", "Tiny"])
+label = "Gui Scale"
+target = Array[String](["gui_scale"])
+
+[node name="Audio" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Audio"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Volume" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Volume"
+vertical_alignment = 2
+
+[node name="Master" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "%"
+step = 1.0
+max_value = 200.0
+label = "Master"
+target = Array[String](["volume", "master"])
+multiplier = 100.0
+
+[node name="Music" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "%"
+step = 1.0
+max_value = 200.0
+label = "Music"
+target = Array[String](["volume", "music"])
+multiplier = 100.0
+
+[node name="SFX" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Volume" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "%"
+step = 1.0
+max_value = 200.0
+label = "SFX"
+target = Array[String](["volume", "sfx"])
+multiplier = 100.0
+
+[node name="Offset" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Audio/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Offset"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Offset"
+vertical_alignment = 2
+
+[node name="Music" parent="Main/TabBar/Settings/TabContainer/Audio/Columns/Offset" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "ms"
+step = 1.0
+allow_greater = true
+allow_lesser = true
+label = "Music Offset"
+target = Array[String](["offset", "music"])
+
+[node name="Advanced" type="ScrollContainer" parent="Main/TabBar/Settings/TabContainer"]
+visible = false
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Columns" type="GridContainer" parent="Main/TabBar/Settings/TabContainer/Advanced"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Advanced" type="VBoxContainer" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Advanced Settings"
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "IT IS STRONGLY RECOMMENDED THAT YOU DO NOT TOUCH THESE IF YOU DON'T KNOW WHAT YOU'RE DOING"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NoteRenderMode" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced" instance=ExtResource("19_bkaum")]
+layout_mode = 2
+enum_names = Array[String](["Multimesh", "Individual"])
+label = "Note Render Mode"
+target = Array[String](["advanced", "note_render_mode"])
+
+[node name="NoteSpawnMode" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced" instance=ExtResource("19_bkaum")]
+layout_mode = 2
+enum_names = Array[String](["Preload", "Rolling"])
+label = "Note Spawn Mode"
+target = Array[String](["advanced", "note_spawn_mode"])
+
+[node name="BreakTime" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "s"
+arrow_step = 0.1
+step = 0.01
+min_value = 1.0
+allow_greater = true
+label = "Required Break Time"
+target = Array[String](["advanced", "skip", "minimum_break_time"])
+
+[node name="SkipTime" parent="Main/TabBar/Settings/TabContainer/Advanced/Columns/Advanced" instance=ExtResource("17_shbod")]
+layout_mode = 2
+suffix = "s"
+arrow_step = 0.1
+step = 0.01
+min_value = 1.0
+allow_greater = true
+label = "Required Skip Time"
+target = Array[String](["advanced", "skip", "minimum_skip_time"])
+
+[node name="VersionNumberR" parent="Main" instance=ExtResource("1")]
+layout_mode = 1
+
+[node name="SidebarClose" type="Button" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_floo6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_floo6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_floo6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_floo6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mql7r")
+metadata/_edit_lock_ = true
+
+[node name="Sidebar" type="ColorRect" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 0
+anchor_bottom = 1.0
+offset_right = 64.0
+color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+script = ExtResource("21_e3lc5")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Highlight" type="ColorRect" parent="Sidebar"]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 8.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(0.3, 0.3, 0.3, 0.196078)
+
+[node name="Buttons" type="VBoxContainer" parent="Sidebar"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TopSeparator" type="HSeparator" parent="Sidebar/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xhego")
+
+[node name="Play" type="Button" parent="Sidebar/Buttons"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Sidebar/Buttons/Play"]
+layout_mode = 0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Sidebar/Buttons/Play"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Map Select"
+vertical_alignment = 1
+
+[node name="Spectate" type="Button" parent="Sidebar/Buttons"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Sidebar/Buttons/Spectate"]
+layout_mode = 0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+texture = ExtResource("21_g4ats")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Sidebar/Buttons/Spectate"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Spectator Beta"
+vertical_alignment = 1
+
+[node name="Content" type="Button" parent="Sidebar/Buttons"]
+visible = false
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+disabled = true
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Sidebar/Buttons/Content"]
+layout_mode = 0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+texture = ExtResource("10")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Sidebar/Buttons/Content"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+theme_override_font_sizes/font_size = 24
+text = "Content Manager"
+vertical_alignment = 1
+
+[node name="Credits" type="Button" parent="Sidebar/Buttons"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Sidebar/Buttons/Credits"]
+layout_mode = 0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+texture = ExtResource("9")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Sidebar/Buttons/Credits"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+theme_override_font_sizes/font_size = 24
+text = "Credits"
+vertical_alignment = 1
+
+[node name="TopBottomSeparator" type="HSeparator" parent="Sidebar/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4g6xw")
+
+[node name="Settings" type="Button" parent="Sidebar/Buttons"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Sidebar/Buttons/Settings"]
+layout_mode = 0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+texture = ExtResource("8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Sidebar/Buttons/Settings"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+theme_override_font_sizes/font_size = 24
+text = "Settings"
+vertical_alignment = 1
+
+[node name="Quit" type="Button" parent="Sidebar/Buttons"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Sidebar/Buttons/Quit"]
+layout_mode = 0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+texture = ExtResource("7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Sidebar/Buttons/Quit"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+theme_override_font_sizes/font_size = 24
+text = "Quit to Desktop"
+vertical_alignment = 1
+
+[node name="BottomSeparator" type="HSeparator" parent="Sidebar/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xhego")
+
+[node name="Open" type="Button" parent="Sidebar"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+flat = true
+metadata/_edit_lock_ = true

@@ -1,0 +1,122 @@
+extends GameManager
+class_name ReplayManager
+
+enum Mode {
+	RECORD,
+	PLAY,
+	SPECTATE
+}
+@export var mode:Mode
+
+var replay:Replay = Replay.new()
+var active:bool = false
+var start_time:int = 0
+
+var record_rate:int = 90
+
+func start():
+	assert(!active)
+	active = true
+	start_time = Time.get_ticks_msec()
+	var controller = game.player.controller
+	match mode:
+		Mode.RECORD:
+			game.player.hit_state_changed.connect(record_hit_frame)
+			game.player.skipped.connect(record_sync_frame)
+			game.sync_manager.started.connect(record_sync_frame)
+			game.sync_manager.started_audio.connect(record_sync_frame)
+			replay.player_name = game.settings.online.player_name
+			replay.mapset_id = game.mapset.id
+			replay.map_id = game.map.id
+			replay.mods = game.mods
+			replay.write_settings(game.settings)
+			replay.score = game.player.score
+			Online.GDStartStreaming(replay)
+			if Globals.debug: print("Recording new replay")
+		Mode.PLAY:
+			controller.replay_manager = self
+			controller.queue_frames(replay.frames)
+			if Globals.debug: print("Playing replay")
+		Mode.SPECTATE:
+			controller.replay_manager = self
+			controller.queue_frames(replay.frames)
+			replay.frames_received.connect(controller.queue_frames)
+			if Globals.debug: print("Spectating")
+func stop():
+	if !active: return
+	active = false
+	if Globals.debug: print("Stopping replay")
+	match mode:
+		Mode.RECORD:
+			var now = (Time.get_ticks_msec() - start_time) / 1000.0
+			Online.GDSendStreamData(replay, _stream_frames, now, game.sync_manager.real_time)
+			_stream_frames = []
+			Online.GDStopStreaming()
+			replay.write_to_file(Globals.Paths.user.path_join("recent.rhyr")) # Save to recent
+			# Save to permanent folder
+			var current_date = Time.get_datetime_string_from_system(false, true)
+			var replay_name = (
+				replay.mapset.name + current_date + ".rhyr"
+			).validate_filename()
+			replay.write_to_file(Globals.Paths.replays.path_join(replay_name))
+		Mode.PLAY, Mode.SPECTATE:
+			pass
+
+func _process(_delta):
+	if !active: return
+	match mode:
+		Mode.RECORD: record_frame()
+		Mode.PLAY, Mode.SPECTATE:
+			var controller = game.player.controller
+			var now = (Time.get_ticks_msec() - start_time) / 1000.0 #game.sync_manager.real_time
+			controller.replay_time = now + controller.offset
+
+func force_sync_to(replay_time, sync_time):
+	start_time = Time.get_ticks_msec() - (replay_time * 1000)
+	var now = (Time.get_ticks_msec() - start_time) / 1000.0
+	print("Forced sync to %s (%s)" % [replay_time, now])
+
+func record_sync_frame(current_time:float):
+	var frame = Replay.SyncFrame.new()
+	frame.sync_time = current_time
+	_record_frame(frame, true)
+	record_frame(true)
+func record_hit_frame(object_index:int, hit_state:HitObject.HitState):
+	var frame = Replay.HitStateFrame.new()
+	frame.object_index = object_index
+	frame.hit_state = hit_state
+	record_frame(true)
+	_record_frame(frame, true)
+var _last_cursor_position:Vector2 = Vector2()
+func record_frame(important:bool=false):
+	var cursor_position = game.player.cursor_position
+	if cursor_position == _last_cursor_position: return
+	_last_cursor_position = cursor_position
+	var frame:Replay.Frame
+	if game.settings.camera.lock:
+		frame = Replay.CursorPositionFrame.new()
+		frame.position = cursor_position
+	else:
+		frame = Replay.CameraRotationFrame.new()
+		var rotation = game.player.camera.rotation
+		frame.rotation = rotation
+		frame.position = game.player.camera.position
+	_record_frame(frame, important)
+var _last_frame:float = 0
+var _last_stream:float = 0
+var _stream_frames:Array = []
+func _record_frame(frame:Replay.Frame, important:bool=false): # I stole this concept from osu
+	var should_record = true
+	var now = (Time.get_ticks_msec() - start_time) / 1000.0
+	if replay.frames.size() > 0 and !important:
+		should_record = now - _last_frame >= 1.0 / record_rate
+	if !should_record: return false
+	if !important: _last_frame = now
+	frame.time = now #game.sync_manager.real_time
+	replay.frames.append(frame)
+	_stream_frames.append(frame)
+	if now - _last_stream >= 0.5:
+		_last_stream = now
+		Online.GDSendStreamData(replay, _stream_frames, now, game.sync_manager.real_time)
+		_stream_frames.clear()
+	return true

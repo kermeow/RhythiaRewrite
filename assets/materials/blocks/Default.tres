@@ -1,6 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://mo14d60r0wa8"]
-
-[resource]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true

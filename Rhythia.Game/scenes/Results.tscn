@@ -1,0 +1,234 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnna3u1wwqnfr"]
+
+[ext_resource type="Script" path="res://scripts/menu/ResultsScreen.gd" id="1_3bkcb"]
+[ext_resource type="Texture2D" uid="uid://baudi0q5biiuy" path="res://assets/images/covers/easy.png" id="2_edm8f"]
+[ext_resource type="Material" uid="uid://4b20ukp1h0uf" path="res://assets/materials/ui/BlurOverlay.tres" id="3_u78g1"]
+[ext_resource type="FontFile" uid="uid://c56v11c0s2px" path="res://assets/fonts/Lato/Lato-Regular.ttf" id="5_3hqhr"]
+[ext_resource type="FontFile" uid="uid://daxk4ur5wb382" path="res://assets/fonts/Lato/Lato-Light.ttf" id="6_f7ttk"]
+
+[node name="Results" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3bkcb")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_edm8f")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Blur" type="ColorRect" parent="Background"]
+material = ExtResource("3_u78g1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Darken" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AspectRatio" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -288.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.25
+
+[node name="Container" type="Control" parent="AspectRatio"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Score" type="Panel" parent="AspectRatio/Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -232.0
+offset_right = 128.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"ResultsPanel"
+
+[node name="Rank" type="Label" parent="AspectRatio/Container/Score"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 144.0
+theme_override_fonts/font = ExtResource("5_3hqhr")
+theme_override_font_sizes/font_size = 96
+text = "SS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PP" type="Label" parent="AspectRatio/Container/Score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_3hqhr")
+theme_override_font_sizes/font_size = 32
+text = "9,999"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="AspectRatio/Container/Score/PP"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -48.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_3hqhr")
+theme_override_font_sizes/font_size = 20
+text = "PP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Unranked" type="Label" parent="AspectRatio/Container/Score/PP"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_f7ttk")
+theme_override_font_sizes/font_size = 32
+text = "UNRANKED"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="AspectRatio/Container/Score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 44.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_3hqhr")
+theme_override_font_sizes/font_size = 32
+text = "999,999,999"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="AspectRatio/Container/Score/Score"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -48.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_3hqhr")
+theme_override_font_sizes/font_size = 20
+text = "SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Accuracy" type="Label" parent="AspectRatio/Container/Score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 109.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_3hqhr")
+theme_override_font_sizes/font_size = 32
+text = "99.99%"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="AspectRatio/Container/Score/Accuracy"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -48.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_3hqhr")
+theme_override_font_sizes/font_size = 20
+text = "ACCURACY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="AspectRatio/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 120.0
+offset_right = 128.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AspectRatio/Container/Restart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TRY AGAIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="Button" parent="AspectRatio/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 160.0
+offset_right = 128.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AspectRatio/Container/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RETURN TO MENU"
+horizontal_alignment = 1
+vertical_alignment = 1

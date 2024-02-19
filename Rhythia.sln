@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhythia.Game", "Rhythia.Game\Rhythia.Game.csproj", "{B1469B99-8133-4DAA-8A54-C65F36300A67}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1469B99-8133-4DAA-8A54-C65F36300A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1469B99-8133-4DAA-8A54-C65F36300A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1469B99-8133-4DAA-8A54-C65F36300A67}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{B1469B99-8133-4DAA-8A54-C65F36300A67}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{B1469B99-8133-4DAA-8A54-C65F36300A67}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{B1469B99-8133-4DAA-8A54-C65F36300A67}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
