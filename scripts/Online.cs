@@ -19,6 +19,8 @@ public partial class Online : Node
         Instance = this;
     }
 
+    public static bool Enabled => ProjectSettings
+        .GetSettingWithOverride("application/networking/enabled").AsBool();
     public static bool Connected { get; private set; } = false;
     public bool GDConnected => Connected;
     public static string ConnectMessage { get; private set; } = "No attempt made to connect";
@@ -48,6 +50,11 @@ public partial class Online : Node
     public Dictionary<string, string> SpectatePlayerMaps = new();
     public static bool AttemptConnect()
     {
+        if (!Enabled)
+        {
+            ConnectMessage = "Disabled";
+            return false;
+        }
         GD.Print("Attempting connection");
         var attempt = attemptConnect();
         attempt.Wait();
@@ -61,6 +68,11 @@ public partial class Online : Node
 
     public static bool AttemptConnectRetry(int retries = 3)
     {
+        if (!Enabled)
+        {
+            ConnectMessage = "Disabled";
+            return false;
+        }
         var firstAttempt = AttemptConnect();
         if (firstAttempt) return true;
         var result = false;
@@ -75,6 +87,11 @@ public partial class Online : Node
     }
     private static async Task<bool> attemptConnect()
     {
+        if (!Enabled)
+        {
+            ConnectMessage = "Disabled";
+            return false;
+        }
         ConnectMessage = "Unknown error";
         if (DiscordWrapper.Connected && DiscordWrapper.OAuthToken is null) DiscordWrapper.AttemptGetOAuthToken();
         if (!DiscordWrapper.Connected || DiscordWrapper.OAuthToken is null)

@@ -25,18 +25,22 @@ config/icon="res://assets/images/branding/icon.png"
 config/menu_scene="res://scenes/Menu.tscn"
 startup/disable_intro=true
 startup/disable_health_warning=true
-config/version.debug="debug"
 outro/disabled=true
 outro/play_sound=true
 outro/disabled.editor=true
 startup/disable_intro.debug=true
 startup/disable_health_warning.editor=true
-networking/enabled=false
 networking/maps/archive_index="https://cdn.rhythia.net/index.json"
 networking/multiplayer/master_server="https://game.rhythia.net"
 networking/multiplayer/master_server.editor="http://localhost:5000"
 networking/multiplayer/status_endpoint="https://game.rhythia.net/status"
 networking/multiplayer/status_endpoint.editor="http://localhost:5000/status"
+networking/enabled=false
+
+[audio]
+
+channel_disable_threshold_db=-240.0
+channel_disable_time=15.0
 
 [autoload]
 
@@ -76,6 +80,8 @@ project/assembly_name="Rhythia.Game"
 [editor]
 
 script/templates_search_path="res://templates"
+scene_naming=1
+script_templates_search_path="res://templates"
 
 [editor_plugins]
 
