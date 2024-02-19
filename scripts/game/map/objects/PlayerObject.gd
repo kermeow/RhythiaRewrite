@@ -186,7 +186,7 @@ func _input(event:InputEvent):
 func _skip_request():
 	if game.check_skippable():
 		game.skip()
-		skipped.emit()
+		skipped.emit(game.sync_manager.real_time)
 func _move_cursor(_position:Vector2, is_absolute:bool=false):
 	_preprocess_cursor()
 	if is_absolute: _absolute_movement(_position)

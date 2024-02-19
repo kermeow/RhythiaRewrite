@@ -84,8 +84,8 @@ func _process(_delta):
 		if object.force_despawn or game.sync_manager.current_time > object.despawn_time:
 			object.despawned.emit()
 			object_despawned.emit(object)
-			if object is HitObject and object.hit_state == HitObject.HitState.NONE:
-				object.miss()
+			#if object is HitObject and object.hit_state == HitObject.HitState.NONE:
+				#object.miss()
 			object.process_mode = Node.PROCESS_MODE_DISABLED
 			objects_to_process.erase(object)
 			continue

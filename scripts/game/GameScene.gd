@@ -9,6 +9,7 @@ var map_index:int
 var map:Map
 
 var replay:Replay
+var replay_mode:bool = false
 
 @export_category("Game Managers")
 @export var sync_manager:SyncManager
@@ -27,7 +28,7 @@ func _ready():
 	if replay != null:
 		mods = replay.mods
 		replay.read_settings(settings)
-		replay_manager.mode = ReplayManager.Mode.PLAY
+		replay_manager.mode = ReplayManager.Mode.SPECTATE if replay_mode else ReplayManager.Mode.PLAY
 		replay_manager.replay = replay
 		var replay_controller = PlayerController.ReplayController.new()
 		player.controller = replay_controller
@@ -39,6 +40,8 @@ func _ready():
 		replay = replay_manager.replay
 
 	map = mapset.maps[map_index]
+
+	Discord.SetActivity("%s" % map.name, mapset.name, true)
 
 	if sync_manager is AudioSyncManager: sync_manager.audio_stream = mapset.audio
 	sync_manager.playback_speed = mods.speed
@@ -67,7 +70,6 @@ func finish(failed:bool=false):
 	if ended: return
 	ended = true
 #	reporter.stop()
-	replay_manager.stop()
 	if Globals.debug: print("failed: %s" % failed)
 	if failed:
 		if Globals.debug: print("fail animation")
@@ -91,6 +93,9 @@ func finish(failed:bool=false):
 #	results.statistics = reporter.statistics
 	results.settings = settings
 	get_tree().change_scene_to_node(results)
+
+func _exit_tree():
+	replay_manager.stop()
 
 func _next_note():
 	var current_time = sync_manager.current_time

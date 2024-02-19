@@ -18,11 +18,10 @@ config/custom_user_dir_name="Rhythia"
 run/main_loop_type="SceneTreePlus"
 config/auto_accept_quit=false
 config/quit_on_go_back=false
-config/features=PackedStringArray("4.2")
+config/features=PackedStringArray("4.2", "C#")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://assets/images/branding/icon.png"
-networking/enabled=true
 config/menu_scene="res://scenes/Menu.tscn"
 startup/disable_intro=true
 startup/disable_health_warning=true
@@ -32,19 +31,19 @@ outro/play_sound=true
 outro/disabled.editor=true
 startup/disable_intro.debug=true
 startup/disable_health_warning.editor=true
-networking/server="https://rhythia.net/"
-networking/archive_index="https://cdn.rhythia.net/index.json"
-
-[audio]
-
-channel_disable_threshold_db=-240.0
-channel_disable_time=15.0
+networking/enabled=false
+networking/maps/archive_index="https://cdn.rhythia.net/index.json"
+networking/multiplayer/master_server="https://game.rhythia.net"
+networking/multiplayer/master_server.editor="http://localhost:5000"
+networking/multiplayer/status_endpoint="https://game.rhythia.net/status"
+networking/multiplayer/status_endpoint.editor="http://localhost:5000/status"
 
 [autoload]
 
 Globals="*res://scripts/Globals.gd"
+Discord="*res://discord/DiscordWrapper.cs"
 Rhythia="*res://scripts/Rhythia.gd"
-Multiplayer="*res://scripts/Multiplayer.gd"
+Online="*res://scripts/Online.cs"
 XRViewport="*res://scripts/xr/XRViewport.gd"
 
 [debug]
@@ -56,6 +55,7 @@ gdscript/warnings/assert_always_true=0
 gdscript/warnings/narrowing_conversion=false
 gdscript/warnings/onready_with_export=1
 gdscript/warnings/unused_argument=false
+gdscript/templates_search_path="res://templates"
 
 [display]
 
@@ -69,11 +69,13 @@ window/vsync/vsync_mode=0
 window/subwindows/embed_subwindows.mobile=true
 window/stretch/mode.mobile="canvas_items"
 
+[dotnet]
+
+project/assembly_name="Rhythia.Game"
+
 [editor]
 
-script/templates_search_path="res://scripts/templates"
-scene_naming=1
-script_templates_search_path="res://templates"
+script/templates_search_path="res://templates"
 
 [editor_plugins]
 

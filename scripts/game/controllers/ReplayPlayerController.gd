@@ -1,6 +1,8 @@
 extends PlayerController
 
+var replay_manager:ReplayManager
 var replay_time:float = 0
+var offset:float = 0
 
 var next_frame:Replay.Frame
 var last_frame:Replay.Frame
@@ -12,7 +14,7 @@ var queued_hit_frames:Array[Replay.HitStateFrame] = []
 var queued_frames:Array[Replay.Frame] = []
 
 func queue_frame(frame:Replay.Frame):
-	if frame.time < replay_time: return
+	#if frame.time < replay_time: replay_time -= 0.1
 	if is_instance_of(frame, Replay.HitStateFrame):
 		queued_hit_frames.append(frame)
 		return
@@ -21,17 +23,34 @@ func queue_frames(frames:Array):
 	for frame in frames:
 		if not frame is Replay.Frame: continue
 		queue_frame(frame)
-	if Globals.debug: print("Queued %s replay frames" % queued_frames.size())
+	if Globals.debug: print("Queued %s (%s) replay frames" % [frames.size(), queued_frames.size()])
 func process_frame_queue():
 	if next_frame == null:
-		if queued_frames.size() > 0: set_next_frame(queued_frames.pop_front())
-		return
+		print("No frame, getting first")
+		if queued_frames.size() > 0:
+			set_next_frame(queued_frames.pop_front())
+			return
+	#if replay_time < next_frame.time:
+		#print("Next frame in %s (%s %s)" % [next_frame.time - replay_time, next_frame.time, replay_time])
+	#else:
+		#print("We're ahead? %s" % replay_time)
 	while replay_time > next_frame.time and queued_frames.size() > 0:
 		var frame = queued_frames.pop_front()
 		set_next_frame(frame)
 func set_next_frame(frame:Replay.Frame):
-	if is_instance_of(next_frame, Replay.SyncFrame):
-		game.sync_manager.seek(next_frame.sync_time)
+	if frame == null: return
+	if is_instance_of(frame, Replay.SyncFrame):
+		if Globals.debug: print("Got sync frame: %s %s" % [frame.time, frame.sync_time])
+		var time_diff = (frame.time - replay_time)
+		replay_manager.force_sync_to(frame.time - 0.5, frame.sync_time - 0.5)
+		game.sync_manager.seek(frame.sync_time - 0.5)
+		#offset += time_diff
+		if time_diff < 0:
+			print("We're early. %s" % time_diff)
+			#offset += 0.5
+		else:
+			print("We're late. %s" % time_diff)
+			#offset -= 0.5
 	if is_instance_of(frame, Replay.CameraRotationFrame) or is_instance_of(frame, Replay.CursorPositionFrame):
 		last_movement_frame = next_movement_frame
 		next_movement_frame = frame
