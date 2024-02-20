@@ -1,10 +1,9 @@
 namespace Rhythia.Core.Maps;
 
-public class MapSet
+public class MapSet : IMapSet
 {
-    public string FilePath;
-    public MapSetMetadata Metadata;
-    public List<Map> Maps = new();
+    public MapSetMetadata Metadata { get; set; }
+    public List<IMap> Maps { get; set; } = new();
 
     public MapSet()
     {

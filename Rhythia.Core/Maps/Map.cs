@@ -3,7 +3,8 @@ using Rhythia.Core.Maps.Objects;
 
 namespace Rhythia.Core.Maps;
 
-public class Map
+[Serializable]
+public class Map : IMap
 {
     public MapMetadata Metadata { get; set; }
     public List<IMapObject> Objects { get; set; } = new();
