@@ -9,6 +9,7 @@
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.14" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="7.0.14" />
+      <PackageReference Include="System.Text.Json" Version="8.0.2" />
     </ItemGroup>
 
     <ItemGroup>
