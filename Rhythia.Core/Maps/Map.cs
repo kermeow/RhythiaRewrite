@@ -11,13 +11,4 @@ public class Map : IMap
     public int ObjectCount => Objects.Count;
     public IReadOnlyList<Note> Notes => Objects.OfType<Note>().ToImmutableList();
     public int NoteCount => Notes.Count;
-    
-    public Map()
-    {
-        Metadata = new MapMetadata
-        {
-            Name = "Unknown",
-            Author = "Unknown"
-        };
-    }
 }
