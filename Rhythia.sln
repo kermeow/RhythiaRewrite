@@ -1,8 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhythia.Game", "Rhythia.Game\Rhythia.Game.csproj", "{B1469B99-8133-4DAA-8A54-C65F36300A67}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhythia.Core", "Rhythia.Core\Rhythia.Core.csproj", "{FD7A83B9-DE39-4710-96DE-654489A20157}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhythia", "Rhythia.csproj", "{B1469B99-8133-4DAA-8A54-C65F36300A67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,11 +15,5 @@ Global
 		{B1469B99-8133-4DAA-8A54-C65F36300A67}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{B1469B99-8133-4DAA-8A54-C65F36300A67}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{B1469B99-8133-4DAA-8A54-C65F36300A67}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
-		{FD7A83B9-DE39-4710-96DE-654489A20157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD7A83B9-DE39-4710-96DE-654489A20157}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD7A83B9-DE39-4710-96DE-654489A20157}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD7A83B9-DE39-4710-96DE-654489A20157}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
-		{FD7A83B9-DE39-4710-96DE-654489A20157}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD7A83B9-DE39-4710-96DE-654489A20157}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

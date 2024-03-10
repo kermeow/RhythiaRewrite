@@ -1,0 +1,23 @@
+<Project Sdk="Godot.NET.Sdk/4.2.1">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <DefaultItemExcludes>$(DefaultItemExcludes);templates\**</DefaultItemExcludes>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="7.0.14" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Online\Multiplayer\" />
+    <Folder Include="scripts\online\spectator\" />
+  </ItemGroup>
+  <Target Name="CopyDiscordPublish" AfterTargets="Publish">
+    <Copy SourceFiles="discord\bin\x86_64\discord_game_sdk.dll" DestinationFolder="$(PublishDir)" />
+    <Copy SourceFiles="discord\bin\x86_64\libdiscord_game_sdk.so" DestinationFolder="$(PublishDir)" />
+    <!--    <Copy SourceFiles="discord\bin\x86_64\discord_game_sdk.dll" DestinationFolder="$(PublishDir)" Condition="$([MSBuild]::IsOSPlatform('Windows'))" />-->
+    <!--    <Copy SourceFiles="discord\bin\x86_64\libdiscord_game_sdk.so" DestinationFolder="$(PublishDir)" Condition="$([MSBuild]::IsOSPlatform('Linux'))" />-->
+  </Target>
+</Project>
