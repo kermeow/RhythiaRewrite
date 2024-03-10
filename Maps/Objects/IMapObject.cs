@@ -1,6 +1,11 @@
-namespace Rhythia.Maps.Objects;
+using System;
+using Newtonsoft.Json;
 
-public interface IMapObject
+namespace Rhythia.Maps.Objects
 {
-    double Time { get; set; }
+    [JsonObject(MemberSerialization.OptIn)]
+    public interface IMapObject
+    {
+        double Time { get; set; }
+    }
 }

@@ -1,9 +1,13 @@
-namespace Rhythia.Maps.Objects;
+using System;
+using Newtonsoft.Json;
 
-[Serializable]
-public class Note : IMapObject
+namespace Rhythia.Maps.Objects
 {
-    public double Time { get; set; }
-    public double X { get; set; }
-    public double Y { get; set; }
+    [Serializable, JsonObject]
+    public class Note : IMapObject
+    {
+        public double Time { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+    }
 }

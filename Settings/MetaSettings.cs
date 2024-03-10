@@ -1,6 +1,7 @@
-namespace Rhythia.Game.Settings;
-
-public class MetaSettings
+namespace Rhythia.Settings
 {
+    public class MetaSettings
+    {
     
+    }
 }

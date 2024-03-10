@@ -1,49 +1,51 @@
+using System;
 using MessagePack;
 using Rhythia.Maps;
 
-namespace Rhythia.Users;
-
-[Serializable]
-[MessagePackObject]
-[Union(10, typeof(Idle))]
-[Union(11, typeof(Playing))]
-// [Union(12, typeof(Replaying))]
-public abstract class UserActivity
+namespace Rhythia.Users
 {
-    public abstract string Status { get; }
-    public virtual string? Details => null;
-
+    [Serializable]
     [MessagePackObject]
-    public class Idle : UserActivity
+    [Union(10, typeof(Idle))]
+    [Union(11, typeof(Playing))]
+// [Union(12, typeof(Replaying))]
+    public abstract class UserActivity
     {
-        public override string Status => "Listening to music";
-    }
-    [MessagePackObject]
-    public class Playing : UserActivity
-    {
-        [Key(0)] public int MapId { get; set; }
-        [Key(1)] public string MapDisplayName { get; set; }
-        public override string Status => "Playing a map";
-        public override string? Details => MapDisplayName;
+        public abstract string Status { get; }
+        public virtual string? Details => null;
 
-        public Playing(Map map)
+        [MessagePackObject]
+        public class Idle : UserActivity
         {
-            MapId = map.Info.OnlineId;
-            MapDisplayName = map.Metadata.FriendlyName;
+            public override string Status => "Listening to music";
         }
+        [MessagePackObject]
+        public class Playing : UserActivity
+        {
+            [Key(0)] public int MapId { get; set; }
+            [Key(1)] public string MapDisplayName { get; set; }
+            public override string Status => "Playing a map";
+            public override string? Details => MapDisplayName;
+
+            public Playing(Map map)
+            {
+                MapId = map.Info.OnlineId;
+                MapDisplayName = map.Metadata.FriendlyName;
+            }
+        }
+        // [MessagePackObject]
+        // public class Replaying : UserActivity
+        // {
+        //     [Key(0)] public int MapId { get; set; }
+        //     [Key(1)] public string MapDisplayName { get; set; }
+        //     public override string Status => "Watching a replay";
+        //     public override string? Description => MapDisplayName;
+        //
+        //     public Replaying(MapMetadata mapMetadata)
+        //     {
+        //         MapId = 0;
+        //         MapDisplayName = mapMetadata.FriendlyName;
+        //     }
+        // }
     }
-    // [MessagePackObject]
-    // public class Replaying : UserActivity
-    // {
-    //     [Key(0)] public int MapId { get; set; }
-    //     [Key(1)] public string MapDisplayName { get; set; }
-    //     public override string Status => "Watching a replay";
-    //     public override string? Description => MapDisplayName;
-    //
-    //     public Replaying(MapMetadata mapMetadata)
-    //     {
-    //         MapId = 0;
-    //         MapDisplayName = mapMetadata.FriendlyName;
-    //     }
-    // }
 }

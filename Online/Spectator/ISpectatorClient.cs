@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
 
-namespace Rhythia.Online.Spectator;
-
-public interface ISpectatorClient
+namespace Rhythia.Online.Spectator
 {
-    Task StreamStarted(string userId, StreamInfo streamInfo);
-    Task StreamEnded(string userId);
-    Task StreamDataReceived(string userId, StreamData streamData);
+    public interface ISpectatorClient
+    {
+        Task StreamStarted(string userId, StreamInfo streamInfo);
+        Task StreamEnded(string userId);
+        Task StreamDataReceived(string userId, StreamData streamData);
+    }
 }

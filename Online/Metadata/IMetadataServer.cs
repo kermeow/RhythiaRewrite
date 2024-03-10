@@ -1,6 +1,7 @@
-namespace Rhythia.Online.Metadata;
-
-public interface IMetadataServer
+namespace Rhythia.Online.Metadata
 {
+    public interface IMetadataServer
+    {
     
+    }
 }

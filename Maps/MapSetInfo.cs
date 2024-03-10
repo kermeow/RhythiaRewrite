@@ -1,11 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Rhythia.Online;
 
-namespace Rhythia.Maps;
-
-[Serializable]
-public class MapSetInfo : IHasOnlineId<int>
+namespace Rhythia.Maps
 {
-    public int OnlineId { get; set; } = 0;
-    public List<MapInfo> Maps { get; set; } = new();
-    public MapMetadata Metadata => Maps.FirstOrDefault()?.Metadata ?? new();
+    [Serializable]
+    public class MapSetInfo : IHasOnlineId<int>
+    {
+        public int OnlineId { get; set; } = 0;
+        public List<MapInfo> Maps { get; set; } = new();
+        public MapMetadata Metadata => Maps.FirstOrDefault()?.Metadata ?? new();
+    }
 }

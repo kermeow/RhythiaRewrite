@@ -1,6 +1,7 @@
-namespace Rhythia.Users;
-
-public interface IUser
+namespace Rhythia.Users
 {
-    string Username { get; set; }
+    public interface IUser
+    {
+        string Username { get; set; }
+    }
 }

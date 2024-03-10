@@ -1,6 +1,7 @@
-namespace Rhythia.Online;
-
-public interface IHasOnlineId<T>
+namespace Rhythia.Online
 {
-    T OnlineId { get; set; }
+    public interface IHasOnlineId<T>
+    {
+        T OnlineId { get; set; }
+    }
 }

@@ -1,8 +1,9 @@
-namespace Rhythia.Users;
-
-public enum UserStatus
+namespace Rhythia.Users
 {
-    Offline,
-    Online,
-    OnlineWeb
+    public enum UserStatus
+    {
+        Offline,
+        Online,
+        OnlineWeb
+    }
 }
